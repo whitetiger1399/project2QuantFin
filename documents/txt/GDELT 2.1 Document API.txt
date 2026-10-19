@@ -1,0 +1,55 @@
+Skip to content
+GDELT Project
+Global Trends
+DATA & TOOLS
+CONTACT
+
+← All Posts
+June 30, 2026
+Using The New Web NGrams Dataset To Find Relevant Coverage
+
+While the transition of our search and API infrastructure to Spanner is still underway, our existing legacy search infrastructure is struggling to handle the ever-growing volume of searches. In the interim, until the last of our infrastructure has been moved to Spanner, we are temporarily releasing a new non-consumptive ngrams dataset consisting of quadgrams to allow researchers to conduct their own keyword searches of words and phrases up to 4 words long, rather than use the APIs. Every minute, we compile a JSON file consisting of a histogram of quadgrams (4-word phrases) over all of the news articles monitored over the previous minute. These four-word histograms allow searching of single words and phrases of between 2 and 4 words and is especially useful for researchers searching for large numbers of phrases, such as lists of all known infectious diseases or major conflicts or terror groups worldwide. No article fulltext is contained in this dataset, only quadgram frequency histograms. Every minute, the ngram file for two minutes ago is released, allowing continual search, as well as advanced linguistic analysis of evolving language use.
+
+Every minute two GZIPed JSON files are produced, an "ngrams.json.gz" and a "toc.json.gz", using the naming schema YYYYMMHHMM00". Each minute the file for two minutes ago is produced and thus to be safe, cronjobs and monitoring workflows should request the ngrams file from five minutes ago. Note that since GDELT's legacy workflows operate on a 15 minute heartbeat, you will see multiple minutes with files every 15 minutes and then no files until the next 15 minute mark, so workflows should accommodate this.
+
+https://data.gdeltproject.org/gdeltv5/weblegacy/ngrams/20260630201600.ngrams.txt.gz
+https://data.gdeltproject.org/gdeltv5/weblegacy/ngrams/20260630201600.toc.json.gz
+The NGRAMS file is tab-delimited for maximum compression and consists of three columns: DOCID, QUADGRAM and COUNT, counting the number of times that quadgram appeared in that document. DOCIDs reset in each file and can be cross-referenced with the TOC file to get the URL and title of the article containing that quadgram so that you can browse to the article to read it.
+
+To search an NGRAM file you can do something like this:
+
+>wget https://data.gdeltproject.org/gdeltv5/weblegacy/ngrams/20260630201600.ngrams.txt.gz
+>wget https://data.gdeltproject.org/gdeltv5/weblegacy/ngrams/20260630201600.toc.json.gz
+>gunzip *.gz
+>grep -i $'\tdisease' 20260630201600.ngrams.txt
+9       Disease Control and Prevention. 1
+47      disease later in life.  1
+47      disease. Her research examines  1
+56      diseases such as measles,       1
+91      diseases to international incidents.    1
+97      disease they contracted in      1
+135     disease or higher LDL   1
+135     disease. It has also    1
+172     diseases such as measles,       1
+181     disease and parasites through   1
+243     disease. A Public Health        1
+243     diseases "are not restricted    1
+243     diseases are not restricted     1
+
+#to cross-reference DOCID 56 above ("56 diseases such as measles, 1") back to its source URL:
+>jq -c 'select(.ID == 56)' 20260630201600.toc.json
+{"ID":56,"date":"2026-06-30T20:16:00.000Z","img":"https://www.eveningnews24.co.uk/resources/images/21122387.jpg?type=og-image","lang":"en","title":"Warnings of infectious diseases and overwhelmed hospitals after Venezuela quakes","url":"https://www.eveningnews24.co.uk/news/national/26242139.warnings-infectious-diseases-overwhelmed-hospitals-venezuela-quakes/"}
+You can convert these into smaller unigrams, bigrams and trigrams using these shell one-liners:
+
+#UNIGRAMS
+awk -F'\t' -v OFS='\t' '{split($2, w, " "); for(i in w) c[$1 OFS w[i]]+=$3} END {for(k in c) print k, c[k]}' 20260630201600.ngrams.txt | sort -t$'\t' -k1,1n -k3,3nr -k2,2 > 20260630201600.ngrams.txt.unigrams
+
+#BIGRAMS
+awk -F'\t' -v OFS='\t' '{n=split($2, w, " "); for(i=1; i<n; i++) c[$1 OFS w[i] " " w[i+1]]+=$3} END {for(k in c) print k, c[k]}' 20260630201600.ngrams.txt | sort -t$'\t' -k1,1n -k3,3nr -k2,2 > 20260630201600.ngrams.txt.bigrams
+
+#TRIGRAMS
+awk -F'\t' -v OFS='\t' '{n=split($2,w," "); for(i=1;i<=n-2;i++) c[$1 OFS w[i] " " w[i+1] " " w[i+2]]+=$3} END {for(k in c) print k,c[k]}' 20260630201600.ngrams.txt | sort -t$'\t' -k1,1n -k3,3nr -k2,2 > 20260630201600.ngrams.txt.trigrams
+Researchers should try to switch their searches to use these ngram files instead of the search APIs for the time being until we have completed our migration to Spanner in order to preserve the limited capacity of our current legacy search infrastructure.
+
+GDELT Project
+Mapping the realtime heartbeat of our planet.
