@@ -1,0 +1,134 @@
+schema_version: 1
+protocol_name: project2_research_v2
+status: ready_for_freeze
+
+lineage:
+  baseline_version: v1
+  feature_dataset_id: features_yahoo_20261019T010846Z_799f619a4f
+  screening_run_id: models_screening_8d1f4f8a10e794eb
+  confirmation_run_id: models_confirmation_5d6ed2ce5fa7b6cb
+  final_run_id: models_final_test_53e047b58e92e27b
+  baseline_freeze_id: freeze_f98a78b584d0ca42
+
+information_status:
+  warmup:
+    start: "2005-01-01"
+    end: "2005-12-31"
+    role: indicator_warmup_only
+  development:
+    start: "2006-01-01"
+    end: "2021-12-31"
+    role: nested_forward_model_development
+  retrospective_stress:
+    start: "2022-01-01"
+    end: "2025-12-31"
+    role: inspected_retrospective_only
+    untouched_holdout: false
+  optional_later_period:
+    start: "2026-01-01"
+    end: "2026-09-30"
+    enabled: false
+    retrieval_allowed_only_after_freeze: true
+    role: conditional_later_period_check
+  prospective_shadow:
+    start: day_after_protocol_freeze
+    role: prospective_monitoring
+
+outer_forward_blocks:
+  - name: outer_2011_2014
+    train_start: "2006-01-01"
+    test_start: "2011-01-01"
+    test_end: "2014-12-31"
+  - name: outer_2015_2018
+    train_start: "2006-01-01"
+    test_start: "2015-01-01"
+    test_end: "2018-12-31"
+  - name: outer_2019_2021
+    train_start: "2006-01-01"
+    test_start: "2019-01-01"
+    test_end: "2021-12-31"
+
+timing_contract:
+  timezone: America/New_York
+  decision_time: "18:00 after signal session t"
+  entry_time: "close of session t+1"
+  pnl_time: "close of session t+2"
+  label_formula: "adjusted_close[t+2] / adjusted_close[t+1] - 1"
+  label_available_at: "close of session t+2"
+  eligibility_rule: "label_available_session <= refit_origin"
+  purge_overlapping_labels: true
+  refit_frequency: month_start
+
+research_space:
+  traded_asset: SPY
+  base_currency: USD
+  feature_sets: [F0, F1, F2, M1, E1, M2, P1]
+  forecast_horizons_sessions: [1, 2, 5]
+  training_windows:
+    expanding: true
+    rolling_observations: [756, 1260, 2520]
+  model_families:
+    - historical_mean
+    - autoregression
+    - ridge
+    - elastic_net
+    - pca_ridge
+    - random_forest
+    - extra_trees
+    - hist_gradient_boosting
+    - rff_ridge
+    - xgboost_cpu
+    - lightgbm_cpu
+    - temporal_mlp
+  preprocessing:
+    imputation: training_sample_median
+    scaling: training_sample_only
+    dimensionality_reduction: training_sample_only
+  threshold_policies:
+    forecast_hurdles: [0.0, 0.0005, 0.001, 0.0015]
+    hysteresis_enabled: [false, true]
+  transaction_cost_bps_one_way: [0.0, 2.5, 5.0, 10.0, 20.0]
+
+selection_contract:
+  tuning_scope: inner_forward_folds_only
+  primary_forecast_metric: oos_r2_vs_historical_mean
+  primary_economic_metric: median_annual_net_sharpe
+  minimum_prediction_coverage: 0.98
+  uncertainty_method: stationary_or_moving_block_bootstrap
+  simple_model_preference_within_uncertainty_band: true
+  no_improvement_outcome_allowed: true
+  outer_blocks_must_not_select_winner: true
+  retrospective_period_must_not_select_winner: true
+  early_stopping_source: purged_inner_validation_only
+
+accounting_contract:
+  position_rule: "long SPY when prediction exceeds selected hurdle; otherwise cash"
+  cash_return_convention: explicit_feature_flag
+  turnover_includes_initial_entry: true
+  turnover_includes_final_liquidation: true
+  return_date_column: pnl_session
+  drawdown_initial_wealth: 1.0
+  annualization_sessions: 252
+
+compute_budget:
+  target_wall_hours: 3.0
+  maximum_wall_hours: 5.0
+  maximum_active_memory_gb: 8.0
+  concurrent_fits_to_profile: [1, 2]
+  numerical_threads_per_fit: 1
+  random_seed: 17
+  checkpoint_each_trial_fold: true
+  resume_from_valid_checkpoint: true
+
+planned_external_sources:
+  fred_alfred:
+    enabled_after_freeze: true
+    series: [DGS3MO, DGS2, DGS10, DFF]
+    requires_api_key: true
+  cboe_vix:
+    enabled_after_freeze: true
+    series: [VIX]
+  event_calendar:
+    enabled_after_freeze: true
+    events: [FOMC, CPI, NFP, US_market_holidays, crisis_markers]
+

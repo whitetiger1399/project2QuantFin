@@ -9,6 +9,9 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
+from quantfin.io import atomic_json_dump
+from quantfin.report_facts import load_v1_report_facts
+
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "reports"
@@ -49,6 +52,7 @@ def main() -> None:
     freeze = read_json(FREEZE)
     protocol = yaml.safe_load((ROOT / "configs/protocol.yaml").read_text())
     models = yaml.safe_load((ROOT / "configs/models.yaml").read_text())
+    report_facts = load_v1_report_facts(ROOT)
 
     check(feature_manifest["source_market_dataset_id"] == market_manifest["dataset_id"], "feature lineage matches market dataset", checks)
     feature_path = FEATURES / feature_manifest["file"]["path"]
@@ -95,6 +99,14 @@ def main() -> None:
     check(final_manifest["inputs"]["configurations"][0] == confirmation_selection["selected_configurations"][0], "final champion matches confirmation selection", checks)
     check(protocol["splits"]["final_test"] == freeze["final_test_bounds"], "freeze final dates match protocol", checks)
     check(float(models["research"]["one_way_cost_bps"]) == float(freeze["one_way_cost_bps"]), "final costs match model configuration", checks)
+    check(protocol["splits"]["warmup"]["end"] == "2005-12-31", "2005 is identified as warm-up", checks)
+    check(protocol["splits"]["initial_train"]["start"] == "2006-01-01", "initial model training begins in 2006", checks)
+
+    screening_selection = read_json(RUNS["screening"] / "selection.json")
+    selected_screen_ids = {item["family"]: item["config_id"] for item in screening_selection["selected_configurations"]}
+    check(report_facts["selected_ids"]["screening_random_forest"] == selected_screen_ids["random_forest"], "report resolves selected screening forest by config ID", checks)
+    check(report_facts["selected_ids"]["screening_elastic_net"] == selected_screen_ids["elastic_net"], "report resolves selected screening elastic net by config ID", checks)
+    check(report_facts["selected_ids"]["final_random_forest"] == confirmation_selection["selected_configurations"][0]["config_id"], "report final forest matches confirmation selection", checks)
 
     final_metrics = pd.read_csv(RUNS["final_test"] / "config_metrics.csv")
     champion = final_metrics.loc[final_metrics["family"].eq("random_forest")].iloc[0]
@@ -113,6 +125,7 @@ def main() -> None:
         "final_champion": {
             "config_id": champion["config_id"],
             "annualized_net_return": float(champion["annualized_net_return"]),
+            "annualized_net_volatility": float(champion["annualized_net_volatility"]),
             "net_sharpe": float(champion["net_sharpe"]),
             "net_cagr": float(champion["net_cagr"]),
             "max_drawdown": float(champion["max_drawdown"]),
@@ -122,8 +135,10 @@ def main() -> None:
             "benchmark_return": float(champion["annualized_benchmark_return"]),
             "benchmark_sharpe": float(champion["benchmark_sharpe"]),
         },
+        "report_facts": report_facts,
     }
-    (REPORTS / "output_verification.json").write_text(json.dumps(result, indent=2) + "\n")
+    atomic_json_dump(result, REPORTS / "output_verification.json")
+    atomic_json_dump(report_facts, REPORTS / "report_facts.json")
     pd.DataFrame(checks).to_csv(REPORTS / "output_verification.csv", index=False)
     print(json.dumps({"status": result["status"], "checks_passed": len(checks), "final_run": final_manifest["run_id"]}, indent=2))
 

@@ -9,9 +9,11 @@ import pandas as pd
 
 
 def _drawdown(returns: pd.Series) -> tuple[pd.Series, float]:
-    wealth = (1 + returns.fillna(0)).cumprod()
-    drawdown = wealth / wealth.cummax() - 1
-    return drawdown, float(drawdown.min())
+    clean = returns.fillna(0).to_numpy(dtype=float)
+    wealth = np.concatenate(([1.0], np.cumprod(1.0 + clean)))
+    drawdown = wealth / np.maximum.accumulate(wealth) - 1.0
+    aligned = pd.Series(drawdown[1:], index=returns.index, dtype=float)
+    return aligned, float(drawdown.min())
 
 
 def strategy_returns(
@@ -38,6 +40,8 @@ def strategy_returns(
     frame["benchmark_wealth"] = (1 + frame["target_return"]).cumprod()
     frame["strategy_drawdown"], _ = _drawdown(frame["net_strategy_return"])
     frame["benchmark_drawdown"], _ = _drawdown(frame["target_return"])
+    frame["trade_entry_session"] = pd.to_datetime(frame["entry_session"])
+    frame["pnl_session"] = pd.to_datetime(frame["label_end_session"])
     return frame
 
 
@@ -90,7 +94,7 @@ def evaluate_predictions(
         performance = _annualized_metrics(ledger["net_strategy_return"], annualization)
         benchmark = _annualized_metrics(ledger["target_return"], annualization)
         annual_sharpes = ledger.assign(
-            year=pd.to_datetime(ledger["signal_session"]).dt.year
+            year=pd.to_datetime(ledger["pnl_session"]).dt.year
         ).groupby("year")["net_strategy_return"].apply(
             lambda x: x.mean() / x.std(ddof=1) * np.sqrt(annualization) if x.std(ddof=1) > 0 else np.nan
         )

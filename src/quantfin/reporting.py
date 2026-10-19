@@ -43,6 +43,7 @@ def plot_model_run(
     top_ids = list(ranked.head(top_n)["config_id"])
     winner_id = top_ids[0]
     winner = ledgers.loc[ledgers["config_id"].eq(winner_id)].sort_values("signal_session")
+    date_column = "pnl_session" if "pnl_session" in winner.columns else "label_end_session"
     output = run_directory / "plots"
     sns.set_theme(style="whitegrid")
 
@@ -64,8 +65,8 @@ def plot_model_run(
             figure, axis = plt.subplots(figsize=(13, 6))
             for config_id in top_ids[:5]:
                 ledger = ledgers.loc[ledgers["config_id"].eq(config_id)].sort_values("signal_session")
-                axis.plot(pd.to_datetime(ledger["signal_session"]), ledger["strategy_wealth"], label=config_id, linewidth=1)
-            axis.plot(pd.to_datetime(winner["signal_session"]), winner["benchmark_wealth"], label="SPY buy-and-hold", color="black", linewidth=1.5)
+                axis.plot(pd.to_datetime(ledger[date_column]), ledger["strategy_wealth"], label=config_id, linewidth=1)
+            axis.plot(pd.to_datetime(winner[date_column]), winner["benchmark_wealth"], label="SPY buy-and-hold", color="black", linewidth=1.5)
             axis.set_yscale("log")
             axis.legend(fontsize=7)
             axis.set(title="Out-of-sample cumulative wealth", ylabel="Wealth", xlabel="")
@@ -73,14 +74,14 @@ def plot_model_run(
 
         elif task == "drawdown":
             figure, axis = plt.subplots(figsize=(13, 5))
-            axis.fill_between(pd.to_datetime(winner["signal_session"]), winner["strategy_drawdown"], 0, alpha=0.5, label="Strategy")
-            axis.plot(pd.to_datetime(winner["signal_session"]), winner["benchmark_drawdown"], color="black", linewidth=1, label="SPY")
+            axis.fill_between(pd.to_datetime(winner[date_column]), winner["strategy_drawdown"], 0, alpha=0.5, label="Strategy")
+            axis.plot(pd.to_datetime(winner[date_column]), winner["benchmark_drawdown"], color="black", linewidth=1, label="SPY")
             axis.legend()
             axis.set(title=f"Drawdown: {winner_id}", ylabel="Drawdown", xlabel="")
             _save(figure, output / "03_drawdown.png")
 
         elif task == "annual":
-            annual = winner.assign(year=pd.to_datetime(winner["signal_session"]).dt.year).groupby("year").agg(
+            annual = winner.assign(year=pd.to_datetime(winner[date_column]).dt.year).groupby("year").agg(
                 strategy=("net_strategy_return", lambda x: (1 + x).prod() - 1),
                 benchmark=("target_return", lambda x: (1 + x).prod() - 1),
             )
@@ -95,10 +96,10 @@ def plot_model_run(
             returns = winner["net_strategy_return"]
             rolling_sharpe = returns.rolling(252, min_periods=126).mean() / returns.rolling(252, min_periods=126).std() * np.sqrt(252)
             figure, axes = plt.subplots(2, 1, figsize=(13, 8), sharex=True)
-            axes[0].plot(pd.to_datetime(winner["signal_session"]), rolling_sharpe, color="#756bb1")
+            axes[0].plot(pd.to_datetime(winner[date_column]), rolling_sharpe, color="#756bb1")
             axes[0].axhline(0, color="black", linewidth=0.8)
             axes[0].set(title="Rolling 252-session Sharpe", ylabel="Sharpe")
-            axes[1].plot(pd.to_datetime(winner["signal_session"]), winner["position"].rolling(60).mean(), color="#31a354")
+            axes[1].plot(pd.to_datetime(winner[date_column]), winner["position"].rolling(60).mean(), color="#31a354")
             axes[1].set(title="Rolling 60-session market exposure", ylabel="Exposure", xlabel="")
             _save(figure, output / "05_rolling_sharpe_exposure.png")
 

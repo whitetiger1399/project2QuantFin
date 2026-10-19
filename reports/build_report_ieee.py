@@ -9,6 +9,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from quantfin.report_facts import load_v1_report_facts
 from docx import Document
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -137,25 +138,25 @@ def plot_correlation_pairs() -> Path:
     frame = pd.DataFrame(pairs, columns=["a", "b", "correlation"])
     positive = frame.nlargest(12, "correlation").sort_values("correlation")
     negative = frame.nsmallest(12, "correlation").sort_values("correlation", ascending=False)
-    fig, axes = plt.subplots(1, 2, figsize=(10.4, 5.2), dpi=220)
+    fig, axes = plt.subplots(2, 1, figsize=(9.4, 9.0), dpi=220)
     for ax, subset, title, color in (
         (axes[0], positive, "Strongest positive feature pairs", "#477A8B"),
         (axes[1], negative, "Strongest negative feature pairs", "#9C5A55"),
     ):
         labels = [f"{short_name(a)}  ↔  {short_name(b)}" for a, b in zip(subset.a, subset.b)]
         ax.barh(labels, subset.correlation, color=color)
-        ax.set_title(title, fontsize=10, fontweight="bold")
+        ax.set_title(title, fontsize=11, fontweight="bold")
         ax.set_xlabel("Pearson correlation", fontsize=8.5)
-        ax.tick_params(axis="both", labelsize=7.2)
+        ax.tick_params(axis="both", labelsize=8.2)
         ax.grid(axis="x", color="#D7D7D7", linewidth=.55)
         ax.set_axisbelow(True)
         ax.spines[["top", "right", "left"]].set_visible(False)
         for y, val in enumerate(subset.correlation):
             ax.text(val + (0.012 if val >= 0 else -0.012), y, f"{val:.2f}", va="center",
-                    ha="left" if val >= 0 else "right", fontsize=7)
+                    ha="left" if val >= 0 else "right", fontsize=7.8)
     axes[0].set_xlim(0, 1.08)
     axes[1].set_xlim(min(-1.05, negative.correlation.min() - .08), 0)
-    fig.subplots_adjust(left=.22, right=.98, bottom=.12, top=.90, wspace=.78)
+    fig.subplots_adjust(left=.36, right=.97, bottom=.07, top=.96, hspace=.42)
     path = FIGURES / "correlation_extremes.png"
     fig.savefig(path, bbox_inches="tight", facecolor="white")
     plt.close(fig)
@@ -177,7 +178,7 @@ def config_label(row) -> str:
     elif row["family"] == "pca_ridge":
         detail = f"PC={p.get('n_components')} / α={p.get('alpha')}"
     elif row["family"] == "rff_ridge":
-        detail = f"RFF={p.get('n_components', p.get('rff_components', '?'))} / α={p.get('alpha')}"
+        detail = f"RFF={p.get('n_components', p.get('rff_components', '?'))} / α={p.get('penalty', p.get('alpha'))}"
     elif row["family"] == "hist_gradient_boosting":
         detail = f"leaves={p.get('max_leaf_nodes')} / L2={p.get('l2_regularization')}"
     else:
@@ -239,8 +240,7 @@ def plot_complexity(screen: pd.DataFrame) -> Path:
     return path
 
 
-def plot_stage(screen: pd.DataFrame, confirm: pd.DataFrame, final: pd.DataFrame) -> Path:
-    rows = [d[d.family.eq("random_forest")].iloc[0] for d in (screen, confirm, final)]
+def plot_stage(rows: list[pd.Series]) -> Path:
     labels = ["Screening\n2015–18", "Confirmation\n2019–21", "Final\n2022–25"]
     fig, axes = plt.subplots(1, 3, figsize=(10.2, 3.15), dpi=220)
     metrics = [("annualized_net_return", "Annualized net return", 100), ("net_sharpe", "Net Sharpe", 1), ("max_drawdown", "Maximum drawdown", 100)]
@@ -258,6 +258,28 @@ def plot_stage(screen: pd.DataFrame, confirm: pd.DataFrame, final: pd.DataFrame)
     return path
 
 
+def plot_target_correlations() -> Path:
+    data = pd.read_csv(EDA_F / "tables/feature_target_correlations.csv")
+    data.columns = ["feature", "correlation"]
+    positive = data.nlargest(10, "correlation")
+    negative = data.nsmallest(10, "correlation")
+    selected = pd.concat([positive, negative]).sort_values("correlation")
+    fig, ax = plt.subplots(figsize=(9.2, 5.6), dpi=220)
+    labels = [short_name(x) for x in selected.feature]
+    colors = ["#9C5A55" if x < 0 else "#477A8B" for x in selected.correlation]
+    ax.barh(labels, selected.correlation, color=colors)
+    ax.axvline(0, color="#222222", linewidth=.7)
+    ax.set_xlabel("Pearson correlation with two-session-ahead target", fontsize=9)
+    ax.tick_params(axis="y", labelsize=8.2); ax.tick_params(axis="x", labelsize=8)
+    ax.grid(axis="x", color="#D7D7D7", linewidth=.55); ax.set_axisbelow(True)
+    ax.spines[["top", "right", "left"]].set_visible(False)
+    fig.subplots_adjust(left=.31, right=.97, bottom=.12, top=.97)
+    path = FIGURES / "feature_target_correlations.png"
+    fig.savefig(path, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    return path
+
+
 def equation(name: str, tex: str) -> Path:
     path = FIGURES / f"eq_{name}.png"
     fig = plt.figure(figsize=(8.3, .5), dpi=240)
@@ -270,7 +292,10 @@ def equation(name: str, tex: str) -> Path:
 
 
 def build() -> Path:
-    authors = read_json(ROOT / "assets/authors.json")
+    authors = sorted(
+        read_json(ROOT / "assets/authors.json"),
+        key=lambda author: author["name"].casefold(),
+    )
     if not authors:
         raise ValueError("assets/authors.json must contain at least one author")
     screen = pd.read_csv(SCREEN / "config_metrics.csv")
@@ -283,15 +308,18 @@ def build() -> Path:
     features = read_json(FEATURE_MANIFEST)
     verify = read_json(REPORTS / "output_verification.json")
     eval_report = read_json(FINAL / "evaluation_report.json")
-    rf_s = screen[screen.family.eq("random_forest")].iloc[0]
-    rf_c = confirm[confirm.family.eq("random_forest")].iloc[0]
-    rf_f = final[final.family.eq("random_forest")].iloc[0]
-    ar_f = final[final.family.eq("autoregression")].iloc[0]
+    facts = load_v1_report_facts(ROOT)
+    rf_s = pd.Series(facts["screening_random_forest"])
+    en_s = pd.Series(facts["screening_elastic_net"])
+    rf_c = pd.Series(facts["confirmation_random_forest"])
+    rf_f = pd.Series(facts["final_random_forest"])
+    ar_f = pd.Series(facts["final_autoregression"])
 
     corr_fig = plot_correlation_pairs()
     screen_fig = plot_screening(screen)
     complexity_fig = plot_complexity(screen)
-    stage_fig = plot_stage(screen, confirm, final)
+    stage_fig = plot_stage([rf_s, rf_c, rf_f])
+    target_corr_fig = plot_target_correlations()
     eq_target = equation("target", r"$y_t=P^{adj}_{t+2}/P^{adj}_{t+1}-1,\qquad \mathrm{available}(y_t)=t+2$")
     eq_net = equation("net", r"$\pi_{t+1}=\mathbf{1}\{\widehat y_t>h\},\qquad r^{net}_{t+2}=\pi_{t+1}y_t-c|\pi_{t+1}-\pi_t|$")
 
@@ -404,11 +432,12 @@ def build() -> Path:
     toc = [
         ("Foreword", 3), ("1. Abstract", 3), ("2. Introduction and objectives", 3),
         ("3. Data and preparation", 4), ("4. Research design and leakage control", 5),
-        ("5. Exploratory and statistical analysis", 6), ("6. Features and models", 8),
-        ("7. Walk-forward experiments", 10), ("8. Final holdout results", 12),
-        ("9. Interpretation, limitations and conclusion", 15), ("10. AI usage declaration", 16),
-        ("References", 16), ("Appendix A. Reproduction and provenance", 17),
-        ("Appendix B. Feature and model atlas", 18),
+        ("5. Exploratory and statistical analysis", 4), ("6. Features and models", 6),
+        ("7. Walk-forward experiments", 6), ("8. Final holdout results", 8),
+        ("9. Interpretation, limitations and conclusion", 11), ("10. AI usage declaration", 11),
+        ("References", 11), ("Appendix A. Reproduction and provenance", 12),
+        ("Appendix B. Feature and model atlas", 13), ("Appendix C. Supplementary evidence", 14),
+        ("Appendix D. Research risk register", 15),
     ]
     for title, page_no in toc:
         p = doc.add_paragraph(); p.paragraph_format.space_after = Pt(2)
@@ -453,7 +482,7 @@ def build() -> Path:
     figure(eq_net, "Equation 2. Forecast hurdle, long-or-cash position and net return accounting.", 5.8)
     paragraph("The hurdle h equals 0.001 and the base cost c equals 0.0005 per one-way position change. Scaling, imputation, PCA and nonlinear feature maps are fitted within each eligible training sample. Every refit applies the condition label_available_session ≤ refit_origin.")
     heading("4.2 Chronological partitions", 2)
-    table("Table 2. Predeclared chronological research stages.", ["Stage", "Dates", "Use", "Configurations × refits"], [["Initial train", "2005–2014", "EDA and diagnostics", "—"], ["Screening", "2015–2018", "Family and parameter comparison", "57 × 48"], ["Confirmation", "2019–2021", "Retest selected families", "4 × 36"], ["Final holdout", "2022–2025", "Frozen evaluation", "3 × 48"]], [2.7, 2.7, 7.3, 3.0])
+    table("Table 2. Predeclared chronological research stages.", ["Stage", "Dates", "Use", "Configurations × refits"], [["Warm-up", "2005", "Indicator history only", "—"], ["Initial train", "2006–2014", "EDA and model estimation", "—"], ["Screening", "2015–2018", "Family and parameter comparison", "57 × 48"], ["Confirmation", "2019–2021", "Retest selected families", "4 × 36"], ["Final holdout", "2022–2025", "Frozen evaluation", "3 × 48"]], [2.7, 2.7, 7.3, 3.0])
     note("Leakage-control contract.", "No random split, globally fitted preprocessing, same-close execution, final-period tuning or survivorship-driven symbol selection is permitted. Timing audits and per-refit cutoffs are recorded as artifacts.")
 
     heading("5. Exploratory and statistical analysis", 1)
@@ -468,17 +497,17 @@ def build() -> Path:
 
     heading("6. Features and models", 1)
     heading("6.1 Feature specification", 2)
-    paragraph(f"The F2 specification contains {features['feature_counts']['F2']} predictors in eleven causal groups. Mature observations require complete values for every selected feature, which keeps the training population consistent across models.")
+    paragraph(f"The F2 specification contains {features['feature_counts']['F2']} predictors in eleven causal groups. Rows require a mature target label. Missing predictor values are replaced by medians estimated separately inside each eligible training sample, preventing future information from entering preprocessing.")
     table("Table 4. Feature families and representative transformations.", ["Family", "Representative variables", "Count"], [["Lagged returns", "SPY log-return offsets 0, 1, 2, 3, 4, 9, 14, 19", 8], ["Momentum", "2–252 session cumulative returns", 10], ["Trend", "price/SMA, EMA spread, slope, 50/200 ratio", 10], ["Volatility", "rolling, downside, EWMA, skew, kurtosis", 14], ["Technical", "RSI, Bollinger z, stochastic, MACD", 6], ["Intraday / volume", "gap, range, volume ratios, z-scores, Amihud", 10], ["Interactions", "return×volume, momentum×volatility", 3], ["Calendar", "cyclical weekday/month and month-end", 5], ["Cross-asset", "QQQ/IWM/TLT/GLD momentum, volatility, correlations", 31], ["Drawdown", "60- and 252-session drawdown", 2]], [3.0, 10.5, 2.0])
     heading("6.2 Model families", 2)
-    table("Table 5. Candidate model families and complexity controls.", ["Family", "Purpose", "Primary control"], [["Historical mean", "Forecast baseline", "One parameter"], ["Autoregression", "Low-dimensional dynamic baseline", "Four lags"], ["Ridge / lasso / elastic net", "Regularized linear prediction", "Penalty grid"], ["PCA ridge", "Collinearity and dimension control", "5–40 components"], ["Random forest / extra trees", "Nonlinear states and interactions", "Depth 3/6; leaves 50/150"], ["Histogram gradient boosting", "Sequential nonlinear partitions", "3/7 leaves; L2 penalty"], ["RFF ridge", "High-dimensional nonlinear approximation", "64–1,024 components plus ridge"]], [4.1, 7.2, 4.2])
-    paragraph("The small predeclared grid limits researcher degrees of freedom. Seed 17, two process workers and one numerical thread per worker provide reproducible execution on Apple Silicon and Intel/AMD systems.")
+    table("Table 5. Candidate model families and complexity controls.", ["Family", "Purpose", "Primary control"], [["Historical mean", "Forecast baseline", "One parameter"], ["Autoregression", "Low-dimensional dynamic baseline", "Three lagged returns plus intercept"], ["Ridge / lasso / elastic net", "Regularized linear prediction", "Penalty grid"], ["PCA ridge", "Collinearity and dimension control", "5–40 components"], ["Random forest / extra trees", "Nonlinear states and interactions", "Depth 3/6; leaves 50/150"], ["Histogram gradient boosting", "Sequential nonlinear partitions", "3/7 leaves; L2 penalty"], ["RFF ridge", "High-dimensional nonlinear approximation", "64–1,024 components plus ridge"]], [4.1, 7.2, 4.2])
+    paragraph("The small predeclared grid limits researcher degrees of freedom. Seed 17 and one numerical thread per fit provide reproducible execution. The walk-forward refit loop is sequential; supported tree estimators may use up to two estimator-level jobs.")
 
     heading("7. Walk-forward experiments", 1)
     heading("7.1 Screening", 2)
     paragraph("Each configuration is refitted at month starts on an expanding eligible sample. The primary selection metric is median annual net Sharpe, with at least 98% prediction coverage. Within a 0.05 Sharpe tolerance, lower turnover, fewer trainable parameters and configuration ID provide deterministic tie-breaks.")
     figure(screen_fig, "Figure 3. Fifteen leading screening configurations. Model names and defining parameters are printed directly on the y-axis.", 6.35)
-    table("Table 6. Families advanced from screening.", ["Family", "Configuration", "Net return", "Sharpe", "Median annual Sharpe"], [["Random forest", "depth 3; leaf 50; 300 trees", f"{rf_s.annualized_net_return:.2%}", f"{rf_s.net_sharpe:.2f}", f"{rf_s.median_annual_net_sharpe:.2f}"], ["Elastic net", "α=.001; L1 ratio=.8", "1.39%", "0.40", "0.89"]], [2.6, 5.4, 2.5, 2.0, 3.0])
+    table("Table 6. Families advanced from screening.", ["Family", "Configuration", "Net return", "Sharpe", "Median annual Sharpe"], [["Random forest", "depth 3; leaf 50; 300 trees", f"{rf_s.annualized_net_return:.2%}", f"{rf_s.net_sharpe:.2f}", f"{rf_s.median_annual_net_sharpe:.2f}"], ["Elastic net", "α=.001; L1 ratio=.8", f"{en_s.annualized_net_return:.2%}", f"{en_s.net_sharpe:.2f}", f"{en_s.median_annual_net_sharpe:.2f}"]], [2.6, 5.4, 2.5, 2.0, 3.0])
 
     heading("7.2 Complexity and generalization", 2)
     paragraph("Figure 4 uses every screening configuration rather than the three final baselines. The left panel asks whether additional effective parameters improve genuinely out-of-sample fit. The right panel contrasts training and walk-forward errors against an equality line. Points below zero OOS R² fail to improve on the historical-mean forecast.")
@@ -491,7 +520,7 @@ def build() -> Path:
 
     heading("8. Final holdout results", 1)
     heading("8.1 Forecast and portfolio metrics", 2)
-    table("Table 7. Frozen final-test results, 2022–2025.", ["Metric", "Random forest", "AR baseline", "SPY"], [["Observations", "1,001", "1,001", "1,001"], ["Directional accuracy", f"{rf_f.directional_accuracy:.2%}", f"{ar_f.directional_accuracy:.2%}", "—"], ["OOS R² vs historical mean", f"{rf_f.oos_r2_vs_historical_mean:.4f}", f"{ar_f.oos_r2_vs_historical_mean:.4f}", "—"], ["Annualized net return", f"{rf_f.annualized_net_return:.2%}", f"{ar_f.annualized_net_return:.2%}", f"{rf_f.annualized_benchmark_return:.2%}"], ["Net Sharpe", f"{rf_f.net_sharpe:.3f}", f"{ar_f.net_sharpe:.3f}", f"{rf_f.benchmark_sharpe:.3f}"], ["Net CAGR", f"{rf_f.net_cagr:.2%}", f"{ar_f.net_cagr:.2%}", "—"], ["Maximum drawdown", f"{rf_f.max_drawdown:.1%}", f"{ar_f.max_drawdown:.1%}", "—"], ["Average exposure", f"{rf_f.average_exposure:.1%}", f"{ar_f.average_exposure:.1%}", "100%"], ["Annualized turnover", f"{rf_f.annualized_turnover:.2f}", f"{ar_f.annualized_turnover:.2f}", "0"]], [5.2, 3.7, 3.3, 2.7])
+    table("Table 7. Frozen final-test results, 2022–2025.", ["Metric", "Random forest", "AR baseline", "SPY"], [["Observations", f"{int(rf_f.observations):,}", f"{int(ar_f.observations):,}", f"{int(rf_f.observations):,}"], ["Directional accuracy", f"{rf_f.directional_accuracy:.2%}", f"{ar_f.directional_accuracy:.2%}", "—"], ["OOS R² vs historical mean", f"{rf_f.oos_r2_vs_historical_mean:.4f}", f"{ar_f.oos_r2_vs_historical_mean:.4f}", "—"], ["Annualized net return", f"{rf_f.annualized_net_return:.2%}", f"{ar_f.annualized_net_return:.2%}", f"{rf_f.annualized_benchmark_return:.2%}"], ["Annualized volatility", f"{rf_f.annualized_net_volatility:.2%}", f"{ar_f.annualized_net_volatility:.2%}", f"{facts['benchmark_annualized_volatility']:.2%}"], ["Net Sharpe", f"{rf_f.net_sharpe:.3f}", f"{ar_f.net_sharpe:.3f}", f"{rf_f.benchmark_sharpe:.3f}"], ["Net CAGR", f"{rf_f.net_cagr:.2%}", f"{ar_f.net_cagr:.2%}", "—"], ["Maximum drawdown", f"{rf_f.max_drawdown:.1%}", f"{ar_f.max_drawdown:.1%}", "—"], ["Average exposure", f"{rf_f.average_exposure:.1%}", f"{ar_f.average_exposure:.1%}", "100%"], ["Annualized turnover", f"{rf_f.annualized_turnover:.2f}", f"{ar_f.annualized_turnover:.2f}", "0"]], [5.2, 3.7, 3.3, 2.7])
     paragraph("The frozen forest is profitable after base costs and has a shallower drawdown than SPY. It does not beat SPY on return or Sharpe. Negative OOS R² shows that the economic gating rule does not correspond to superior squared-error forecasts.")
     figure(FINAL / "plots/02_cumulative_wealth.png", "Figure 6. Final-holdout cumulative wealth. Strategy returns are net of 5 bp one-way costs; initial wealth equals one.", 6.35)
     figure(FINAL / "plots/03_drawdown.png", "Figure 7. Final-holdout drawdown paths for the frozen strategy and SPY.", 6.15)
@@ -553,7 +582,7 @@ def build() -> Path:
     heading("A.1 Canonical identifiers", 2)
     table("Table A1. Immutable report inputs.", ["Object", "Identifier"], [["Feature dataset", "features_yahoo_20261019T010846Z_799f619a4f"], ["Screening", "models_screening_8d1f4f8a10e794eb"], ["Confirmation", "models_confirmation_5d6ed2ce5fa7b6cb"], ["Freeze", "freeze_f98a78b584d0ca42"], ["Final test", "models_final_test_53e047b58e92e27b"]], [4.0, 12.0])
     heading("A.2 Commands", 2)
-    commands = ["python scripts/verify_outputs.py", "python reports/build_report.py", "git lfs install", "python scripts/setup_git_lfs.py --install", "git add .gitattributes .gitignore data/processed artifacts reports assets", "git lfs ls-files"]
+    commands = ["python scripts/verify_outputs.py", "python reports/build_report_ieee.py", "git lfs install", "python scripts/setup_git_lfs.py --install", "git add .gitattributes .gitignore data/processed artifacts reports assets", "git lfs ls-files"]
     for command in commands:
         p = doc.add_paragraph(); p.paragraph_format.left_indent = Cm(.45); p.paragraph_format.space_after = Pt(2)
         r = p.add_run(command); r.font.name = "Consolas"; r.font.size = Pt(7.8); r.font.color.rgb = RGBColor.from_string(BLUE)
@@ -562,14 +591,31 @@ def build() -> Path:
     add_hyperlink(p, GITHUB, GITHUB)
     paragraph("Raw vendor downloads remain local because redistribution conditions can differ. Processed Parquet, CSV outputs, plots, reports and intermediate artifacts are eligible for Git LFS.")
 
-    heading("Appendix B. Feature and model atlas", 1)
+    page_break(); heading("Appendix B. Feature and model atlas", 1)
     heading("B.1 Feature timing examples", 2)
     table("Table B1. Representative information sets.", ["Variable", "Construction", "Latest information"], [["SPY return lag 0", "log(Pt/Pt−1)", "close t"], ["SPY momentum 20", "Pt/Pt−20 − 1", "close t"], ["SPY volatility 20", "SD of prior 20 log returns", "close t"], ["QQQ momentum 60", "QQQt/QQQt−60 − 1", "close t"], ["Target", "SPY adjusted return t+1 to t+2", "close t+2"]], [4.0, 7.7, 4.2])
     heading("B.2 Frozen random forest", 2)
-    table("Table B2. Final model and compute settings.", ["Setting", "Value"], [["Trees", "300"], ["Maximum depth", "3"], ["Minimum leaf size", "50"], ["Maximum features", "0.5"], ["Refit frequency", "Month start"], ["Training window", "Expanding"], ["Forecast hurdle", "0.001"], ["One-way cost", "5 bp"], ["Random seed", "17"], ["Workers / numerical threads", "2 / 1 each"]], [7.0, 8.7])
-    heading("B.3 Contribution statement", 2)
+    table("Table B2. Final model and compute settings.", ["Setting", "Value"], [["Trees", "300"], ["Maximum depth", "3"], ["Minimum leaf size", "50"], ["Maximum features", "0.5"], ["Refit frequency", "Month start"], ["Training window", "Expanding"], ["Forecast hurdle", "0.001"], ["One-way cost", "5 bp"], ["Random seed", "17"], ["Refit loop", "Sequential"], ["Tree estimator jobs / numerical threads", "2 / 1"]], [7.0, 8.7])
+    heading("B.3 Predeclared hyperparameter ranges", 2)
+    table("Table B3. Screening-grid boundaries.", ["Family", "Parameters evaluated"], [["Ridge", "α ∈ {0.001, 0.01, 0.1, 1, 10, 100}"], ["Lasso", "α ∈ {0.00001, 0.00003, 0.0001, 0.0003, 0.001}"], ["Elastic net", "α ∈ {0.00003, 0.0001, 0.0003, 0.001}; L1 ratio ∈ {0.2, 0.5, 0.8}"], ["PCA ridge", "components ∈ {5, 10, 20, 40}; α ∈ {0.1, 1}"], ["RF / extra trees", "depth ∈ {3, 6}; minimum leaf ∈ {50, 150}; 300 trees"], ["Hist. gradient boosting", "leaves ∈ {3, 7}; L2 ∈ {1, 10}; 150 iterations"], ["RFF ridge", "components ∈ {64, 256, 1,024}; penalty ∈ {0.01, 0.1, 1, 10}"]], [4.8, 11.2])
+    heading("B.4 Contribution statement", 2)
     for author in authors:
         paragraph(f"{author['name']} ({author['student_id']}): research design, data engineering, leakage controls, feature engineering, model implementation, walk-forward evaluation, interpretation and report preparation.")
+
+    page_break(); heading("Appendix C. Supplementary evidence", 1)
+    heading("C.1 Feature–target associations", 2)
+    paragraph("Figure C1 reports the largest positive and negative univariate associations with the delayed target. The magnitudes are small, as expected for daily equity returns. These correlations are screening diagnostics rather than selection statistics and do not account for dependence among predictors.")
+    figure(target_corr_fig, "Figure C1. Strongest initial-training feature correlations with the delayed return target.", 6.25)
+    heading("C.2 Verification coverage", 2)
+    table("Table C1. Automated pre-report verification domains.", ["Domain", "Checks represented"], [["Data lineage", "Dataset identifiers, manifest links and content hashes"], ["Timing", "Label availability at every refit cutoff"], ["Execution", "Planned fits, completed checkpoints and run status"], ["Predictions", "Uniqueness, completeness and stored hashes"], ["Portfolio", "Ledger coverage and gross − cost = net reconciliation"], ["Selection", "Confirmation linkage, freeze linkage and final configuration"], ["Outcome", f"PASS — {verify['checks_passed']} checks"]], [4.5, 11.5])
+    paragraph("The verification script operates on retained artifacts and does not refit models. A passing result confirms internal consistency and timing implementation; it does not establish economic significance or external validity.")
+
+    page_break(); heading("Appendix D. Research risk register", 1)
+    heading("D.1 Threats to validity and controls", 2)
+    table("Table D1. Research risks, implemented controls and remaining exposure.", ["Risk", "Implemented control", "Residual limitation"], [["Look-ahead leakage", "Delayed label availability enforced at each refit", "Vendor timestamps are daily rather than exchange audit records"], ["Preprocessing leakage", "Transforms fitted inside eligible training data", "Pipeline correctness depends on implementation fidelity"], ["Data revisions", "Immutable snapshots and SHA-256 manifests", "Historical vendor adjustments can differ across download dates"], ["Selection bias", "Small grid, chronological confirmation and freeze", "Many configurations remain a multiple-testing burden"], ["Regime dependence", "Separate screening, confirmation and final stages", "One final four-year regime cannot establish persistence"], ["Transaction costs", "Turnover-based 0–20 bp sensitivity", "Spread and market impact are time-varying"], ["Execution timing", "Signal t; execution t+1; payoff t+1 to t+2", "Close execution remains an idealization"], ["Benchmark fairness", "Same final dates; SPY buy-and-hold", "Cash receives zero interest"], ["Interpretability", "Importance stability and feature-family rationale", "Tree impurity importance is non-causal"], ["External validity", "Five liquid ETFs with declared roles", "Results may not transfer to other assets or frequencies"]], [3.4, 6.4, 6.2], 7.2)
+    heading("D.2 Submission integrity checklist", 2)
+    table("Table D2. Report and repository controls.", ["Control", "Status"], [["All authors loaded from assets/authors.json and alphabetized", "Complete"], ["GitHub repository embedded as an active hyperlink", "Complete"], ["NUS academic-integrity and AI-policy references included", "Complete"], ["AI assistance declared with retained human responsibility", "Complete"], ["Figures use legible labels and descriptive captions", "Complete"], ["Final claims reconcile to immutable run outputs", "Complete"], ["Processed data and artifacts configured for Git LFS", "Complete"]], [11.6, 4.4], 7.5)
+    paragraph("The checklist records report construction and research-governance controls. It does not replace independent review of code, assumptions, references or submission requirements.")
 
     output = REPORTS / "Project2_Team16_Report.docx"
     doc.save(output)

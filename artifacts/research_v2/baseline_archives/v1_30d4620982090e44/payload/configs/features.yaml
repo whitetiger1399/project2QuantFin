@@ -1,0 +1,25 @@
+feature_sets:
+  F0:
+    include_groups: [returns, momentum, trend, volatility, drawdown]
+  F1:
+    include_groups: [returns, momentum, trend, volatility, drawdown, technical, intraday, volume, interactions, calendar]
+  F2:
+    include_groups: [returns, momentum, trend, volatility, drawdown, technical, intraday, volume, interactions, calendar, cross_asset]
+
+parameters:
+  # Offset 0 is today's just-observed close-to-close log return.
+  return_lag_offsets: [0, 1, 2, 3, 4, 9, 14, 19]
+  momentum_windows: [2, 3, 5, 10, 15, 20, 40, 60, 120, 252]
+  moving_average_windows: [5, 10, 15, 20, 50, 100, 200]
+  volatility_windows: [5, 10, 20, 60, 120]
+  distribution_windows: [20, 60]
+  drawdown_windows: [60, 252]
+  volume_windows: [20, 60]
+  cross_asset_windows: [2, 5, 20, 60, 120]
+  correlation_window: 60
+  minimum_fraction_observed: 1.0
+
+output:
+  default_feature_set: F2
+  retain_base_columns: true
+

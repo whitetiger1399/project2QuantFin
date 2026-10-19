@@ -1,6 +1,9 @@
 {
-  "status": "pass",
-  "checks_passed": 41,
+  "canonical_ids": {
+    "feature_dataset": "features_yahoo_20261019T010846Z_799f619a4f",
+    "final_run": "models_final_test_53e047b58e92e27b",
+    "freeze": "freeze_f98a78b584d0ca42"
+  },
   "checks": [
     {
       "check": "feature lineage matches market dataset",
@@ -163,48 +166,239 @@
       "status": "pass"
     },
     {
+      "check": "2005 is identified as warm-up",
+      "status": "pass"
+    },
+    {
+      "check": "initial model training begins in 2006",
+      "status": "pass"
+    },
+    {
+      "check": "report resolves selected screening forest by config ID",
+      "status": "pass"
+    },
+    {
+      "check": "report resolves selected screening elastic net by config ID",
+      "status": "pass"
+    },
+    {
+      "check": "report final forest matches confirmation selection",
+      "status": "pass"
+    },
+    {
       "check": "final champion has complete prediction coverage",
       "status": "pass"
     }
   ],
-  "run_summaries": {
-    "screening": {
-      "run_id": "models_screening_8d1f4f8a10e794eb",
-      "configurations": 57,
-      "fits": 2736,
-      "observations_per_configuration": 1006,
-      "prediction_rows": 57342
+  "checks_passed": 46,
+  "final_champion": {
+    "annualized_net_return": 0.0242369909083538,
+    "annualized_net_volatility": 0.0790439127304455,
+    "annualized_turnover": 17.622377622377623,
+    "average_exposure": 0.0859140859140859,
+    "benchmark_return": 0.1198846509340719,
+    "benchmark_sharpe": 0.665209360666552,
+    "config_id": "random_forest_6aa9f5d449",
+    "max_drawdown": -0.1214665142230294,
+    "net_cagr": 0.0213354990173433,
+    "net_sharpe": 0.3066269124481035,
+    "oos_r2_vs_historical_mean": -0.0039990154679101
+  },
+  "report_facts": {
+    "benchmark_annualized_volatility": 0.1802209319693657,
+    "confirmation_random_forest": {
+      "annualized_benchmark_return": 0.2642292723945622,
+      "annualized_net_return": 0.0013759741001025,
+      "annualized_net_volatility": 0.1382978571793393,
+      "annualized_turnover": 14.647291941875826,
+      "average_exposure": 0.0673712021136063,
+      "benchmark_sharpe": 1.2087758807691644,
+      "config_id": "random_forest_6aa9f5d449",
+      "directional_accuracy": 0.5640686922060766,
+      "family": "random_forest",
+      "mae": 0.0083536505881223,
+      "max_drawdown": -0.2251133107245141,
+      "mean_fit_seconds": 6.421707499729107,
+      "mean_train_mse": 0.000146582363678,
+      "median_annual_net_sharpe": -0.3111862333364232,
+      "median_parameter_to_observation_ratio": 0.3482314230874691,
+      "median_train_observations": 3647.0,
+      "median_trainable_parameters": 1273.0,
+      "mse": 0.000191478934072,
+      "net_cagr": -0.008276359932417,
+      "net_sharpe": 0.0099493522760677,
+      "observations": 757,
+      "oos_r2_vs_historical_mean": -0.008864177861712,
+      "parameters": "{'max_depth': 3, 'max_features': 0.5, 'min_samples_leaf': 50, 'n_estimators': 300}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.022,
+      "train_test_mse_gap": 4.489657039391103e-05
     },
+    "final_autoregression": {
+      "annualized_benchmark_return": 0.1198846509340719,
+      "annualized_net_return": 0.0196714299966337,
+      "annualized_net_volatility": 0.0892094150827852,
+      "annualized_turnover": 35.74825174825175,
+      "average_exposure": 0.0759240759240759,
+      "benchmark_sharpe": 0.665209360666552,
+      "config_id": "autoregression_e7e3dabd11",
+      "directional_accuracy": 0.5344655344655345,
+      "family": "autoregression",
+      "mae": 0.0079357982696091,
+      "max_drawdown": -0.1058521304737138,
+      "mean_fit_seconds": 0.009586299653732,
+      "mean_train_mse": 0.0001534925472257,
+      "median_annual_net_sharpe": 0.2901649015884616,
+      "median_parameter_to_observation_ratio": 0.0008873114463176,
+      "median_train_observations": 4508.0,
+      "median_trainable_parameters": 4.0,
+      "mse": 0.0001289334527755,
+      "net_cagr": 0.0158819816373807,
+      "net_sharpe": 0.2205084516962571,
+      "observations": 1001,
+      "oos_r2_vs_historical_mean": -0.0012216725875751,
+      "parameters": "{}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.071,
+      "train_test_mse_gap": -2.4559094450265026e-05
+    },
+    "final_random_forest": {
+      "annualized_benchmark_return": 0.1198846509340719,
+      "annualized_net_return": 0.0242369909083538,
+      "annualized_net_volatility": 0.0790439127304455,
+      "annualized_turnover": 17.622377622377623,
+      "average_exposure": 0.0859140859140859,
+      "benchmark_sharpe": 0.665209360666552,
+      "config_id": "random_forest_6aa9f5d449",
+      "directional_accuracy": 0.5334665334665335,
+      "family": "random_forest",
+      "mae": 0.0079617988000469,
+      "max_drawdown": -0.1214665142230294,
+      "mean_fit_seconds": 8.10575195166452,
+      "mean_train_mse": 0.0001483586590022,
+      "median_annual_net_sharpe": 0.4824044423955422,
+      "median_parameter_to_observation_ratio": 0.2915088032092712,
+      "median_train_observations": 4508.0,
+      "median_trainable_parameters": 1312.0,
+      "mse": 0.0001292911082447,
+      "net_cagr": 0.0213354990173433,
+      "net_sharpe": 0.3066269124481035,
+      "observations": 1001,
+      "oos_r2_vs_historical_mean": -0.0039990154679101,
+      "parameters": "{'max_depth': 3, 'max_features': 0.5, 'min_samples_leaf': 50, 'n_estimators': 300}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.035,
+      "train_test_mse_gap": -1.906755075754173e-05
+    },
+    "protocol_splits": {
+      "confirmation": {
+        "end": "2021-12-31",
+        "start": "2019-01-01"
+      },
+      "final_test": {
+        "end": "2025-12-31",
+        "start": "2022-01-01"
+      },
+      "initial_train": {
+        "end": "2014-12-31",
+        "start": "2006-01-01"
+      },
+      "screening": {
+        "end": "2018-12-31",
+        "start": "2015-01-01"
+      },
+      "warmup": {
+        "end": "2005-12-31",
+        "start": "2005-01-01"
+      }
+    },
+    "schema_version": 1,
+    "screening_elastic_net": {
+      "annualized_benchmark_return": 0.0772070266131728,
+      "annualized_net_return": 0.013861639904752,
+      "annualized_net_volatility": 0.0346684679097955,
+      "annualized_turnover": 3.5069582504970183,
+      "average_exposure": 0.0109343936381709,
+      "benchmark_sharpe": 0.5653007846297228,
+      "config_id": "elastic_net_4150cd34f6",
+      "directional_accuracy": 0.5268389662027833,
+      "family": "elastic_net",
+      "mae": 0.0058367019154453,
+      "max_drawdown": -0.0609981490520279,
+      "mean_fit_seconds": 0.0390493190667731,
+      "mean_train_mse": 0.000159326531891,
+      "median_annual_net_sharpe": 0.8942453301554938,
+      "median_parameter_to_observation_ratio": 0.0364033491081179,
+      "median_train_observations": 2747.0,
+      "median_trainable_parameters": 100.0,
+      "mse": 7.395114405985137e-05,
+      "net_cagr": 0.013348791619735,
+      "net_sharpe": 0.3998342222915319,
+      "observations": 1006,
+      "oos_r2_vs_historical_mean": 0.0002697236903286,
+      "parameters": "{'alpha': 0.001, 'l1_ratio': 0.8}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.007,
+      "train_test_mse_gap": -8.537538783118123e-05
+    },
+    "screening_random_forest": {
+      "annualized_benchmark_return": 0.0772070266131728,
+      "annualized_net_return": 0.0373465773342885,
+      "annualized_net_volatility": 0.0625089843737932,
+      "annualized_turnover": 9.518886679920476,
+      "average_exposure": 0.0546719681908548,
+      "benchmark_sharpe": 0.5653007846297228,
+      "config_id": "random_forest_6aa9f5d449",
+      "directional_accuracy": 0.5238568588469185,
+      "family": "random_forest",
+      "mae": 0.0058426976996884,
+      "max_drawdown": -0.0778796528299585,
+      "mean_fit_seconds": 4.806242771527786,
+      "mean_train_mse": 0.0001538274392521,
+      "median_annual_net_sharpe": 0.950387275942327,
+      "median_parameter_to_observation_ratio": 0.4550418638514743,
+      "median_train_observations": 2747.0,
+      "median_trainable_parameters": 1253.0,
+      "mse": 7.392445819335445e-05,
+      "net_cagr": 0.0360384557493196,
+      "net_sharpe": 0.5974593525782194,
+      "observations": 1006,
+      "oos_r2_vs_historical_mean": 0.0006304844199385,
+      "parameters": "{'max_depth': 3, 'min_samples_leaf': 50, 'n_estimators': 300, 'max_features': 0.5}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.019,
+      "train_test_mse_gap": -7.990298105883051e-05
+    },
+    "selected_ids": {
+      "confirmation_random_forest": "random_forest_6aa9f5d449",
+      "final_autoregression": "autoregression_e7e3dabd11",
+      "final_random_forest": "random_forest_6aa9f5d449",
+      "screening_elastic_net": "elastic_net_4150cd34f6",
+      "screening_random_forest": "random_forest_6aa9f5d449"
+    }
+  },
+  "run_summaries": {
     "confirmation": {
-      "run_id": "models_confirmation_5d6ed2ce5fa7b6cb",
       "configurations": 4,
       "fits": 144,
       "observations_per_configuration": 757,
-      "prediction_rows": 3028
+      "prediction_rows": 3028,
+      "run_id": "models_confirmation_5d6ed2ce5fa7b6cb"
     },
     "final_test": {
-      "run_id": "models_final_test_53e047b58e92e27b",
       "configurations": 3,
       "fits": 144,
       "observations_per_configuration": 1001,
-      "prediction_rows": 3003
+      "prediction_rows": 3003,
+      "run_id": "models_final_test_53e047b58e92e27b"
+    },
+    "screening": {
+      "configurations": 57,
+      "fits": 2736,
+      "observations_per_configuration": 1006,
+      "prediction_rows": 57342,
+      "run_id": "models_screening_8d1f4f8a10e794eb"
     }
   },
-  "canonical_ids": {
-    "feature_dataset": "features_yahoo_20261019T010846Z_799f619a4f",
-    "freeze": "freeze_f98a78b584d0ca42",
-    "final_run": "models_final_test_53e047b58e92e27b"
-  },
-  "final_champion": {
-    "config_id": "random_forest_6aa9f5d449",
-    "annualized_net_return": 0.0242369909083538,
-    "net_sharpe": 0.3066269124481035,
-    "net_cagr": 0.0213354990173433,
-    "max_drawdown": -0.1214665142230294,
-    "average_exposure": 0.0859140859140859,
-    "annualized_turnover": 17.622377622377623,
-    "oos_r2_vs_historical_mean": -0.0039990154679101,
-    "benchmark_return": 0.1198846509340719,
-    "benchmark_sharpe": 0.665209360666552
-  }
+  "status": "pass"
 }

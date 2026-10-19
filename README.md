@@ -4,6 +4,8 @@ This repository contains the staged research pipeline for a daily SPY timing stu
 
 The implementation covers immutable source snapshots, audits, conservative cleaning, causal feature creation, exploratory and statistical analysis, resumable walk-forward model fitting, chronological selection, final-test freezing, portfolio evaluation, and plots. See [the feature and model guide](documents/markdown/FEATURE_AND_MODEL_GUIDE.md) for formulas, rationale, and interpretation.
 
+The research-v2 implementation starts with the ordered commands in [the v2 implementation runbook](documents/markdown/IMPLEMENTATION_RUNBOOK_V2.md). Complete A00–A04 there before retrieving new macroeconomic or 2026 market data.
+
 ## Timing convention
 
 For each observed trading session `t`:
@@ -124,7 +126,7 @@ The report builder reads completed immutable outputs and does not retrain models
 
 ```bash
 python scripts/verify_outputs.py
-python reports/build_report.py
+python reports/build_report_ieee.py
 ```
 
 The generated editable report is `reports/Project2_Team16_Report.docx`. See `reports/README.md` for PDF rendering and author-roster instructions.
