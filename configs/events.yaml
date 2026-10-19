@@ -1,0 +1,27 @@
+# These dates are used only for descriptive charts and event-window tables.
+# They never enter the prediction feature matrix.
+events:
+  - name: Lehman bankruptcy
+    date: "2008-09-15"
+    category: financial_crisis
+  - name: US sovereign rating downgrade
+    date: "2011-08-05"
+    category: sovereign_risk
+  - name: Brexit referendum
+    date: "2016-06-23"
+    category: political
+  - name: COVID-19 market peak
+    date: "2020-02-19"
+    category: pandemic
+  - name: COVID-19 market trough
+    date: "2020-03-23"
+    category: pandemic
+  - name: Russia invades Ukraine
+    date: "2022-02-24"
+    category: geopolitical
+  - name: Silicon Valley Bank closure
+    date: "2023-03-10"
+    category: banking
+
+event_window_sessions: 10
+

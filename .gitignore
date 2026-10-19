@@ -7,12 +7,10 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Downloaded market data and generated artifacts are reproducible and may have
-# redistribution restrictions. Keep directory placeholders and manifests only.
+# Raw vendor downloads can have redistribution restrictions and remain local.
 data/raw/*
 !data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
-artifacts/*
-!artifacts/.gitkeep
+
+# Local report QA renders can be regenerated from the submitted DOCX.
+reports/_rendered/
 

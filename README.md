@@ -2,7 +2,7 @@
 
 This repository contains the staged research pipeline for a daily SPY timing study. The core data are daily Yahoo Finance observations for SPY, QQQ, IWM, TLT, and GLD from 2005 through 2025. SPY is the only traded asset; the other ETFs are predictors. Stooq is an optional verification source and is never silently merged into the Yahoo series.
 
-The current implementation covers environment setup, immutable source snapshots, data audits, conservative cleaning, a research panel, causal feature creation, delayed labels, split assignment, source comparison, and timing checks. Model fitting and portfolio evaluation come after this data layer passes its quality gates.
+The implementation covers immutable source snapshots, audits, conservative cleaning, causal feature creation, exploratory and statistical analysis, resumable walk-forward model fitting, chronological selection, final-test freezing, portfolio evaluation, and plots. See [the feature and model guide](documents/markdown/FEATURE_AND_MODEL_GUIDE.md) for formulas, rationale, and interpretation.
 
 ## Timing convention
 
@@ -95,12 +95,48 @@ python -m pip freeze > requirements-lock.txt
 
 `requirements.txt` and `pyproject.toml` contain bounded, cross-platform direct dependencies. `requirements-lock.txt`, produced on the working machine, records the complete resolved environment. Keep separate lock files when the team uses different operating systems, for example `requirements-lock-macos-arm64.txt` and `requirements-lock-windows-amd64.txt`, because transitive wheels can be platform-specific.
 
+## Git LFS for processed data and research artifacts
+
+The repository tracks Parquet, CSV, plot, PDF, DOCX, ZIP and MP4 files through Git LFS. Raw Yahoo/Stooq downloads remain ignored because vendor redistribution terms can differ. Processed datasets, intermediate checkpoints, run artifacts and report outputs are no longer ignored.
+
+Install Git LFS once, then initialize and check this repository:
+
+```bash
+git lfs install
+python scripts/setup_git_lfs.py --install
+git lfs track
+```
+
+The same commands work in macOS Terminal, Windows PowerShell and Windows Command Prompt when `git` and `git-lfs` are on `PATH`. To stage the research package:
+
+```bash
+git add .gitattributes .gitignore
+git add data/processed artifacts reports assets
+git lfs ls-files
+git status --short
+```
+
+Inspect `git status` before committing. A Git host can enforce per-file, repository and LFS-storage quotas; check the course repository limits before the first large push.
+
+## Build the academic report
+
+The report builder reads completed immutable outputs and does not retrain models:
+
+```bash
+python scripts/verify_outputs.py
+python reports/build_report.py
+```
+
+The generated editable report is `reports/Project2_Team16_Report.docx`. See `reports/README.md` for PDF rendering and author-roster instructions.
+
 ## Configuration review
 
 Before downloading anything, review:
 
 - `configs/protocol.yaml`: symbols, sample dates, timing, splits, and paths.
 - `configs/features.yaml`: trailing windows and feature-set membership.
+- `configs/models.yaml`: model grids, compute limits, costs, selection, and uncertainty settings.
+- `configs/events.yaml`: fixed descriptive event annotations used only in plots.
 
 The Yahoo end date is exclusive. The configured `2026-01-01` endpoint includes sessions through 31 December 2025. Changing a source, asset, sample boundary, or timing rule after inspecting validation results is a research decision and should be recorded.
 
@@ -206,6 +242,149 @@ python -m quantfin build-features --market-dataset-id market_yahoo_YYYYMMDDTHHMM
 python -m quantfin check-timing --feature-dataset-id features_yahoo_YYYYMMDDTHHMMSSZ_CONFIGHASH
 ```
 
+## Analysis and modeling commands
+
+Run commands from the repository root with the virtual environment active. Every long loop shows a progress bar with elapsed time and ETA. Generated run IDs and paths are printed by the commands; copy the actual value into later commands. Text such as `SCREENING_RUN_ID` is a placeholder. Never type `...` as a path.
+
+### 8. Development-only market EDA
+
+```bash
+python -m quantfin eda-market --through 2014-12-31
+```
+
+This keeps screening, confirmation, and final observations hidden during feature design. Inspect `artifacts/eda/market_.../eda_manifest.json`, its `plots/` directory, and its `tables/` directory. The outputs cover source coverage, price history, returns, volatility, annual and seasonal behavior, holidays, correlations, recent trends, event windows, and extreme observations.
+
+### 9. Training-only feature EDA and statistical tests
+
+```bash
+python -m quantfin eda-features --feature-set F2 --split initial_train
+python -m quantfin stat-tests --feature-set F2 --split initial_train
+```
+
+Inspect `artifacts/eda/features_.../` and `artifacts/statistics/.../`. Feature p-values include false-discovery-rate corrections. They are diagnostics and should not be used to search repeatedly against confirmation or final data.
+
+### 10. Preview the compute load
+
+```bash
+python -m quantfin run-models --stage screening --profile quick --feature-set F2 --window expanding --plan-only
+python -m quantfin run-models --stage screening --profile standard --feature-set F2 --window expanding --plan-only
+python -m quantfin run-models --stage screening --profile deep --feature-set F2 --window 1260 --plan-only
+```
+
+`--plan-only` reads the feature dataset and prints model counts, monthly refits, and total fits. It does not create a run. Runtime depends on hardware and cannot be inferred reliably before the first measured fits; the live ETA adapts after they begin.
+
+### 11. Optional short pipeline check
+
+```bash
+python -m quantfin run-models --stage screening --profile quick --feature-set F2 --window expanding
+python -m quantfin plot-run --run-id QUICK_RUN_ID
+```
+
+This is useful for checking the command flow. Do not use its results as the main broad comparison.
+
+### 12. Main model screening
+
+```bash
+python -m quantfin run-models --stage screening --profile standard --feature-set F2 --window expanding
+```
+
+If the process stops, use the same arguments plus `--resume`:
+
+```bash
+python -m quantfin run-models --stage screening --profile standard --feature-set F2 --window expanding --resume
+```
+
+The content-addressed run ID is identical when all inputs are identical. A valid monthly checkpoint is reused; an incomplete or hash-mismatched pair is rebuilt. To inspect completion from another terminal:
+
+```bash
+python -m quantfin run-status --run-id SCREENING_RUN_ID
+```
+
+Generate reports and apply the declared selection rule:
+
+```bash
+python -m quantfin plot-run --run-id SCREENING_RUN_ID --top-n 8
+python -m quantfin select-models --run-id SCREENING_RUN_ID --top 2
+```
+
+The selection file is `artifacts/runs/SCREENING_RUN_ID/selection.json`.
+
+### 13. Planned feature and window sensitivity
+
+Run these before confirmation if the report will compare feature blocks and training-memory assumptions:
+
+```bash
+python -m quantfin run-models --stage screening --profile standard --feature-set F0 --window expanding
+python -m quantfin run-models --stage screening --profile standard --feature-set F1 --window expanding
+python -m quantfin run-models --stage screening --profile standard --feature-set F2 --window 1260
+```
+
+Plot each explicit run ID. Choose F0, F1, or F2 and expanding or 1260 observations from screening evidence, then keep that choice fixed for confirmation and final testing. F0 contains price-history features, F1 adds technical, intraday, volume, interaction, and calendar features, and F2 adds cross-asset context.
+
+The optional high-capacity experiment uses the deep profile. It includes random Fourier models from 16 to 4096 basis features and is the intended analysis of parameter count relative to observations:
+
+```bash
+python -m quantfin run-models --stage screening --profile deep --feature-set F2 --window 1260
+python -m quantfin plot-run --run-id DEEP_RUN_ID --top-n 12
+```
+
+### 14. Confirmation
+
+The following example assumes F2 and expanding training were selected. Use the exact feature set and window chosen in the preceding step.
+
+```bash
+python -m quantfin run-models --stage confirmation --profile standard --feature-set F2 --window expanding --selection artifacts/runs/SCREENING_RUN_ID/selection.json
+python -m quantfin plot-run --run-id CONFIRMATION_RUN_ID --top-n 4
+python -m quantfin select-models --run-id CONFIRMATION_RUN_ID --top 1
+```
+
+Confirmation evaluates only the screened configurations plus the historical-mean and autoregressive baselines. The second selection file is `artifacts/runs/CONFIRMATION_RUN_ID/selection.json`.
+
+### 15. Freeze and run the final holdout once
+
+```bash
+python -m quantfin freeze --feature-set F2 --window expanding --selection artifacts/runs/CONFIRMATION_RUN_ID/selection.json
+```
+
+Copy the printed freeze path, then run:
+
+```bash
+python -m quantfin run-models --stage final_test --profile standard --feature-set F2 --window expanding --selection artifacts/runs/CONFIRMATION_RUN_ID/selection.json --freeze artifacts/freezes/FREEZE_ID.json
+python -m quantfin plot-run --run-id FINAL_RUN_ID --top-n 3
+```
+
+The final command refuses to run if the selection, feature manifest, protocol, model config, feature set, or window differs from the freeze. After this evaluation, any change defines a new analysis whose 2022–2025 period is no longer untouched.
+
+### 16. Full-period descriptive EDA after freezing
+
+```bash
+python -m quantfin eda-market --through 2025-12-31
+```
+
+This produces the full event timeline and recent-period plots for the written report without feeding those observations back into model design.
+
+## Run outputs
+
+Each model run is stored under `artifacts/runs/models_STAGE_HASH/` and contains:
+
+- `run_manifest.json`: status, hashes, environment, git revision, workload, and outputs;
+- `configurations.json`: exact estimator settings;
+- `checkpoints/`: verified monthly prediction checkpoints and feature diagnostics;
+- `predictions.parquet` and `strategy_ledgers.parquet`;
+- `config_metrics.csv`: forecast, portfolio, complexity, and timing metrics;
+- `selection.json` after explicit selection;
+- `plots/`, `evaluation_report.json`, `annual_returns.csv`, `cost_sensitivity.csv`, and, when available, `feature_stability.csv` after plotting.
+
+The plot report includes the leaderboard, cumulative wealth, drawdown, calendar-year returns, rolling Sharpe and exposure, parameter-to-observation behavior, train versus out-of-sample error, cost sensitivity, and feature stability. The evaluation report also contains a moving-block bootstrap interval.
+
+## Compute recommendations
+
+For the M1 MacBook Air with 16 GB RAM, keep `n_jobs: 2` and `numerical_threads_per_worker: 1` in `configs/models.yaml`. This avoids nested numerical and tree-library thread contention while preserving responsiveness. Close memory-heavy applications for the deep 4096-component experiment. The implementation fits one configuration/refit job at a time and immediately checkpoints it, so RAM usage does not scale with the total grid size.
+
+Use `quick` to validate the workflow, `standard` for the assignment's main comparison, and `deep` only for the focused capacity experiment. More exhaustive blind grid search is statistically costly and unnecessary: the staged screening and confirmation periods provide chronological tuning while preserving the final holdout.
+
+On a Windows laptop, use the same `python -m quantfin ...` commands in PowerShell or Command Prompt. Paths passed as argument values should be quoted if the repository is stored under a directory containing spaces.
+
 ## Useful inspection commands
 
 These Python commands work on macOS and Windows and read generated files without changing them:
@@ -265,7 +444,7 @@ The Python and pip paths should both point inside `.venv`. If they do not, react
 
 Fetching creates a new timestamped snapshot. Cleaning the same snapshot or rebuilding the same feature/configuration combination intentionally refuses to overwrite its previous output. Use the existing manifest, or fetch a new source snapshot after intentionally changing the protocol. Do not delete prior research artifacts merely to hide a failed or changed experiment.
 
-## Current boundary
+## Design documents
 
-The next implementation phase is the walk-forward modeling and portfolio layer: training-only preprocessing, expanding and five-year rolling fits, forecast baselines, ridge/elastic-net/tree/RFF models, monthly refits, immutable predictions, trade accounting, costs, benchmark metrics, and reporting. The research design and work sequence are documented in [documents/markdown/AGENT_ACTION_PLAN.md](documents/markdown/AGENT_ACTION_PLAN.md).
+The assignment interpretation and full work sequence are in [the agent action plan](documents/markdown/AGENT_ACTION_PLAN.md). Feature formulas, model rationale, validation rules, metrics, and interpretation guidance are in [the feature and model guide](documents/markdown/FEATURE_AND_MODEL_GUIDE.md).
 

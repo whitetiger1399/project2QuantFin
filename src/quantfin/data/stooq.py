@@ -18,6 +18,7 @@ from quantfin.io import (
     sha256_file,
     utc_now,
 )
+from quantfin.progress import progress
 
 
 def fetch_stooq_snapshot(protocol: dict[str, Any], raw_root: Path) -> Path:
@@ -34,7 +35,9 @@ def fetch_stooq_snapshot(protocol: dict[str, Any], raw_root: Path) -> Path:
     files: list[dict[str, Any]] = []
 
     try:
-        for canonical_symbol, stooq_symbol in mappings.items():
+        for canonical_symbol, stooq_symbol in progress(
+            list(mappings.items()), description="Stooq download", total=len(mappings), unit="asset"
+        ):
             frame = web.DataReader(
                 stooq_symbol,
                 "stooq",

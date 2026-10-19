@@ -30,6 +30,14 @@ def _downside_deviation(series: pd.Series, window: int) -> pd.Series:
     return np.sqrt(squared_downside.rolling(window, min_periods=window).mean())
 
 
+def _rsi(price: pd.Series, window: int = 14) -> pd.Series:
+    change = price.diff()
+    average_gain = change.clip(lower=0).ewm(alpha=1 / window, adjust=False, min_periods=window).mean()
+    average_loss = (-change.clip(upper=0)).ewm(alpha=1 / window, adjust=False, min_periods=window).mean()
+    relative_strength = average_gain / average_loss.replace(0, np.nan)
+    return 100 - 100 / (1 + relative_strength)
+
+
 def _split_name(sessions: pd.Series, splits: dict[str, Any]) -> pd.Series:
     result = pd.Series("outside_declared_splits", index=sessions.index, dtype="string")
     for name, bounds in splits.items():
@@ -98,11 +106,38 @@ def build_feature_frame(
             volatility_by_window[10] / volatility_by_window[60],
         )
     add("volatility", "spy_downside_deviation_20", _downside_deviation(log_return, 20))
+    add("volatility", "spy_ewma_volatility_20", log_return.ewm(span=20, adjust=False, min_periods=20).std())
+    for window in parameters["distribution_windows"]:
+        window = int(window)
+        add("volatility", f"spy_return_skew_{window}", log_return.rolling(window, min_periods=window).skew())
+        add("volatility", f"spy_return_excess_kurtosis_{window}", log_return.rolling(window, min_periods=window).kurt())
+        add(
+            "volatility",
+            f"spy_return_autocorrelation_{window}",
+            log_return.rolling(window, min_periods=window).corr(log_return.shift(1)),
+        )
 
     for window in parameters["drawdown_windows"]:
         window = int(window)
         trailing_maximum = adjusted_close.rolling(window, min_periods=window).max()
         add("drawdown", f"spy_drawdown_{window}", adjusted_close / trailing_maximum - 1)
+
+    rolling_mean_20 = adjusted_close.rolling(20, min_periods=20).mean()
+    rolling_std_20 = adjusted_close.rolling(20, min_periods=20).std(ddof=1)
+    rolling_low_14 = adjusted_close.rolling(14, min_periods=14).min()
+    rolling_high_14 = adjusted_close.rolling(14, min_periods=14).max()
+    macd = ema_12 - ema_26
+    macd_signal = macd.ewm(span=9, adjust=False, min_periods=9).mean()
+    add("technical", "spy_rsi_14_scaled", _rsi(adjusted_close, 14) / 100)
+    add("technical", "spy_bollinger_z_20", (adjusted_close - rolling_mean_20) / rolling_std_20)
+    add(
+        "technical",
+        "spy_stochastic_14_scaled",
+        (adjusted_close - rolling_low_14) / (rolling_high_14 - rolling_low_14).replace(0, np.nan),
+    )
+    add("technical", "spy_macd_to_price", macd / adjusted_close)
+    add("technical", "spy_macd_signal_to_price", macd_signal / adjusted_close)
+    add("technical", "spy_macd_histogram_to_price", (macd - macd_signal) / adjusted_close)
 
     add("intraday", "spy_intraday_return", raw_close / raw_open - 1)
     add("intraday", "spy_overnight_gap", raw_open / raw_close.shift(1) - 1)
@@ -115,7 +150,20 @@ def build_feature_frame(
         add("volume", f"spy_volume_to_sma_{window}", volume / volume_average)
         add("volume", f"spy_log_volume_zscore_{window}", _rolling_zscore(log_volume, window))
     add("volume", "spy_log_volume_change_5", log_volume - log_volume.shift(5))
+    signed_volume = np.sign(log_return.fillna(0)) * volume
+    on_balance_volume = signed_volume.cumsum()
+    add("volume", "spy_obv_change_20_scaled", on_balance_volume.diff(20) / volume.rolling(20, min_periods=20).sum())
+    add("volume", "spy_amihud_illiquidity_20", (log_return.abs() / volume.replace(0, np.nan)).rolling(20, min_periods=20).mean())
     add("interactions", "spy_return_x_volume_z20", log_return * features["spy_log_volume_zscore_20"])
+    add("interactions", "spy_momentum_20_x_volatility_20", features["spy_momentum_20"] * volatility_by_window[20])
+    add("interactions", "spy_drawdown_60_x_volatility_20", features["spy_drawdown_60"] * volatility_by_window[20])
+    add("calendar", "weekday_sin", np.sin(2 * np.pi * frame["session"].dt.dayofweek / 5))
+    add("calendar", "weekday_cos", np.cos(2 * np.pi * frame["session"].dt.dayofweek / 5))
+    add("calendar", "month_sin", np.sin(2 * np.pi * frame["session"].dt.month / 12))
+    add("calendar", "month_cos", np.cos(2 * np.pi * frame["session"].dt.month / 12))
+    calendar_month_end = frame["session"].dt.to_period("M").dt.to_timestamp("M")
+    days_to_calendar_month_end = (calendar_month_end - frame["session"]).dt.days
+    add("calendar", "is_last_five_calendar_days", days_to_calendar_month_end.le(4).astype(float))
 
     cross_assets = [symbol.lower() for symbol in protocol["market_data"].get("predictor_assets", [])]
     cross_returns: dict[str, pd.Series] = {}
@@ -129,17 +177,26 @@ def build_feature_frame(
                 f"{symbol}_momentum_{window}",
                 series / series.shift(window) - 1,
             )
+        add(
+            "cross_asset",
+            f"{symbol}_volatility_20",
+            cross_returns[symbol].rolling(20, min_periods=20).std(ddof=1),
+        )
+        add(
+            "cross_asset",
+            f"spy_{symbol}_return_correlation_60",
+            log_return.rolling(60, min_periods=60).corr(cross_returns[symbol]),
+        )
     spy_momentum_20 = features["spy_momentum_20"]
     if "qqq" in cross_assets:
         add("cross_asset", "qqq_minus_spy_momentum_20", features["qqq_momentum_20"] - spy_momentum_20)
     if "iwm" in cross_assets:
         add("cross_asset", "iwm_minus_spy_momentum_20", features["iwm_momentum_20"] - spy_momentum_20)
-    if "tlt" in cross_returns:
-        window = int(parameters["correlation_window"])
+    if "tlt" in cross_returns and "gld" in cross_returns:
         add(
             "cross_asset",
-            f"spy_tlt_return_correlation_{window}",
-            log_return.rolling(window, min_periods=window).corr(cross_returns["tlt"]),
+            "tlt_gld_return_correlation_60",
+            cross_returns["tlt"].rolling(60, min_periods=60).corr(cross_returns["gld"]),
         )
 
     feature_frame = pd.DataFrame({"signal_session": frame["session"], **features})
@@ -180,7 +237,14 @@ def build_feature_dataset(
             for feature in groups.get(group, [])
         ]
 
-    feature_fingerprint = stable_object_hash(feature_config)[:10]
+    feature_fingerprint_payload = {
+        "feature_config": feature_config,
+        "data_policy": protocol["data_policy"],
+        "splits": protocol["splits"],
+        "traded_asset": protocol["market_data"]["traded_asset"],
+        "predictor_assets": protocol["market_data"].get("predictor_assets", []),
+    }
+    feature_fingerprint = stable_object_hash(feature_fingerprint_payload)[:10]
     dataset_id = f"features_{source_manifest['source_snapshot_id']}_{feature_fingerprint}"
     destination = processed_root / dataset_id
     if destination.exists():
@@ -195,6 +259,7 @@ def build_feature_dataset(
         "source_market_dataset_id": source_manifest["dataset_id"],
         "source_market_manifest_sha256": sha256_file(processed_dataset / "manifest.json"),
         "feature_config_sha256": stable_object_hash(feature_config),
+        "feature_protocol_sha256": stable_object_hash(feature_fingerprint_payload),
         "timing": protocol["data_policy"],
         "feature_groups": groups,
         "feature_sets": selected_sets,

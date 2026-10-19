@@ -1,0 +1,210 @@
+{
+  "status": "pass",
+  "checks_passed": 41,
+  "checks": [
+    {
+      "check": "feature lineage matches market dataset",
+      "status": "pass"
+    },
+    {
+      "check": "feature parquet hash matches manifest",
+      "status": "pass"
+    },
+    {
+      "check": "F2 contains 99 declared features",
+      "status": "pass"
+    },
+    {
+      "check": "feature row counts match timing audit",
+      "status": "pass"
+    },
+    {
+      "check": "timing audit passed without blockers",
+      "status": "pass"
+    },
+    {
+      "check": "raw-data quality audit has no blocking issues",
+      "status": "pass"
+    },
+    {
+      "check": "screening run is complete",
+      "status": "pass"
+    },
+    {
+      "check": "screening completed all planned fits",
+      "status": "pass"
+    },
+    {
+      "check": "screening predictions hash matches",
+      "status": "pass"
+    },
+    {
+      "check": "screening checkpoint count matches plan",
+      "status": "pass"
+    },
+    {
+      "check": "screening predictions are unique by model and session",
+      "status": "pass"
+    },
+    {
+      "check": "screening predictions contain no missing values",
+      "status": "pass"
+    },
+    {
+      "check": "screening fit cutoffs use only available labels",
+      "status": "pass"
+    },
+    {
+      "check": "screening ledger covers every prediction",
+      "status": "pass"
+    },
+    {
+      "check": "screening net-return accounting reconciles",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation run is complete",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation completed all planned fits",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation predictions hash matches",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation checkpoint count matches plan",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation predictions are unique by model and session",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation predictions contain no missing values",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation fit cutoffs use only available labels",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation ledger covers every prediction",
+      "status": "pass"
+    },
+    {
+      "check": "confirmation net-return accounting reconciles",
+      "status": "pass"
+    },
+    {
+      "check": "final_test run is complete",
+      "status": "pass"
+    },
+    {
+      "check": "final_test completed all planned fits",
+      "status": "pass"
+    },
+    {
+      "check": "final_test predictions hash matches",
+      "status": "pass"
+    },
+    {
+      "check": "final_test checkpoint count matches plan",
+      "status": "pass"
+    },
+    {
+      "check": "final_test predictions are unique by model and session",
+      "status": "pass"
+    },
+    {
+      "check": "final_test predictions contain no missing values",
+      "status": "pass"
+    },
+    {
+      "check": "final_test fit cutoffs use only available labels",
+      "status": "pass"
+    },
+    {
+      "check": "final_test ledger covers every prediction",
+      "status": "pass"
+    },
+    {
+      "check": "final_test net-return accounting reconciles",
+      "status": "pass"
+    },
+    {
+      "check": "final protocol is frozen",
+      "status": "pass"
+    },
+    {
+      "check": "freeze binds confirmation selection",
+      "status": "pass"
+    },
+    {
+      "check": "final run uses declared freeze",
+      "status": "pass"
+    },
+    {
+      "check": "final run uses verified feature dataset",
+      "status": "pass"
+    },
+    {
+      "check": "final champion matches confirmation selection",
+      "status": "pass"
+    },
+    {
+      "check": "freeze final dates match protocol",
+      "status": "pass"
+    },
+    {
+      "check": "final costs match model configuration",
+      "status": "pass"
+    },
+    {
+      "check": "final champion has complete prediction coverage",
+      "status": "pass"
+    }
+  ],
+  "run_summaries": {
+    "screening": {
+      "run_id": "models_screening_8d1f4f8a10e794eb",
+      "configurations": 57,
+      "fits": 2736,
+      "observations_per_configuration": 1006,
+      "prediction_rows": 57342
+    },
+    "confirmation": {
+      "run_id": "models_confirmation_5d6ed2ce5fa7b6cb",
+      "configurations": 4,
+      "fits": 144,
+      "observations_per_configuration": 757,
+      "prediction_rows": 3028
+    },
+    "final_test": {
+      "run_id": "models_final_test_53e047b58e92e27b",
+      "configurations": 3,
+      "fits": 144,
+      "observations_per_configuration": 1001,
+      "prediction_rows": 3003
+    }
+  },
+  "canonical_ids": {
+    "feature_dataset": "features_yahoo_20261019T010846Z_799f619a4f",
+    "freeze": "freeze_f98a78b584d0ca42",
+    "final_run": "models_final_test_53e047b58e92e27b"
+  },
+  "final_champion": {
+    "config_id": "random_forest_6aa9f5d449",
+    "annualized_net_return": 0.0242369909083538,
+    "net_sharpe": 0.3066269124481035,
+    "net_cagr": 0.0213354990173433,
+    "max_drawdown": -0.1214665142230294,
+    "average_exposure": 0.0859140859140859,
+    "annualized_turnover": 17.622377622377623,
+    "oos_r2_vs_historical_mean": -0.0039990154679101,
+    "benchmark_return": 0.1198846509340719,
+    "benchmark_sharpe": 0.665209360666552
+  }
+}

@@ -40,7 +40,7 @@ The Markdown mentions 35 total points but does not preserve a detailed numerical
 
 **Predictor universe:** SPY, QQQ, IWM, TLT, and GLD daily prices and volumes. QQQ and IWM proxy different equity exposures; TLT and GLD provide different asset-market information. These four auxiliary ETFs are predictors, not additional traded positions. Verify symbols, inception, coverage, and adjustment semantics in the acquisition step. A fixed ETF selection avoids reconstructing current index constituents backwards; it does not eliminate all retrospective asset-selection limitations.
 
-**Primary sample proposal:** fetch 2005-01-01 through 2025-12-31. Use 2005 as feature warm-up, 2006–2014 for initial training, 2015–2018 for model screening, 2019–2021 for confirmation, and 2022–2025 for a sealed final walk-forward evaluation. These are calendar bounds; actual rows follow the exchange calendar and label-maturity rules. Require enough preceding observations for every selected feature. Exclude 2026 from the main study to use complete calendar years and a fixed endpoint.
+**Primary sample:** fetch 2005-01-01 through 2025-12-31. Use 2005 as feature warm-up, 2006–2014 for initial training, 2015–2018 for model screening, 2019–2021 for confirmation, and 2022–2025 for a sealed final walk-forward evaluation. These are calendar bounds; actual rows follow the observed SPY calendar and label-maturity rules. Require enough preceding observations for every selected feature. Exclude 2026 from the main study to use complete calendar years and a fixed endpoint.
 
 **Economic hypotheses:**
 
@@ -306,20 +306,19 @@ One “fit” means one estimator at one scheduled monthly origin. It is distinc
 
 | Stage                                 | Calculation                                               | Maximum planned fits |
 | ------------------------------------- | --------------------------------------------------------- | -------------------: |
-| Initial 2015–2018 screen              | 26 configurations × 48 refits                             |                1,248 |
-| Optional within-family refinement     | At most 6 additional configurations × 48                  |                  288 |
-| 2019–2021 confirmation                | 2 finalists + 2 baselines, each × 36                      |                  144 |
-| Group ablation                        | 3 variants × 48 screening refits                          |                  144 |
-| Fixed-window development diagnostic   | One fixed finalist × 48                                   |                   48 |
-| RFF seed stability, if applicable     | Two extra fixed seeds × 48; original seed already counted |                   96 |
-| Final 2022–2025 evaluation            | Champion + rolling companion + two baselines, each × 48   |                  192 |
-| **Maximum including optional blocks** |                                                           |            **2,160** |
+| Main standard screen                  | 57 configurations × 48 monthly refits                    |                2,736 |
+| F0 and F1 feature ablations           | 2 standard grids × 2,736                                  |                5,472 |
+| Five-year rolling-window sensitivity  | 57 configurations × 48                                   |                2,736 |
+| Optional deep-capacity screen         | 75 configurations × 48                                   |                3,600 |
+| 2019–2021 confirmation                | 2 finalists + 2 baselines, each × 36                     |                  144 |
+| Final 2022–2025 evaluation            | Champion + 2 baselines, each × 48                         |                  144 |
+| **Core standard + confirmation/final**| Excludes optional ablations, rolling, and deep runs       |            **3,024** |
 
 Buy-and-hold, fixed trend rules, and re-costing saved positions require no model fits. These counts assume one SPY target, one primary feature set for family screening, monthly refits, and full calendar blocks. Actual counts are generated from the calendar manifest. A separate daily-refit, multi-target, macro, or monthly RFF study consumes an additional explicitly approved research budget; it is not included silently.
 
 Seed stability is diagnostic: use fixed seeds such as 17, 29, 43, and never pick the most profitable seed. The main RFF run uses seed 17. If an ensemble is later chosen, declare and validate that decision before the final test and count its additional fits.
 
-**Profile before scheduling:** measure data loading, transforms, estimator fit, prediction, and peak memory for representative early and late expanding windows. Estimate total time as `Σ(number_of_fits_family × measured_time_family)` plus preprocessing, I/O, and a 50% contingency. Illustratively, 2,160 fits averaging 2 seconds take 72 minutes serially; at 20 seconds they take 12 hours. These are arithmetic scenarios, not M1 measurements. A preflight estimate over four hours for routine screening triggers a documented reduction in optional refinement/seeds or RFF size before running the full job, never removal of leakage controls or cost checks.
+**Profile before scheduling:** use `run-models --plan-only` to obtain exact fit counts, then let the live progress bar estimate elapsed and remaining time from completed fits. Measure representative early and late fits before committing to optional deep and ablation runs. Estimate total time as `Σ(number_of_fits_family × measured_time_family)` plus preprocessing, I/O, and contingency. A preflight estimate over four hours for routine screening triggers a documented reduction in optional runs before execution, never removal of leakage controls or cost checks.
 
 Long runs should checkpoint completed configuration/date jobs, handle interruption, and resume without duplicate forecasts. Keep the machine connected to power and ensure sleep settings allow the run. A native process wrapper can prevent idle sleep when intentionally launched. Longer training is useful only if convergence or a planned sensitivity requires it; it is not intrinsically better for noisy daily returns.
 
@@ -329,8 +328,7 @@ Long runs should checkpoint completed configuration/date jobs, handle interrupti
 configs/
   protocol.yaml              # asset, timing, splits, costs, freeze status
   features.yaml              # formulas, groups, lags, availability
-  search.yaml                # bounded grids, seeds, selection rule
-  compute.yaml               # worker/thread/memory limits
+  models.yaml                # bounded grids, compute limits, costs, selection
 src/quantfin/
   data/                      # source adapters, snapshots, calendar, actions
   features/                  # causal transforms and feature dictionary
@@ -346,26 +344,28 @@ src/quantfin/
 tests/                       # timing, actions, ledger, integration fixtures
 data/raw/                    # private immutable source snapshots
 data/processed/              # versioned cleaned data and features
-artifacts/<run_id>/          # predictions, ledgers, metrics, plots, logs
+artifacts/runs/<run_id>/     # predictions, ledgers, metrics, plots, manifests
 reports/                     # report source, rendered PDF, video outline
 README.md
 requirements.txt
 .env.example
 ```
 
-Proposed commands to implement, not commands that exist today:
+Implemented command structure; the README contains the complete ordered commands and placeholders:
 
 ```bash
-python -m quantfin.cli fetch --config configs/protocol.yaml
-python -m quantfin.cli audit-data --config configs/protocol.yaml
-python -m quantfin.cli build-features --config configs/features.yaml
-python -m quantfin.cli check-timing --config configs/protocol.yaml
-python -m quantfin.cli profile --config configs/compute.yaml
-python -m quantfin.cli screen --config configs/search.yaml
-python -m quantfin.cli confirm --protocol configs/protocol.yaml
-python -m quantfin.cli freeze --protocol configs/protocol.yaml
-python -m quantfin.cli final-evaluate --protocol configs/protocol.yaml
-python -m quantfin.cli report --run-id <locked_run_id>
+python -m quantfin fetch --source yahoo
+python -m quantfin audit-data
+python -m quantfin clean
+python -m quantfin build-features
+python -m quantfin check-timing
+python -m quantfin run-models --stage screening --profile standard --plan-only
+python -m quantfin run-models --stage screening --profile standard
+python -m quantfin select-models --run-id SCREENING_RUN_ID
+python -m quantfin run-models --stage confirmation --selection PATH_TO_SELECTION
+python -m quantfin freeze --selection PATH_TO_CONFIRMATION_SELECTION
+python -m quantfin run-models --stage final_test --selection PATH --freeze PATH
+python -m quantfin plot-run --run-id FINAL_RUN_ID
 ```
 
 Each manifest records code revision, input hashes, config hash, feature count, eligible training dates, model settings, seed, versions, fit/convergence status, runtime, and output paths. Save fitted estimators at least at monthly origins for the finalist; large artifacts can be private and regenerated if redistribution/storage constraints apply. Write predictions atomically. Separate failed jobs from valid zero-return outcomes.
@@ -392,7 +392,7 @@ Each work order is a bounded future agent task. Execute in order unless its depe
 
 ### A05 — Produce training-only EDA
 
-**Inputs:** A04. **Actions:** inspect distributions, tails, trends, volume, correlation and missingness in 2006–2014; document hypotheses and limitations. **Outputs:** EDA notebook and exported figures. **Accept:** reproducible outputs and no test-period feature selection.
+**Inputs:** A04. **Actions:** inspect distributions, tails, trends, volume, correlation and missingness in 2006–2014; document hypotheses and limitations. **Outputs:** EDA tables and exported figures. **Accept:** reproducible outputs and no later-period feature selection.
 
 ### A06 — Implement the temporal contract and labels
 
@@ -416,7 +416,7 @@ Each work order is a bounded future agent task. Execute in order unless its depe
 
 ### A11 — Lock the search and run family screening
 
-**Inputs:** A09–A10. **Actions:** implement elastic net, bounded boosting and RFF; register every trial before execution; run the 26 initial configurations over 2015–2018. **Outputs:** full search ledger and validation ranking. **Accept:** identical evaluation dates and costs; failed fits disclosed; numerical convergence checked; no final-test performance viewed.
+**Inputs:** A09–A10. **Actions:** implement regularized linear, PCA, bounded tree ensemble, histogram boosting, and RFF families; register every trial before execution; run the 57 standard configurations over 2015–2018. **Outputs:** full search ledger and validation ranking. **Accept:** identical evaluation dates and costs; failed fits disclosed; numerical convergence checked; no confirmation or final-test performance viewed.
 
 ### A12 — Drill into the selected family
 
@@ -424,7 +424,7 @@ Each work order is a bounded future agent task. Execute in order unless its depe
 
 ### A13 — Confirm and freeze
 
-**Inputs:** A12. **Actions:** evaluate the two finalists and baselines on 2019–2021; apply the fixed selection rule; freeze champion, window companion, features, threshold, costs, metrics, seeds and final-test analysis plan. **Outputs:** signed-off-by-team freeze manifest and model card. **Accept:** every choice needed for final evaluation is deterministically specified; low performance does not cause an unbounded new search.
+**Inputs:** A12. **Actions:** evaluate the two finalists and baselines on 2019–2021; apply the fixed selection rule; freeze champion, features, window, threshold, costs, metrics, seeds and final-test analysis plan. **Outputs:** signed-off-by-team freeze manifest and model card. **Accept:** every choice needed for final evaluation is deterministically specified; low performance does not cause an unbounded new search.
 
 ### A14 — Run the sealed final evaluation
 

@@ -16,4 +16,8 @@ threadpoolctl>=3.5,<4
 # Reporting foundation
 matplotlib>=3.9,<4
 seaborn>=0.13,<1
+scipy>=1.13,<2
+statsmodels>=0.14,<1
+tqdm>=4.66,<5
+python-docx>=1.2,<2
 
