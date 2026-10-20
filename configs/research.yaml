@@ -1,9 +1,8 @@
 schema_version: 1
-protocol_name: project2_research_v2
+protocol_name: project2_research
 status: ready_for_freeze
 
 lineage:
-  baseline_version: v1
   feature_dataset_id: features_yahoo_20261019T010846Z_799f619a4f
   screening_run_id: models_screening_8d1f4f8a10e794eb
   confirmation_run_id: models_confirmation_5d6ed2ce5fa7b6cb
@@ -67,19 +66,15 @@ research_space:
   training_windows:
     expanding: true
     rolling_observations: [756, 1260, 2520]
-  model_families:
-    - historical_mean
-    - autoregression
-    - ridge
-    - elastic_net
-    - pca_ridge
-    - random_forest
-    - extra_trees
-    - hist_gradient_boosting
-    - rff_ridge
-    - xgboost_cpu
-    - lightgbm_cpu
-    - temporal_mlp
+  selected_model:
+    family: random_forest
+    config_id: random_forest_6aa9f5d449
+    parameters:
+      n_estimators: 300
+      max_depth: 3
+      min_samples_leaf: 50
+      max_features: 0.5
+  evaluation_benchmarks: [historical_mean, autoregression, buy_and_hold_spy]
   preprocessing:
     imputation: training_sample_median
     scaling: training_sample_only

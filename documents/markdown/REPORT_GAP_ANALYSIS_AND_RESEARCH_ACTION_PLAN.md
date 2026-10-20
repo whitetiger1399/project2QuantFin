@@ -148,7 +148,7 @@ Archive the v1 configuration, selection/freeze files, data hashes, report and ev
 
 **2022–2025 is now an inspected period.** Repeated tuning against it turns it into research data. Renaming it “test” or using new seeds cannot restore independence. Nested walk-forward results in this period can still be valuable, provided they are described as retrospective and affected by prior researcher exposure.
 
-### 5.2 Proposed v2 protocol
+### 5.2 Canonical improved protocol
 
 - Development: initial training 2006–2010; outer forward evaluation blocks 2011–2014, 2015–2018 and 2019–2021. Refit monthly within each block.
 - Hyperparameters and window/horizon choices are selected only using inner forward folds ending before the corresponding outer block; eligible labels must mature by the inner cutoff.
@@ -382,7 +382,7 @@ These are future implementation work packets, not claims that the modules or com
 | A00 | None | Archive v1 outputs and register inspected periods | v1 manifest + exposure log | Original hashes recoverable; no artifact overwritten |
 | A01 | A00 | Repair report fact resolution in `reports/build_report_ieee.py` | Canonical facts table and corrected report | Selected IDs, parameters, dates and metrics reconcile |
 | A02 | A00 | Audit ledger/date/drawdown in `evaluation.py` and `modeling.py` | Accounting audit, boundary fixtures | Hand-calculated paths reconcile; P&L dates explicit |
-| A03 | A01–02 | Freeze v2 protocol in proposed `configs/research_v2.yaml` | Trial ledger, splits, objective, holdout status | No unbounded search or fresh-test mislabeling |
+| A03 | A01–02 | Freeze the protocol in `configs/research.yaml` | Trial ledger, splits, objective, holdout status | No unbounded search or fresh-test mislabeling |
 | A04 | A03 | Profile hardware/families in proposed `scripts/profile_compute.py` | Machine/environment record, runtime/memory projection | One/two-worker settings measured, budget feasible |
 | A05 | A03 | Add proposed `data/fred.py`, rates/VIX/calendar adapters | Immutable snapshots, source registry | Coverage, licensing and availability provenance documented |
 | A06 | A05 | Implement release-aware joins and source quality audit | As-of panel, release-age/missingness tables | No available_at later than signal time; vintage cases verified |

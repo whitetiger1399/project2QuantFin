@@ -1,4 +1,4 @@
-"""Validate and freeze the v2 research protocol after baseline accounting audit."""
+"""Validate and freeze the single canonical research protocol."""
 
 from __future__ import annotations
 
@@ -32,7 +32,7 @@ def validate(config: dict[str, Any]) -> None:
     required = ["schema_version", "protocol_name", "information_status", "outer_forward_blocks", "timing_contract", "research_space", "selection_contract", "accounting_contract", "compute_budget"]
     missing = [key for key in required if key not in config]
     if missing:
-        raise ValueError("Missing v2 protocol sections: " + ", ".join(missing))
+        raise ValueError("Missing research protocol sections: " + ", ".join(missing))
     retrospective = config["information_status"]["retrospective_stress"]
     if retrospective.get("untouched_holdout") is not False:
         raise ValueError("2022-2025 must be declared inspected and not an untouched holdout")
@@ -45,8 +45,7 @@ def validate(config: dict[str, Any]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default="configs/research_v2.yaml")
-    parser.add_argument("--archive-manifest")
+    parser.add_argument("--config", default="configs/research.yaml")
     parser.add_argument("--accounting-audit")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -54,11 +53,8 @@ def main() -> None:
     config_path = (ROOT / args.config).resolve()
     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     validate(config)
-    archive = Path(args.archive_manifest).resolve() if args.archive_manifest else latest_manifest(
-        ROOT / "artifacts/research_v2/baseline_archives", "manifest.json"
-    )
     audit = Path(args.accounting_audit).resolve() if args.accounting_audit else latest_manifest(
-        ROOT / "artifacts/research_v2/accounting_audits", "audit_report.json"
+        ROOT / "artifacts/research/accounting_audits", "audit_report.json"
     )
     audit_report = read_json(audit)
     if audit_report.get("status") not in {"pass", "pass_with_findings"}:
@@ -66,18 +62,16 @@ def main() -> None:
     identity = {
         "protocol": config,
         "protocol_sha256": sha256_file(config_path),
-        "baseline_archive_sha256": sha256_file(archive),
         "accounting_audit_sha256": sha256_file(audit),
     }
-    freeze_id = "research_v2_" + stable_object_hash(identity)[:16]
-    destination = ROOT / "artifacts/research_v2/freezes" / f"{freeze_id}.json"
+    freeze_id = "research_" + stable_object_hash(identity)[:16]
+    destination = ROOT / "artifacts/research/freezes" / f"{freeze_id}.json"
     result = {
         "schema_version": 1,
         "freeze_id": freeze_id,
         "status": "frozen",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "protocol_path": config_path.relative_to(ROOT).as_posix(),
-        "archive_manifest_path": archive.relative_to(ROOT).as_posix(),
         "accounting_audit_path": audit.relative_to(ROOT).as_posix(),
         **identity,
         "immutability_rule": "Any protocol, data, feature, timing, selection, cost, or model-space change requires a new freeze ID.",

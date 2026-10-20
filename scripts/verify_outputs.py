@@ -10,7 +10,7 @@ import pandas as pd
 import yaml
 
 from quantfin.io import atomic_json_dump
-from quantfin.report_facts import load_v1_report_facts
+from quantfin.report_facts import load_report_facts
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,7 +52,7 @@ def main() -> None:
     freeze = read_json(FREEZE)
     protocol = yaml.safe_load((ROOT / "configs/protocol.yaml").read_text())
     models = yaml.safe_load((ROOT / "configs/models.yaml").read_text())
-    report_facts = load_v1_report_facts(ROOT)
+    report_facts = load_report_facts(ROOT)
 
     check(feature_manifest["source_market_dataset_id"] == market_manifest["dataset_id"], "feature lineage matches market dataset", checks)
     feature_path = FEATURES / feature_manifest["file"]["path"]

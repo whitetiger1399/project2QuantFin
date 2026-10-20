@@ -1,4 +1,4 @@
-"""Profile representative model fits before committing to the v2 search budget.
+"""Profile representative model fits before committing to the research budget.
 
 The default mode prints the plan. Add --execute to fit models and write a
 content-addressed profile. This script never starts the full research search.
@@ -28,11 +28,7 @@ from quantfin.models import build_estimator
 ROOT = Path(__file__).resolve().parents[1]
 FEATURE_DIRECTORY = ROOT / "data/processed/features_yahoo_20261019T010846Z_799f619a4f"
 REPRESENTATIVE_CONFIGS = [
-    {"family": "ridge", "parameters": {"alpha": 0.1}},
     {"family": "random_forest", "parameters": {"max_depth": 3, "min_samples_leaf": 50, "n_estimators": 300, "max_features": 0.5}},
-    {"family": "extra_trees", "parameters": {"max_depth": 6, "min_samples_leaf": 50, "n_estimators": 300, "max_features": 0.5}},
-    {"family": "hist_gradient_boosting", "parameters": {"max_leaf_nodes": 7, "l2_regularization": 10.0, "learning_rate": 0.05, "max_iter": 150, "min_samples_leaf": 100}},
-    {"family": "rff_ridge", "parameters": {"n_components": 1024, "penalty": 0.1, "gamma_scale": 1.0}},
 ]
 
 
@@ -68,7 +64,7 @@ def load_sample(max_observations: int) -> tuple[pd.DataFrame, pd.Series, list[st
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default="configs/research_v2.yaml")
+    parser.add_argument("--config", default="configs/research.yaml")
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--sample-sizes", type=int, nargs="+", default=[1000, 2500, 4000])
     parser.add_argument("--repeats", type=int, default=1)
@@ -149,7 +145,7 @@ def main() -> None:
         "representative_configs": REPRESENTATIVE_CONFIGS,
     }
     profile_id = "compute_" + stable_object_hash(identity)[:16]
-    output = ROOT / "artifacts/research_v2/compute_profiles" / profile_id / "profile.json"
+    output = ROOT / "artifacts/research/compute_profiles" / profile_id / "profile.json"
     report = {
         "schema_version": 1,
         "profile_id": profile_id,

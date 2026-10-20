@@ -11,7 +11,7 @@ import pandas as pd
 import yaml
 
 
-V1_PATHS = {
+CANONICAL_PATHS = {
     "screening": "artifacts/runs/models_screening_8d1f4f8a10e794eb",
     "confirmation": "artifacts/runs/models_confirmation_5d6ed2ce5fa7b6cb",
     "final_test": "artifacts/runs/models_final_test_53e047b58e92e27b",
@@ -41,13 +41,13 @@ def _unique_metric(directory: Path, config_id: str) -> dict[str, Any]:
     }
 
 
-def load_v1_report_facts(root: Path) -> dict[str, Any]:
-    """Load the exact selected configurations and metrics used by the v1 report."""
+def load_report_facts(root: Path) -> dict[str, Any]:
+    """Load the exact selected configurations and canonical report metrics."""
     root = root.resolve()
-    runs = {name: root / relative for name, relative in V1_PATHS.items() if name != "freeze"}
+    runs = {name: root / relative for name, relative in CANONICAL_PATHS.items() if name != "freeze"}
     screening_selection = _read_json(runs["screening"] / "selection.json")
     confirmation_selection = _read_json(runs["confirmation"] / "selection.json")
-    freeze = _read_json(root / V1_PATHS["freeze"])
+    freeze = _read_json(root / CANONICAL_PATHS["freeze"])
 
     screening_by_family = {
         item["family"]: item["config_id"]

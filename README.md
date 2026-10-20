@@ -4,7 +4,7 @@ This repository contains the staged research pipeline for a daily SPY timing stu
 
 The implementation covers immutable source snapshots, audits, conservative cleaning, causal feature creation, exploratory and statistical analysis, resumable walk-forward model fitting, chronological selection, final-test freezing, portfolio evaluation, and plots. See [the feature and model guide](documents/markdown/FEATURE_AND_MODEL_GUIDE.md) for formulas, rationale, and interpretation.
 
-The research-v2 implementation starts with the ordered commands in [the v2 implementation runbook](documents/markdown/IMPLEMENTATION_RUNBOOK_V2.md). Complete A00–A04 there before retrieving new macroeconomic or 2026 market data.
+The repository has one canonical research setup. Its selected model is the frozen shallow random forest (`random_forest_6aa9f5d449`); historical mean, autoregression and SPY are evaluation benchmarks rather than alternative production setups. Follow [the implementation runbook](documents/markdown/IMPLEMENTATION_RUNBOOK.md) before retrieving new macroeconomic or 2026 market data.
 
 ## Timing convention
 

@@ -1,4 +1,4 @@
-"""Independently audit v1 trade accounting without changing legacy artifacts."""
+"""Independently audit the canonical model run's trade accounting."""
 
 from __future__ import annotations
 
@@ -145,10 +145,10 @@ def main() -> None:
     freeze_path = ROOT / "artifacts/freezes" / f"{args.freeze_id}.json"
     if args.plan_only:
         print(json.dumps({
-            "action": "audit_v1_accounting",
+            "action": "audit_accounting",
             "run": str(run_dir.relative_to(ROOT)),
             "freeze": str(freeze_path.relative_to(ROOT)),
-            "legacy_artifacts_are_read_only": True,
+            "canonical_run_is_read_only": True,
         }, indent=2))
         return
 
@@ -199,14 +199,14 @@ def main() -> None:
         **source_fingerprints,
     }
     audit_id = "accounting_" + stable_object_hash(identity)[:16]
-    output = ROOT / "artifacts/research_v2/accounting_audits" / audit_id
+    output = ROOT / "artifacts/research/accounting_audits" / audit_id
     report = {
         "schema_version": 1,
         "audit_id": audit_id,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "status": "pass_with_findings" if all(case["pass"] for case in fixtures) else "fail",
         "source": identity,
-        "legacy_run_status": run_manifest["status"],
+        "source_run_status": run_manifest["status"],
         "accounting_contract": {
             "trade_entry_column": "entry_session",
             "pnl_date_column": "label_end_session",
@@ -217,8 +217,8 @@ def main() -> None:
         "strategy_metrics_by_pnl_date": annualized(ledger["net_strategy_return"]),
         "benchmark_metrics_by_pnl_date": annualized(ledger["target_return"]),
         "year_boundary_rows": int((ledger["signal_year"] != ledger["pnl_year"]).sum()),
-        "legacy_comparison": comparisons,
-        "interpretation": "Differences are audit findings. The v1 run remains immutable; corrected outputs are stored only in this audit directory.",
+        "recorded_ledger_comparison": comparisons,
+        "interpretation": "Differences are audit findings. The canonical run remains immutable; corrected outputs are stored only in this audit directory.",
     }
     atomic_parquet_dump(ledger, output / "corrected_strategy_ledger.parquet")
     atomic_csv_dump(annual, output / "annual_returns_by_pnl_session.csv")
