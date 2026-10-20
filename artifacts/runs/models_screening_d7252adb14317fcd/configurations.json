@@ -1,0 +1,320 @@
+{
+  "autoregression_e7e3dabd11": {
+    "config_id": "autoregression_e7e3dabd11",
+    "family": "autoregression",
+    "parameters": {}
+  },
+  "elastic_net_0f69450bc6": {
+    "config_id": "elastic_net_0f69450bc6",
+    "family": "elastic_net",
+    "parameters": {
+      "alpha": 0.0001,
+      "l1_ratio": 0.2
+    }
+  },
+  "elastic_net_4150cd34f6": {
+    "config_id": "elastic_net_4150cd34f6",
+    "family": "elastic_net",
+    "parameters": {
+      "alpha": 0.001,
+      "l1_ratio": 0.8
+    }
+  },
+  "elastic_net_4e84377520": {
+    "config_id": "elastic_net_4e84377520",
+    "family": "elastic_net",
+    "parameters": {
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    }
+  },
+  "elastic_net_e773dc5226": {
+    "config_id": "elastic_net_e773dc5226",
+    "family": "elastic_net",
+    "parameters": {
+      "alpha": 0.0001,
+      "l1_ratio": 0.8
+    }
+  },
+  "extra_trees_28554189e1": {
+    "config_id": "extra_trees_28554189e1",
+    "family": "extra_trees",
+    "parameters": {
+      "max_depth": 6,
+      "max_features": 0.5,
+      "min_samples_leaf": 50,
+      "n_estimators": 300
+    }
+  },
+  "extra_trees_a5e78bd8cc": {
+    "config_id": "extra_trees_a5e78bd8cc",
+    "family": "extra_trees",
+    "parameters": {
+      "max_depth": 3,
+      "max_features": 0.5,
+      "min_samples_leaf": 50,
+      "n_estimators": 300
+    }
+  },
+  "extra_trees_a9baf1078b": {
+    "config_id": "extra_trees_a9baf1078b",
+    "family": "extra_trees",
+    "parameters": {
+      "max_depth": 3,
+      "max_features": 0.5,
+      "min_samples_leaf": 25,
+      "n_estimators": 300
+    }
+  },
+  "extra_trees_e57b291bf3": {
+    "config_id": "extra_trees_e57b291bf3",
+    "family": "extra_trees",
+    "parameters": {
+      "max_depth": 6,
+      "max_features": 0.5,
+      "min_samples_leaf": 25,
+      "n_estimators": 300
+    }
+  },
+  "hist_gradient_boosting_177d63e35b": {
+    "config_id": "hist_gradient_boosting_177d63e35b",
+    "family": "hist_gradient_boosting",
+    "parameters": {
+      "l2_regularization": 0.1,
+      "learning_rate": 0.1,
+      "max_iter": 100,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 50
+    }
+  },
+  "hist_gradient_boosting_6480c4241b": {
+    "config_id": "hist_gradient_boosting_6480c4241b",
+    "family": "hist_gradient_boosting",
+    "parameters": {
+      "l2_regularization": 0.1,
+      "learning_rate": 0.1,
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 50
+    }
+  },
+  "hist_gradient_boosting_a872cc5dd9": {
+    "config_id": "hist_gradient_boosting_a872cc5dd9",
+    "family": "hist_gradient_boosting",
+    "parameters": {
+      "l2_regularization": 0.1,
+      "learning_rate": 0.05,
+      "max_iter": 100,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 50
+    }
+  },
+  "hist_gradient_boosting_bc6b5238cc": {
+    "config_id": "hist_gradient_boosting_bc6b5238cc",
+    "family": "hist_gradient_boosting",
+    "parameters": {
+      "l2_regularization": 0.1,
+      "learning_rate": 0.05,
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 50
+    }
+  },
+  "historical_mean_0ba443a7a9": {
+    "config_id": "historical_mean_0ba443a7a9",
+    "family": "historical_mean",
+    "parameters": {}
+  },
+  "lasso_3ab9d6864b": {
+    "config_id": "lasso_3ab9d6864b",
+    "family": "lasso",
+    "parameters": {
+      "alpha": 0.001
+    }
+  },
+  "lasso_5e701b524e": {
+    "config_id": "lasso_5e701b524e",
+    "family": "lasso",
+    "parameters": {
+      "alpha": 0.01
+    }
+  },
+  "lasso_ee3e2e2b8a": {
+    "config_id": "lasso_ee3e2e2b8a",
+    "family": "lasso",
+    "parameters": {
+      "alpha": 0.0001
+    }
+  },
+  "pca_ridge_01801142d9": {
+    "config_id": "pca_ridge_01801142d9",
+    "family": "pca_ridge",
+    "parameters": {
+      "alpha": 0.1,
+      "n_components": 10
+    }
+  },
+  "pca_ridge_0459fb8cad": {
+    "config_id": "pca_ridge_0459fb8cad",
+    "family": "pca_ridge",
+    "parameters": {
+      "alpha": 0.1,
+      "n_components": 25
+    }
+  },
+  "pca_ridge_3ca2ecf774": {
+    "config_id": "pca_ridge_3ca2ecf774",
+    "family": "pca_ridge",
+    "parameters": {
+      "alpha": 1.0,
+      "n_components": 25
+    }
+  },
+  "pca_ridge_6012c74284": {
+    "config_id": "pca_ridge_6012c74284",
+    "family": "pca_ridge",
+    "parameters": {
+      "alpha": 1.0,
+      "n_components": 10
+    }
+  },
+  "random_forest_6aa9f5d449": {
+    "config_id": "random_forest_6aa9f5d449",
+    "family": "random_forest",
+    "parameters": {
+      "max_depth": 3,
+      "max_features": 0.5,
+      "min_samples_leaf": 50,
+      "n_estimators": 300
+    }
+  },
+  "rff_ridge_0021fc10dc": {
+    "config_id": "rff_ridge_0021fc10dc",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 1.0,
+      "n_components": 64,
+      "penalty": 1.0
+    }
+  },
+  "rff_ridge_07171c4e64": {
+    "config_id": "rff_ridge_07171c4e64",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 1.0,
+      "n_components": 16,
+      "penalty": 0.1
+    }
+  },
+  "rff_ridge_11c623b560": {
+    "config_id": "rff_ridge_11c623b560",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 0.5,
+      "n_components": 16,
+      "penalty": 1.0
+    }
+  },
+  "rff_ridge_24729ed40c": {
+    "config_id": "rff_ridge_24729ed40c",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 1.0,
+      "n_components": 16,
+      "penalty": 1.0
+    }
+  },
+  "rff_ridge_3356fbab99": {
+    "config_id": "rff_ridge_3356fbab99",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 0.5,
+      "n_components": 256,
+      "penalty": 1.0
+    }
+  },
+  "rff_ridge_47cb1412b3": {
+    "config_id": "rff_ridge_47cb1412b3",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 1.0,
+      "n_components": 64,
+      "penalty": 0.1
+    }
+  },
+  "rff_ridge_69b17bf137": {
+    "config_id": "rff_ridge_69b17bf137",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 0.5,
+      "n_components": 16,
+      "penalty": 0.1
+    }
+  },
+  "rff_ridge_6e3aebb851": {
+    "config_id": "rff_ridge_6e3aebb851",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 1.0,
+      "n_components": 256,
+      "penalty": 1.0
+    }
+  },
+  "rff_ridge_747ca2bd07": {
+    "config_id": "rff_ridge_747ca2bd07",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 1.0,
+      "n_components": 256,
+      "penalty": 0.1
+    }
+  },
+  "rff_ridge_8861a85673": {
+    "config_id": "rff_ridge_8861a85673",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 0.5,
+      "n_components": 256,
+      "penalty": 0.1
+    }
+  },
+  "rff_ridge_b6212c5dfd": {
+    "config_id": "rff_ridge_b6212c5dfd",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 0.5,
+      "n_components": 64,
+      "penalty": 1.0
+    }
+  },
+  "rff_ridge_ce29eaddcf": {
+    "config_id": "rff_ridge_ce29eaddcf",
+    "family": "rff_ridge",
+    "parameters": {
+      "gamma_scale": 0.5,
+      "n_components": 64,
+      "penalty": 0.1
+    }
+  },
+  "ridge_41a6633d8b": {
+    "config_id": "ridge_41a6633d8b",
+    "family": "ridge",
+    "parameters": {
+      "alpha": 1.0
+    }
+  },
+  "ridge_6709d6d061": {
+    "config_id": "ridge_6709d6d061",
+    "family": "ridge",
+    "parameters": {
+      "alpha": 0.01
+    }
+  },
+  "ridge_c95271c74c": {
+    "config_id": "ridge_c95271c74c",
+    "family": "ridge",
+    "parameters": {
+      "alpha": 0.1
+    }
+  }
+}

@@ -8,7 +8,7 @@ The repository has one canonical research setup. Its selected model is the froze
 
 ### Current verified canonical run
 
-The report and verification scripts are bound to the following immutable October 20, 2026 artifact chain:
+The verification scripts and final-holdout sections of the report are bound to the following immutable October 20, 2026 artifact chain. The report also includes the separate comparative screening and confirmation runs listed below.
 
 | Object | Identifier |
 |---|---|
@@ -19,6 +19,8 @@ The report and verification scripts are bound to the following immutable October
 | Confirmation run | `models_confirmation_96d234651d29fb8c` |
 | Frozen selection | `freeze_82db313e0d1839a6` |
 | Final test run | `models_final_test_3e46f0e36fd220d6` |
+| Comparative screening | `models_screening_d7252adb14317fcd` |
+| Comparative confirmation | `models_confirmation_87083937c8d58d9b` |
 
 The final run completed all 144 planned fits with no invalid checkpoints and 100% prediction coverage. To verify the immutable chain and rebuild the academic report without retraining:
 
@@ -30,6 +32,12 @@ cp reports/_rendered/Project2_Team16_Report.pdf reports/Project2_Team16_Report.p
 ```
 
 The first two commands regenerate the verification records and DOCX from the canonical run. The rendering step performs visual QA and produces the PDF. The repository-specific renderer path used by Codex is documented in `reports/README.md`; a normal local LibreOffice installation can also export the DOCX as PDF.
+
+## Optional comparative model research
+
+`configs/models_comparison.yaml` is a separate research configuration. It compares Ridge, Lasso, Elastic Net, PCA-Ridge, Random Forest, Extra Trees, Histogram Gradient Boosting and Random Fourier Features plus the historical-mean and autoregressive baselines. It does not modify or replace the frozen canonical run. Run screening first, retain the top three distinct predictive families, and confirm those families on the next chronological period. Do not run a comparative final holdout unless a new freeze is intentionally created.
+
+The screening plan contains 37 configurations and 1,776 expanding-window fits. The exact command sequence is documented in `scripts/summarize_model_comparison.py` usage and should be run from the repository root.
 
 ## Timing convention
 
