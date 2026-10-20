@@ -22,13 +22,13 @@ REPORTS = ROOT / "reports"
 FIGURES = REPORTS / "figures_ieee"
 FIGURES.mkdir(parents=True, exist_ok=True)
 RUNS = ROOT / "artifacts" / "runs"
-SCREEN = RUNS / "models_screening_8d1f4f8a10e794eb"
-CONFIRM = RUNS / "models_confirmation_5d6ed2ce5fa7b6cb"
-FINAL = RUNS / "models_final_test_53e047b58e92e27b"
-EDA_M = ROOT / "artifacts/eda/market_market_yahoo_20261019T010846Z_2014-12-31_d2cc08ac48"
-EDA_F = ROOT / "artifacts/eda/features_features_yahoo_20261019T010846Z_799f619a4f_F2_initial_train"
-STATS_PATH = ROOT / "artifacts/statistics/features_yahoo_20261019T010846Z_799f619a4f_F2_initial_train/statistical_tests.json"
-FEATURE_MANIFEST = ROOT / "data/processed/features_yahoo_20261019T010846Z_799f619a4f/manifest.json"
+SCREEN = RUNS / "models_screening_fe6e26bdd5521077"
+CONFIRM = RUNS / "models_confirmation_96d234651d29fb8c"
+FINAL = RUNS / "models_final_test_3e46f0e36fd220d6"
+EDA_M = ROOT / "artifacts/eda/market_market_yahoo_20261020T055638Z_2014-12-31_d2cc08ac48"
+EDA_F = ROOT / "artifacts/eda/features_features_yahoo_20261020T055638Z_799f619a4f_F2_initial_train"
+STATS_PATH = ROOT / "artifacts/statistics/features_yahoo_20261020T055638Z_799f619a4f_F2_initial_train/statistical_tests.json"
+FEATURE_MANIFEST = ROOT / "data/processed/features_yahoo_20261020T055638Z_799f619a4f/manifest.json"
 GITHUB = "https://github.com/whitetiger1399/project2QuantFin"
 
 NAVY = "17365D"
@@ -316,7 +316,6 @@ def build() -> Path:
     eval_report = read_json(FINAL / "evaluation_report.json")
     facts = load_report_facts(ROOT)
     rf_s = pd.Series(facts["screening_random_forest"])
-    en_s = pd.Series(facts["screening_elastic_net"])
     rf_c = pd.Series(facts["confirmation_random_forest"])
     rf_f = pd.Series(facts["final_random_forest"])
     ar_f = pd.Series(facts["final_autoregression"])
@@ -477,13 +476,13 @@ def build() -> Path:
     paragraph("This report documents a reproducible investigation of short-horizon SPY forecasting. The emphasis is placed on timing integrity, transparent model selection, cost-aware evaluation and restrained interpretation. Numerical claims are drawn from immutable pipeline outputs and are separated from economic interpretation. The final holdout is treated as an evaluation period rather than a source of model redesign.")
 
     heading("1. Abstract", 1)
-    paragraph(f"Daily adjusted OHLCV observations for SPY, QQQ, IWM, TLT and GLD from 2005–2025 are used to test whether information available after session t can forecast the SPY adjusted-close return from t+1 to t+2. A 99-feature specification combines lagged returns, momentum, trend, volatility, technical, liquidity, calendar and cross-asset state variables. A historical predeclared screening audit compares ten model families and identifies one canonical random-forest configuration for confirmation and frozen evaluation during 2022–2025. The final strategy earns {rf_f.annualized_net_return:.2%} annualized after 5 bp one-way costs, with a {rf_f.net_sharpe:.2f} Sharpe and {rf_f.max_drawdown:.1%} maximum drawdown. SPY earns {rf_f.annualized_benchmark_return:.2%} with a {rf_f.benchmark_sharpe:.2f} Sharpe. OOS R² is {rf_f.oos_r2_vs_historical_mean:.3f}. The evidence supports a reproducible defensive timing experiment but does not support superior forecast accuracy or benchmark outperformance.")
+    paragraph(f"Daily adjusted OHLCV observations for SPY, QQQ, IWM, TLT and GLD from 2005–2025 are used to test whether information available after session t can forecast the SPY adjusted-close return from t+1 to t+2. A 99-feature specification combines lagged returns, momentum, trend, volatility, technical, liquidity, calendar and cross-asset state variables. The canonical experiment evaluates one shallow random-forest specification against historical-mean and autoregressive controls under identical chronological splits, then freezes that specification before evaluation during 2022–2025. The final strategy earns {rf_f.annualized_net_return:.2%} annualized after 5 bp one-way costs, with a {rf_f.net_sharpe:.2f} Sharpe and {rf_f.max_drawdown:.1%} maximum drawdown. SPY earns {rf_f.annualized_benchmark_return:.2%} with a {rf_f.benchmark_sharpe:.2f} Sharpe. OOS R² is {rf_f.oos_r2_vs_historical_mean:.3f}. The evidence supports a reproducible defensive timing experiment but does not support superior forecast accuracy or benchmark outperformance.")
 
     heading("2. Introduction and objectives", 1)
     paragraph("Short-horizon equity returns contain weak signals relative to noise, while model flexibility creates a material risk of data-snooping and temporal leakage [1, 5–7]. The project therefore evaluates economic performance only after a fixed chain of causal feature construction, chronological selection and frozen final testing.")
     heading("2.1 Objectives", 2)
     bullet("Construct an auditable daily multi-asset dataset and retain genuine extremes for diagnosis.")
-    bullet("Use the historical multi-family screening audit to select one canonical model under identical time splits.")
+    bullet("Evaluate one canonical Random Forest against two fixed controls under identical time splits.")
     bullet("Translate forecasts into an unlevered SPY long-or-cash rule and deduct turnover-based transaction costs.")
     bullet("Report forecast loss, return, risk, exposure, turnover, uncertainty and model complexity without using the final period for tuning.")
     note("Scope note.", "SPY is the only traded asset. QQQ, IWM, TLT and GLD are predictors. Cash earns zero in the reported backtest.")
@@ -506,7 +505,7 @@ def build() -> Path:
     figure(eq_net, "Equation 2. Forecast hurdle, long-or-cash position and net return accounting.", 5.8)
     paragraph("The hurdle h equals 0.001 and the base cost c equals 0.0005 per one-way position change. Scaling, imputation, PCA and nonlinear feature maps are fitted within each eligible training sample. Every refit applies the condition label_available_session ≤ refit_origin.")
     heading("4.2 Chronological partitions", 2)
-    table("Table 2. Predeclared chronological research stages.", ["Stage", "Dates", "Use", "Historical workload"], [["Warm-up", "2005", "Indicator history only", "—"], ["Initial train", "2006–2014", "EDA and estimation", "—"], ["Screening", "2015–2018", "Selection audit", "57 trials × 48"], ["Confirmation", "2019–2021", "Champion confirmation", "Champion + controls"], ["Final holdout", "2022–2025", "Frozen evaluation", "1 champion + 2 benchmarks"]], [2.7, 2.7, 7.3, 3.0])
+    table("Table 2. Predeclared chronological research stages.", ["Stage", "Dates", "Use", "Canonical workload"], [["Warm-up", "2005", "Indicator history only", "—"], ["Initial train", "2006–2014", "EDA and estimation", "—"], ["Screening", "2015–2018", "Canonical comparison", "3 configurations × 48"], ["Confirmation", "2019–2021", "Champion confirmation", "3 configurations × 36"], ["Final holdout", "2022–2025", "Frozen evaluation", "3 configurations × 48"]], [2.7, 2.7, 7.3, 3.0])
     note("Leakage-control contract.", "No random split, globally fitted preprocessing, same-close execution, final-period tuning or survivorship-driven symbol selection is permitted. Timing audits and per-refit cutoffs are recorded as artifacts.")
 
     heading("5. Exploratory and statistical analysis", 1)
@@ -525,22 +524,22 @@ def build() -> Path:
     table("Table 4. Feature families and representative transformations.", ["Family", "Representative variables", "Count"], [["Lagged returns", "SPY log-return offsets 0, 1, 2, 3, 4, 9, 14, 19", 8], ["Momentum", "2–252 session cumulative returns", 10], ["Trend", "price/SMA, EMA spread, slope, 50/200 ratio", 10], ["Volatility", "rolling, downside, EWMA, skew, kurtosis", 14], ["Technical", "RSI, Bollinger z, stochastic, MACD", 6], ["Intraday / volume", "gap, range, volume ratios, z-scores, Amihud", 10], ["Interactions", "return×volume, momentum×volatility", 3], ["Calendar", "cyclical weekday/month and month-end", 5], ["Cross-asset", "QQQ/IWM/TLT/GLD momentum, volatility, correlations", 31], ["Drawdown", "60- and 252-session drawdown", 2]], [3.0, 10.5, 2.0])
     heading("6.2 Selected model", 2)
     table("Table 5. Single canonical model setup.", ["Setting", "Selected value"], [["Model", "Random forest"], ["Configuration ID", "random_forest_6aa9f5d449"], ["Trees", "300"], ["Maximum depth", "3"], ["Minimum leaf size", "50"], ["Maximum features", "0.5"], ["Refit frequency", "Month start"], ["Training window", "Expanding"], ["Forecast hurdle", "0.001"], ["One-way cost", "5 bp"], ["Random seed", "17"]], [7.2, 8.5])
-    paragraph("This is the only model carried into the frozen final evaluation. Earlier screening compared regularized linear, tree, boosting and random-feature candidates to justify the choice; those candidates are retained as audit evidence and are not separate deployed setups. Historical mean, autoregression and buy-and-hold SPY remain benchmarks.")
+    paragraph("This is the only predictive model in the canonical experiment and the only model carried into the frozen final evaluation. Historical mean and autoregression are fixed forecast controls; buy-and-hold SPY is the market benchmark.")
 
     heading("7. Walk-forward experiments", 1)
     heading("7.1 Screening", 2)
     paragraph("Each configuration is refitted at month starts on an expanding eligible sample. The primary selection metric is median annual net Sharpe, with at least 98% prediction coverage. Within a 0.05 Sharpe tolerance, lower turnover, fewer trainable parameters and configuration ID provide deterministic tie-breaks.")
-    figure(screen_fig, "Figure 3. Fifteen leading screening configurations. Model names and defining parameters are printed directly on the y-axis.", 6.35)
+    figure(screen_fig, "Figure 3. Canonical screening comparison. Model names and defining parameters are printed directly on the y-axis.", 6.35)
     paragraph(f"The selected random forest records {rf_s.annualized_net_return:.2%} annualized net return, {rf_s.net_sharpe:.2f} Sharpe and {rf_s.median_annual_net_sharpe:.2f} median annual Sharpe in screening. Exactly one champion proceeds to confirmation and the frozen final evaluation.")
 
     heading("7.2 Complexity and generalization", 2)
-    paragraph("Figure 4 uses every screening configuration rather than the three final baselines. The left panel asks whether additional effective parameters improve genuinely out-of-sample fit. The right panel contrasts training and walk-forward errors against an equality line. Points below zero OOS R² fail to improve on the historical-mean forecast.")
-    figure(complexity_fig, "Figure 4. Complexity and generalization across the complete screening grid. The dashed P/T = 1 boundary marks more trainable parameters than observations.", 6.45)
-    paragraph("Higher capacity does not produce monotonic OOS improvement. RFF models explicitly probe high P/T regimes while ridge stabilization controls numerical variance. Tree depth and leaf-size constraints remain more informative than nominal tree parameter counts.")
+    paragraph("Figure 4 compares the canonical Random Forest with the two fixed controls. The left panel relates effective parameter count to genuinely out-of-sample fit. The right panel contrasts training and walk-forward errors against an equality line. Points below zero OOS R² fail to improve on the historical-mean forecast.")
+    figure(complexity_fig, "Figure 4. Complexity and generalization for the canonical Random Forest and fixed forecast controls. The dashed P/T = 1 boundary marks more trainable parameters than observations.", 6.45)
+    paragraph("The Random Forest remains below the P/T = 1 boundary, but its higher capacity does not improve OOS squared error over the historical-mean control. Shallow depth and a 50-observation minimum leaf provide the principal capacity constraints.")
 
     heading("7.3 Confirmation and model freeze", 2)
     figure(stage_fig, "Figure 5. Random-forest stability across screening, confirmation and the final holdout. Stage results remain separate and are not pooled.", 6.3)
-    paragraph(f"Confirmation reduces the selected forest’s annualized net return from {rf_s.annualized_net_return:.2%} to {rf_c.annualized_net_return:.2%}; Sharpe falls from {rf_s.net_sharpe:.2f} to {rf_c.net_sharpe:.2f}. The deterioration is substantive evidence of instability. The configuration nevertheless advances under the predeclared family rule and is serialized as freeze_f98a78b584d0ca42 before final execution.")
+    paragraph(f"Confirmation reduces the selected forest’s annualized net return from {rf_s.annualized_net_return:.2%} to {rf_c.annualized_net_return:.2%}; Sharpe falls from {rf_s.net_sharpe:.2f} to {rf_c.net_sharpe:.2f}. The deterioration is substantive evidence of instability. The predeclared specification is serialized as freeze_82db313e0d1839a6 before final execution.")
 
     heading("8. Final holdout results", 1)
     heading("8.1 Forecast and portfolio metrics", 2)
@@ -590,7 +589,7 @@ def build() -> Path:
         "[8] L. Breiman, ‘Random forests,’ Machine Learning, vol. 45, pp. 5–32, 2001.",
         "[9] W. K. Newey and K. D. West, ‘A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix,’ Econometrica, vol. 55, no. 3, pp. 703–708, 1987.",
         "[10] D. N. Politis and J. P. Romano, ‘The stationary bootstrap,’ Journal of the American Statistical Association, vol. 89, no. 428, pp. 1303–1313, 1994.",
-        "[11] Yahoo Finance, historical market data for SPY, QQQ, IWM, TLT and GLD, accessed 19 Oct. 2026 through yfinance. https://finance.yahoo.com/.",
+        "[11] Yahoo Finance, historical market data for SPY, QQQ, IWM, TLT and GLD, accessed 20 Oct. 2026 through yfinance. https://finance.yahoo.com/.",
         "[12] scikit-learn developers, scikit-learn v1.7.2. https://scikit-learn.org/.",
         "[13] pandas development team, pandas v2.3.3. https://pandas.pydata.org/.",
         "[14] National University of Singapore, NUS Plagiarism Policy. https://myportal.nus.edu.sg/studentportal/student-discipline/all/docs/NUS-Plagiarism-Policy.pdf.",
@@ -604,7 +603,7 @@ def build() -> Path:
 
     page_break(); heading("Appendix A. Reproduction and provenance", 1)
     heading("A.1 Canonical identifiers", 2)
-    table("Table A1. Immutable report inputs.", ["Object", "Identifier"], [["Feature dataset", "features_yahoo_20261019T010846Z_799f619a4f"], ["Screening", "models_screening_8d1f4f8a10e794eb"], ["Confirmation", "models_confirmation_5d6ed2ce5fa7b6cb"], ["Freeze", "freeze_f98a78b584d0ca42"], ["Final test", "models_final_test_53e047b58e92e27b"]], [4.0, 12.0])
+    table("Table A1. Immutable report inputs.", ["Object", "Identifier"], [["Feature dataset", "features_yahoo_20261020T055638Z_799f619a4f"], ["Screening", "models_screening_fe6e26bdd5521077"], ["Confirmation", "models_confirmation_96d234651d29fb8c"], ["Freeze", "freeze_82db313e0d1839a6"], ["Final test", "models_final_test_3e46f0e36fd220d6"]], [4.0, 12.0])
     heading("A.2 Commands", 2)
     commands = ["python scripts/verify_outputs.py", "python reports/build_report_ieee.py", "git lfs install", "python scripts/setup_git_lfs.py --install", "git add .gitattributes .gitignore data/processed artifacts reports assets", "git lfs ls-files"]
     for command in commands:

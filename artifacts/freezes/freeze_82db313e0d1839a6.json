@@ -1,0 +1,33 @@
+{
+  "created_at_utc": "2026-10-20T06:08:35.064648+00:00",
+  "feature_dataset_id": "features_yahoo_20261020T055638Z_799f619a4f",
+  "feature_manifest_sha256": "356e590ab3f03134cbfc106d389ce1e1458aadf20370daf9fa95c31b63601e2d",
+  "feature_set": "F2",
+  "final_test_bounds": {
+    "end": "2025-12-31",
+    "start": "2022-01-01"
+  },
+  "forecast_hurdle": 0.001,
+  "freeze_id": "freeze_82db313e0d1839a6",
+  "model_config_sha256": "a909c0c2c1439545643349259f61f7c1c4f29bd5c73bab127ae33dc5c0145ba6",
+  "one_way_cost_bps": 5.0,
+  "protocol_sha256": "de55ac6994c1b4a73edbabab2a4d723753a1e9c6928720521b8cee8bcb3b5700",
+  "rule": "Any feature, model, threshold, cost, window, or selection change after this point creates a new analysis whose final period is no longer an untouched holdout.",
+  "schema_version": 1,
+  "selected_configurations": [
+    {
+      "config_id": "random_forest_6aa9f5d449",
+      "family": "random_forest",
+      "parameters": {
+        "max_depth": 3,
+        "max_features": 0.5,
+        "min_samples_leaf": 50,
+        "n_estimators": 300
+      }
+    }
+  ],
+  "selection_sha256": "500579057b629022d2e1c24ddeaa571dadf48b2968a07b5c3f8108fe28732bc0",
+  "source_run_id": "models_confirmation_96d234651d29fb8c",
+  "status": "frozen",
+  "window_observations": null
+}

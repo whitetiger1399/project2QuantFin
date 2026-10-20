@@ -1,0 +1,28 @@
+{
+  "created_at_utc": "2026-10-20T05:57:58.703506+00:00",
+  "event_count": 499,
+  "event_counts_by_symbol": {
+    "IWM": 85,
+    "QQQ": 84,
+    "SPY": 84,
+    "TLT": 246
+  },
+  "files": [
+    {
+      "path": "events.parquet",
+      "sha256": "e2489b13e2b7eb5ab3fcaa7850f9f3cb4e94b24bbde0b35d3cd7959c280dafd0"
+    },
+    {
+      "path": "event_windows.parquet",
+      "sha256": "6ed1014abb877f34f2b7c1a9f28530e4b1c9baac4dfba9537fc3954b46aa1027"
+    }
+  ],
+  "interpretation": [
+    "Adjusted Close is the primary total-return research proxy; dividends must not be added to it again.",
+    "cash_dividend_return_check is a diagnostic based on raw close and cash dividend, not an assertion that vendor reinvestment conventions are identical.",
+    "Split-event windows require manual review because vendor raw OHLC may already apply split normalization.",
+    "Check the original assignment PDF before implementing the dividend factor printed in the converted Markdown."
+  ],
+  "schema_version": 1,
+  "snapshot_id": "yahoo_20261020T055638Z"
+}

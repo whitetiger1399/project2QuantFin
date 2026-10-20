@@ -1,0 +1,98 @@
+{
+  "accounting_contract": {
+    "drawdown_peak_includes_initial_wealth": true,
+    "initial_and_final_turnover_charged": true,
+    "pnl_date_column": "label_end_session",
+    "trade_entry_column": "entry_session"
+  },
+  "audit_id": "accounting_4726f904634b0b7a",
+  "benchmark_metrics_by_pnl_date": {
+    "annualized_mean": 0.11988466789993207,
+    "annualized_volatility": 0.18022093332806577,
+    "cagr": 0.10924585304856871,
+    "max_drawdown": -0.24471093046908488,
+    "observations": 1001,
+    "sharpe": 0.6652094497907167
+  },
+  "created_at_utc": "2026-10-20T06:13:50.477586+00:00",
+  "fixture_results": [
+    {
+      "name": "first_observation_loss_uses_initial_capital_peak",
+      "observed": {
+        "first_drawdown": -0.09999999999999998,
+        "maximum_drawdown": -0.09999999999999998
+      },
+      "pass": true
+    },
+    {
+      "name": "entry_exit_cost_and_pnl_year_boundary",
+      "observed": {
+        "pnl_year": [
+          2021,
+          2021
+        ],
+        "trading_cost": [
+          0.0005,
+          0.0005
+        ],
+        "turnover": [
+          1.0,
+          1.0
+        ]
+      },
+      "pass": true
+    }
+  ],
+  "interpretation": "Differences are audit findings. The canonical run remains immutable; corrected outputs are stored only in this audit directory.",
+  "recorded_ledger_comparison": {
+    "benchmark_drawdown": {
+      "different_rows_at_1e_12": 0,
+      "maximum_absolute_difference": 0.0
+    },
+    "gross_strategy_return": {
+      "different_rows_at_1e_12": 0,
+      "maximum_absolute_difference": 0.0
+    },
+    "net_strategy_return": {
+      "different_rows_at_1e_12": 0,
+      "maximum_absolute_difference": 0.0
+    },
+    "position": {
+      "different_rows_at_1e_12": 0,
+      "maximum_absolute_difference": 0.0
+    },
+    "strategy_drawdown": {
+      "different_rows_at_1e_12": 0,
+      "maximum_absolute_difference": 0.0
+    },
+    "trading_cost": {
+      "different_rows_at_1e_12": 0,
+      "maximum_absolute_difference": 0.0
+    },
+    "turnover": {
+      "different_rows_at_1e_12": 0,
+      "maximum_absolute_difference": 0.0
+    }
+  },
+  "schema_version": 1,
+  "source": {
+    "config_id": "random_forest_6aa9f5d449",
+    "forecast_hurdle": 0.001,
+    "freeze_sha256": "95f6e499a5ad3ab4755158fa943a9c93efed037b275ab41a761b661a27a08692",
+    "legacy_ledger_sha256": "538929cdff7dd4eeb189d31eaf6bf1ef0924b3f5dfa7177b59381b15faafffb9",
+    "one_way_cost_bps": 5.0,
+    "predictions_sha256": "6eda6394a8614068768337abfbf9c4ee4e9dc35c4b6d4a02d36206a280baa0d0",
+    "run_id": "models_final_test_3e46f0e36fd220d6"
+  },
+  "source_run_status": "complete",
+  "status": "pass_with_findings",
+  "strategy_metrics_by_pnl_date": {
+    "annualized_mean": 0.027246726990897297,
+    "annualized_volatility": 0.07925846823166806,
+    "cagr": 0.024396518147356216,
+    "max_drawdown": -0.11096074518150612,
+    "observations": 1001,
+    "sharpe": 0.3437705471578966
+  },
+  "year_boundary_rows": 6
+}

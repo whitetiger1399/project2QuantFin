@@ -1,0 +1,42 @@
+{
+  "analysis_scope": "Descriptive EDA through 2014-12-31.",
+  "created_at_utc": "2026-10-20T06:00:34.471233+00:00",
+  "first_session": "2005-01-03",
+  "last_session": "2014-12-31",
+  "market_dataset_id": "market_yahoo_20261020T055638Z",
+  "notes": [
+    "Event markers and holiday tables are descriptive and are not prediction features.",
+    "Federal holidays are not identical to the NYSE holiday calendar.",
+    "Extreme returns are flagged as noise candidates but are not removed automatically."
+  ],
+  "plots": [
+    "plots/01_normalized_prices.png",
+    "plots/02_spy_event_timeline.png",
+    "plots/03_return_distribution.png",
+    "plots/04_rolling_volatility.png",
+    "plots/05_annual_trends.png",
+    "plots/06_monthly_return_heatmap.png",
+    "plots/07_holiday_proximity.png",
+    "plots/08_asset_correlation_heatmap.png",
+    "plots/09_recent_trends.png"
+  ],
+  "rows": 2517,
+  "schema_version": 1,
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "TLT",
+    "GLD"
+  ],
+  "tables": [
+    "tables/annual_market_statistics.csv",
+    "tables/asset_return_correlations.csv",
+    "tables/coverage.csv",
+    "tables/event_windows.csv",
+    "tables/extreme_return_diagnostics.csv",
+    "tables/federal_holiday_proximity.csv",
+    "tables/monthly_returns.csv",
+    "tables/weekday_statistics.csv"
+  ]
+}

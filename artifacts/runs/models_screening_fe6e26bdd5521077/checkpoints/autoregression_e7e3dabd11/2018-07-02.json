@@ -1,0 +1,21 @@
+{
+  "checkpoint_sha256": "1a25b683eb84d3a16c1340ab25cec853d57cb0b4338718a9e2804e58d547aad9",
+  "complexity": {
+    "approximation_features": 3,
+    "trainable_parameters": 4
+  },
+  "config_id": "autoregression_e7e3dabd11",
+  "configuration": {
+    "config_id": "autoregression_e7e3dabd11",
+    "family": "autoregression",
+    "parameters": {}
+  },
+  "features": [
+    "spy_log_return_lag_0",
+    "spy_log_return_lag_1",
+    "spy_log_return_lag_2"
+  ],
+  "fit_seconds": 0.005967249999230262,
+  "n_train": 3144,
+  "refit_origin": "2018-07-02T00:00:00"
+}

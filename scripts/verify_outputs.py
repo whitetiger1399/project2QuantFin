@@ -16,13 +16,13 @@ from quantfin.report_facts import load_report_facts
 ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "reports"
 RUNS = {
-    "screening": ROOT / "artifacts/runs/models_screening_8d1f4f8a10e794eb",
-    "confirmation": ROOT / "artifacts/runs/models_confirmation_5d6ed2ce5fa7b6cb",
-    "final_test": ROOT / "artifacts/runs/models_final_test_53e047b58e92e27b",
+    "screening": ROOT / "artifacts/runs/models_screening_fe6e26bdd5521077",
+    "confirmation": ROOT / "artifacts/runs/models_confirmation_96d234651d29fb8c",
+    "final_test": ROOT / "artifacts/runs/models_final_test_3e46f0e36fd220d6",
 }
-FEATURES = ROOT / "data/processed/features_yahoo_20261019T010846Z_799f619a4f"
-MARKET = ROOT / "data/processed/market_yahoo_20261019T010846Z"
-FREEZE = ROOT / "artifacts/freezes/freeze_f98a78b584d0ca42.json"
+FEATURES = ROOT / "data/processed/features_yahoo_20261020T055638Z_799f619a4f"
+MARKET = ROOT / "data/processed/market_yahoo_20261020T055638Z"
+FREEZE = ROOT / "artifacts/freezes/freeze_82db313e0d1839a6.json"
 
 
 def digest(path: Path) -> str:
@@ -60,9 +60,9 @@ def main() -> None:
     check(feature_manifest["feature_counts"]["F2"] == 99, "F2 contains 99 declared features", checks)
     check(feature_manifest["rows"] == 5283 and feature_manifest["rows_with_mature_labels"] == 5281, "feature row counts match timing audit", checks)
 
-    timing = read_json(ROOT / "artifacts/timing_audits/features_yahoo_20261019T010846Z_799f619a4f/timing_report.json")
+    timing = read_json(ROOT / "artifacts/timing_audits/features_yahoo_20261020T055638Z_799f619a4f/timing_report.json")
     check(timing["status"] == "pass" and not timing["blocking_issues"], "timing audit passed without blockers", checks)
-    quality = read_json(ROOT / "artifacts/data_audits/yahoo_20261019T010846Z/quality_report.json")
+    quality = read_json(ROOT / "artifacts/data_audits/yahoo_20261020T055638Z/quality_report.json")
     check(not quality["blocking_issues"], "raw-data quality audit has no blocking issues", checks)
 
     run_summaries = {}
@@ -105,7 +105,6 @@ def main() -> None:
     screening_selection = read_json(RUNS["screening"] / "selection.json")
     selected_screen_ids = {item["family"]: item["config_id"] for item in screening_selection["selected_configurations"]}
     check(report_facts["selected_ids"]["screening_random_forest"] == selected_screen_ids["random_forest"], "report resolves selected screening forest by config ID", checks)
-    check(report_facts["selected_ids"]["screening_elastic_net"] == selected_screen_ids["elastic_net"], "report resolves selected screening elastic net by config ID", checks)
     check(report_facts["selected_ids"]["final_random_forest"] == confirmation_selection["selected_configurations"][0]["config_id"], "report final forest matches confirmation selection", checks)
 
     final_metrics = pd.read_csv(RUNS["final_test"] / "config_metrics.csv")

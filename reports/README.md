@@ -1,9 +1,10 @@
 # Report artifacts
 
-`build_report.py` creates the submission report from the recorded pipeline outputs. It does not refit models or modify research results.
+`build_report_ieee.py` creates the submission report from the verified canonical pipeline outputs. It does not refit models or modify research results.
 
 ```bash
-python reports/build_report.py
+python scripts/verify_outputs.py
+python reports/build_report_ieee.py
 ```
 
 Outputs:
@@ -20,4 +21,4 @@ python /Users/whitetiger/.codex/plugins/cache/openai-primary-runtime/documents/2
 cp reports/_rendered/Project2_Team16_Report.pdf reports/Project2_Team16_Report.pdf
 ```
 
-Edit `assets/authors.json` and rebuild if the team roster changes.
+The current report is bound to `models_final_test_3e46f0e36fd220d6` through `freeze_82db313e0d1839a6`. Edit `assets/authors.json` and rebuild if the team roster changes; the builder sorts every listed author alphabetically.

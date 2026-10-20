@@ -1,0 +1,65 @@
+{
+  "created_at_utc": "2026-10-20T06:04:33.618868+00:00",
+  "schema_version": 1,
+  "selected_configurations": [
+    {
+      "config_id": "random_forest_6aa9f5d449",
+      "family": "random_forest",
+      "parameters": {
+        "max_depth": 3,
+        "max_features": 0.5,
+        "min_samples_leaf": 50,
+        "n_estimators": 300
+      }
+    }
+  ],
+  "selected_metrics": [
+    {
+      "annualized_benchmark_return": 0.0772070494525074,
+      "annualized_net_return": 0.0373465586837873,
+      "annualized_net_volatility": 0.0625088566287713,
+      "annualized_turnover": 9.518886679920476,
+      "average_exposure": 0.0546719681908548,
+      "benchmark_sharpe": 0.5653015124471161,
+      "config_id": "random_forest_6aa9f5d449",
+      "directional_accuracy": 0.5238568588469185,
+      "family": "random_forest",
+      "mae": 0.0058426919042152,
+      "max_drawdown": -0.0778796009855344,
+      "mean_fit_seconds": 3.0446717039739095,
+      "mean_train_mse": 0.0001538273120013,
+      "median_annual_net_sharpe": 1.2056586129541182,
+      "median_parameter_to_observation_ratio": 0.4550418638514743,
+      "median_train_observations": 2747.0,
+      "median_trainable_parameters": 1253.0,
+      "mse": 7.392422802933107e-05,
+      "net_cagr": 0.036038444668621,
+      "net_sharpe": 0.5974602751987894,
+      "observations": 1006,
+      "oos_r2_vs_historical_mean": 0.0006316129191786,
+      "parameters": "{'max_depth': 3, 'min_samples_leaf': 50, 'n_estimators': 300, 'max_features': 0.5}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.019,
+      "train_test_mse_gap": -7.990308397199522e-05
+    }
+  ],
+  "selection_rule": {
+    "distinct_families": false,
+    "minimum_prediction_coverage": 0.98,
+    "primary_metric": "median_annual_net_sharpe",
+    "primary_metric_tolerance": 0.05,
+    "tie_breaks_within_tolerance": [
+      "lower turnover",
+      "fewer trainable parameters",
+      "config_id"
+    ]
+  },
+  "source_context": {
+    "feature_dataset_id": "features_yahoo_20261020T055638Z_799f619a4f",
+    "feature_set": "F2",
+    "stage": "screening",
+    "window_observations": null
+  },
+  "source_run_id": "models_screening_fe6e26bdd5521077",
+  "source_run_manifest_sha256": "96fc64700b3b17f407c6f19df949c6ce421078eb89981324043478b3bff6870b"
+}

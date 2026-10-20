@@ -1,0 +1,9 @@
+{
+  "created_at_utc": "2026-10-20T05:59:13.714763+00:00",
+  "impact": "The optional independent-source comparison was not performed. The Yahoo data audit, cleaning, feature construction, and timing checks can continue.",
+  "reason": "Snapshot does not exist: /Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/stooq/unavailable_for_yahoo_20261020T055638Z",
+  "schema_version": 1,
+  "status": "skipped",
+  "verification_source": "stooq",
+  "yahoo_snapshot": "yahoo_20261020T055638Z"
+}

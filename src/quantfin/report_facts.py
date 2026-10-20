@@ -12,10 +12,10 @@ import yaml
 
 
 CANONICAL_PATHS = {
-    "screening": "artifacts/runs/models_screening_8d1f4f8a10e794eb",
-    "confirmation": "artifacts/runs/models_confirmation_5d6ed2ce5fa7b6cb",
-    "final_test": "artifacts/runs/models_final_test_53e047b58e92e27b",
-    "freeze": "artifacts/freezes/freeze_f98a78b584d0ca42.json",
+    "screening": "artifacts/runs/models_screening_fe6e26bdd5521077",
+    "confirmation": "artifacts/runs/models_confirmation_96d234651d29fb8c",
+    "final_test": "artifacts/runs/models_final_test_3e46f0e36fd220d6",
+    "freeze": "artifacts/freezes/freeze_82db313e0d1839a6.json",
 }
 
 
@@ -73,9 +73,6 @@ def load_report_facts(root: Path) -> dict[str, Any]:
         "screening_random_forest": _unique_metric(
             runs["screening"], screening_by_family["random_forest"]
         ),
-        "screening_elastic_net": _unique_metric(
-            runs["screening"], screening_by_family["elastic_net"]
-        ),
         "confirmation_random_forest": _unique_metric(
             runs["confirmation"], confirmation_config_id
         ),
@@ -85,7 +82,6 @@ def load_report_facts(root: Path) -> dict[str, Any]:
         "protocol_splits": protocol["splits"],
         "selected_ids": {
             "screening_random_forest": screening_by_family["random_forest"],
-            "screening_elastic_net": screening_by_family["elastic_net"],
             "confirmation_random_forest": confirmation_config_id,
             "final_random_forest": final_config_id,
             "final_autoregression": ar_ids[0],

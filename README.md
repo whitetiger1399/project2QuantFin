@@ -6,6 +6,31 @@ The implementation covers immutable source snapshots, audits, conservative clean
 
 The repository has one canonical research setup. Its selected model is the frozen shallow random forest (`random_forest_6aa9f5d449`); historical mean, autoregression and SPY are evaluation benchmarks rather than alternative production setups. Follow [the implementation runbook](documents/markdown/IMPLEMENTATION_RUNBOOK.md) before retrieving new macroeconomic or 2026 market data.
 
+### Current verified canonical run
+
+The report and verification scripts are bound to the following immutable October 20, 2026 artifact chain:
+
+| Object | Identifier |
+|---|---|
+| Yahoo snapshot | `yahoo_20261020T055638Z` |
+| Clean market dataset | `market_yahoo_20261020T055638Z` |
+| Feature dataset | `features_yahoo_20261020T055638Z_799f619a4f` |
+| Screening run | `models_screening_fe6e26bdd5521077` |
+| Confirmation run | `models_confirmation_96d234651d29fb8c` |
+| Frozen selection | `freeze_82db313e0d1839a6` |
+| Final test run | `models_final_test_3e46f0e36fd220d6` |
+
+The final run completed all 144 planned fits with no invalid checkpoints and 100% prediction coverage. To verify the immutable chain and rebuild the academic report without retraining:
+
+```bash
+python scripts/verify_outputs.py
+python reports/build_report_ieee.py
+python /path/to/render_docx.py reports/Project2_Team16_Report.docx --output_dir reports/_rendered --emit_pdf
+cp reports/_rendered/Project2_Team16_Report.pdf reports/Project2_Team16_Report.pdf
+```
+
+The first two commands regenerate the verification records and DOCX from the canonical run. The rendering step performs visual QA and produces the PDF. The repository-specific renderer path used by Codex is documented in `reports/README.md`; a normal local LibreOffice installation can also export the DOCX as PDF.
+
 ## Timing convention
 
 For each observed trading session `t`:
