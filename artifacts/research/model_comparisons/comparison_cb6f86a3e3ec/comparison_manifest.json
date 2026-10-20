@@ -1,0 +1,20 @@
+{
+  "screening_run_id": "models_screening_d7252adb14317fcd",
+  "confirmation_run_id": "models_confirmation_87083937c8d58d9b",
+  "rows": 42,
+  "families": [
+    "autoregression",
+    "elastic_net",
+    "extra_trees",
+    "hist_gradient_boosting",
+    "historical_mean",
+    "lasso",
+    "pca_ridge",
+    "random_forest",
+    "rff_ridge",
+    "ridge"
+  ],
+  "output_directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/research/model_comparisons/comparison_cb6f86a3e3ec",
+  "final_test_run": null,
+  "interpretation": "Comparison is limited to screening and confirmation; the frozen final holdout is not rerun."
+}
