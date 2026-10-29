@@ -27,12 +27,34 @@ def _run_dir(run_id: str) -> Path:
     return directory
 
 
-def _load_metrics(run_id: str, stage: str) -> pd.DataFrame:
+def _load_metrics(run_id: str, stage: str) -> tuple[pd.DataFrame, dict]:
     directory = _run_dir(run_id)
+    manifest = json.loads((directory / "run_manifest.json").read_text(encoding="utf-8"))
+    declared_stage = manifest.get("inputs", {}).get("stage")
+    if declared_stage != stage:
+        raise ValueError(f"Run {run_id} declares stage {declared_stage!r}, expected {stage!r}")
     metrics = pd.read_csv(directory / "config_metrics.csv")
     metrics.insert(0, "stage", stage)
     metrics.insert(1, "run_id", run_id)
-    return metrics
+    return metrics, manifest
+
+
+def _validate_compatibility(screening: dict, confirmation: dict) -> None:
+    left = screening["inputs"]
+    right = confirmation["inputs"]
+    for key in ["feature_dataset_id", "feature_set", "window_observations"]:
+        if left.get(key) != right.get(key):
+            raise ValueError(f"Incompatible runs: {key} differs ({left.get(key)!r} vs {right.get(key)!r})")
+    for key in ["forecast_hurdle", "one_way_cost_bps", "annualization_sessions"]:
+        if left.get("research", {}).get(key) != right.get("research", {}).get(key):
+            raise ValueError(f"Incompatible runs: research.{key} differs")
+    selected_ids = {
+        item["config_id"] for item in right.get("configurations", [])
+        if item.get("family") not in {"historical_mean", "autoregression"}
+    }
+    screening_ids = {item["config_id"] for item in left.get("configurations", [])}
+    if not selected_ids.issubset(screening_ids):
+        raise ValueError(f"Confirmation configurations absent from screening: {sorted(selected_ids - screening_ids)}")
 
 
 def main() -> None:
@@ -42,8 +64,9 @@ def main() -> None:
     parser.add_argument("--output-root", default="artifacts/research/model_comparisons")
     args = parser.parse_args()
 
-    screening = _load_metrics(args.screening_run_id, "screening")
-    confirmation = _load_metrics(args.confirmation_run_id, "confirmation")
+    screening, screening_manifest = _load_metrics(args.screening_run_id, "screening")
+    confirmation, confirmation_manifest = _load_metrics(args.confirmation_run_id, "confirmation")
+    _validate_compatibility(screening_manifest, confirmation_manifest)
     metrics = pd.concat([screening, confirmation], ignore_index=True)
     metrics["rank_within_stage"] = metrics.groupby("stage")["median_annual_net_sharpe"].rank(
         ascending=False, method="min"
@@ -85,6 +108,11 @@ def main() -> None:
         "confirmation_run_id": args.confirmation_run_id,
         "rows": int(len(metrics)),
         "families": sorted(metrics["family"].unique().tolist()),
+        "feature_dataset_id": screening_manifest["inputs"]["feature_dataset_id"],
+        "feature_set": screening_manifest["inputs"]["feature_set"],
+        "screening_manifest_input_hash": screening_manifest.get("input_hash"),
+        "confirmation_manifest_input_hash": confirmation_manifest.get("input_hash"),
+        "compatibility_validation": "pass",
         "output_directory": str(output),
         "final_test_run": None,
         "interpretation": "Comparison is limited to screening and confirmation; the frozen final holdout is not rerun.",

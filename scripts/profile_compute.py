@@ -26,10 +26,11 @@ from quantfin.models import build_estimator
 
 
 ROOT = Path(__file__).resolve().parents[1]
-FEATURE_DIRECTORY = ROOT / "data/processed/features_yahoo_20261019T010846Z_799f619a4f"
-REPRESENTATIVE_CONFIGS = [
-    {"family": "random_forest", "parameters": {"max_depth": 3, "min_samples_leaf": 50, "n_estimators": 300, "max_features": 0.5}},
-]
+REPRESENTATIVE_CONFIGS = {
+    "random_forest": {"family": "random_forest", "parameters": {"max_depth": 6, "min_samples_leaf": 20, "n_estimators": 300, "max_features": 0.5}},
+    "hist_gradient_boosting": {"family": "hist_gradient_boosting", "parameters": {"max_leaf_nodes": 31, "l2_regularization": 0.1, "learning_rate": 0.05, "max_iter": 200, "min_samples_leaf": 20}},
+    "rff_ridge": {"family": "rff_ridge", "parameters": {"n_components": 1024, "penalty": 0.01, "gamma_scale": 1.0}},
+}
 
 
 def peak_rss_mb() -> float | None:
@@ -45,9 +46,9 @@ def peak_rss_mb() -> float | None:
             return None
 
 
-def load_sample(max_observations: int) -> tuple[pd.DataFrame, pd.Series, list[str]]:
-    manifest = json.loads((FEATURE_DIRECTORY / "manifest.json").read_text(encoding="utf-8"))
-    path = FEATURE_DIRECTORY / manifest["file"]["path"]
+def load_sample(feature_directory: Path, feature_set: str, max_observations: int) -> tuple[pd.DataFrame, pd.Series, list[str]]:
+    manifest = json.loads((feature_directory / "manifest.json").read_text(encoding="utf-8"))
+    path = feature_directory / manifest["file"]["path"]
     frame = pd.read_parquet(path)
     frame["signal_session"] = pd.to_datetime(frame["signal_session"])
     frame["label_available_session"] = pd.to_datetime(frame["label_available_session"])
@@ -58,13 +59,16 @@ def load_sample(max_observations: int) -> tuple[pd.DataFrame, pd.Series, list[st
         & frame["label_available_session"].le(cutoff)
     ].sort_values("signal_session")
     eligible = eligible.tail(max_observations)
-    feature_names = list(manifest["feature_sets"]["F2"])
+    feature_names = list(manifest["feature_sets"][feature_set])
     return eligible[feature_names], eligible["target_return"], feature_names
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="configs/research.yaml")
+    parser.add_argument("--feature-dataset", default="features_yahoo_20261020T055638Z_799f619a4f")
+    parser.add_argument("--feature-set", default="F2")
+    parser.add_argument("--families", nargs="+", choices=sorted(REPRESENTATIVE_CONFIGS), default=["random_forest", "hist_gradient_boosting", "rff_ridge"])
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--sample-sizes", type=int, nargs="+", default=[1000, 2500, 4000])
     parser.add_argument("--repeats", type=int, default=1)
@@ -74,10 +78,12 @@ def main() -> None:
 
     config_path = (ROOT / args.config).resolve()
     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+    feature_directory = ROOT / "data/processed" / args.feature_dataset
+    selected_configs = [REPRESENTATIVE_CONFIGS[name] for name in args.families]
     plan = [
         {"family": item["family"], "sample_size": size, "repeat": repeat}
         for size in args.sample_sizes
-        for item in REPRESENTATIVE_CONFIGS
+        for item in selected_configs
         for repeat in range(1, args.repeats + 1)
     ]
     if not args.execute:
@@ -92,7 +98,7 @@ def main() -> None:
         return
 
     largest = max(args.sample_sizes)
-    X_all, y_all, features = load_sample(largest)
+    X_all, y_all, features = load_sample(feature_directory, args.feature_set, largest)
     started = time.perf_counter()
     records: list[dict[str, Any]] = []
     stopped_for_budget = False
@@ -101,7 +107,7 @@ def main() -> None:
         if (time.perf_counter() - started) / 60.0 >= args.max_minutes:
             stopped_for_budget = True
             break
-        configuration = next(item for item in REPRESENTATIVE_CONFIGS if item["family"] == task["family"])
+        configuration = next(item for item in selected_configs if item["family"] == task["family"])
         sample_size = min(task["sample_size"], len(X_all))
         X = X_all.tail(sample_size)
         y = y_all.loc[X.index]
@@ -138,11 +144,13 @@ def main() -> None:
     median_seconds = float(np.median([item["fit_and_probe_seconds"] for item in records])) if records else None
     identity = {
         "protocol_sha256": sha256_file(config_path),
-        "feature_manifest_sha256": sha256_file(FEATURE_DIRECTORY / "manifest.json"),
+        "feature_dataset": args.feature_dataset,
+        "feature_set": args.feature_set,
+        "feature_manifest_sha256": sha256_file(feature_directory / "manifest.json"),
         "sample_sizes": args.sample_sizes,
         "repeats": args.repeats,
         "estimator_jobs": args.estimator_jobs,
-        "representative_configs": REPRESENTATIVE_CONFIGS,
+        "representative_configs": selected_configs,
     }
     profile_id = "compute_" + stable_object_hash(identity)[:16]
     output = ROOT / "artifacts/research/compute_profiles" / profile_id / "profile.json"
