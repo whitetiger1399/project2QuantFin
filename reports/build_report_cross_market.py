@@ -31,12 +31,19 @@ FIG_OUT.mkdir(parents=True, exist_ok=True)
 
 DATASET_ID = "cross_market_panel_20261030T044550Z_e8964cacce4208c3"
 ANALYSIS_ID = "analysis_20261030T044648Z_26ceef2429b3"
-RUN_ID = "cm_screening_20261030T093727Z_0e77ef60dd73"
+SCREENING_ID = "cm_screening_20261030T093727Z_0e77ef60dd73"
+CONFIRMATION_ID = "cm_confirmation_20261030T111633Z_8bb9c211fb41"
+FREEZE_ID = "cm_freeze_20261030T115423Z_7c6b1efba4dc"
+FINAL_ID = "cm_final_test_20261030T115442Z_120878a67dbc"
 DATASET = ROOT / "data/processed/cross_market" / DATASET_ID
 EDA = ROOT / "artifacts/cross_market/analysis" / ANALYSIS_ID
-RUN = ROOT / "artifacts/cross_market/runs" / RUN_ID
+RUNS = ROOT / "artifacts/cross_market/runs"
+SCREENING = RUNS / SCREENING_ID
+CONFIRMATION = RUNS / CONFIRMATION_ID
+FINAL = RUNS / FINAL_ID
+FREEZE = ROOT / "artifacts/cross_market/freezes" / f"{FREEZE_ID}.json"
 DESIGN = ROOT / "artifacts/cross_market/report_figures/design_figures_20261030T104226Z_d63b02e71159"
-LOGO = ROOT / "assets/NUS_logo_full-horizontal.jpg"
+LOGO = ROOT / "assets/nus_logo_full-vertical.jpg"
 GITHUB = "https://github.com/whitetiger1399/project2QuantFin"
 
 NAVY = "17365D"
@@ -223,82 +230,75 @@ def friendly_family(value: str) -> str:
     }.get(value, value.replace("_", " ").title())
 
 
-def make_result_figures(lb: pd.DataFrame):
+def make_result_figures(screen_lb: pd.DataFrame, confirm_lb: pd.DataFrame, final_lb: pd.DataFrame):
+    """Create compact, report-sized figures for the frozen research chain."""
+    selected_id = "cm_elastic_net_329a4ccca456"
     plt.rcParams.update({"font.family": "DejaVu Serif", "axes.titlesize": 11, "axes.labelsize": 9})
 
-    # One configuration per model family keeps labels readable and avoids a chart dump.
-    family_best = (lb.dropna(subset=["net_sharpe"]).sort_values("rank")
+    # Confirmation family comparison: this is the actual selection stage.
+    family_best = (confirm_lb.dropna(subset=["net_sharpe"]).sort_values("rank")
                    .groupby("family", as_index=False).first().sort_values("net_sharpe"))
-    fig, ax = plt.subplots(figsize=(8.8, 4.8), dpi=220)
+    fig, ax = plt.subplots(figsize=(8.8, 4.8), dpi=240)
     colors = ["#A44747" if x < 0 else "#2A9D8F" for x in family_best.net_sharpe]
     ax.barh([friendly_family(x) for x in family_best.family], family_best.net_sharpe, color=colors)
-    ax.axvline(0, color="#333", lw=.8)
-    ax.set_xlabel("Annualized net Sharpe (screening, 2021-2022)")
-    ax.set_title("Best configuration within each model family", fontweight="bold")
-    ax.grid(axis="x", color="#D9DEE2", lw=.6); ax.set_axisbelow(True)
-    ax.spines[["top", "right", "left"]].set_visible(False)
+    ax.axvline(0, color="#333", lw=.8); ax.set_xlabel("Annualized net Sharpe (confirmation, 2023-2024)")
+    ax.set_title("Confirmation-stage model comparison", fontweight="bold")
+    ax.grid(axis="x", color="#D9DEE2", lw=.6); ax.set_axisbelow(True); ax.spines[["top", "right", "left"]].set_visible(False)
     for y, v in enumerate(family_best.net_sharpe):
         ax.text(v + (.04 if v >= 0 else -.04), y, f"{v:.2f}", va="center", ha="left" if v >= 0 else "right", fontsize=8)
-    fig.subplots_adjust(left=.26, right=.96, bottom=.15, top=.88)
-    leaderboard = FIG_OUT / "screening_family_leaderboard.png"
+    fig.subplots_adjust(left=.28, right=.96, bottom=.15, top=.88)
+    leaderboard = FIG_OUT / "confirmation_family_leaderboard.png"
     fig.savefig(leaderboard, bbox_inches="tight", facecolor="white"); plt.close(fig)
 
-    ledgers = pd.read_parquet(RUN / "strategy_ledgers.parquet")
-    chosen = ledgers[ledgers.config_id.eq("cm_extra_trees_8ef7eb6a91c8")].sort_values("decision_date").copy()
-    chosen["decision_date"] = pd.to_datetime(chosen.decision_date)
-    # Use arrays here: constructing with Series plus a new DatetimeIndex would
-    # align on the old integer index and silently produce an all-NaN chart.
-    wealth = pd.DataFrame({
-        "Selected strategy (net)": (1 + chosen.net_return.fillna(0)).cumprod().to_numpy(),
-        "Nifty IT buy-and-hold proxy": (1 + chosen.benchmark_nifty_it.fillna(0)).cumprod().to_numpy(),
-        "Nifty 50 buy-and-hold": (1 + chosen.benchmark_nifty50.fillna(0)).cumprod().to_numpy(),
-        "Equal-weight fixed cohort": (1 + chosen.benchmark_cohort.fillna(0)).cumprod().to_numpy(),
-    }, index=chosen.decision_date.to_numpy())
-    fig, ax = plt.subplots(figsize=(8.8, 4.7), dpi=220)
-    colors = ["#17365D", "#E97824", "#2A9D8F", "#786F8A"]
-    for col, color in zip(wealth.columns, colors): ax.plot(wealth.index, wealth[col], label=col, lw=1.7, color=color)
-    ax.set_ylabel("Growth of INR 1")
-    ax.set_title("Screening-period wealth: selected strategy and benchmarks", fontweight="bold")
-    ax.grid(color="#D9DEE2", lw=.55); ax.set_axisbelow(True); ax.spines[["top", "right"]].set_visible(False)
-    ax.legend(ncol=2, fontsize=7.8, frameon=False, loc="upper center", bbox_to_anchor=(.5, -.13))
-    fig.subplots_adjust(left=.09, right=.98, bottom=.25, top=.88)
-    wealth_path = FIG_OUT / "screening_wealth_readable.png"
-    fig.savefig(wealth_path, bbox_inches="tight", facecolor="white"); plt.close(fig)
+    # Same frozen configuration across all three chronological stages.
+    stage_rows=[]
+    for stage, frame in [("Screening\n2021-22",screen_lb),("Confirmation\n2023-24",confirm_lb),("Final holdout\n2025-26",final_lb)]:
+        row=frame[frame.config_id.eq(selected_id)].iloc[0]; stage_rows.append((stage,row))
+    fig, axes = plt.subplots(1,3,figsize=(9.2,3.4),dpi=240)
+    for ax, key, title, scale in zip(axes,["net_annual_return","net_sharpe","maximum_drawdown"],["Annualized net return","Net Sharpe","Maximum drawdown"],[100,1,100]):
+        vals=[float(r[key])*scale for _,r in stage_rows]
+        ax.bar([s for s,_ in stage_rows],vals,color=["#8C9AA5","#2A9D8F","#003D7C"])
+        ax.axhline(0,color="#333",lw=.7); ax.set_title(title,fontweight="bold",fontsize=9.5)
+        ax.grid(axis="y",color="#D9DEE2",lw=.5); ax.set_axisbelow(True); ax.spines[["top","right"]].set_visible(False); ax.tick_params(labelsize=7.2)
+        for i,v in enumerate(vals): ax.text(i,v+(0.04*max(abs(np.array(vals))) if v>=0 else -0.04*max(abs(np.array(vals)))),f"{v:.2f}"+("%" if scale==100 else ""),ha="center",va="bottom" if v>=0 else "top",fontsize=7.5)
+    fig.suptitle("Frozen Elastic Net across research stages",fontweight="bold",fontsize=11)
+    fig.subplots_adjust(left=.07,right=.98,bottom=.2,top=.8,wspace=.32)
+    stability=FIG_OUT/"frozen_model_stage_stability.png"; fig.savefig(stability,bbox_inches="tight",facecolor="white"); plt.close(fig)
 
-    rff = lb[lb.family.eq("rff_ridge")].copy()
-    parsed = rff.configuration.map(json.loads)
-    rff["ratio"] = parsed.map(lambda x: x["parameters"]["complexity_ratio"])
-    rff["penalty"] = parsed.map(lambda x: x["parameters"]["penalty"])
-    fig, ax = plt.subplots(figsize=(8.8, 4.4), dpi=220)
-    for penalty, data in rff.sort_values("ratio").groupby("penalty"):
-        ax.plot(data.ratio, 100 * data.oos_r2_asset_mean, marker="o", lw=1.6, label=f"Ridge penalty {penalty:g}")
-    ax.axhline(0, color="#444", lw=.8)
-    ax.set_xscale("log"); ax.set_xticks([.5, 1, 2, 5, 10, 15]); ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
-    ax.set_xlabel("Random Fourier features / input features")
-    ax.set_ylabel("OOS R² vs asset-mean forecast (%)")
-    ax.set_title("Complexity experiment: forecast accuracy, not trading Sharpe", fontweight="bold")
-    ax.grid(color="#D9DEE2", lw=.55); ax.set_axisbelow(True); ax.spines[["top", "right"]].set_visible(False)
-    ax.legend(frameon=False, fontsize=8)
-    complexity = FIG_OUT / "rff_complexity_oos_r2.png"
-    fig.savefig(complexity, bbox_inches="tight", facecolor="white"); plt.close(fig)
+    # Final holdout wealth.
+    ledgers=pd.read_parquet(FINAL/"strategy_ledgers.parquet")
+    chosen=ledgers[ledgers.config_id.eq(selected_id)].sort_values("decision_date").copy(); chosen["decision_date"]=pd.to_datetime(chosen.decision_date)
+    wealth=pd.DataFrame({
+        "Frozen Elastic Net (net)":(1+chosen.net_return.fillna(0)).cumprod().to_numpy(),
+        "Nifty IT buy-and-hold proxy":(1+chosen.benchmark_nifty_it.fillna(0)).cumprod().to_numpy(),
+        "Nifty 50 buy-and-hold":(1+chosen.benchmark_nifty50.fillna(0)).cumprod().to_numpy(),
+    },index=chosen.decision_date.to_numpy())
+    fig,ax=plt.subplots(figsize=(8.8,4.5),dpi=240)
+    for col,color in zip(wealth.columns,["#003D7C","#E97824","#2A9D8F"]): ax.plot(wealth.index,wealth[col],label=col,lw=1.8,color=color)
+    ax.set_ylabel("Growth of INR 1"); ax.set_title("Untouched final-holdout wealth",fontweight="bold")
+    ax.grid(color="#D9DEE2",lw=.55); ax.set_axisbelow(True); ax.spines[["top","right"]].set_visible(False)
+    ax.legend(ncol=3,fontsize=7.6,frameon=False,loc="upper center",bbox_to_anchor=(.5,-.14)); fig.subplots_adjust(left=.09,right=.98,bottom=.24,top=.88)
+    wealth_path=FIG_OUT/"final_holdout_wealth.png"; fig.savefig(wealth_path,bbox_inches="tight",facecolor="white"); plt.close(fig)
 
-    importance = pd.read_csv(RUN / "feature_importance_by_refit.csv")
-    importance = importance[importance.config_id.eq("cm_extra_trees_8ef7eb6a91c8")]
-    top = importance.groupby("feature").importance.mean().nlargest(15).sort_values()
+    # Final coefficient magnitudes; explicitly associative rather than causal.
+    imp=pd.read_csv(FINAL/"feature_importance_by_refit.csv"); imp=imp[(imp.config_id.eq(selected_id)) & (imp.measure.eq("standardized_coefficient"))]
+    top=imp.groupby("feature").importance.apply(lambda x:x.abs().mean()).nlargest(15).sort_values()
     def shorten(x):
-        x = x.replace("sp500_raw__", "S&P500 · ").replace("us_context__", "US context · ")
-        x = x.replace("india_core__", "India · ").replace("us_tech__", "US tech · ").replace("global__", "Global · ")
-        return x.replace("__", " · ").replace("_", " ")
-    fig, ax = plt.subplots(figsize=(8.8, 5.5), dpi=220)
-    ax.barh([shorten(x) for x in top.index], top.values, color="#2F5D73")
-    ax.set_xlabel("Mean impurity importance across quarterly refits")
-    ax.set_title("Screening leader: most-used predictors", fontweight="bold")
-    ax.grid(axis="x", color="#D9DEE2", lw=.55); ax.set_axisbelow(True); ax.spines[["top", "right", "left"]].set_visible(False)
-    ax.tick_params(axis="y", labelsize=7.6)
-    fig.subplots_adjust(left=.38, right=.97, bottom=.12, top=.9)
-    feature = FIG_OUT / "screening_feature_importance.png"
-    fig.savefig(feature, bbox_inches="tight", facecolor="white"); plt.close(fig)
-    return leaderboard, wealth_path, complexity, feature
+        x=x.replace("sp500_raw__","S&P500 · ").replace("us_context__","US context · ").replace("india_core__","India · ").replace("us_tech__","US tech · ").replace("global__","Global · ").replace("adr__","ADR · ").replace("own__","Own · ")
+        return x.replace("__"," · ").replace("_"," ")
+    fig,ax=plt.subplots(figsize=(8.8,5.2),dpi=240); ax.barh([shorten(x) for x in top.index],top.values,color="#2F5D73")
+    ax.set_xlabel("Mean absolute standardized coefficient"); ax.set_title("Frozen Elastic Net: most persistent signals",fontweight="bold")
+    ax.grid(axis="x",color="#D9DEE2",lw=.55); ax.set_axisbelow(True); ax.spines[["top","right","left"]].set_visible(False); ax.tick_params(axis="y",labelsize=7.4)
+    fig.subplots_adjust(left=.39,right=.97,bottom=.12,top=.9); feature=FIG_OUT/"final_elastic_net_coefficients.png"; fig.savefig(feature,bbox_inches="tight",facecolor="white"); plt.close(fig)
+
+    # Cost robustness for the predeclared top-three rule. Standard result is 15 bps; observed grid is diagnostic.
+    cost=pd.read_csv(FINAL/"cost_sensitivity.csv"); cost=cost[(cost.top_k.eq(3)) & (cost.forecast_hurdle.eq(0.0))].sort_values("round_trip_cost_bps")
+    fig,ax=plt.subplots(figsize=(8.8,3.9),dpi=240); ax.plot(cost.round_trip_cost_bps,cost.sharpe,marker="o",color="#003D7C",lw=1.8)
+    ax.axhline(0,color="#333",lw=.7); ax.axvline(15,color="#E97824",ls="--",lw=1.2,label="Standard assumption: 15 bps")
+    ax.set_xlabel("Round-trip cost (bps)"); ax.set_ylabel("Annualized net Sharpe"); ax.set_title("Final-holdout transaction-cost robustness",fontweight="bold")
+    ax.grid(color="#D9DEE2",lw=.55); ax.set_axisbelow(True); ax.spines[["top","right"]].set_visible(False); ax.legend(frameon=False,fontsize=8)
+    cost_path=FIG_OUT/"final_cost_robustness.png"; fig.savefig(cost_path,bbox_inches="tight",facecolor="white"); plt.close(fig)
+    return leaderboard,stability,wealth_path,feature,cost_path
 
 
 def equation(path: Path, latex: str, width=10.5, height=1.0):
@@ -316,16 +316,16 @@ def configure_document(doc: Document):
     section.header_distance = Cm(.7); section.footer_distance = Cm(.75)
 
     normal = doc.styles["Normal"]
-    normal.font.name = "Times New Roman"; normal.font.size = Pt(9.5); normal.font.color.rgb = RGBColor.from_string(TEXT)
+    normal.font.name = "Times New Roman"; normal.font.size = Pt(9.9); normal.font.color.rgb = RGBColor.from_string(TEXT)
     normal._element.rPr.rFonts.set(qn("w:eastAsia"), "Times New Roman")
     normal.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     normal.paragraph_format.line_spacing = 1.06
     normal.paragraph_format.space_after = Pt(3.5)
 
     for name, size, before, after, color in [
-        ("Title", 20, 0, 7, NAVY), ("Subtitle", 11, 0, 6, MUTED),
-        ("Heading 1", 13.2, 9, 4, NAVY), ("Heading 2", 10.7, 7, 3, BLUE),
-        ("Heading 3", 9.7, 5, 2, NAVY), ("Caption", 8.1, 1, 5, MUTED),
+        ("Title", 12, 0, 7, "003D7C"), ("Subtitle", 9.9, 0, 6, TEXT),
+        ("Heading 1", 12, 10, 5, TEXT), ("Heading 2", 11.1, 8, 3, TEXT),
+        ("Heading 3", 9.9, 6, 2, TEXT), ("Caption", 9.0, 1, 5, TEXT),
     ]:
         s = doc.styles[name]
         s.font.name = "Times New Roman"; s.font.size = Pt(size); s.font.color.rgb = RGBColor.from_string(color)
@@ -337,11 +337,11 @@ def configure_document(doc: Document):
 
     header = section.header.paragraphs[0]
     header.text = "CROSS-MARKET PRE-OPEN FORECASTING OF NIFTY IT STOCKS"
-    header.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    header.runs[0].font.name = "Times New Roman"; header.runs[0].font.size = Pt(7.5); header.runs[0].font.color.rgb = RGBColor.from_string(MUTED)
+    header.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    header.runs[0].font.name = "Times New Roman"; header.runs[0].font.size = Pt(8.4); header.runs[0].font.bold = True; header.runs[0].font.color.rgb = RGBColor.from_string(TEXT)
     add_page_number(section.footer.paragraphs[0])
     for r in section.footer.paragraphs[0].runs:
-        r.font.name = "Times New Roman"; r.font.size = Pt(7.5); r.font.color.rgb = RGBColor.from_string(MUTED)
+        r.font.name = "Times New Roman"; r.font.size = Pt(8.1); r.font.color.rgb = RGBColor.from_string("4A4A4A")
 
 
 def build():
