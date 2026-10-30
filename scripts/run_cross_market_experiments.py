@@ -50,9 +50,12 @@ def _confirmation_candidates(screening: Path, config: dict) -> list[dict]:
     configurations = {row["config_id"]: row for row in _read_configurations(screening / "configurations.json")}
     eligible = leaderboard.loc[leaderboard["prediction_coverage"] >= float(config["selection"]["minimum_prediction_coverage"])]
     per_family = int(config["selection"]["screening_top_per_family"])
-    selected = eligible.groupby("family", sort=False).head(per_family)
-    selected = selected.sort_values("rank").head(int(config["selection"]["confirmation_candidates"]))
     baseline_ids = leaderboard.loc[leaderboard["family"].isin(["zero", "asset_mean", "autoregression"]), "config_id"].tolist()
+    candidate_limit = int(config["selection"]["confirmation_candidates"])
+    research_slots = max(0, candidate_limit - len(baseline_ids))
+    selected = eligible.loc[~eligible["family"].isin(["zero", "asset_mean", "autoregression"])]
+    selected = selected.groupby("family", sort=False).head(per_family)
+    selected = selected.sort_values("rank").head(research_slots)
     ids = list(dict.fromkeys([*baseline_ids, *selected["config_id"].tolist()]))
     return [configurations[config_id] for config_id in ids]
 

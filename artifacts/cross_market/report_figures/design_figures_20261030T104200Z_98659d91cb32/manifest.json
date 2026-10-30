@@ -1,0 +1,34 @@
+{
+  "action": "build_cross_market_design_figures",
+  "completed_at_utc": "2026-10-30T10:42:01.460384+00:00",
+  "config_sha256": "b4a03435fdda6240a17c171ad581284468eb836cdd42b09f1c7c7d5fd98c81f6",
+  "content_hash": "98659d91cb32",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market/report_figures/design_figures_20261030T104200Z_98659d91cb32",
+  "environment": {
+    "created_at_utc": "2026-10-30T10:42:01.462310+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "figure_id": "design_figures_20261030T104200Z_98659d91cb32",
+  "files": {
+    "10_research_architecture.png": "3c7c985ef60328c82eeb37094a5cbe04738ba136856a1d60b02b2cdf4d6e5f63",
+    "10_research_architecture.svg": "304e797921e029e4008bfc8eef78cfb7f109354e9d2d40ee51433e3ce3c50a83",
+    "11_experiment_design.png": "ef95762ec98ce135024a105e61c4a53f67cdecfc0cb0c1c30fa153a72a33d3c9",
+    "11_experiment_design.svg": "48b5ce1fbe32efae0a8e486e808f9842b392c6c658bc1019297e6ef2771777b8",
+    "12_information_clock.png": "327756d5ddeb6af6872f151113d37281f1a1ac96950bcf9d32101cf80de3a882",
+    "12_information_clock.svg": "36e3447b4deb9f42902e284f1941a78951283d29520bb9601b34af8677e25fa4"
+  },
+  "schema_version": 1,
+  "script_sha256": "aec4260fd525224658922f633323dfe07231acae4952872f2125dcf1467cd66f",
+  "status": "complete"
+}

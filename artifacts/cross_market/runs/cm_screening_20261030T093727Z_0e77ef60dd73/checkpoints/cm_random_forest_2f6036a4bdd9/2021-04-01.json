@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-06-30",
+  "block_start": "2021-04-01",
+  "config_id": "cm_random_forest_2f6036a4bdd9",
+  "family": "random_forest",
+  "feature_set": "F4_full_us",
+  "input_features": 2236,
+  "parameter_to_feature_ratio": 8.586762075134168,
+  "parameter_to_observation_ratio": 1.6580310880829014,
+  "runtime_seconds": 110.70522883400008,
+  "test_rows": 610,
+  "trainable_parameters_proxy": 19200,
+  "training_dates": 1158,
+  "training_end": "2021-03-30",
+  "training_rows": 11580,
+  "training_start": "2016-07-21"
+}
