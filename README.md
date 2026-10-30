@@ -1,12 +1,14 @@
 # Quantitative Finance Project 2
 
-This repository contains the staged research pipeline for a daily SPY timing study. The core data are daily Yahoo Finance observations for SPY, QQQ, IWM, TLT, and GLD from 2005 through 2025. SPY is the only traded asset; the other ETFs are predictors. Stooq is an optional verification source and is never silently merged into the Yahoo series.
+The active v3 research setup predicts same-day open-to-close returns for a fixed cohort of current Nifty IT constituents using only information available at 08:55 IST. It progressively compares own-stock, Indian-market, US-technology, global, broad S&P 500, macro, and nonlinear information while preserving temporal order.
 
-The implementation covers immutable source snapshots, audits, conservative cleaning, causal feature creation, exploratory and statistical analysis, resumable walk-forward model fitting, chronological selection, final-test freezing, portfolio evaluation, and plots. See [the feature and model guide](documents/markdown/FEATURE_AND_MODEL_GUIDE.md) for formulas, rationale, and interpretation.
+The implementation covers immutable source snapshots, audits, conservative cleaning, causal feature creation, exploratory and statistical analysis, resumable walk-forward model fitting, chronological selection, final-test freezing, portfolio evaluation, and report-ready plots. Every new dataset, analysis, experiment, model summary, and freeze receives a UTC timestamp plus a deterministic content hash.
 
-The repository has one canonical research setup. Its selected model is the frozen shallow random forest (`random_forest_6aa9f5d449`); historical mean, autoregression and SPY are evaluation benchmarks rather than alternative production setups. Follow [the implementation runbook](documents/markdown/IMPLEMENTATION_RUNBOOK.md) before retrieving new macroeconomic or 2026 market data. The dated retrospective extensions are defined in the [21 October research runbook](documents/markdown/RESEARCH_EXTENSION_RUNBOOK_2026-10-21.md); they do not replace or rewrite the frozen final run.
+Use the single active configuration in [`configs/cross_market_research.yaml`](configs/cross_market_research.yaml). The [cross-market methodology](documents/markdown/CROSS_MARKET_RESEARCH_METHODOLOGY_2026-10-30.md) defines the hypotheses, information clock, feature ladder, validation protocol, and evaluation. The [execution runbook](documents/markdown/CROSS_MARKET_EXECUTION_RUNBOOK_2026-10-30.md) contains the exact sequential terminal commands.
 
-### Current verified canonical run
+The earlier SPY study and its frozen artifacts remain below as read-only historical evidence. They are not a second active model setup and must not be mixed with v3 cross-market selection or reporting.
+
+### Archived v1 verified run
 
 The verification scripts and final-holdout sections of the report are bound to the following immutable October 20, 2026 artifact chain. The report also includes the separate comparative screening and confirmation runs listed below.
 

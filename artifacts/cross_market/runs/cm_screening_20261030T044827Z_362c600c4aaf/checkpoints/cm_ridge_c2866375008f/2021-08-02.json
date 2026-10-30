@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-08-31",
+  "block_start": "2021-08-02",
+  "config_id": "cm_ridge_c2866375008f",
+  "family": "ridge",
+  "feature_set": "F1_india",
+  "input_features": 170,
+  "parameter_to_feature_ratio": 1.0058823529411764,
+  "parameter_to_observation_ratio": 0.013790322580645161,
+  "runtime_seconds": 0.3215410000000247,
+  "test_rows": 210,
+  "trainable_parameters_proxy": 171,
+  "training_dates": 1240,
+  "training_end": "2021-07-29",
+  "training_rows": 12400,
+  "training_start": "2016-07-21"
+}

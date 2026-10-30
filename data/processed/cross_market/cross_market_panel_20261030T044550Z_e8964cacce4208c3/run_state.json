@@ -1,0 +1,21 @@
+{
+  "action": "build_cross_market_panel",
+  "completed_at_utc": "2026-10-30T04:46:08.569601+00:00",
+  "dataset_id": "cross_market_panel_20261030T044550Z_e8964cacce4208c3",
+  "output": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/processed/cross_market/cross_market_panel_20261030T044550Z_e8964cacce4208c3",
+  "raw_audit": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/data_audits/cross_market/audit_20261030T044440Z.json",
+  "raw_audit_status": "pass_with_warnings",
+  "snapshots": {
+    "fred_alfred": "fred_alfred_20261030T023950Z",
+    "global_context": "yahoo_global_context_20261029T125100Z",
+    "india_core": "yahoo_india_core_20261029T124839Z",
+    "indian_it_adrs": "yahoo_indian_it_adrs_20261029T125050Z",
+    "nifty500_point_in_time": "yahoo_nifty500_point_in_time_20261030T015703Z",
+    "nifty50_point_in_time": "yahoo_nifty50_point_in_time_20261030T005526Z",
+    "sp500_point_in_time": "yahoo_sp500_point_in_time_20261030T005819Z",
+    "us_context": "yahoo_us_context_20261029T125033Z",
+    "us_limited_tech": "yahoo_us_limited_tech_20261029T125019Z"
+  },
+  "source_hash": "e8964cacce4208c3",
+  "status": "complete"
+}

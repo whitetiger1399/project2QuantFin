@@ -11,6 +11,7 @@ from typing import Any
 import pandas as pd
 
 from quantfin.io import atomic_json_dump, read_manifest, sha256_file
+from quantfin.progress import progress
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,7 +33,9 @@ def _audit_yahoo(manifest_path: Path) -> dict[str, Any]:
     issues: list[str] = []
     warnings: list[str] = []
     files: list[dict[str, Any]] = []
-    for record in manifest.get("files", []):
+    records = manifest.get("files", [])
+    group = manifest.get("request", {}).get("group", manifest.get("snapshot_id", "Yahoo"))
+    for record in progress(records, description=f"Auditing {group}", total=len(records), unit="file"):
         path = manifest_path.parent / record["path"]
         if not path.is_file():
             issues.append(f"missing:{record['path']}")

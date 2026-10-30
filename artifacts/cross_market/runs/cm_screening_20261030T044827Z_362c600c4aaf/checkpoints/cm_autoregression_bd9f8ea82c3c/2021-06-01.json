@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-06-30",
+  "block_start": "2021-06-01",
+  "config_id": "cm_autoregression_bd9f8ea82c3c",
+  "family": "autoregression",
+  "feature_set": "F0_own",
+  "input_features": 16,
+  "parameter_to_feature_ratio": 1.0625,
+  "parameter_to_observation_ratio": 0.0014202172096908939,
+  "runtime_seconds": 0.11152175000006537,
+  "test_rows": 220,
+  "trainable_parameters_proxy": 17,
+  "training_dates": 1197,
+  "training_end": "2021-05-28",
+  "training_rows": 11970,
+  "training_start": "2016-07-21"
+}
