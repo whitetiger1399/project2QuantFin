@@ -166,6 +166,8 @@ The generated editable report is `reports/Project2_Team16_Report.docx`. See `rep
 
 ## Configuration review
 
+The new India-before-open cross-market Nifty IT study has a separate raw-data contract. Follow the dated [cross-market data acquisition runbook](documents/markdown/CROSS_MARKET_DATA_ACQUISITION_RUNBOOK_2026-10-29.md). Its commands write under `data/raw/cross_market/` and do not alter the frozen SPY artifacts documented above.
+
 Before downloading anything, review:
 
 - `configs/protocol.yaml`: symbols, sample dates, timing, splits, and paths.

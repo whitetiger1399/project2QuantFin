@@ -15,6 +15,7 @@ dependencies = [
   "PyYAML>=6.0,<7",
   "yfinance>=0.2.54,<1",
   "pandas-datareader>=0.10,<1",
+  "certifi>=2024.7",
   "scikit-learn>=1.5,<2",
   "joblib>=1.4,<2",
   "threadpoolctl>=3.5,<4",
