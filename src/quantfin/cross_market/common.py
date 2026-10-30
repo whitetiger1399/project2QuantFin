@@ -106,6 +106,14 @@ def environment_record() -> dict[str, Any]:
     }
 
 
+def research_code_hash(extra_paths: list[str | Path] | None = None) -> str:
+    """Hash executable research code so model-run hashes change after code edits."""
+    files = sorted((ROOT / "src" / "quantfin" / "cross_market").glob("*.py"))
+    files.extend(root_path(path) for path in (extra_paths or []))
+    payload = {str(path.relative_to(ROOT)): sha256_file(path) for path in files if path.is_file()}
+    return stable_object_hash(payload)
+
+
 def read_panel_dataset(path: str | Path) -> tuple[pd.DataFrame, dict[str, Any], pd.DataFrame]:
     directory = root_path(path)
     if not directory.is_dir():

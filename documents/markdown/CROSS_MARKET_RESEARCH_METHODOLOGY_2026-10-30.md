@@ -146,16 +146,18 @@ Failure to reject a null is a valid research result and is not rewritten as evid
 | Confirmation | 1 Jan 2023–31 Dec 2024 | Confirm at most 12 screening candidates and freeze one |
 | Final test | 1 Jan 2025–29 Oct 2026 | Open once for the frozen model and forecast baselines |
 
-Models refit at each month start. The primary estimator uses the most recent 1,260 Indian sessions; expanding-window estimation is a robustness check. Within every refit, only dates before the forecast block and before the one-session embargo are used.
+Screening and confirmation refit at each calendar-quarter start while still producing a forecast for every daily stock observation in the following quarter. This reduces highly correlated, computationally redundant adjacent-month fits without weakening chronological OOS evaluation. After one model is frozen, the final holdout refits that model monthly. The primary estimator uses the most recent 1,260 Indian sessions; expanding-window estimation is a robustness check. Within every refit, only dates before the forecast block and before the one-session embargo are used.
 
 Screening includes:
 
-1. a controlled F0→F5 ridge feature progression;
-2. LASSO, elastic net, PCA-ridge, random forest, extremely randomized trees, histogram gradient boosting, and ridge comparisons on F4;
-3. random Fourier feature ridge models on the fixed F2 information set with complexity ratios 0.25, 0.5, 1, 2, 5, 10, and 15, capped at 10,000 generated features; holding the information set fixed separates functional complexity from the F4 broad-universe experiment;
+1. a controlled F0→F5 ridge feature progression at one fixed shrinkage value, plus two additional F4 ridge penalties;
+2. two LASSO, four elastic-net, four PCA-ridge, one random-forest, two extremely-randomized-tree, and four histogram-gradient-boosting configurations on F4;
+3. eight random Fourier feature ridge models on the fixed F2 information set, spanning component/input ratios 0.5, 1, 2, 5, 10, and 15 with a 4,096-component safety cap and two additional penalties at ratio 2; holding the information set fixed separates functional complexity from the F4 broad-universe experiment;
 4. predeclared shrinkage and kernel-scale grids.
 
-The top two configurations per family enter a maximum twelve-candidate confirmation set. Selection is by post-cost net Sharpe, with OOS \(R^2\), rank IC, lower turnover, and lower complexity as ordered tie-breakers. `freeze_cross_market_model.py` records exactly one winner before final testing.
+The top configuration per family enters a maximum ten-candidate confirmation set. Selection is by post-cost net Sharpe, with OOS \(R^2\), rank IC, lower turnover, and lower complexity as ordered tie-breakers. `freeze_cross_market_model.py` records exactly one winner before final testing.
+
+For LASSO and elastic net, univariate feature screening retains at most 500 predictors and is re-estimated inside every training window. It therefore reduces computation without allowing validation or future observations to influence feature choice. Practical coordinate-descent tolerances and stronger minimum penalties replace the non-convergent near-zero-penalty grid.
 
 ## 9. Forecast-to-position rule
 

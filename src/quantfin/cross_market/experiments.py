@@ -17,6 +17,7 @@ import statsmodels.api as sm
 from sklearn.base import BaseEstimator
 from sklearn.decomposition import PCA
 from sklearn.ensemble import ExtraTreesRegressor, HistGradientBoostingRegressor, RandomForestRegressor
+from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.impute import SimpleImputer
 from sklearn.kernel_approximation import RBFSampler
 from sklearn.linear_model import ElasticNet, Lasso, Ridge
@@ -54,16 +55,22 @@ def enumerate_configurations(config: dict[str, Any], profile: str) -> list[dict[
 
     # Predeclared one-factor-at-a-time feature progression under identical ridge shrinkage.
     if "ridge" in permitted:
-        progression_alphas = config["models"]["families"]["ridge"]["alpha"]
-        if profile == "quick":
-            progression_alphas = progression_alphas[:2]
-        else:
-            progression_alphas = [value for value in progression_alphas if value in {0.01, 0.1, 1.0}]
+        progression_alpha = float(config["models"]["feature_progression_alpha"])
         for feature_set in profile_config["feature_sets"]:
-            for alpha in progression_alphas:
+            configurations.append({
+                "family": "ridge", "parameters": {"alpha": progression_alpha},
+                "feature_set": feature_set, "experiment": "feature_progression",
+            })
+
+        # Two additional F4 penalties tune shrinkage without repeating the
+        # F4 alpha already present in the controlled feature progression.
+        if profile != "quick":
+            for alpha in config["models"]["families"]["ridge"]["alpha"]:
+                if float(alpha) == progression_alpha:
+                    continue
                 configurations.append({
                     "family": "ridge", "parameters": {"alpha": alpha},
-                    "feature_set": feature_set, "experiment": "feature_progression",
+                    "feature_set": "F4_full_us", "experiment": "ridge_tuning",
                 })
 
     # Full model-family comparison uses F4, the economic question's complete US information set.
@@ -87,21 +94,21 @@ def enumerate_configurations(config: dict[str, Any], profile: str) -> list[dict[
                 "complexity_ratio": ratio,
                 "maximum_components": values["maximum_components"],
                 "gamma_scale": 1.0,
-                "penalty": penalty,
+                "penalty": 1.0,
             }
-            for ratio, penalty in product(values["complexity_ratio"], [0.1, 1.0])
+            for ratio in values["complexity_ratio"]
         ]
         grids.extend(
             {
-                "complexity_ratio": ratio,
+                "complexity_ratio": 2.0,
                 "maximum_components": values["maximum_components"],
-                "gamma_scale": gamma,
-                "penalty": 1.0,
+                "gamma_scale": 1.0,
+                "penalty": penalty,
             }
-            for ratio, gamma in product([1.0, 5.0], [0.25, 4.0])
+            for penalty in [0.1, 10.0]
         )
         if profile == "quick":
-            grids = [row for row in grids if row["complexity_ratio"] in {0.5, 2.0} and row["gamma_scale"] == 1.0 and row["penalty"] in {0.1, 1.0}]
+            grids = [row for row in grids if row["complexity_ratio"] in {0.5, 2.0} and row["penalty"] == 1.0]
         for parameters in grids:
             configurations.append({
                 "family": "rff_ridge", "parameters": parameters,
@@ -122,9 +129,15 @@ def stage_dates(config: dict[str, Any], stage: str) -> tuple[pd.Timestamp, pd.Ti
     return pd.Timestamp(start), pd.Timestamp(end)
 
 
-def monthly_blocks(dates: pd.DatetimeIndex, start: pd.Timestamp, end: pd.Timestamp) -> list[pd.DatetimeIndex]:
+def forecast_blocks(
+    dates: pd.DatetimeIndex,
+    start: pd.Timestamp,
+    end: pd.Timestamp,
+    refit_frequency: str,
+) -> list[pd.DatetimeIndex]:
     selected = dates[(dates >= start) & (dates <= end)]
-    return [pd.DatetimeIndex(values) for _, values in pd.Series(selected, index=selected).groupby(selected.to_period("M"))]
+    period = {"month_start": "M", "quarter_start": "Q"}[refit_frequency]
+    return [pd.DatetimeIndex(values) for _, values in pd.Series(selected, index=selected).groupby(selected.to_period(period))]
 
 
 def _viable_columns(train: pd.DataFrame, columns: list[str], config: dict[str, Any]) -> list[str]:
@@ -153,9 +166,28 @@ def _build_estimator(configuration: dict[str, Any], input_count: int, rows: int,
     if family == "ridge":
         return Pipeline([*scaled, ("model", NormalizedRidge(float(parameters["alpha"]))) ]), input_count + 1
     if family == "lasso":
-        return Pipeline([*scaled, ("model", Lasso(alpha=float(parameters["alpha"]), max_iter=25_000, tol=1e-7, random_state=seed))]), input_count + 1
+        selected = min(int(parameters["preselect_k"]), input_count)
+        return Pipeline([
+            ("imputer", SimpleImputer(strategy="median")),
+            ("selector", SelectKBest(score_func=f_regression, k=selected)),
+            ("scaler", StandardScaler()),
+            ("model", Lasso(
+                alpha=float(parameters["alpha"]), max_iter=int(parameters["max_iter"]),
+                tol=float(parameters["tolerance"]), selection="random", random_state=seed,
+            )),
+        ]), selected + 1
     if family == "elastic_net":
-        return Pipeline([*scaled, ("model", ElasticNet(alpha=float(parameters["alpha"]), l1_ratio=float(parameters["l1_ratio"]), max_iter=25_000, tol=1e-7, random_state=seed))]), input_count + 1
+        selected = min(int(parameters["preselect_k"]), input_count)
+        return Pipeline([
+            ("imputer", SimpleImputer(strategy="median")),
+            ("selector", SelectKBest(score_func=f_regression, k=selected)),
+            ("scaler", StandardScaler()),
+            ("model", ElasticNet(
+                alpha=float(parameters["alpha"]), l1_ratio=float(parameters["l1_ratio"]),
+                max_iter=int(parameters["max_iter"]), tol=float(parameters["tolerance"]),
+                selection="random", random_state=seed,
+            )),
+        ]), selected + 1
     if family == "pca_ridge":
         components = min(int(parameters["n_components"]), input_count, rows - 1)
         return Pipeline([*scaled, ("pca", PCA(n_components=max(1, components), svd_solver="randomized", random_state=seed)), ("model", NormalizedRidge(float(parameters["alpha"]))) ]), components + 1
@@ -216,9 +248,12 @@ def _extract_importance(estimator: BaseEstimator, columns: list[str], family: st
         values = estimator.named_steps["pca"].components_.T @ np.asarray(model.coef_).ravel(); measure = "projected_coefficient"
     elif family in {"random_forest", "extra_trees"} and hasattr(model, "feature_importances_"):
         values = np.asarray(model.feature_importances_); measure = "impurity_importance"
-    if values is None or len(values) != len(columns):
+    selected_columns = columns
+    if "selector" in estimator.named_steps:
+        selected_columns = list(np.asarray(columns)[estimator.named_steps["selector"].get_support()])
+    if values is None or len(values) != len(selected_columns):
         return pd.DataFrame()
-    result = pd.DataFrame({"feature": columns, "importance": values, "measure": measure})
+    result = pd.DataFrame({"feature": selected_columns, "importance": values, "measure": measure})
     return result.reindex(result["importance"].abs().sort_values(ascending=False).index).head(50)
 
 
@@ -414,7 +449,8 @@ def run_walk_forward(
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     start, end = stage_dates(config, stage)
     dates = pd.DatetimeIndex(sorted(panel["decision_date"].unique()))
-    blocks = monthly_blocks(dates, start, end)
+    refit_frequency = config["validation"]["refit_frequency_by_stage"][stage]
+    blocks = forecast_blocks(dates, start, end, refit_frequency)
     checkpoints = run_directory / "checkpoints"
     tasks = [(configuration, block) for configuration in configurations for block in blocks]
     prediction_frames: list[pd.DataFrame] = []

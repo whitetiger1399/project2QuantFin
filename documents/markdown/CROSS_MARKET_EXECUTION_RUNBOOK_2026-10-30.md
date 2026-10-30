@@ -28,7 +28,7 @@ The final test includes forecast baselines for comparison, but `final_model_coun
 
 ## Compute controls
 
-The protocol limits numerical libraries to one thread per model worker and uses four workers for tree ensembles. Monthly checkpoints make screening resumable. The deep profile contains 90 configurations; with 24 screening months this is approximately 2,160 refits. Runtime depends on RAM, CPU, and how many S&P 500 columns survive each training window. The quick profile is a pipeline check only and is not a substitute for the deep research run.
+The protocol limits numerical libraries to one thread per model worker and uses four workers for tree ensembles. Screening and confirmation checkpoint quarterly; the frozen final model checkpoints monthly. The deep profile contains 36 configurations and eight screening quarters, producing 288 screening refits instead of the superseded 2,160-refit plan. Training-only 500-feature screening and practical convergence settings reduce a representative F4 LASSO refit from roughly 347 seconds to 3.62 seconds on the development machine. The quick profile remains a pipeline check only and is not a substitute for the deep research run.
 
 To resume an interrupted screening run:
 

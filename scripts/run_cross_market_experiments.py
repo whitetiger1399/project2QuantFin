@@ -14,6 +14,7 @@ from quantfin.cross_market.common import (
     environment_record,
     load_research_config,
     read_panel_dataset,
+    research_code_hash,
     resolve_dataset,
     root_path,
     write_run_state,
@@ -116,12 +117,15 @@ def main() -> None:
         "panel_sha256": dataset_manifest["files"]["panel.parquet"],
         "feature_dictionary_sha256": dataset_manifest["files"]["feature_dictionary.csv"],
         "config_sha256": sha256_file(root_path(args.config)), "configurations": configurations,
+        "research_code_hash": research_code_hash(["scripts/run_cross_market_experiments.py"]),
         "training_scheme": args.training_scheme, **parent_content,
     })[:12]
     split_key = {"screening": "screening", "confirmation": "confirmation", "final_test": "final_test"}[args.stage]
     split_start, split_end = config["sample"]["splits"][split_key]
-    expected_months = len(pd.period_range(split_start, split_end, freq="M"))
-    expected_checkpoints = len(configurations) * expected_months
+    refit_frequency = config["validation"]["refit_frequency_by_stage"][args.stage]
+    period_frequency = {"month_start": "M", "quarter_start": "Q"}[refit_frequency]
+    expected_refits = len(pd.period_range(split_start, split_end, freq=period_frequency))
+    expected_checkpoints = len(configurations) * expected_refits
     runs_root = root_path(config["outputs"]["runs_root"])
     if args.resume_run_id:
         run_id = args.resume_run_id
@@ -139,6 +143,7 @@ def main() -> None:
     plan = {
         "action": "run_cross_market_experiments", "run_id": run_id, "content_hash": content_hash,
         "stage": args.stage, "profile": args.profile, "training_scheme": args.training_scheme,
+        "refit_frequency": refit_frequency,
         "dataset_id": dataset.name, "configuration_count": len(configurations),
         "expected_checkpoint_count": expected_checkpoints, **parent, "directory": str(output),
     }
