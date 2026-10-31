@@ -1,0 +1,16 @@
+{
+  "action": "compare_ai_services_strategies",
+  "comparison_id": "ai_strategy_comparison_20261031T072403Z_a50754ac1b80",
+  "content_hash": "a50754ac1b80",
+  "created_at_utc": "2026-10-31T07:24:04.553405+00:00",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/ai_strategy_comparison_20261031T072403Z_a50754ac1b80",
+  "files": {
+    "strategy_equity_curves.png": "d306326bfaa0e2eb75fe45d57ef8bb994d03cc64e3cdba061558861f8d4ad030",
+    "strategy_ledgers.parquet": "ecc8c044741930b7ba89961e128579db988bd1af25e7711191b287c7385090f7",
+    "strategy_summary.csv": "428d18074ba27ffd326f3726ff1b6984ba346223db0c4a78398dd95d128b72df"
+  },
+  "schema_version": 1,
+  "selected_config_id": "cm_extra_trees_05a83581b70b",
+  "source_run_id": "cm_ai_capability_final_test_20261031T071400Z_864e226d8bad",
+  "status": "complete"
+}

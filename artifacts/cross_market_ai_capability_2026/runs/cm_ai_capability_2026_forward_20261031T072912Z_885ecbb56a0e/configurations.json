@@ -1,0 +1,37 @@
+[
+  {
+    "config_id": "cm_autoregression_bd9f8ea82c3c",
+    "experiment": "baseline",
+    "family": "autoregression",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.0
+    }
+  },
+  {
+    "config_id": "cm_zero_08cccf87365f",
+    "experiment": "baseline",
+    "family": "zero",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_asset_mean_947f6b0b0f9a",
+    "experiment": "baseline",
+    "family": "asset_mean",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_extra_trees_05a83581b70b",
+    "experiment": "model_family",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  }
+]

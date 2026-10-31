@@ -1,0 +1,17 @@
+{
+  "block_end": "2023-06-30",
+  "block_start": "2023-04-03",
+  "config_id": "cm_ridge_d3df3c9ffe8f",
+  "family": "ridge",
+  "feature_set": "F4_sp500_aggregate",
+  "input_features": 440,
+  "parameter_to_feature_ratio": 1.0022727272727272,
+  "parameter_to_observation_ratio": 0.035,
+  "runtime_seconds": 1.084408582999913,
+  "test_rows": 600,
+  "trainable_parameters_proxy": 441,
+  "training_dates": 1260,
+  "training_end": "2023-03-29",
+  "training_rows": 12600,
+  "training_start": "2018-02-23"
+}

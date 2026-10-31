@@ -1,0 +1,21 @@
+{
+  "action": "summarize_information_ladder",
+  "content_hash": "6b5c707d5456",
+  "created_at_utc": "2026-10-31T07:12:41.202857+00:00",
+  "daily_decision_rows": 3928,
+  "daily_stock_decision_rows": 39280,
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/information_ladder_confirmation_20261031T071239Z_6b5c707d5456",
+  "files": {
+    "daily_long_short_decisions.csv": "142308b9ce3c21bf46a3e83039b00ec3a868b37f800640189b87e3994edff4ec",
+    "daily_stock_decisions.csv": "4383e01f526d1950ed201a07c385e66f0480b4cee1c7e2f2ca74c3584d090394",
+    "information_ladder_performance.png": "914c597f7c2d8b52c07f8dad5579d0b4423b9100a642f0747532f009ec0a808b",
+    "information_ladder_summary.csv": "6effb61c0e549da4764b45baa4b53e7810284c8d1adc648bf8fd43c9d3d17b04",
+    "information_ladder_wealth.png": "d342337bab2f19442c313d171b61e0f74ffebd83cc644825a9645c1751ba8eb4"
+  },
+  "rungs": 8,
+  "schema_version": 1,
+  "source_run_id": "cm_ai_capability_confirmation_20261031T065831Z_c343cf83e423",
+  "stage": "confirmation",
+  "status": "complete",
+  "summary_id": "information_ladder_confirmation_20261031T071239Z_6b5c707d5456"
+}

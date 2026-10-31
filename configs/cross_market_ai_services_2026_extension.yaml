@@ -1,0 +1,28 @@
+schema_version: 1
+extends: configs/cross_market_ai_services_research.yaml
+study_id: nifty_it_ai_services_forward_extension_2026
+
+tracking:
+  dataset_prefix: ai_services_2026_panel
+  run_prefix: cm_ai_services_2026
+
+study:
+  interpretation: >-
+    Retrospective forward extension through 2026-09-30. The frozen model
+    specification is inherited from the verified 2025 experiment. No 2026
+    observation may be used for model selection or hyperparameter tuning.
+
+sample:
+  end_exclusive: '2026-10-01'
+  splits:
+    initial_train: ['2016-07-21', '2020-12-31']
+    screening: ['2021-01-01', '2022-12-31']
+    confirmation: ['2023-01-01', '2024-12-31']
+    final_test: ['2026-01-01', '2026-09-30']
+
+outputs:
+  processed_root: data/processed/cross_market_ai_services_2026
+  analysis_root: artifacts/cross_market_ai_services_2026/analysis
+  runs_root: artifacts/cross_market_ai_services_2026/runs
+  freezes_root: artifacts/cross_market_ai_services_2026/freezes
+  documentation_root: documents/markdown

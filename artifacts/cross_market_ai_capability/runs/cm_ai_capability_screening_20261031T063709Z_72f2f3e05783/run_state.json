@@ -1,5 +1,7 @@
 {
   "action": "run_cross_market_experiments",
+  "checkpoint_count": 224,
+  "completed_at_utc": "2026-10-31T06:55:50.156593+00:00",
   "configuration_count": 28,
   "content_hash": "72f2f3e05783",
   "dataset_id": "ai_capability_panel_20261031T063249Z_928de985ea1dd4f8",
@@ -25,8 +27,9 @@
   "profile": "balanced",
   "refit_frequency": "quarter_start",
   "run_id": "cm_ai_capability_screening_20261031T063709Z_72f2f3e05783",
+  "selected_config_id": "cm_hist_gradient_boosting_65bf48f1d06c",
   "stage": "screening",
-  "status": "running",
+  "status": "complete",
   "training_scheme": "rolling",
-  "updated_at_utc": "2026-10-31T06:37:09.598570+00:00"
+  "updated_at_utc": "2026-10-31T06:55:50.174313+00:00"
 }
