@@ -30,7 +30,8 @@ def main() -> None:
     inventory = snapshot_inventory(config)
     fingerprint = source_fingerprint(args.config, inventory, audit_path)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    dataset_id = f"cross_market_panel_{stamp}_{fingerprint}"
+    dataset_prefix = config.get("tracking", {}).get("dataset_prefix", "cross_market_panel")
+    dataset_id = f"{dataset_prefix}_{stamp}_{fingerprint}"
     output = root_path(config["outputs"]["processed_root"]) / dataset_id
     plan = {
         "action": "build_cross_market_panel",

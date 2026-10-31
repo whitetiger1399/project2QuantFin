@@ -27,9 +27,22 @@ def load_research_config(path: str | Path) -> dict[str, Any]:
     location = root_path(path)
     with location.open("r", encoding="utf-8") as handle:
         config = yaml.safe_load(handle)
+    if isinstance(config, dict) and config.get("extends"):
+        parent = load_research_config(config["extends"])
+        config = _deep_merge(parent, {key: value for key, value in config.items() if key != "extends"})
     if not isinstance(config, dict) or config.get("schema_version") != 1:
         raise ValueError(f"Unsupported research configuration: {location}")
     return config
+
+
+def _deep_merge(base: dict[str, Any], override: dict[str, Any]) -> dict[str, Any]:
+    result = dict(base)
+    for key, value in override.items():
+        if isinstance(value, dict) and isinstance(result.get(key), dict):
+            result[key] = _deep_merge(result[key], value)
+        else:
+            result[key] = value
+    return result
 
 
 def latest_snapshot(root: str | Path, prefix: str) -> Path:
@@ -68,6 +81,10 @@ def snapshot_inventory(config: dict[str, Any]) -> dict[str, Path]:
             if group in raw["required_groups"]:
                 raise
     inventory["fred_alfred"] = latest_snapshot(raw["fred_root"], "fred_alfred")
+    if raw.get("frontier_ai_events_root"):
+        inventory["frontier_ai_events"] = latest_snapshot(
+            raw["frontier_ai_events_root"], "frontier_ai_events"
+        )
     return inventory
 
 
@@ -83,6 +100,7 @@ def source_fingerprint(config_path: str | Path, inventory: dict[str, Path], audi
     }
     payload = {
         "config_sha256": sha256_file(root_path(config_path)),
+        "resolved_config_hash": stable_object_hash(load_research_config(config_path)),
         "audit_contract_hash": stable_object_hash(audit_contract),
         "snapshots": {
             name: {
@@ -91,8 +109,23 @@ def source_fingerprint(config_path: str | Path, inventory: dict[str, Path], audi
             }
             for name, path in sorted(inventory.items())
         },
+        "manual_inputs": {
+            name: {"path": str(root_path(path)), "sha256": sha256_file(root_path(path))}
+            for name, path in sorted({
+                **config_manual_inputs(config_path),
+            }.items())
+            if root_path(path).is_file()
+        },
     }
     return stable_object_hash(payload)[:16]
+
+
+def config_manual_inputs(config_path: str | Path) -> dict[str, str]:
+    """Return configured non-snapshot inputs so dataset hashes cover them."""
+    config = load_research_config(config_path)
+    raw = config.get("raw_data", {})
+    values = {**raw.get("membership_files", {}), **raw.get("manual_context", {})}
+    return {str(name): str(path) for name, path in values.items() if path}
 
 
 def environment_record() -> dict[str, Any]:
@@ -133,7 +166,8 @@ def resolve_dataset(config: dict[str, Any], dataset_id: str | None) -> Path:
         if not (path / "manifest.json").is_file():
             raise FileNotFoundError(f"Dataset does not exist or is incomplete: {path}")
         return path
-    candidates = [p for p in root.glob("cross_market_panel_*") if (p / "manifest.json").is_file()]
+    prefix = config.get("tracking", {}).get("dataset_prefix", "cross_market_panel")
+    candidates = [p for p in root.glob(f"{prefix}_*") if (p / "manifest.json").is_file()]
     if not candidates:
         raise FileNotFoundError(f"No completed cross-market panel under {root}")
     return max(candidates, key=lambda p: (p / "manifest.json").stat().st_mtime_ns)

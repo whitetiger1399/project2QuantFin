@@ -68,6 +68,11 @@ def main() -> None:
             check(f"{stage}_dataset", record.get("dataset_id") == args.dataset_id)
             for filename in ["predictions.parquet", "leaderboard.csv", "refit_diagnostics.csv", "strategy_ledgers.parquet", "cost_sensitivity.csv"]:
                 check(f"{stage}_file:{filename}", (directory / filename).is_file())
+            for filename, expected in record.get("files", {}).items():
+                check(
+                    f"{stage}_hash:{filename}",
+                    (directory / filename).is_file() and sha256_file(directory / filename) == expected,
+                )
     if "confirmation" in manifests and args.screening_run_id:
         check("confirmation_parent", manifests["confirmation"].get("screening_run_id") == args.screening_run_id)
     if args.freeze_id:

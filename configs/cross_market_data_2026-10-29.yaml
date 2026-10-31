@@ -87,6 +87,40 @@ market_groups:
       - KLAC
       - PANW
 
+  us_it_services:
+    required: true
+    description: Predeclared US IT-services firms used as the primary overnight transmission signal
+    symbols:
+      - ACN
+      - IBM
+      - CTSH
+      - EPAM
+      - GLOB
+      - DXC
+      - JKHY
+      - LDOS
+      - SAIC
+      - CACI
+      - CNXC
+
+  us_it_enabled_payments:
+    required: false
+    description: Payments and processing firms retained as a separately labelled robustness block
+    symbols:
+      - FI
+      - FIS
+      - GPN
+
+  us_enterprise_software:
+    required: false
+    description: Enterprise software comparators; not classified as core IT-services firms
+    symbols:
+      - CRM
+      - SAP
+      - ORCL
+      - NOW
+      - ADBE
+
   us_context:
     required: true
     description: Broad US, sector, volatility, rates, commodity, and emerging-market proxies

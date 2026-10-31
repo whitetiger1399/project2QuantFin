@@ -6,6 +6,8 @@ import json
 import math
 import os
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from copy import deepcopy
 from itertools import product
 from pathlib import Path
 from typing import Any
@@ -45,7 +47,6 @@ def _parameter_grid(values: dict[str, Any]) -> list[dict[str, Any]]:
 def enumerate_configurations(config: dict[str, Any], profile: str) -> list[dict[str, Any]]:
     profile_config = config["models"]["profiles"][profile]
     permitted = set(profile_config["families"])
-    limit = profile_config.get("grid_limit_per_family")
     configurations: list[dict[str, Any]] = []
 
     # Forecast baselines are fit under the same temporal protocol.
@@ -70,49 +71,58 @@ def enumerate_configurations(config: dict[str, Any], profile: str) -> list[dict[
                     continue
                 configurations.append({
                     "family": "ridge", "parameters": {"alpha": alpha},
-                    "feature_set": "F4_full_us", "experiment": "ridge_tuning",
+                    "feature_set": config["models"].get("model_family_feature_set", "F4_full_us"), "experiment": "ridge_tuning",
                 })
 
     # Full model-family comparison uses F4, the economic question's complete US information set.
     for family in profile_config["families"]:
         if family in {"zero", "asset_mean", "autoregression", "ridge", "rff_ridge"}:
             continue
-        grids = _parameter_grid(config["models"]["families"][family])
+        limit = profile_config.get("grid_limit_by_family", {}).get(
+            family, profile_config.get("grid_limit_per_family")
+        )
+        family_values = deepcopy(config["models"]["families"][family])
+        family_values.update(profile_config.get("family_parameter_overrides", {}).get(family, {}))
+        grids = _parameter_grid(family_values)
         if limit:
             grids = grids[: int(limit)]
         for parameters in grids:
             configurations.append({
                 "family": family, "parameters": parameters,
-                "feature_set": "F4_full_us", "experiment": "model_family",
+                "feature_set": config["models"].get("model_family_feature_set", "F4_full_us"), "experiment": "model_family",
             })
 
     # Kelly–Malamud–Zhou-style approximation complexity with ridge shrinkage.
     if "rff_ridge" in permitted:
         values = config["models"]["families"]["rff_ridge"]
+        complexity_ratios = profile_config.get("complexity_ratios", values["complexity_ratio"])
+        maximum_components = int(profile_config.get("complexity_maximum_components", values["maximum_components"]))
+        complexity_penalties = profile_config.get("complexity_penalties", [1.0, 0.1, 10.0])
         grids = [
             {
                 "complexity_ratio": ratio,
-                "maximum_components": values["maximum_components"],
+                "maximum_components": maximum_components,
                 "gamma_scale": 1.0,
                 "penalty": 1.0,
             }
-            for ratio in values["complexity_ratio"]
+            for ratio in complexity_ratios
         ]
         grids.extend(
             {
                 "complexity_ratio": 2.0,
-                "maximum_components": values["maximum_components"],
+                "maximum_components": maximum_components,
                 "gamma_scale": 1.0,
                 "penalty": penalty,
             }
-            for penalty in [0.1, 10.0]
+            for penalty in complexity_penalties
+            if float(penalty) != 1.0
         )
         if profile == "quick":
             grids = [row for row in grids if row["complexity_ratio"] in {0.5, 2.0} and row["penalty"] == 1.0]
         for parameters in grids:
             configurations.append({
                 "family": "rff_ridge", "parameters": parameters,
-                "feature_set": "F2_us_tech", "experiment": "complexity",
+                "feature_set": config["models"].get("complexity_feature_set", "F2_us_tech"), "experiment": "complexity",
             })
 
     unique: dict[str, dict[str, Any]] = {}
@@ -317,7 +327,11 @@ def _fit_block(
                     "measure": "oos_group_permutation_mse_increase",
                 })
             importance = pd.concat([importance, pd.DataFrame(grouped_rows)], ignore_index=True)
-    result = test[["decision_date", "asset", "target_oc_return", "benchmark_nifty_it_cc_return", "benchmark_nifty50_cc_return", "benchmark_cohort_ew_oc_return"]].copy()
+    state_columns = [
+        column for column in config.get("strategy", {}).get("state_columns", [])
+        if column in test.columns
+    ]
+    result = test[["decision_date", "asset", "target_oc_return", "benchmark_nifty_it_cc_return", "benchmark_nifty50_cc_return", "benchmark_cohort_ew_oc_return", *state_columns]].copy()
     result["prediction"] = prediction
     result["config_id"] = configuration["config_id"]
     result["feature_set"] = configuration["feature_set"]
@@ -345,26 +359,82 @@ def _checkpoint_paths(root: Path, config_id: str, block: pd.DatetimeIndex) -> tu
 
 def _strategy_ledger(predictions: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
     settings = config["strategy"]["primary"]
-    round_trip_cost = 2.0 * (float(settings["one_way_cost_bps"]) + float(settings["slippage_bps"])) / 10_000.0
+    one_way_cost = (float(settings["one_way_cost_bps"]) + float(settings["slippage_bps"])) / 10_000.0
+    round_trip_cost = 2.0 * one_way_cost
     hurdle = max(float(settings["forecast_hurdle"]), round_trip_cost)
     top_k = int(settings["top_k"])
+    short_k = int(settings.get("short_k", top_k))
+    strategy_name = str(settings.get("name", "long_top_k_positive"))
+    maximum_weight = float(settings["maximum_weight"])
+    maximum_gross = float(settings.get("maximum_gross_exposure", 1.0))
+    services_column = str(settings.get("services_state_column", "us_it_services_aggregate__mean"))
+    event_column = str(settings.get("event_state_column", "ai_event__frontier_release_today"))
     rows: list[dict[str, Any]] = []
     for date, group in predictions.groupby("decision_date"):
-        eligible = group.loc[group["prediction"] > hurdle].nlargest(top_k, "prediction")
-        if eligible.empty:
-            gross = net = turnover = 0.0
-            holdings = ""
-        else:
-            weight = min(1.0 / len(eligible), float(settings["maximum_weight"]))
-            gross_exposure = weight * len(eligible)
-            gross = float((eligible["target_oc_return"] * weight).sum())
-            turnover = 2.0 * gross_exposure
-            net = gross - turnover * (float(settings["one_way_cost_bps"]) + float(settings["slippage_bps"])) / 10_000.0
-            holdings = "|".join(eligible["asset"].tolist())
         first = group.iloc[0]
+        services_return = float(first.get(services_column, np.nan))
+        event_count = float(first.get(event_column, 0.0))
+        longs = group.iloc[0:0]
+        shorts = group.iloc[0:0]
+        regime = "flat"
+        if strategy_name == "long_top_k_positive":
+            longs = group.loc[group["prediction"] > hurdle].nlargest(top_k, "prediction")
+            regime = "long" if not longs.empty else "flat"
+        elif strategy_name == "signed_forecast":
+            longs = group.loc[group["prediction"] > hurdle].nlargest(top_k, "prediction")
+            shorts = group.loc[group["prediction"] < -hurdle].nsmallest(short_k, "prediction")
+            regime = "signed"
+        elif strategy_name == "hybrid_ai_services_signed":
+            if event_count > 0 and bool(settings.get("event_short_override", True)):
+                if settings.get("event_short_scope", "all_cohort") == "all_cohort":
+                    shorts = group
+                else:
+                    shorts = group.nsmallest(short_k, "prediction")
+                regime = "frontier_event_short"
+            elif np.isfinite(services_return) and services_return < float(settings.get("services_down_threshold", 0.0)):
+                shorts = group.loc[group["prediction"] < -hurdle].nsmallest(short_k, "prediction")
+                regime = "services_down_short" if not shorts.empty else "services_down_flat"
+            elif np.isfinite(services_return):
+                longs = group.loc[group["prediction"] > hurdle].nlargest(top_k, "prediction")
+                regime = "services_up_long" if not longs.empty else "services_up_flat"
+        elif strategy_name == "frontier_event_short_only":
+            if event_count > 0:
+                shorts = group
+                regime = "frontier_event_short"
+        elif strategy_name == "services_direction_equal_weight":
+            if np.isfinite(services_return) and services_return < float(settings.get("services_down_threshold", 0.0)):
+                shorts = group
+                regime = "services_down_short"
+            elif np.isfinite(services_return):
+                longs = group
+                regime = "services_up_long"
+        else:
+            raise ValueError(f"Unknown strategy name: {strategy_name}")
+
+        count = len(longs) + len(shorts)
+        weight = min(maximum_weight, maximum_gross / count) if count else 0.0
+        long_exposure = weight * len(longs)
+        short_exposure = weight * len(shorts)
+        gross_exposure = long_exposure + short_exposure
+        expected_gross = float((longs["prediction"] * weight).sum() - (shorts["prediction"] * weight).sum())
+        gross = float((longs["target_oc_return"] * weight).sum() - (shorts["target_oc_return"] * weight).sum())
+        turnover = 2.0 * gross_exposure
+        trading_cost = turnover * one_way_cost
+        net = gross - trading_cost
+        expected_net = expected_gross - trading_cost
+        long_holdings = "|".join(longs["asset"].tolist())
+        short_holdings = "|".join(shorts["asset"].tolist())
+        holdings = "|".join([*(f"LONG:{x}" for x in longs["asset"]), *(f"SHORT:{x}" for x in shorts["asset"])])
         rows.append({
             "decision_date": date, "gross_return": gross, "net_return": net, "turnover": turnover,
-            "holdings": holdings, "benchmark_nifty_it": first["benchmark_nifty_it_cc_return"],
+            "expected_gross_return": expected_gross, "expected_net_return": expected_net,
+            "holdings": holdings, "long_holdings": long_holdings, "short_holdings": short_holdings,
+            "long_exposure": long_exposure, "short_exposure": short_exposure,
+            "gross_exposure": gross_exposure, "net_exposure": long_exposure - short_exposure,
+            "trading_cost": trading_cost,
+            "strategy_regime": regime, "us_it_services_return": services_return,
+            "frontier_ai_event_count": event_count,
+            "benchmark_nifty_it": first["benchmark_nifty_it_cc_return"],
             "benchmark_nifty50": first["benchmark_nifty50_cc_return"],
             "benchmark_cohort": first["benchmark_cohort_ew_oc_return"],
         })
@@ -446,6 +516,7 @@ def run_walk_forward(
     run_directory: Path,
     *,
     training_scheme: str = "rolling",
+    parallel_workers: int = 1,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     start, end = stage_dates(config, stage)
     dates = pd.DatetimeIndex(sorted(panel["decision_date"].unique()))
@@ -456,15 +527,16 @@ def run_walk_forward(
     prediction_frames: list[pd.DataFrame] = []
     diagnostic_rows: list[dict[str, Any]] = []
     importance_frames: list[pd.DataFrame] = []
-    for configuration, block in progress(tasks, description=f"{stage} walk-forward", total=len(tasks), unit="refit"):
+
+    def execute_task(task: tuple[dict[str, Any], pd.DatetimeIndex]) -> tuple[pd.DataFrame, dict[str, Any], pd.DataFrame]:
+        configuration, block = task
         parquet_path, json_path, importance_path = _checkpoint_paths(checkpoints, configuration["config_id"], block)
         if parquet_path.is_file() and json_path.is_file():
-            prediction_frames.append(pd.read_parquet(parquet_path))
+            prediction = pd.read_parquet(parquet_path)
             with json_path.open("r", encoding="utf-8") as handle:
-                diagnostic_rows.append(json.load(handle))
-            if importance_path.is_file():
-                importance_frames.append(pd.read_csv(importance_path))
-            continue
+                diagnostics = json.load(handle)
+            importance = pd.read_csv(importance_path) if importance_path.is_file() else pd.DataFrame()
+            return prediction, diagnostics, importance
         prediction, diagnostics, importance = _fit_block(
             configuration, panel, dictionary, block, config, training_scheme, explain=stage == "final_test"
         )
@@ -478,8 +550,28 @@ def run_walk_forward(
             temporary_importance = importance_path.with_suffix(".csv.tmp")
             importance.to_csv(temporary_importance, index=False)
             os.replace(temporary_importance, importance_path)
+        return prediction, diagnostics, importance
+
+    def collect(result: tuple[pd.DataFrame, dict[str, Any], pd.DataFrame]) -> None:
+        prediction, diagnostics, importance = result
+        prediction_frames.append(prediction)
+        diagnostic_rows.append(diagnostics)
+        if not importance.empty:
             importance_frames.append(importance)
-        prediction_frames.append(prediction); diagnostic_rows.append(diagnostics)
+
+    workers = max(1, int(parallel_workers))
+    if workers == 1:
+        for task in progress(tasks, description=f"{stage} walk-forward", total=len(tasks), unit="refit"):
+            collect(execute_task(task))
+    else:
+        # Threads share the large panel rather than copying it into multiple
+        # processes. Most estimator work releases the GIL; numerical library
+        # threads are separately capped by the run configuration.
+        with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="quantfin-refit") as executor:
+            futures = [executor.submit(execute_task, task) for task in tasks]
+            completed = as_completed(futures)
+            for future in progress(completed, description=f"{stage} parallel walk-forward", total=len(futures), unit="refit"):
+                collect(future.result())
     predictions = pd.concat(prediction_frames, ignore_index=True)
     diagnostics = pd.DataFrame(diagnostic_rows)
     importance = pd.concat(importance_frames, ignore_index=True) if importance_frames else pd.DataFrame()

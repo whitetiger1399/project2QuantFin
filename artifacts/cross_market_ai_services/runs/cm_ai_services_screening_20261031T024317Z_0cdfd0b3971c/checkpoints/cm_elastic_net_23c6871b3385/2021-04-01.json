@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-06-30",
+  "block_start": "2021-04-01",
+  "config_id": "cm_elastic_net_23c6871b3385",
+  "family": "elastic_net",
+  "feature_set": "F7_full_context",
+  "input_features": 2766,
+  "parameter_to_feature_ratio": 0.18112798264642083,
+  "parameter_to_observation_ratio": 0.043264248704663215,
+  "runtime_seconds": 18.26022316700255,
+  "test_rows": 610,
+  "trainable_parameters_proxy": 501,
+  "training_dates": 1158,
+  "training_end": "2021-03-30",
+  "training_rows": 11580,
+  "training_start": "2016-07-21"
+}

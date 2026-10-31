@@ -1,0 +1,39 @@
+{
+  "action": "run_cross_market_analysis",
+  "completed_at_utc": "2026-10-31T02:40:54.597905+00:00",
+  "config_sha256": "174adf487429f2c9e48ff188fa6119679562326d2fca58307260cbe25bdad192",
+  "dataset_id": "ai_services_panel_20261031T023944Z_fc3fbc83bdc45226",
+  "environment": {
+    "created_at_utc": "2026-10-31T02:40:54.598670+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "output": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_services/analysis/analysis_20261031T024049Z_3483a28e1abe",
+  "parent_dataset_manifest_sha256": "f3eb6757a6107afd04f9a9eb9295797c6016a951d93c49794be119cca5f7ed2d",
+  "run_hash": "3483a28e1abe",
+  "run_id": "analysis_20261031T024049Z_3483a28e1abe",
+  "schema_version": 1,
+  "status": "complete",
+  "summary": {
+    "assets": 10,
+    "decision_dates": 2334,
+    "feature_tests": 229,
+    "features": 3738,
+    "figures": 9,
+    "interpretation_guardrail": "Event overlays and lead-lag correlations are descriptive and must not be presented as causal evidence.",
+    "retrospective_event_markers": 0,
+    "rows": 23340,
+    "statistical_test_assets": 10,
+    "trend_shift_candidates": 20
+  }
+}

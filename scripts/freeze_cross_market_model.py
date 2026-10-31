@@ -36,10 +36,14 @@ def main() -> None:
         "selection_metric": config["selection"]["primary_metric"],
         "selection_values": selected.to_dict(),
         "final_model_count": 1,
+        "include_feature_progression_in_final_diagnostics": bool(
+            config["selection"].get("include_feature_progression_in_final_diagnostics", False)
+        ),
     }
     freeze_hash = stable_object_hash(identity_payload)[:12]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    freeze_id = f"cm_freeze_{stamp}_{freeze_hash}"
+    freeze_prefix = config.get("tracking", {}).get("freeze_prefix", "cm_freeze")
+    freeze_id = f"{freeze_prefix}_{stamp}_{freeze_hash}"
     destination = root_path(config["outputs"]["freezes_root"]) / f"{freeze_id}.json"
     record = {
         "schema_version": 1, "freeze_id": freeze_id, "content_hash": freeze_hash,

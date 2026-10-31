@@ -1,0 +1,39 @@
+schema_version: 1
+inventory_source: data/external/reference/current_constituents/model_publishing.txt
+inventory_source_url: https://ai.miraheze.org/wiki/Module:FactsData?action=edit
+policy:
+  primary_providers: [OpenAI, Google DeepMind, Anthropic, Meta, xAI]
+  robustness_providers: [Microsoft, NVIDIA]
+  date_only_policy: next_nse_session
+  exact_timestamp_policy: first_nse_decision_cutoff_after_publication
+  note: >-
+    Events are selected ex ante by provider and frontier-family status, not by
+    observed Indian equity returns. The supplied inventory is a discovery
+    source; official provider announcements define the curated event dates.
+events:
+  - {event_id: openai_gpt4, inventory_name: GPT-4, provider: OpenAI, model_family: GPT-4, release_date: '2023-03-14', provider_tier: primary, primary_event: true, source_url: 'https://openai.com/index/gpt-4-research/'}
+  - {event_id: anthropic_claude2, inventory_name: Claude 2, provider: Anthropic, model_family: Claude 2, release_date: '2023-07-11', provider_tier: primary, primary_event: true, source_url: 'https://www.anthropic.com/news/claude-2'}
+  - {event_id: meta_llama2, inventory_name: LLaMA 2, provider: Meta, model_family: Llama 2, release_date: '2023-07-18', provider_tier: primary, primary_event: true, source_url: 'https://ai.meta.com/llama/llama-2/'}
+  - {event_id: xai_grok1, inventory_name: Grok 1, provider: xAI, model_family: Grok 1, release_date: '2023-11-04', provider_tier: primary, primary_event: true, source_url: 'https://x.ai/news/grok'}
+  - {event_id: google_gemini1, inventory_name: Gemini, provider: Google DeepMind, model_family: Gemini 1.0, release_date: '2023-12-06', provider_tier: primary, primary_event: true, source_url: 'https://blog.google/technology/ai/google-gemini-ai/'}
+  - {event_id: google_gemini15, inventory_name: '', provider: Google DeepMind, model_family: Gemini 1.5, release_date: '2024-02-15', provider_tier: primary, primary_event: true, source_url: 'https://blog.google/innovation-and-ai/products/google-gemini-next-generation-model-february-2024/'}
+  - {event_id: anthropic_claude3, inventory_name: '', provider: Anthropic, model_family: Claude 3, release_date: '2024-03-04', provider_tier: primary, primary_event: true, source_url: 'https://www.anthropic.com/news/claude-3-family'}
+  - {event_id: xai_grok15, inventory_name: Grok 1.5, provider: xAI, model_family: Grok 1.5, release_date: '2024-03-28', provider_tier: primary, primary_event: true, source_url: 'https://x.ai/news/grok-1.5'}
+  - {event_id: meta_llama3, inventory_name: LLaMA 3, provider: Meta, model_family: Llama 3, release_date: '2024-04-18', provider_tier: primary, primary_event: true, source_url: 'https://ai.meta.com/blog/meta-llama-3/'}
+  - {event_id: microsoft_phi3, inventory_name: Phi, provider: Microsoft, model_family: Phi-3, release_date: '2024-04-23', provider_tier: robustness, primary_event: false, source_url: 'https://azure.microsoft.com/en-us/blog/introducing-phi-3-redefining-whats-possible-with-slms/'}
+  - {event_id: openai_gpt4o, inventory_name: GPT-4o, provider: OpenAI, model_family: GPT-4o, release_date: '2024-05-13', provider_tier: primary, primary_event: true, source_url: 'https://openai.com/index/hello-gpt-4o/'}
+  - {event_id: anthropic_claude35, inventory_name: Claude 3.5 Sonnet, provider: Anthropic, model_family: Claude 3.5 Sonnet, release_date: '2024-06-21', provider_tier: primary, primary_event: true, source_url: 'https://www.anthropic.com/news/claude-3-5-sonnet'}
+  - {event_id: meta_llama31, inventory_name: LLaMA 3.1, provider: Meta, model_family: Llama 3.1, release_date: '2024-07-23', provider_tier: primary, primary_event: true, source_url: 'https://ai.meta.com/blog/meta-llama-3-1/'}
+  - {event_id: xai_grok2, inventory_name: Grok 2, provider: xAI, model_family: Grok 2, release_date: '2024-08-13', provider_tier: primary, primary_event: true, source_url: 'https://x.ai/news/grok-2'}
+  - {event_id: openai_o1, inventory_name: '', provider: OpenAI, model_family: o1, release_date: '2024-09-12', provider_tier: primary, primary_event: true, source_url: 'https://openai.com/index/introducing-openai-o1-preview/'}
+  - {event_id: meta_llama32, inventory_name: LLaMA 3.2, provider: Meta, model_family: Llama 3.2, release_date: '2024-09-25', provider_tier: primary, primary_event: true, source_url: 'https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/'}
+  - {event_id: nvidia_llama31_nemotron51b, inventory_name: '', provider: NVIDIA, model_family: Llama 3.1 Nemotron 51B Instruct, release_date: '2024-09-23', provider_tier: robustness, primary_event: false, source_url: 'https://developer.nvidia.com/blog/advancing-the-accuracy-efficiency-frontier-with-llama-3-1-nemotron-51b/'}
+  - {event_id: anthropic_claude35_refresh, inventory_name: '', provider: Anthropic, model_family: Claude 3.5 Sonnet refresh, release_date: '2024-10-22', provider_tier: primary, primary_event: true, source_url: 'https://www.anthropic.com/news/3-5-models-and-computer-use'}
+  - {event_id: google_gemini20, inventory_name: '', provider: Google DeepMind, model_family: Gemini 2.0, release_date: '2024-12-11', provider_tier: primary, primary_event: true, source_url: 'https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/'}
+  - {event_id: xai_grok3, inventory_name: Grok 3, provider: xAI, model_family: Grok 3, release_date: '2025-02-17', provider_tier: primary, primary_event: true, source_url: 'https://x.ai/news/grok-3'}
+  - {event_id: anthropic_claude37, inventory_name: Claude 3.7 Sonnet, provider: Anthropic, model_family: Claude 3.7 Sonnet, release_date: '2025-02-24', provider_tier: primary, primary_event: true, source_url: 'https://www.anthropic.com/news/claude-3-7-sonnet'}
+  - {event_id: openai_gpt45, inventory_name: GPT-4.5, provider: OpenAI, model_family: GPT-4.5, release_date: '2025-02-27', provider_tier: primary, primary_event: true, source_url: 'https://openai.com/index/introducing-gpt-4-5/'}
+  - {event_id: google_gemini25, inventory_name: '', provider: Google DeepMind, model_family: Gemini 2.5 Pro, release_date: '2025-03-25', provider_tier: primary, primary_event: true, source_url: 'https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/'}
+  - {event_id: meta_llama4, inventory_name: LLaMA 4, provider: Meta, model_family: Llama 4, release_date: '2025-04-05', provider_tier: primary, primary_event: true, source_url: 'https://ai.meta.com/blog/llama-4-multimodal-intelligence/'}
+  - {event_id: openai_gpt41, inventory_name: GPT-4.1, provider: OpenAI, model_family: GPT-4.1, release_date: '2025-04-14', provider_tier: primary, primary_event: true, source_url: 'https://openai.com/index/gpt-4-1/'}
+  - {event_id: anthropic_claude4, inventory_name: Claude Sonnet 4, provider: Anthropic, model_family: Claude 4, release_date: '2025-05-22', provider_tier: primary, primary_event: true, source_url: 'https://www.anthropic.com/news/claude-4'}

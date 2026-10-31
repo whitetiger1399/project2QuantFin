@@ -1,0 +1,82 @@
+schema_version: 1
+extends: configs/cross_market_ai_services_research.yaml
+study_id: nifty_it_frontier_ai_capability_scale_signed_intraday
+
+tracking:
+  dataset_prefix: ai_capability_panel
+  run_prefix: cm_ai_capability
+  freeze_prefix: cm_ai_capability_freeze
+
+study:
+  interpretation: >-
+    Separate exploratory historical experiment testing whether officially
+    disclosed frontier-model scale adds information about Nifty IT intraday
+    returns beyond the existing cross-market ladder. Parameter count is a scale
+    proxy rather than a universal capability score. Proprietary undisclosed
+    sizes remain missing. The 2025 period is a historical replication, not an
+    untouched holdout.
+
+capability_data:
+  parameter_catalog: configs/frontier_ai_disclosed_parameters.yaml
+  source_processed_root: data/processed/cross_market_ai_services
+  pressure_half_lives_sessions: [21, 63, 252]
+
+feature_sets:
+  F0_own: [asset, calendar, own]
+  F1_nifty_it_peers: [asset, calendar, own, nifty_it_peers]
+  F2_us_services: [asset, calendar, own, nifty_it_peers, us_it_services, us_it_services_aggregate, adr]
+  F3_nifty50: [asset, calendar, own, nifty_it_peers, us_it_services, us_it_services_aggregate, adr, india_core, nifty50_aggregate]
+  F4_sp500_aggregate: [asset, calendar, own, nifty_it_peers, us_it_services, us_it_services_aggregate, adr, india_core, nifty50_aggregate, sp500_aggregate]
+  F5_sp500_constituents: [asset, calendar, own, nifty_it_peers, us_it_services, us_it_services_aggregate, adr, india_core, nifty50_aggregate, sp500_aggregate, sp500_raw]
+  F6_ai_capability: [asset, calendar, own, nifty_it_peers, us_it_services, us_it_services_aggregate, adr, india_core, nifty50_aggregate, sp500_aggregate, sp500_raw, ai_event, ai_interaction, ai_capability, ai_capability_interaction]
+  F7_full_context: [asset, calendar, own, nifty_it_peers, us_it_services, us_it_services_aggregate, us_it_payments, us_it_payments_aggregate, us_enterprise_software, us_enterprise_software_aggregate, us_tech, adr, india_core, nifty50_aggregate, us_context, global, sp500_aggregate, sp500_raw, macro, scheduled, ai_event, ai_interaction, ai_capability, ai_capability_interaction, nonlinear]
+
+models:
+  model_family_feature_set: F7_full_context
+  complexity_feature_set: F6_ai_capability
+  profiles:
+    quick:
+      feature_sets: [F0_own, F1_nifty_it_peers, F2_us_services, F3_nifty50, F4_sp500_aggregate, F5_sp500_constituents, F6_ai_capability, F7_full_context]
+      families: [zero, asset_mean, autoregression, ridge, elastic_net]
+      grid_limit_per_family: 2
+    standard:
+      feature_sets: [F0_own, F1_nifty_it_peers, F2_us_services, F3_nifty50, F4_sp500_aggregate, F5_sp500_constituents, F6_ai_capability, F7_full_context]
+      families: [zero, asset_mean, autoregression, ridge, lasso, elastic_net, pca_ridge, extra_trees, hist_gradient_boosting, rff_ridge]
+      grid_limit_per_family: 2
+    bounded:
+      feature_sets: [F0_own, F1_nifty_it_peers, F2_us_services, F3_nifty50, F4_sp500_aggregate, F5_sp500_constituents, F6_ai_capability, F7_full_context]
+      families: [zero, asset_mean, autoregression, ridge, lasso, elastic_net, pca_ridge, extra_trees, hist_gradient_boosting, rff_ridge]
+      grid_limit_per_family: 1
+      complexity_ratios: [0.5, 2.0, 10.0]
+      complexity_penalties: [1.0]
+      complexity_maximum_components: 1024
+      family_parameter_overrides:
+        lasso: {preselect_k: 300, max_iter: 2000, tolerance: 0.0005}
+        elastic_net: {preselect_k: 300, max_iter: 2000, tolerance: 0.0005}
+        extra_trees: {n_estimators: [150], max_depth: [6]}
+        hist_gradient_boosting: {max_iter: [120], max_leaf_nodes: [15]}
+    balanced:
+      feature_sets: [F0_own, F1_nifty_it_peers, F2_us_services, F3_nifty50, F4_sp500_aggregate, F5_sp500_constituents, F6_ai_capability, F7_full_context]
+      families: [zero, asset_mean, autoregression, ridge, lasso, elastic_net, pca_ridge, extra_trees, hist_gradient_boosting, rff_ridge]
+      grid_limit_per_family: 1
+      grid_limit_by_family: {lasso: 2, elastic_net: 2, pca_ridge: 2, extra_trees: 1, hist_gradient_boosting: 2}
+      complexity_ratios: [0.5, 2.0, 5.0, 10.0]
+      complexity_penalties: [0.1, 1.0, 10.0]
+      complexity_maximum_components: 2048
+      family_parameter_overrides:
+        lasso: {preselect_k: 450, max_iter: 3000, tolerance: 0.0002}
+        elastic_net: {preselect_k: 450, max_iter: 3000, tolerance: 0.0002}
+        pca_ridge: {n_components: [25, 75], alpha: [0.1]}
+        extra_trees: {n_estimators: [250], max_depth: [8], min_samples_leaf: [40], max_features: [0.5]}
+        hist_gradient_boosting: {max_iter: [200], max_leaf_nodes: [15, 31], l2_regularization: [0.1]}
+    deep:
+      feature_sets: [F0_own, F1_nifty_it_peers, F2_us_services, F3_nifty50, F4_sp500_aggregate, F5_sp500_constituents, F6_ai_capability, F7_full_context]
+      families: [zero, asset_mean, autoregression, ridge, lasso, elastic_net, pca_ridge, extra_trees, hist_gradient_boosting, rff_ridge]
+      grid_limit_per_family: 2
+
+outputs:
+  processed_root: data/processed/cross_market_ai_capability
+  analysis_root: artifacts/cross_market_ai_capability/analysis
+  runs_root: artifacts/cross_market_ai_capability/runs
+  freezes_root: artifacts/cross_market_ai_capability/freezes
+  documentation_root: documents/markdown

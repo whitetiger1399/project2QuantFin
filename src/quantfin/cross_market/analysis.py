@@ -162,7 +162,9 @@ def run_analysis(
     coverage = panel.pivot_table(index="decision_date", columns="asset", values="target_oc_return", aggfunc="size").notna().astype(int)
     fig, ax = plt.subplots(figsize=(11, 4.8))
     sns.heatmap(coverage.T, cmap=sns.light_palette(COLORS[0], as_cmap=True), cbar=False, yticklabels=True, xticklabels=False, ax=ax)
-    ax.set(title="Fixed-cohort target coverage", xlabel="Decision sessions (2016–2026)", ylabel="Nifty IT constituent")
+    start_year = pd.to_datetime(panel["decision_date"]).min().year
+    end_year = pd.to_datetime(panel["decision_date"]).max().year
+    ax.set(title="Fixed-cohort target coverage", xlabel=f"Decision sessions ({start_year}–{end_year})", ylabel="Nifty IT constituent")
     _save(fig, figures / "01_target_coverage.png")
 
     # 2. Distribution by stock.

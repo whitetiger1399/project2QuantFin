@@ -8,7 +8,7 @@ import json
 from datetime import datetime, timezone
 
 from quantfin.cross_market.analysis import run_analysis
-from quantfin.cross_market.common import environment_record, load_research_config, read_panel_dataset, resolve_dataset, root_path
+from quantfin.cross_market.common import environment_record, load_research_config, read_panel_dataset, research_code_hash, resolve_dataset, root_path
 from quantfin.io import atomic_json_dump, sha256_file, stable_object_hash
 
 
@@ -28,6 +28,7 @@ def main() -> None:
         "panel_sha256": dataset_manifest["files"]["panel.parquet"],
         "feature_dictionary_sha256": dataset_manifest["files"]["feature_dictionary.csv"],
         "config": sha256_file(root_path(args.config)),
+        "research_code_hash": research_code_hash(["scripts/run_cross_market_analysis.py"]),
     })[:12]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     run_id = f"analysis_{stamp}_{run_hash}"
@@ -41,6 +42,7 @@ def main() -> None:
     try:
         panel, metadata, dictionary = read_panel_dataset(dataset)
         summary = run_analysis(panel, dictionary, output, config)
+        tracked = [path for path in output.rglob("*") if path.is_file() and path.name != "run_state.json"]
         manifest = {
             "schema_version": 1, **plan, "status": "complete",
             "completed_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -48,6 +50,7 @@ def main() -> None:
             "config_sha256": sha256_file(root_path(args.config)),
             "summary": summary,
             "environment": environment_record(),
+            "files": {str(path.relative_to(output)): sha256_file(path) for path in tracked},
         }
         atomic_json_dump(manifest, output / "manifest.json")
         atomic_json_dump({**plan, "status": "complete", "completed_at_utc": manifest["completed_at_utc"]}, output / "run_state.json")

@@ -1,0 +1,331 @@
+[
+  {
+    "config_id": "cm_zero_08cccf87365f",
+    "experiment": "baseline",
+    "family": "zero",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_asset_mean_947f6b0b0f9a",
+    "experiment": "baseline",
+    "family": "asset_mean",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_autoregression_bd9f8ea82c3c",
+    "experiment": "baseline",
+    "family": "autoregression",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.0
+    }
+  },
+  {
+    "config_id": "cm_ridge_d71700639b0a",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_77d1acdb9975",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F1_nifty_it_peers",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_6baddf8e57da",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F2_us_services",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_590cbfbeb988",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F3_nifty50",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_d3df3c9ffe8f",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F4_sp500_aggregate",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_27708252ed81",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F5_sp500_constituents",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_5cc83754fdf2",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_7994879be103",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_30310e5659b3",
+    "experiment": "ridge_tuning",
+    "family": "ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.01
+    }
+  },
+  {
+    "config_id": "cm_ridge_85dcda397e65",
+    "experiment": "ridge_tuning",
+    "family": "ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 1.0
+    }
+  },
+  {
+    "config_id": "cm_lasso_bc2d06dc9024",
+    "experiment": "model_family",
+    "family": "lasso",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.0001,
+      "max_iter": 4000,
+      "preselect_k": 500,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_lasso_de8d7594ccfd",
+    "experiment": "model_family",
+    "family": "lasso",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.0005,
+      "max_iter": 4000,
+      "preselect_k": 500,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_elastic_net_c8d24c877423",
+    "experiment": "model_family",
+    "family": "elastic_net",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.0001,
+      "l1_ratio": 0.2,
+      "max_iter": 4000,
+      "preselect_k": 500,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_elastic_net_23c6871b3385",
+    "experiment": "model_family",
+    "family": "elastic_net",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.0001,
+      "l1_ratio": 0.8,
+      "max_iter": 4000,
+      "preselect_k": 500,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_pca_ridge_0c1135c0c944",
+    "experiment": "model_family",
+    "family": "pca_ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.1,
+      "n_components": 25
+    }
+  },
+  {
+    "config_id": "cm_pca_ridge_54e3def584fc",
+    "experiment": "model_family",
+    "family": "pca_ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 1.0,
+      "n_components": 25
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_792546de83d3",
+    "experiment": "model_family",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 6,
+      "max_features": 0.33,
+      "min_samples_leaf": 50,
+      "n_estimators": 300
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_a0b9d0d34d42",
+    "experiment": "model_family",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": null,
+      "max_features": 0.33,
+      "min_samples_leaf": 50,
+      "n_estimators": 300
+    }
+  },
+  {
+    "config_id": "cm_hist_gradient_boosting_8c5af0548ac8",
+    "experiment": "model_family",
+    "family": "hist_gradient_boosting",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "l2_regularization": 0.1,
+      "learning_rate": 0.05,
+      "max_iter": 250,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 50
+    }
+  },
+  {
+    "config_id": "cm_hist_gradient_boosting_276d7d5832a7",
+    "experiment": "model_family",
+    "family": "hist_gradient_boosting",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "l2_regularization": 1.0,
+      "learning_rate": 0.05,
+      "max_iter": 250,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 50
+    }
+  },
+  {
+    "config_id": "cm_rff_ridge_0b2c176e391e",
+    "experiment": "complexity",
+    "family": "rff_ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "complexity_ratio": 0.5,
+      "gamma_scale": 1.0,
+      "maximum_components": 4096,
+      "penalty": 1.0
+    }
+  },
+  {
+    "config_id": "cm_rff_ridge_7e855e20f927",
+    "experiment": "complexity",
+    "family": "rff_ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "complexity_ratio": 1.0,
+      "gamma_scale": 1.0,
+      "maximum_components": 4096,
+      "penalty": 1.0
+    }
+  },
+  {
+    "config_id": "cm_rff_ridge_71c9010a3b5e",
+    "experiment": "complexity",
+    "family": "rff_ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "complexity_ratio": 2.0,
+      "gamma_scale": 1.0,
+      "maximum_components": 4096,
+      "penalty": 1.0
+    }
+  },
+  {
+    "config_id": "cm_rff_ridge_3ac7a28a26ef",
+    "experiment": "complexity",
+    "family": "rff_ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "complexity_ratio": 5.0,
+      "gamma_scale": 1.0,
+      "maximum_components": 4096,
+      "penalty": 1.0
+    }
+  },
+  {
+    "config_id": "cm_rff_ridge_3a3662a6db68",
+    "experiment": "complexity",
+    "family": "rff_ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "complexity_ratio": 10.0,
+      "gamma_scale": 1.0,
+      "maximum_components": 4096,
+      "penalty": 1.0
+    }
+  },
+  {
+    "config_id": "cm_rff_ridge_26b34e5cb08b",
+    "experiment": "complexity",
+    "family": "rff_ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "complexity_ratio": 15.0,
+      "gamma_scale": 1.0,
+      "maximum_components": 4096,
+      "penalty": 1.0
+    }
+  },
+  {
+    "config_id": "cm_rff_ridge_282f2e4b73b3",
+    "experiment": "complexity",
+    "family": "rff_ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "complexity_ratio": 2.0,
+      "gamma_scale": 1.0,
+      "maximum_components": 4096,
+      "penalty": 0.1
+    }
+  },
+  {
+    "config_id": "cm_rff_ridge_9f69e7f4afa9",
+    "experiment": "complexity",
+    "family": "rff_ridge",
+    "feature_set": "F6_ai_events",
+    "parameters": {
+      "complexity_ratio": 2.0,
+      "gamma_scale": 1.0,
+      "maximum_components": 4096,
+      "penalty": 10.0
+    }
+  }
+]
