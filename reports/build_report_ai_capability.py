@@ -16,6 +16,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
+from quantfin.cross_market.timing import map_release_sessions
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -93,15 +94,33 @@ def combined_evaluation():
     daily = pd.concat(parts, ignore_index=True).sort_values("decision_date")
     daily["decision_date"] = pd.to_datetime(daily["decision_date"])
     daily = daily.drop_duplicates("decision_date").set_index("decision_date")
+    assets = ["COFORGE.NS", "HCLTECH.NS", "INFY.NS", "LTM.NS", "MPHASIS.NS",
+              "OFSS.NS", "PERSISTENT.NS", "TCS.NS", "TECHM.NS", "WIPRO.NS"]
+    prices = load_raw(RAW_INDIA, assets).ffill()
+    first_date = daily.index.min()
+    prior = prices.index[prices.index < first_date]
+    if prior.empty:
+        raise ValueError("A pre-evaluation price is required for the passive-cohort benchmark")
+    base = prices.loc[prior[-1]]
+    passive_wealth = prices.reindex(daily.index).ffill().div(base).mean(axis=1)
+    passive_return = passive_wealth.pct_change()
+    passive_return.iloc[0] = passive_wealth.iloc[0] - 1.0
+    daily["current_member_buy_hold"] = passive_return
     returns = {
         "Signed model": "net_return",
         "Nifty IT": "benchmark_nifty_it",
         "Nifty 50": "benchmark_nifty50",
+        "Current-member buy & hold": "current_member_buy_hold",
     }
     total = pd.Series({name: (1 + daily[col].fillna(0)).prod() - 1 for name, col in returns.items()})
+    long_active = daily.long_exposure > 0
+    short_active = daily.short_exposure > 0
     counts = {
-        "long": int((daily.long_exposure > 0).sum()),
-        "short": int((daily.short_exposure > 0).sum()),
+        "long": int(long_active.sum()),
+        "short": int(short_active.sum()),
+        "long_only": int((long_active & ~short_active).sum()),
+        "short_only": int((short_active & ~long_active).sum()),
+        "mixed": int((long_active & short_active).sum()),
         "flat": int(((daily.long_exposure == 0) & (daily.short_exposure == 0)).sum()),
     }
     return daily, total, counts
@@ -208,7 +227,7 @@ def build_figures():
     box(.2, 3.7, 1.65, 1.65, "India", "Own history\nNifty IT peers\nNifty 50 / VIX")
     box(2.05, 3.7, 1.75, 1.65, "United States", "IT services\nEnterprise software\nS&P 500 breadth")
     box(4.0, 3.7, 1.8, 1.65, "Macro & global", "Fed / RBI proxies\nRates, FX, commodities\nCalendar regimes")
-    box(6.0, 3.7, 1.8, 1.65, "AI context", "Release calendar\nDisclosed parameters\nEpoch benchmarks")
+    box(6.0, 3.7, 1.8, 1.65, "Tradable AI context", "Verified release time\nDisclosed parameters\nNo backfilled scores")
     box(8.0, 3.7, 1.8, 1.65, "08:55 IST clock", "Only information\navailable before\nIndia opens", "#FFF4E8")
     box(.55, 1.38, 2.05, 1.38, "Information ladder", "F0 own → F7 full context\ntraining-window transforms")
     box(2.9, 1.38, 2.05, 1.38, "Walk-forward forecast", "Shrinkage · PCA · boosting\nforests · expected return")
@@ -229,6 +248,9 @@ def build_figures():
         ax.annotate("", xy=(2.25,2.86), xytext=(x1,3.65), arrowprops=dict(arrowstyle="->", color="#6B8796", lw=.9))
     for a,b in [(2.60,2.90),(4.95,5.25),(8.30,8.62)]: ax.annotate("",xy=(b,2.04),xytext=(a,2.04),arrowprops=dict(arrowstyle="->",color="#003D7C",lw=1.2))
     ax.text(5, .55, "Decision target: same-session Nifty IT constituent open-to-close return", ha="center", weight="bold", color="#003D7C", fontsize=10)
+    ax.text(7.0, 5.75, "RETROSPECTIVE ONLY: Epoch current-vintage scores → event interpretation",
+            ha="center", va="center", fontsize=6.8, color="#697985",
+            bbox=dict(boxstyle="round,pad=.25", fc="#F1F3F5", ec="#8C9AA5", lw=.7))
     architecture = FIG / "research_architecture.png"; fig.savefig(architecture, bbox_inches="tight"); plt.close(fig)
 
     # Family comparison across stages.
@@ -335,6 +357,15 @@ def build_figures():
     # capability index. This avoids annotating every release in the inventory.
     event_frame = pd.read_csv(EPOCH/"epoch_event_capability_returns.csv")
     event_frame["release_date"] = pd.to_datetime(event_frame["release_date"])
+    if "first_us_reaction_session" not in event_frame:
+        if "public_at_utc" not in event_frame:
+            raise ValueError("Event evidence lacks public timestamps required for U.S. reaction-session mapping")
+        nse_sessions = pd.DatetimeIndex(india_oc_full.index)
+        us_sessions = pd.DatetimeIndex(us_prices.index)
+        event_frame["first_us_reaction_session"] = [
+            map_release_sessions(value, nse_sessions, us_sessions)["first_us_reaction_session"]
+            for value in pd.to_datetime(event_frame["public_at_utc"], utc=True)
+        ]
     event_frame = event_frame.loc[event_frame["primary_event"].eq(True) & event_frame["eci"].notna() &
                                   event_frame["release_date"].between("2023-01-01","2025-05-31")].sort_values("release_date")
     event_frame = event_frame.loc[event_frame["eci"].gt(event_frame["eci"].cummax().shift(fill_value=-np.inf))].copy()
@@ -359,7 +390,9 @@ def build_figures():
         col = row.short_label
         for asset in timeline_us:
             series = us_prices[asset].pct_change(fill_method=None).dropna()
-            pos = series.index.searchsorted(pd.Timestamp(row.post_us_reaction_date), side="left")
+            if not hasattr(row, "first_us_reaction_session") or pd.isna(row.first_us_reaction_session):
+                continue
+            pos = series.index.searchsorted(pd.Timestamp(row.first_us_reaction_session), side="left")
             if pos < len(series): responses.loc[asset,col] = series.iloc[pos]
         for asset in timeline_india:
             series = india_oc_full[asset].dropna()
@@ -387,7 +420,7 @@ def build_figures():
 
     evaluation_daily, evaluation_total, evaluation_counts = combined_evaluation()
     fig,ax=plt.subplots(figsize=(9.5,4.5),dpi=240)
-    for name,col,color in [("Signed strategy (net)","net_return","#003D7C"),("Nifty IT","benchmark_nifty_it","#E97824"),("Nifty 50","benchmark_nifty50","#2A9D8F")]:
+    for name,col,color in [("Signed strategy (net)","net_return","#003D7C"),("Nifty IT","benchmark_nifty_it","#E97824"),("Nifty 50","benchmark_nifty50","#2A9D8F"),("Current-member buy & hold","current_member_buy_hold","#7A5195")]:
         ax.plot(evaluation_daily.index,(1+evaluation_daily[col].fillna(0)).cumprod(),label=name,color=color,lw=1.8)
     ax.axvline(pd.Timestamp("2026-01-01"),color="#697985",ls="--",lw=.9); ax.text(pd.Timestamp("2026-01-06"),ax.get_ylim()[1]*.97,"2026 forward segment",va="top",fontsize=7,color="#52606A")
     ax.set_ylabel("Growth of INR 1"); ax.set_title("Cumulative reported evaluation: January 2025–September 2026",weight="bold")
@@ -509,6 +542,7 @@ def build():
     if missing: raise FileNotFoundError("Missing evidence:\n"+"\n".join(missing))
     authors=sorted(read_json(ROOT/"assets/authors.json"),key=lambda x:x["name"].casefold())
     screen=pd.read_csv(SCREEN/"leaderboard.csv"); confirm=pd.read_csv(CONFIRM/"leaderboard.csv"); final=pd.read_csv(FINAL/"leaderboard.csv"); forward=pd.read_csv(FORWARD/"leaderboard.csv")
+    screening_count, confirmation_count = len(screen), len(confirm)
     f25=selected(final); f26=selected(forward); a25=pd.read_csv(FINAL/"annual_performance.csv").iloc[0]; a26=pd.read_csv(FORWARD/"annual_performance.csv").iloc[0]
     i25=read_json(FINAL/"selected_model_inference.json"); i26=read_json(FORWARD/"selected_model_inference.json"); event=read_json(EVENT/"frontier_event_study.json"); cap=read_json(CAP/"capability_effect_summary.json")
     (architecture,family,india_trends,cross_trends,peer_heatmap,cross_heatmap,
@@ -558,10 +592,10 @@ def build():
     doc.add_page_break()
 
     doc.add_heading("Abstract",level=1)
-    doc.add_paragraph(f"This study forecasts same-session open-to-close returns for ten fixed current Nifty IT constituents using only information available immediately before the Indian market opens. The design progresses from own-stock history to Nifty IT peers, U.S. IT-services stocks, Nifty 50, S&P 500 breadth, macro-financial variables, frontier-model release indicators, disclosed parameter scale, and benchmark-derived AI-capability context. Candidate families include Elastic Net, Lasso, Ridge, PCA, boosting, and constrained forests. Independent confirmation selects one depth-constrained Extra Trees model. The strategy explicitly chooses long, short, or flat and charges turnover costs. Displayed cumulatively from January 2025 through September 2026, the signed model earns {fmt_pct(evaluation_total['Signed model'])}, compared with {fmt_pct(evaluation_total['Nifty IT'])} for Nifty IT and {fmt_pct(evaluation_total['Nifty 50'])} for Nifty 50. The result is concentrated in the declining 2026 segment and therefore remains regime-sensitive. Event and capability tests do not support a causal claim that stronger frontier models depress Indian IT equities.")
+    doc.add_paragraph(f"This study forecasts same-session open-to-close returns for ten fixed current Nifty IT constituents using only information available immediately before the Indian market opens. The design progresses from own-stock history to Nifty IT peers, U.S. IT-services stocks, Nifty 50, S&P 500 breadth, macro-financial variables, frontier-model release indicators, disclosed parameter scale, and benchmark-derived AI-capability context. Candidate families include Elastic Net, Lasso, Ridge, PCA, boosting, and constrained forests. Historical confirmation selects one depth-constrained Extra Trees model. The strategy explicitly chooses signed stock positions and charges turnover costs. Displayed cumulatively from January 2025 through September 2026, the signed model earns {fmt_pct(evaluation_total['Signed model'])}, compared with {fmt_pct(evaluation_total['Nifty IT'])} for Nifty IT, {fmt_pct(evaluation_total['Nifty 50'])} for Nifty 50, and {fmt_pct(evaluation_total['Current-member buy & hold'])} for the fixed-cohort passive comparator. The two segments use different estimator-update policies, and performance is concentrated in the declining 2026 segment. Event and capability tests do not support a causal claim that stronger frontier models depress Indian IT equities.")
     doc.add_heading("Foreword",level=1)
     doc.add_paragraph("This report presents a reproducible quantitative-finance experiment under a strict temporal information set. Emphasis is placed on data provenance, leakage prevention, fair benchmarks, costs, out-of-sample interpretation, and uncertainty. Results are reported even when they weaken the motivating hypothesis. First-person plural language is intentionally avoided; the document describes the study, protocol, and evidence directly.")
-    callout(doc,"Principal result",f"Across the displayed 2025–September 2026 path, the model uses {evaluation_counts['long']} long days, {evaluation_counts['short']} short days, and {evaluation_counts['flat']} flat days. Its value is defensive and conditional, not evidence for a deterministic AI-release short rule.")
+    callout(doc,"Principal result",f"Across the displayed 2025–September 2026 path, long exposure is active on {evaluation_counts['long']} days, short exposure on {evaluation_counts['short']} days, both sides on {evaluation_counts['mixed']} days, and neither side on {evaluation_counts['flat']} days. Its value is defensive and conditional, not evidence for a deterministic AI-release short rule.")
 
     doc.add_heading("1. Research question and hypotheses",level=1)
     doc.add_paragraph("The primary question is whether completed U.S. and global information improves the decision to take a long, short, or flat position in current Nifty IT constituents at the Indian open. The secondary question is whether frontier-model releases or capability improvements contain incremental information about the subsequent returns of U.S. IT-services and Indian IT-services firms.")
@@ -647,7 +681,7 @@ def build():
         ("Epoch capability index vs direct Nifty IT return","ρ = 0.237","0.289","No statistically decisive monotone relationship."),
         ("Time-controlled Epoch capability coefficient","−0.000676","0.363","Sign turns negative after time control, but uncertainty remains large."),
     ],[6.7,3.0,2.0,4.3],7.4)
-    figure(doc,event_heatmap,"Figure 8. One-session stock response around record-capability events. U.S. returns use the first reaction session and Indian returns use the first tradable pre-open-aligned session; mixed signs reject a universal displacement shock.",5.25)
+    figure(doc,event_heatmap,"Figure 8. One-session stock response around record-capability events. U.S. returns use the first completed U.S. session after publication and Indian returns use the first tradable pre-open-aligned session. Mixed signs provide no descriptive support for a uniform displacement shock.",5.25)
     callout(doc,"Hypothesis decision","The predeclared claim that frontier releases or larger models reliably depress Nifty IT is not supported. AI variables remain contextual predictors, not a mandatory short trigger.")
 
     doc.add_heading("5. Models, validation, and trading protocol",level=1)
@@ -657,13 +691,13 @@ def build():
         ("Ridge / Lasso / Elastic Net","Dense and sparse shrinkage","Penalty, training-only preselection and scaling."),
         ("PCA + Ridge","Compressed linear structure","Component count and ridge penalty."),
         ("Histogram boosting","Nonlinear threshold interactions","Learning rate, leaves, depth, iterations."),
-        ("Random Forest / Extra Trees","Nonlinear cross-market regimes","Depth, max features, minimum leaf size, trees."),
+        ("Extra Trees","Nonlinear cross-market regimes","Depth, max features, minimum leaf size, trees."),
     ],[4.1,6.0,5.9],7.5)
     doc.add_paragraph("Elastic Net remains part of the candidate suite rather than being removed. In the completed screening run its best net Sharpe is −0.722, compared with +0.428 for Extra Trees and +0.782 for histogram boosting. It therefore does not enter the historical confirmation stage under the predeclared promotion rule. The planned fresh rerun may promote an expanded Elastic Net grid, but this report does not retroactively claim unobserved confirmation performance. The promoted Extra Trees specification uses 250 trees, maximum depth 8, 50% feature subsampling, and minimum leaf size 40.")
     doc.add_heading("5.2 Temporal protocol",level=2)
     table(doc,["Stage","Evaluation dates","Configurations","Role"],[
-        ("Screening","2021–2022","28 balanced configurations; quarterly refits","Compare families and complexity."),
-        ("Confirmation","2023–2024","10 promoted configurations; quarterly refits","Select one model without touching 2025."),
+        ("Screening","2021–2022",f"{screening_count} evaluated configurations; quarterly refits","Compare families and complexity."),
+        ("Confirmation","2023–2024",f"{confirmation_count} rows including promoted candidates and controls; quarterly refits","Historical selection stage."),
         ("Freeze","Before final evaluation","One config and selection rule","Bind model identity and configuration hash."),
         ("Canonical final","2025 calendar year","Frozen model plus baselines","Primary OOS estimate."),
         ("Forward extension","1 Jan–30 Sep 2026","Same frozen config, one pre-2026 fit","Separate robustness evidence; no reselection."),
@@ -682,7 +716,7 @@ def build():
         ("Inference","HAC alpha/loss tests and circular block-bootstrap Sharpe interval","Accounts for serial dependence and finite calendar length."),
         ("Interpretability","Grouped OOS permutation importance","Identifies information families used without causal attribution."),
     ],[3.0,6.5,6.5],7.4)
-    callout(doc,"Fairness rule","Every benchmark and competing model uses the same decision dates, target, information clock, and cost convention. Hyperparameters are never tuned on 2025 or 2026 performance.")
+    callout(doc,"Comparator contract","Forecast models and statistical baselines share decision dates, target, information clock, and trading-cost convention. Nifty IT, Nifty 50, and fixed-cohort buy-and-hold are economic opportunity-cost references with close-to-close or passive exposure; their return horizons and costs differ from the open-to-close signed strategy and are reported explicitly.")
 
     doc.add_heading("6. Combined evaluation: January 2025–September 2026",level=1)
     doc.add_heading("6.1 Cumulative performance and signed decisions",level=2)
@@ -691,9 +725,10 @@ def build():
         ("Signed model cumulative net return",fmt_pct(evaluation_total["Signed model"]),"Compounded after modeled turnover costs across both segments."),
         ("Nifty IT cumulative return",fmt_pct(evaluation_total["Nifty IT"]),"Sector benchmark declines across the combined interval."),
         ("Nifty 50 cumulative return",fmt_pct(evaluation_total["Nifty 50"]),"Broad-market opportunity-cost benchmark."),
+        ("Current-member buy-and-hold",fmt_pct(evaluation_total["Current-member buy & hold"]),"Passive fixed-cohort reference initialized from the last pre-evaluation close; survivorship-conditioned."),
         ("Annualized model return / Sharpe",f"{fmt_pct(eval_annual_return)} / {eval_sharpe:.3f}","Descriptive aggregation; the two protocol segments retain separate inference."),
         ("Maximum drawdown",fmt_pct(eval_max_drawdown),"Worst peak-to-trough loss in the displayed path."),
-        ("Long / short / flat days",f"{evaluation_counts['long']} / {evaluation_counts['short']} / {evaluation_counts['flat']}","Every day is explicitly classified before trading."),
+        ("Long-active / short-active / mixed / flat days",f"{evaluation_counts['long']} / {evaluation_counts['short']} / {evaluation_counts['mixed']} / {evaluation_counts['flat']}","Long and short activity counts may overlap on mixed books; flat means zero gross exposure."),
     ],[5.3,4.0,6.7],7.6)
     figure(doc,combined_wealth,"Figure 10. Cumulative January 2025–September 2026 evaluation. The path combines the 2025 frozen final ledger and the later no-reselection 2026 extension; the dashed line marks the refit boundary.",6.10)
     table(doc,["Protocol segment","Model net","Nifty IT","Nifty 50","Long / short / flat days"],segment_rows,[4.2,2.5,2.5,2.5,4.3],7.3)
@@ -756,7 +791,7 @@ def build():
         rev_rows.append((typ,str(len(g)),fmt_pct(g["Signed model"].mean()),fmt_pct((1+g["Signed model"]).prod()-1),fmt_pct((g["Signed model"]>0).mean()),fmt_pct(g["Nifty IT"].mean())))
     table(doc,["Reversal","Months","Model mean","Model compounded","Positive months","Nifty IT mean"],rev_rows,[3.4,1.7,2.6,3.0,2.8,2.5],7.2)
     doc.add_paragraph("The model’s reversal response is asymmetric. Across 12 rising-to-falling reversals it averages +1.94% and is profitable in two-thirds of months, compounding to +24.83%, because negative cross-market and domestic signals activate short exposure. Across 11 falling-to-rising reversals it averages −0.15% and compounds to −1.86%; lagged momentum, tree thresholds, and entry hurdles delay the switch back to long exposure. This is a genuine weakness: the strategy is better at defensive transitions than at recognizing the start of a rebound.")
-    callout(doc,"Regime conclusion","The complete testing record supports a downside-timing interpretation, not a universal return-forecasting claim. Falling and downward-reversal regimes generate the model’s strongest results; persistent rallies and upward reversals create the largest opportunity cost.")
+    callout(doc,"Regime conclusion","The retrospective research-period diagnostic supports a downside-timing interpretation, not a universal return-forecasting claim. Falling and downward-reversal regimes generate the model’s strongest results; persistent rallies and upward reversals create the largest opportunity cost.")
     doc.add_heading("8. Interpretation, limitations, and conclusion",level=1)
     doc.add_heading("8.1 Evidence-weighted interpretation",level=2)
     table(doc,["Claim","Evidence status","Report conclusion"],[

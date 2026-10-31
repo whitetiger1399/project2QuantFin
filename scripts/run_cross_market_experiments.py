@@ -85,7 +85,8 @@ def main() -> None:
     parser.add_argument("--config", default="configs/cross_market_research.yaml")
     parser.add_argument("--dataset-id")
     parser.add_argument("--stage", choices=["screening", "confirmation", "final_test"], required=True)
-    parser.add_argument("--profile", choices=["quick", "standard", "bounded", "balanced", "deep"], default="standard")
+    parser.add_argument("--profile", default="standard",
+                        help="Named profile defined under models.profiles in the selected YAML config.")
     parser.add_argument("--screening-run-id")
     parser.add_argument("--freeze-id")
     parser.add_argument("--resume-run-id")

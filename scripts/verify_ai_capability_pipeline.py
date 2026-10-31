@@ -52,6 +52,11 @@ def main() -> None:
         check("dataset:unique_date_asset", not panel.duplicated(["decision_date", "asset"]).any())
         check("dataset:target_complete", panel["target_oc_return"].notna().all())
         check("dataset:final_period_ends_2025", pd.to_datetime(panel["decision_date"]).max() <= pd.Timestamp("2025-12-31"))
+        event_mapping = pd.read_csv(dataset / "capability_event_mapping.csv")
+        required_event_clock = {"tradable_date", "first_us_reaction_session", "first_us_close_utc",
+                                "first_nse_after_us_reaction_date"}
+        check("dataset:exchange_calendar_event_clock", required_event_clock.issubset(event_mapping.columns),
+              str(sorted(required_event_clock.difference(event_mapping.columns))))
 
     epoch = root_path("data/raw/cross_market/epoch_benchmarks") / args.epoch_snapshot_id
     epoch_manifest = verify_manifest(epoch, "epoch_snapshot")

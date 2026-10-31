@@ -102,6 +102,9 @@ def main() -> None:
     events["release_date"] = pd.to_datetime(events["release_date"])
     events["tradable_date"] = pd.to_datetime(events["tradable_date"])
     events["post_us_reaction_date"] = pd.to_datetime(events["post_us_reaction_date"])
+    if "first_us_reaction_session" not in events:
+        raise ValueError("Dataset predates exchange-calendar event mapping; rebuild the capability panel")
+    events["first_us_reaction_session"] = pd.to_datetime(events["first_us_reaction_session"])
     eci = pd.read_csv(epoch / "epoch_capabilities_index/eci_scores.csv")
     processed = pd.read_csv(epoch / "epoch_capabilities_index/processed_data_for_eci.csv")
     exact = {key: value["epoch_display_name"] for key, value in mapping_config["mappings"].items()}

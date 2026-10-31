@@ -35,6 +35,18 @@ models:
   model_family_feature_set: F7_full_context
   complexity_feature_set: F6_ai_capability
   profiles:
+    focused_improvement:
+      feature_sets: [F0_own, F1_nifty_it_peers, F2_us_services, F3_nifty50, F4_sp500_aggregate, F5_sp500_constituents, F6_ai_capability, F7_full_context]
+      families: [zero, asset_mean, autoregression, ridge, elastic_net, extra_trees, hist_gradient_boosting, rff_ridge]
+      grid_limit_per_family: 1
+      grid_limit_by_family: {elastic_net: 4, extra_trees: 2, hist_gradient_boosting: 2}
+      complexity_ratios: [0.5, 1.0, 2.0, 5.0, 10.0]
+      complexity_penalties: [0.1, 1.0, 10.0]
+      complexity_maximum_components: 2048
+      family_parameter_overrides:
+        elastic_net: {alpha: [0.00005, 0.0001, 0.0005], l1_ratio: [0.1, 0.5, 0.9], preselect_k: 450, max_iter: 5000, tolerance: 0.0001}
+        extra_trees: {n_estimators: [250], max_depth: [6, 8], min_samples_leaf: [40, 80], max_features: [0.5]}
+        hist_gradient_boosting: {max_iter: [160], max_leaf_nodes: [15, 31], l2_regularization: [0.1]}
     quick:
       feature_sets: [F0_own, F1_nifty_it_peers, F2_us_services, F3_nifty50, F4_sp500_aggregate, F5_sp500_constituents, F6_ai_capability, F7_full_context]
       families: [zero, asset_mean, autoregression, ridge, elastic_net]

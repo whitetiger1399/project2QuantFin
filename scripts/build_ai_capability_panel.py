@@ -14,6 +14,7 @@ import pandas as pd
 import yaml
 
 from quantfin.cross_market.common import load_research_config, root_path
+from quantfin.cross_market.timing import map_release_sessions
 from quantfin.io import atomic_json_dump, atomic_parquet_dump, sha256_file, stable_object_hash
 from quantfin.progress import progress
 
@@ -29,26 +30,21 @@ def _event_mapping(
     events: pd.DataFrame,
     catalog: dict[str, Any],
     dates: pd.DatetimeIndex,
+    us_dates: pd.DatetimeIndex,
 ) -> pd.DataFrame:
-    cutoffs = pd.Series(
-        dates.tz_localize("Asia/Kolkata") + pd.Timedelta(hours=8, minutes=55), index=dates
-    ).dt.tz_convert("UTC")
     events = events.copy()
     events["public_at_utc"] = pd.to_datetime(events["public_at_utc"], utc=True, errors="raise")
     events["primary_event"] = events["primary_event"].astype(str).str.lower().isin({"true", "1", "yes"})
     events = events.sort_values(["public_at_utc", "event_id"]).reset_index(drop=True)
     events["provider_generation_index"] = events.groupby("provider").cumcount() + 1
     events["global_generation_index"] = np.arange(1, len(events) + 1)
-    direct_dates: list[pd.Timestamp] = []
-    post_us_dates: list[pd.Timestamp] = []
-    for value in events["public_at_utc"]:
-        eligible = cutoffs.index[cutoffs.gt(value)]
-        direct = eligible[0] if len(eligible) else pd.NaT
-        later = dates[dates > direct] if pd.notna(direct) else pd.DatetimeIndex([])
-        direct_dates.append(direct)
-        post_us_dates.append(later[0] if len(later) else pd.NaT)
-    events["tradable_date"] = direct_dates
-    events["post_us_reaction_date"] = post_us_dates
+    mapped = pd.DataFrame([
+        map_release_sessions(value, dates, us_dates) for value in events["public_at_utc"]
+    ])
+    for column in mapped:
+        events[column] = mapped[column]
+    # Compatibility alias with explicit corrected semantics.
+    events["post_us_reaction_date"] = events["first_nse_after_us_reaction_date"]
     records = catalog.get("records", {})
     events["total_parameters_b"] = events["event_id"].map(
         lambda value: records.get(value, {}).get("total_parameters_b")
@@ -165,7 +161,16 @@ def main() -> None:
     panel = pd.read_parquet(source / "panel.parquet")
     dictionary = pd.read_csv(source / "feature_dictionary.csv")
     dates = pd.DatetimeIndex(sorted(pd.to_datetime(panel["decision_date"]).unique()))
-    mapping = _event_mapping(pd.read_csv(events_path), catalog, dates)
+    us_snapshot_id = source_manifest["snapshot_manifests"]["us_it_services"]["snapshot_id"]
+    us_snapshot = root_path(config["raw_data"]["yahoo_root"]) / us_snapshot_id
+    us_files = sorted(us_snapshot.glob("*.parquet"))
+    if not us_files:
+        raise FileNotFoundError(f"No U.S. IT-services parquet files under {us_snapshot}")
+    us_dates = pd.DatetimeIndex(sorted(set().union(*[
+        set(pd.to_datetime(pd.read_parquet(path, columns=["session"])["session"]).dt.normalize())
+        for path in us_files
+    ])))
+    mapping = _event_mapping(pd.read_csv(events_path), catalog, dates, us_dates)
     features = _daily_features(mapping, dates, list(config["capability_data"]["pressure_half_lives_sessions"]))
     service = panel.drop_duplicates("decision_date").set_index("decision_date")["us_it_services_aggregate__mean"]
     features["ai_capability_interaction__parameter_pressure_63_x_us_services"] = (
@@ -209,6 +214,7 @@ def main() -> None:
         "disclosure_fraction": float(mapping["parameter_disclosed"].mean()),
         "capability_features": len(features.columns),
         "guardrail": "Parameter count is a sparse scale proxy; undisclosed values are not imputed.",
+        "event_clock_policy": "Actual U.S. 16:00 America/New_York sessions and NSE 08:55 Asia/Kolkata cutoffs; DST-aware.",
     }
     atomic_json_dump(evidence, output / "capability_evidence.json")
     files = ["panel.parquet", "feature_dictionary.csv", "capability_event_mapping.csv", "capability_evidence.json"]

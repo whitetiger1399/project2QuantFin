@@ -25,7 +25,7 @@ The pipeline produces:
 
 ## Compute policy
 
-Use the `balanced` profile with quarterly refits and two concurrent shared-memory workers. Daily forecasts remain fully out of sample within each refit block. The balanced design retains all eight information-ladder rungs, three forecast baselines, multiple shrinkage/PCA/boosting settings, a 250-tree ensemble, and nonlinear complexity ratios of 0.5, 2, 5, and 10 with penalty sensitivity. It removes only pathological unlimited trees and caps random features at 2,048. Exactly one model is frozen before the final stage.
+Use the `focused_improvement` profile with quarterly refits and three concurrent workers on the current Apple Silicon machine. Daily forecasts remain fully out of sample within each refit block. The focused design retains all eight information-ladder rungs, forecast baselines, an expanded Elastic Net comparison, bounded Extra Trees/boosting capacity, and nonlinear complexity ratios from 0.5 to 10. It caps random features at 2,048 and avoids an uncontrolled Cartesian search. Exactly one model is frozen before the final stage.
 
 ## Sequential commands
 
@@ -96,9 +96,9 @@ python scripts/run_cross_market_experiments.py \
   --config configs/cross_market_ai_capability_research.yaml \
   --dataset-id "$DATASET_ID" \
   --stage screening \
-  --profile balanced \
+  --profile focused_improvement \
   --training-scheme rolling \
-  --parallel-workers 2
+  --parallel-workers 3
 
 export SCREENING_RUN_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/runs'); p=max((x for x in r.glob('cm_ai_capability_screening_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
 echo "SCREENING_RUN_ID=$SCREENING_RUN_ID"
@@ -119,9 +119,9 @@ python scripts/run_cross_market_experiments.py \
   --config configs/cross_market_ai_capability_research.yaml \
   --dataset-id "$DATASET_ID" \
   --stage screening \
-  --profile balanced \
+  --profile focused_improvement \
   --training-scheme rolling \
-  --parallel-workers 2 \
+  --parallel-workers 3 \
   --resume-run-id "$SCREENING_RUN_ID"
 ```
 
@@ -132,9 +132,9 @@ python scripts/run_cross_market_experiments.py \
   --config configs/cross_market_ai_capability_research.yaml \
   --dataset-id "$DATASET_ID" \
   --stage confirmation \
-  --profile balanced \
+  --profile focused_improvement \
   --training-scheme rolling \
-  --parallel-workers 2 \
+  --parallel-workers 3 \
   --screening-run-id "$SCREENING_RUN_ID"
 
 export CONFIRMATION_RUN_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/runs'); p=max((x for x in r.glob('cm_ai_capability_confirmation_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
@@ -159,9 +159,9 @@ python scripts/run_cross_market_experiments.py \
   --config configs/cross_market_ai_capability_research.yaml \
   --dataset-id "$DATASET_ID" \
   --stage final_test \
-  --profile balanced \
+  --profile focused_improvement \
   --training-scheme rolling \
-  --parallel-workers 2 \
+  --parallel-workers 3 \
   --freeze-id "$FREEZE_ID"
 
 export FINAL_RUN_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/runs'); p=max((x for x in r.glob('cm_ai_capability_final_test_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
@@ -193,6 +193,17 @@ python scripts/verify_ai_capability_pipeline.py \
 ```
 
 The final verifier must report `"status": "pass"` before any result is transferred into the report.
+
+Run the stricter contract audit after verification:
+
+```bash
+python scripts/audit_ai_capability_contract.py \
+  --config configs/cross_market_ai_capability_research.yaml \
+  --dataset-id "$DATASET_ID" \
+  --run-id "$SCREENING_RUN_ID" \
+  --run-id "$CONFIRMATION_RUN_ID" \
+  --run-id "$FINAL_RUN_ID"
+```
 
 ## Interpretation order
 
