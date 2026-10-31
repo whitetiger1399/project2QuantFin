@@ -748,7 +748,7 @@ def build():
     figure(doc,regimefig,"Figure 15. Mean monthly returns by realized Nifty IT regime. The model is strongest in falling months, modestly positive in sideways months, and nearly flat in rising months.",6.0)
     doc.add_paragraph("In sideways markets the model earns a modest average +0.21% per month: selective trading limits whipsaw, but Nifty 50 averages +0.92%. During sustained rises the model averages only +0.03% while Nifty IT gains +7.04% and the current-member basket gains +8.92%; rolling features, conservative forecast hurdles, and short/flat states slow upside capture. During falling months the signed model averages +1.71% while Nifty IT loses 7.45%, consistent with the intended ability to take short positions rather than repeatedly buying into weakness.")
     doc.add_heading("7.4 Response to trend reversals",level=2)
-    figure(doc,reversalfig,"Figure 16. Mean return in reversal months. The model responds asymmetrically: it performs well when an established rise reverses downward, but it is slow when a decline reverses upward.",6.0)
+    figure(doc,reversalfig,"Figure 16. Mean return in reversal months. The model responds asymmetrically: it performs well when an established rise reverses downward, but it is slow when a decline reverses upward.",5.50)
     rev_rows=[]
     reversals=research_monthly.loc[research_monthly.reversal]
     for typ in ["Rising → Falling","Falling → Rising"]:
@@ -815,7 +815,7 @@ def build():
         ("Leakage and timing control","08:55 IST availability clock; training-only transforms; temporal alignment.","Sections 2–3"),
         ("Feature engineering and complexity","Nested F0–F7 sets, lags, rolling, Fourier, breadth, macro and nonlinear features.","Section 4"),
         ("Model comparison","Baselines, shrinkage, PCA, boosting and forests through screening/confirmation.","Section 5"),
-        ("Out-of-sample evaluation","2025 frozen final period and separate 2026 extension.","Sections 6–7"),
+        ("Out-of-sample evaluation","Combined January 2025–September 2026 display with protocol-separated final and extension segments.","Sections 6–7"),
         ("Economic evaluation","Signed long/short/flat ledger, costs, Nifty IT and Nifty 50 benchmarks.","Sections 5–7"),
         ("Interpretability and inference","Grouped permutation importance, HAC tests and block bootstrap.","Sections 6–8"),
         ("Clear interpretation","Unsupported AI causality rejected; regime dependence and limitations disclosed.","Section 8"),
