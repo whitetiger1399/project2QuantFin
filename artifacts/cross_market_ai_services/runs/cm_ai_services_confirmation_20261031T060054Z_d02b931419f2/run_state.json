@@ -1,5 +1,7 @@
 {
   "action": "run_cross_market_experiments",
+  "checkpoint_count": 104,
+  "completed_at_utc": "2026-10-31T06:14:13.887290+00:00",
   "configuration_count": 13,
   "content_hash": "d02b931419f2",
   "dataset_id": "ai_services_panel_20261031T023944Z_fc3fbc83bdc45226",
@@ -26,8 +28,9 @@
   "refit_frequency": "quarter_start",
   "run_id": "cm_ai_services_confirmation_20261031T060054Z_d02b931419f2",
   "screening_run_id": "cm_ai_services_screening_20261031T040616Z_eac43dbaa92b",
+  "selected_config_id": "cm_extra_trees_05a83581b70b",
   "stage": "confirmation",
-  "status": "running",
+  "status": "complete",
   "training_scheme": "rolling",
-  "updated_at_utc": "2026-10-31T06:00:54.796273+00:00"
+  "updated_at_utc": "2026-10-31T06:14:13.905098+00:00"
 }

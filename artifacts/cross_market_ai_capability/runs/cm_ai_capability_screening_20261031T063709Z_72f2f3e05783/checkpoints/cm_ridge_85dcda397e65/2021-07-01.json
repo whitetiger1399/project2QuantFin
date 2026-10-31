@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-09-30",
+  "block_start": "2021-07-01",
+  "config_id": "cm_ridge_85dcda397e65",
+  "family": "ridge",
+  "feature_set": "F7_full_context",
+  "input_features": 2769,
+  "parameter_to_feature_ratio": 1.0003611412062117,
+  "parameter_to_observation_ratio": 0.22723543888433143,
+  "runtime_seconds": 7.124303749999854,
+  "test_rows": 630,
+  "trainable_parameters_proxy": 2770,
+  "training_dates": 1219,
+  "training_end": "2021-06-29",
+  "training_rows": 12190,
+  "training_start": "2016-07-21"
+}

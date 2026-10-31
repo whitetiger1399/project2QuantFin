@@ -1,0 +1,26 @@
+{
+  "direct_nifty_it": {
+    "n": 8.0,
+    "pvalue": 0.4712605287015583,
+    "rho": 0.29940656547831473
+  },
+  "disclosed_parameter_events": 8,
+  "disclosure_fraction": 0.3076923076923077,
+  "guardrails": [
+    "Parameter count is not a universal capability metric.",
+    "The disclosed subset is small and non-random; correlations are exploratory.",
+    "MoE total and active parameters are not interchangeable.",
+    "Release-date and model-scale trends may be confounded with calendar time and macro conditions."
+  ],
+  "post_us_nifty_it": {
+    "n": 8.0,
+    "pvalue": 0.25719208545877226,
+    "rho": 0.45509797952703834
+  },
+  "post_us_services": {
+    "n": 8.0,
+    "pvalue": 0.33251710793382766,
+    "rho": -0.3952166664313755
+  },
+  "total_frontier_events": 26
+}

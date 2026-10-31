@@ -1,0 +1,51 @@
+{
+  "action": "run_cross_market_experiments",
+  "checkpoint_count": 48,
+  "completed_at_utc": "2026-10-31T06:21:10.971527+00:00",
+  "config_sha256": "9da215f167e6a94101d62b3b82c56574f2c35be40db82d5509236d5c242873be",
+  "configuration_count": 12,
+  "confirmation_run_id": "cm_ai_services_confirmation_20261031T060054Z_d02b931419f2",
+  "content_hash": "822ce6a70364",
+  "dataset_id": "ai_services_panel_20261031T023944Z_fc3fbc83bdc45226",
+  "dataset_manifest_sha256": "f3eb6757a6107afd04f9a9eb9295797c6016a951d93c49794be119cca5f7ed2d",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_services/runs/cm_ai_services_final_test_20261031T061542Z_822ce6a70364",
+  "effective_estimator_jobs": 1,
+  "environment": {
+    "created_at_utc": "2026-10-31T06:21:10.972585+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "expected_checkpoint_count": 48,
+  "files": {
+    "annual_performance.csv": "e3ad9415c10a40c20a4d95303b1469df733e465d07beeba9e94cbaaddd74bb7c",
+    "configurations.json": "01228d1b9927c652b7f5f1461dda5b57003476eabe392ccaa89b800088341129",
+    "cost_sensitivity.csv": "84b3d5878e46e0e72a2930aa340098d80d333cbced21db7375d0229f387e1834",
+    "feature_importance_by_refit.csv": "449a86a2ceb52145c87db5f5db39e7962cec7fb1e4807c1ea86fbf7f36da8327",
+    "forecast_hac_comparisons.csv": "87f3522498073b912a100789967ad929897c1cd97b4896ff45354ae043ca7f25",
+    "leaderboard.csv": "cfe47f7f6362f59759bf1d7e358e361e7fe8a616c75007cfc44130335c335de3",
+    "predictions.parquet": "c916d70da467775d7ef31efc04dd92f775ab1c60b768262830711cf2320600fb",
+    "refit_diagnostics.csv": "31b7a80fc28923984417d7fa827940313fcc643359f40518a6fac3bc3f45126c",
+    "selected_model_inference.json": "2a0d7b462022e1a5945d999226bad7c807a3ccf5c890ff2c1f72dede2bd47ca9",
+    "strategy_ledgers.parquet": "2458666c0c7cb9527771eea1545ebc689159f002a8cb1fa0a8c98b466a4854a0"
+  },
+  "freeze_id": "cm_ai_services_freeze_20261031T061523Z_3e5529acd201",
+  "parallel_workers": 3,
+  "profile": "balanced",
+  "refit_frequency": "quarter_start",
+  "run_id": "cm_ai_services_final_test_20261031T061542Z_822ce6a70364",
+  "schema_version": 1,
+  "selected_config_id": "cm_extra_trees_05a83581b70b",
+  "stage": "final_test",
+  "status": "complete",
+  "training_scheme": "rolling"
+}
