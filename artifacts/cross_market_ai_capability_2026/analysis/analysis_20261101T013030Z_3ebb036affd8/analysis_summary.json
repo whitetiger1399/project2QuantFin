@@ -1,0 +1,12 @@
+{
+  "assets": 10,
+  "decision_dates": 2519,
+  "feature_tests": 229,
+  "features": 3763,
+  "figures": 9,
+  "interpretation_guardrail": "Event overlays and lead-lag correlations are descriptive and must not be presented as causal evidence.",
+  "retrospective_event_markers": 0,
+  "rows": 25190,
+  "statistical_test_assets": 10,
+  "trend_shift_candidates": 20
+}

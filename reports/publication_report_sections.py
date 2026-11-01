@@ -1,6 +1,7 @@
 """Evidence-bound publication additions; no fitting or data downloading."""
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 
@@ -10,7 +11,7 @@ from docx.oxml.ns import qn
 from docx.shared import Inches, Pt
 from report_components import table, figure, hyperlink
 
-HYP_ID = 'hypotheses_20261101T004002Z_509b866eb35063f9'
+HYP_ID = os.environ.get('REPORT_HYPOTHESIS_ANALYSIS_ID', 'hypotheses_20261101T030841Z_d494c2f238ca64a6')
 FIGURES = []
 
 
@@ -61,24 +62,26 @@ def hypothesis_results(doc, root, reviewed):
     def row(h, period):
         return tests.loc[tests.hypothesis.eq(h)&tests.period.eq(period)].iloc[0]
     h1=row('H1_US_transmission','all'); h2=row('H2_negative_AI_release','all')
+    h2_2026=row('H2_negative_AI_release','2026')
+    h3=row('H3_event_attenuation','fixed_break_2025-01-01')
     doc.add_heading('7. Hypothesis evidence and regime diagnostics',level=1)
     doc.add_heading('7.1 Test definitions and multiplicity',level=2)
     doc.add_paragraph('The saved analysis aggregates observations by trading date rather than treating ten correlated stock rows as independent replications. H1 regresses Indian cohort intraday return on the available U.S. services return, lagged Indian return and lagged broad-market return. H2 replaces the U.S. term with the release indicator to avoid conditioning on a possible transmission channel. HAC covariance uses five lags. All estimable regression p-values in the saved family receive Holm correction; displayed confidence intervals are pointwise, not simultaneous. Circular date-block resampling uses 2,000 draws for H5. These controls do not erase prior researcher exposure to the sample.')
     table(doc,['Question','Observed evidence','Verdict'],[
         ('H1: U.S. association',f"β={h1.coefficient:.3f}; 95% CI [{h1.ci_low:.3f}, {h1.ci_high:.3f}]; Holm p={h1.pvalue_holm:.4f}; n={int(h1.n_dates):,} dates.",'Exploratory support for association; incremental trading alpha unproven.'),
-        ('H2: negative release',f"Effect={100*h2.coefficient:+.3f} percentage points; CI [{100*h2.ci_low:.3f}, {100*h2.ci_high:.3f}]; Holm p={h2.pvalue_holm:.3f}; 24 event sessions.",'Negative effect not supported; uncertainty includes both signs.'),
-        ('H3: attenuation','17 early and 7 late event sessions; later group below the configured minimum.','Not estimable; no evidence that fear has subsided.'),
+        ('H2: negative release',f"Pooled effect={100*h2.coefficient:+.3f} pp (Holm p={h2.pvalue_holm:.3f}; {int(h2.count_event)} sessions); 2026={100*h2_2026.coefficient:+.3f} pp (Holm p={h2_2026.pvalue_holm:.4f}; {int(h2_2026.count_event)} sessions).",'Pooled evidence is inconclusive; 2026 provides exploratory negative association, not causal identification.'),
+        ('H3: attenuation',f"Early effect count={int(h3.count_early_event)}; late count={int(h3.count_late_event)}; interaction={100*h3.coefficient:+.3f} pp, Holm p={h3.pvalue_holm:.3f}.",'No adjusted evidence that the event response attenuated; the point estimate becomes more negative.'),
         ('H4: capability shock','21 scored event dates versus a minimum of 30.','Not estimable under the final protocol.'),
-        ('H5: economic robustness','Canonical 2025 nearly flat net; 2026 gains concentrated in a decline. Later candidate loses in confirmation.','Conditional historical gains; robust repeatable alpha not established.'),
+        ('H5: economic robustness','Canonical model loses 4.04% net in 2025 and gains 15.01% in the 2026 decline; both Sharpe intervals span zero.','Conditional historical gains; robust repeatable alpha not established.'),
         ('H6: adaptation','AI offerings are documented; headcount changes differ across firms.','Descriptive adaptation supported; causal margin benefit unproven.'),
     ],[3.1,8.0,4.9],8.1)
     doc.add_heading('7.2 Cross-market association and event uncertainty',level=2)
     reviewed('13_transmission_inference')
-    doc.add_paragraph('Because both return variables are in decimal units, the pooled H1 coefficient implies approximately +0.098 percentage points of Indian intraday return per +1 percentage point of the available U.S. return, conditional on the included lags. The 2026 coefficient is 0.181 (Holm p=0.0228), but the post-2024 change interaction is inconclusive (Holm p=1.000). A significant coefficient in one year and an insignificant coefficient in another is not itself a significant difference between years.')
-    doc.add_paragraph('The updated H2 estimate uses 2023 onward and differs from the earlier development-only event comparison in Section 4. Its positive point estimate cannot validate the proposed negative-release short rule. Annual coverage is only five event sessions in 2023, twelve in 2024 and seven in 2025. No 2026 events are recorded in this calendar; missing coverage cannot be treated as evidence of no announcements. H3 requires both a negative earlier effect and a reliably less-negative later response; neither requirement is established. H4 is withheld under its sample-size rule rather than promoted from the earlier small-sample correlations.')
-    doc.add_heading('7.3 Later candidate: replication rather than replacement',level=2)
+    doc.add_paragraph('Because both return variables are in decimal units, the pooled H1 coefficient implies approximately +0.098 percentage points of Indian intraday return per +1 percentage point of the available U.S. return, conditional on the included lags. The 2026 coefficient is 0.181 (Holm p=0.0240), but the post-2024 change interaction is inconclusive (Holm p=1.000). A significant coefficient in one year and an insignificant coefficient in another is not itself a significant difference between years.')
+    doc.add_paragraph('The pooled 2023–2026 H2 estimate is −0.169 percentage points with an interval spanning zero. In 2026 alone, 22 marked sessions yield −0.695 percentage points (95% HAC interval −1.099 to −0.292; Holm p=0.0155). That year-specific association is exploratory because the calendar is retrospective, events are sparse, and no market-adjusted causal design is claimed. H3 does not show attenuation after 2024: its interaction is negative but does not survive multiplicity adjustment. H4 is withheld under its sample-size rule rather than promoted from the small capability sample.')
+    doc.add_heading('7.3 Selected-specification record across protocol stages',level=2)
     reviewed('15_confirmation_diagnostic')
-    doc.add_paragraph('The later F2 Extra Trees candidate (configuration cm_extra_trees_cc3daa00b74b) is a distinct experiment. It gains 9.08% in 2021 and 15.11% in 2022, then loses 22.65% in 2023 and gains 2.21% in 2024. Its 2023 negative mean net return remains significant after Holm adjustment (p=0.0214); its 2023 shortfall to Nifty 50 also survives correction (p=0.0140). These are adverse results for this candidate, not p-values for the canonical 2025–2026 curve. A favorable screening period is therefore insufficient grounds to replace the existing model.')
+    doc.add_paragraph('The selected specification returns +8.31% in 2021, +0.11% in 2022, +6.26% in 2023, +9.93% in 2024, −4.04% in the 2025 historical replication and +15.01% in the January–September 2026 extension. These values form one protocol history, not six independent tests: 2021–2024 influenced screening and confirmation, 2025 is an estimator-OOS historical replication after researcher exposure, and 2026 uses one fit on all pre-2026 observations. The 2025 and 2026 bootstrap Sharpe intervals are wide and overlap zero. The full record therefore supports regime sensitivity and disciplined staged validation, not a claim of stable annual alpha.')
     doc.add_heading('7.4 Sideways markets and trend reversals',level=2)
     reviewed('16_regime_distributions')
     monthly=pd.read_csv(root/'reports/publication_figure_pack_2026-11-01/16_monthly_regimes.csv')
@@ -143,7 +146,20 @@ def append_publication_diagnostics(doc, root, reviewed):
     reviewed('17_group_importance_existing')
     doc.add_heading('Appendix E. Evidence addresses and reproduction',level=1)
     doc.add_paragraph('Hypothesis analysis: '+HYP_ID+'. The accompanying hypothesis_tests.csv contains estimates, sample sizes, covariance choices, raw and Holm p-values, and not-estimable statuses. Company_headcount_changes.csv retains source IDs and quarter definitions. The hypothesis manifest records the input and result hashes.')
-    doc.add_paragraph('Later candidate screening: cm_ai_capability_screening_20261031T131402Z_b2cf65577643; confirmation: cm_ai_capability_confirmation_20261101T001942Z_ebff5b985708. These are diagnostic evidence addresses, not replacements for the canonical chain in Appendix A.')
+    table(doc,['Evidence object','Immutable identifier'],[
+        ('Historical EDA','analysis_20261101T013012Z_d50423d05d5c'),
+        ('2026 EDA','analysis_20261101T013030Z_3ebb036affd8'),
+        ('2026 event study','ai_services_analysis_20261101T013058Z_e88408b9a16d'),
+        ('Capability analysis','ai_capability_analysis_20261101T013123Z_97f653e82ec8'),
+        ('Epoch capability analysis','epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec'),
+        ('2025 model evidence','model_evidence_final_test_20261101T030544Z_a4d9077ee46e'),
+        ('2026 model evidence','model_evidence_forward_extension_2026_20261101T030629Z_2f2c1a45c5fc'),
+        ('Information ladder','information_ladder_final_test_20261101T030705Z_4fcf7b07672b'),
+        ('2025 strategy comparison','ai_strategy_comparison_20261101T030717Z_591c864e3aba'),
+        ('2026 strategy comparison','ai_strategy_comparison_20261101T030726Z_9660a3a84bc3'),
+        ('Hypothesis family',HYP_ID),
+    ],[5.2,10.8],7.1)
+    doc.add_paragraph('The canonical screening, confirmation, freeze, 2025 replication and 2026 extension identifiers are listed in Appendix A. Main-text discussions refer to these evidence addresses through the appendices rather than embedding hashes in the narrative.')
     doc.add_paragraph('Figure evidence: reports/publication_figure_pack_2026-11-01/manifest.json. Its catalog provides figure captions, placement and changes; accompanying CSV files contain the exact cost, benchmark and regime summaries. The report builder verifies the figure file hashes before insertion.')
     for command in ['python scripts/build_publication_figure_pack.py','python reports/build_report_ai_capability.py']:
         p=doc.add_paragraph(command)
@@ -203,19 +219,6 @@ def finalize_report(doc, root, pack):
     # Explain the EDA responses before its market paths rather than splitting this table.
     diagnostic=next(t._tbl for t in doc.tables if t.cell(0,0).text=='Diagnostic')
     move_before([diagnostic],pstart('3.2 Market paths'))
-    # Keep related test definitions together ahead of the event visual pair.
-    cap_heading=pstart('4.3 Capability hypothesis tests')
-    cap_table=next(t._tbl for t in doc.tables if t.cell(0,0).text=='Test')
-    event_image=pstart('Figure 7.').getprevious()
-    move_before([cap_heading,cap_table],event_image)
-    # Keep the large event-level matrix in the diagnostic appendix; avoid two tall
-    # figures back-to-back forcing a half-empty main-text page.
-    response_caption=pstart('Figure 8.')
-    response_image=response_caption.getprevious()
-    appendix_heading=pstart('Appendix D.')
-    appendix_intro=appendix_heading.getnext()
-    appendix_intro.addnext(response_image)
-    response_image.addnext(response_caption)
     order=[]
     for p in doc.paragraphs:
         match=re.match(r'Figure (\d+)\.',p.text)

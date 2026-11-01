@@ -1,5 +1,5 @@
 {
-  "figure_pack_hash": "b744f2bc2c63c5bc",
+  "figure_pack_hash": "38ea26773f587009",
   "figures": [
     "01_architecture",
     "02_india_paths",
@@ -8,6 +8,7 @@
     "05_cross_market_correlations",
     "12_information_ladder",
     "06a_frontier_timeline",
+    "06b_event_responses",
     "11_model_family_evidence",
     "08_combined_benchmarks",
     "07_transaction_cost_drag",
@@ -15,12 +16,11 @@
     "13_transmission_inference",
     "15_confirmation_diagnostic",
     "16_regime_distributions",
-    "06b_event_responses",
     "10_cost_sensitivity",
     "14_event_coverage",
     "17_group_importance_existing"
   ],
-  "hypothesis_analysis": "hypotheses_20261101T004002Z_509b866eb35063f9",
+  "hypothesis_analysis": "hypotheses_20261101T030841Z_d494c2f238ca64a6",
   "reference_check_date": "2026-11-01",
   "references": [
     {

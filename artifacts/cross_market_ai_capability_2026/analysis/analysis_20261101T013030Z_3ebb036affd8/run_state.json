@@ -1,0 +1,9 @@
+{
+  "action": "run_cross_market_analysis",
+  "completed_at_utc": "2026-11-01T01:30:33.708740+00:00",
+  "dataset_id": "ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8",
+  "output": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/analysis/analysis_20261101T013030Z_3ebb036affd8",
+  "run_hash": "3ebb036affd8",
+  "run_id": "analysis_20261101T013030Z_3ebb036affd8",
+  "status": "complete"
+}

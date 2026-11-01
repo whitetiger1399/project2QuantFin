@@ -1,0 +1,125 @@
+{
+  "action": "analyze_ai_capability_model_run",
+  "analysis_id": "model_evidence_final_test_20261101T030544Z_a4d9077ee46e",
+  "completed_at_utc": "2026-11-01T03:06:20.047633+00:00",
+  "content_hash": "a4d9077ee46e",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/model_evidence_final_test_20261101T030544Z_a4d9077ee46e",
+  "files": {
+    "aggregated_feature_importance.csv": "3f4f8d8f392fe968b3f5ab430c66dd9d6a08fbfb00b9b5d3631a1da885cc0a85",
+    "best_by_information_set.csv": "819f2711086b821f0cf826fa04780bb1587a967eb79df9892aecada717d9967f",
+    "best_by_model_family.csv": "e27f97a4b1b17195736f0d49ccc5c9432ca34a8324438fefaef235c3bbf63043",
+    "complexity_generalization.csv": "9ecbbaf21722256e3e2fbd4f13f1c4dd56f99662899d85afc9eca2789692241c",
+    "daily_long_short_decisions_and_returns.csv": "340a67a23e5c41037aca9684037bc03db1798116cf239ccde58107b996e28c39",
+    "direction_confusion_matrix.csv": "901e9b04fb3a5172f708ee76c2b7b2706fd21b0e7e9302a94936409434c96d57",
+    "forecast_inference.json": "21bb6667c09f5685e29ec5211b83f7b23574f1abfc498fd6ee7ee2ca76627cd3",
+    "model_evidence_summary.json": "eb1a52c8832f6fac570d89cf06ab2275ad972cc9a83322faa12cdb2fb5ab02c1",
+    "plots/01_model_family_comparison.png": "a5f12f2cb3cecfc24811efa300a89d3c1c5f5ee4bb606fab5e7c096309abf97c",
+    "plots/02_information_set_progression.png": "e6dcad73a6995b2fce501fc240e1a96078795e33399c4888bd26be67efb11074",
+    "plots/03_cumulative_wealth.png": "b6f89c6ae1767be644ff8c3e617811c9ca26683cda83f54e3288c59edef84348",
+    "plots/04_drawdown.png": "8b042488a993573d802b930cb15c414cc93de2d15290ae1448a3512c22b736ba",
+    "plots/05_prediction_calibration.png": "9ecd6307de3325643e09adef4b72cf7adf35932bd40ea9fe9942134ad054e6e3",
+    "plots/06_rolling_information_coefficient.png": "441f182d98b32888d9542f678f468e46033562444ce3387c73bf12395cdba39f",
+    "plots/07_long_short_exposure.png": "7bd1898ce7b68ebffbe8b4fe0806fa5e4024cc58a73f70e264481615e135a9f1",
+    "plots/08_complexity_generalization.png": "feb447e278bb867c9106929c3f8cb83558894b581b4099ca757ebeab753e01fd",
+    "plots/09_feature_importance.png": "b964e88a1cce07af40ab9b498c9cec66ed3b5050d8584d4665cd7256ee48d9ec",
+    "portfolio_performance_comparison.csv": "9a7e9954896958f696ef0239b26747f715c42049ee4a58eda0b76ef85f95bc1e",
+    "prediction_calibration_deciles.csv": "6d5f8398971d558cdd66cbe5114d8c77bcf030c8b4c783557ac4ce8dca046bc3"
+  },
+  "parent_evidence_hashes": {
+    "annual_performance.csv": "b2d944b914303c8eb692f6bd9d2406ee0fbaaa8af3e65377929ec985e2642095",
+    "cost_sensitivity.csv": "48409c9c89c888c4f6a1209d57600ae4460ee5cebe33e8ef06e88da05dc0e8f6",
+    "forecast_hac_comparisons.csv": "9c6c132212f28df11c0e832ef64b612e193822d533b3a7819d390e8722b6846d",
+    "selected_model_inference.json": "92ce821dbe04e80f16e1e4ad45f40cb3b9d0f4e390076ee2b4d7970fff41efae"
+  },
+  "parent_manifest_sha256": "7e1ef3280abd278f2e69dd97d37700484a802ccf17c81454466a48eb38158b22",
+  "parent_run_id": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+  "schema_version": 1,
+  "stage": "final_test",
+  "status": "complete",
+  "summary": {
+    "forecast_inference": {
+      "block_length_sessions": 20,
+      "calibration_slope_95_ci": [
+        -0.7656172264753606,
+        1.7171115074914964
+      ],
+      "directional_accuracy": 0.5417670682730924,
+      "directional_accuracy_95_ci": [
+        0.5112449799196788,
+        0.571495983935743
+      ],
+      "directionally_correct": 1349,
+      "incremental_accuracy_vs_majority_95_ci": [
+        -0.022901606425702742,
+        0.03696787148594375
+      ],
+      "majority_sign": "down",
+      "majority_sign_accuracy": 0.5369477911646586,
+      "method": "circular_date_block_bootstrap",
+      "observations": 2490,
+      "repetitions": 1000,
+      "stock_day_observations": 2490,
+      "unique_dates": 249
+    },
+    "long_exposure_days": 3,
+    "mean_turnover": 0.48995983930843373,
+    "portfolio_performance": [
+      {
+        "annual_return": -0.04086070598904212,
+        "annual_volatility": 0.12864475891999422,
+        "cumulative_return": -0.040384226973328,
+        "maximum_drawdown": -0.14770830694881731,
+        "observations": 249,
+        "portfolio": "selected_strategy_net",
+        "positive_day_fraction": 0.1285140562248996,
+        "sharpe": -0.2599552093150189
+      },
+      {
+        "annual_return": 0.05220607149190526,
+        "annual_volatility": 0.12875837293921202,
+        "cumulative_return": 0.05156881580076278,
+        "maximum_drawdown": -0.11393123225114077,
+        "observations": 249,
+        "portfolio": "selected_strategy_gross",
+        "positive_day_fraction": 0.13654618473895583,
+        "sharpe": 0.4594694158250739
+      },
+      {
+        "annual_return": -0.10777298995617246,
+        "annual_volatility": 0.20332961569702057,
+        "cumulative_return": -0.10656091950563318,
+        "maximum_drawdown": -0.2642140332218347,
+        "observations": 249,
+        "portfolio": "nifty_it_buy_hold",
+        "positive_day_fraction": 0.46184738955823296,
+        "sharpe": -0.45982136903506543
+      },
+      {
+        "annual_return": 0.1180954035245414,
+        "annual_volatility": 0.11233986901970176,
+        "cumulative_return": 0.11661056526465674,
+        "maximum_drawdown": -0.08299680588202563,
+        "observations": 249,
+        "portfolio": "nifty50_buy_hold",
+        "positive_day_fraction": 0.5020080321285141,
+        "sharpe": 1.0496698505195763
+      },
+      {
+        "annual_return": -0.22182400157221316,
+        "annual_volatility": 0.19039621357738043,
+        "cumulative_return": -0.21949709460222666,
+        "maximum_drawdown": -0.23980112557438948,
+        "observations": 249,
+        "portfolio": "fixed_cohort_equal_weight",
+        "positive_day_fraction": 0.42570281124497994,
+        "sharpe": -1.2221368351027115
+      }
+    ],
+    "selected_config_id": "cm_extra_trees_cd9235695e6b",
+    "selected_family": "extra_trees",
+    "selected_feature_set": "F7_full_context",
+    "short_exposure_days": 58,
+    "stage": "final_test",
+    "trade_days": 61
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "action": "analyze_epoch_capability_market_effects",
+  "analysis_id": "epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec",
+  "classification": "ex_post_not_tradable",
+  "completed_at_utc": "2026-11-01T01:31:38.706227+00:00",
+  "content_hash": "45f5b1bd11ec",
+  "dataset_id": "ai_capability_panel_20261101T012801Z_ff277b55597d727a",
+  "dataset_manifest_sha256": "dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec",
+  "epoch_manifest_sha256": "c7a1d870ce240ef055bdb6af9ef022df308be4559f219e035f32ef081da4f998",
+  "epoch_snapshot_id": "epoch_benchmarks_20261031T063140Z_694be8985284cf56",
+  "files": {
+    "benchmark_mapping_coverage.csv": "e7244fd0a34819bdd85c09a24989d38564dff439a816e2375a921ca346355a9d",
+    "capability_market_statistical_tests.csv": "4490073261f3ac5aa4cd94468afdd54868b50ff40a2c2d42fb3b10640c3e16ca",
+    "eci_nifty_it_asset_correlations.csv": "2bd3cc9281c326187ee6768a05ee8132cb521b30c104386b8527be75f9331573",
+    "epoch_capability_summary.json": "4cb5aca07f51889d25d7f7a6bfe5ec5efa13cceaa31d06593bcdd81470e0c89e",
+    "epoch_event_capability_returns.csv": "08d7af928fb7716c8394b10623ea72a91ec8bde09cdfe3f4ddcc1713457b4e68",
+    "mapped_epoch_benchmark_scores_long.csv": "51ad14ae7446992ea131feb0697a200f9b9ecad95a9483c7cfc64608f3078812",
+    "mapped_primary_benchmark_scores_long.csv": "a2f05fa5fed3cff094e21f495016bd7fca257d6349ce0d4f9ce479aaf304c491",
+    "plots/01_eci_nifty_it_heatmap.png": "306286f3993dabbebb4fdef5d898a834c4be44a7ff5fe14ba72e01ec38298588",
+    "plots/02_eci_event_response_scatter.png": "bd2a809a8cbb85e670e296aefa177fbdd4e37bd91895b97cb5e82317868350d4",
+    "plots/03_benchmark_mapping_coverage.png": "0af0a4fffe5d7da457c910ccdc7e6a27b071d5843ce231fdcfef71110c905fa9"
+  },
+  "mapping_sha256": "e11a15fde4b0dbc5f6a84010195bce44561742b9f7ea8d8794dbbc8419d37102",
+  "schema_version": 1,
+  "status": "complete",
+  "summary": {
+    "classification": "ex_post_not_tradable",
+    "eci_mapped_events": 22,
+    "frontier_events": 52,
+    "guardrails": [
+      "Current-vintage Epoch scores are never backfilled into historical prediction features.",
+      "Benchmark scores remain benchmark-specific; no uncalibrated arithmetic composite is used.",
+      "Small event samples and calendar-time confounding preclude causal claims.",
+      "The time-controlled HC3 regression is a sensitivity analysis, not identification."
+    ],
+    "primary_benchmark_mapped_events": 22
+  }
+}

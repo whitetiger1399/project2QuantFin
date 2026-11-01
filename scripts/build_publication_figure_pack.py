@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import html
 import json
+import os
 import shutil
 import sys
 import textwrap
@@ -18,6 +19,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.colors import ListedColormap
+from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 from matplotlib.patches import FancyBboxPatch
 from matplotlib.ticker import PercentFormatter, ScalarFormatter
 import numpy as np
@@ -31,7 +33,9 @@ from quantfin.io import sha256_file, atomic_json_dump, stable_object_hash
 from quantfin.progress import progress
 
 INDIA, US, NET, GROSS, SHORT, FLAT = "#175B9A", "#B75B16", "#123D65", "#138577", "#B34155", "#DFE4EA"
-HYP = ROOT / "artifacts/research_hypotheses/hypotheses_20261101T004002Z_509b866eb35063f9"
+HYP = ROOT / "artifacts/research_hypotheses" / os.environ.get(
+    "REPORT_HYPOTHESIS_ANALYSIS_ID", "hypotheses_20261101T030841Z_d494c2f238ca64a6"
+)
 INPUTS = {}
 CATALOG = []
 
@@ -194,9 +198,27 @@ def events(output,india,us):
     for i,row in enumerate(e.itertuples()):
         axes[1].text(row.release_date,.96-(i%3)*.13,str(row.event_number),transform=axes[1].get_xaxis_transform(),ha='center',va='top',fontsize=10,weight='bold',bbox=dict(fc='white',ec='none',pad=1))
     key=fig.add_subplot(gs[2]);key.axis('off')
+    provider_icons={
+        'OpenAI': ROOT/'assets/architecture_icons/openai.png',
+        'Anthropic': ROOT/'assets/architecture_icons/anthropic.png',
+        'Google DeepMind': ROOT/'assets/architecture_icons/gemini.png',
+    }
+    for path in provider_icons.values():
+        track(path)
+    def add_provider_mark(ax,row,x,y,zoom=.045,coords='axes fraction'):
+        path=provider_icons.get(row.provider)
+        if path is not None:
+            mark=OffsetImage(plt.imread(path),zoom=zoom)
+            ax.add_artist(AnnotationBbox(mark,(x,y),xycoords=coords,frameon=False,box_alignment=(0,.5)))
+        else:
+            ax.text(x,y,'xAI',transform=ax.transAxes if coords=='axes fraction' else ax.get_xaxis_transform(),
+                    fontsize=9,weight='bold',va='center',ha='left',
+                    bbox=dict(boxstyle='round,pad=.18',fc='white',ec='#222',lw=.6))
     for i,row in enumerate(e.itertuples()):
-        label=f'{row.event_number}. {row.model_family}\n{row.release_date:%d %b %Y} | ECI {row.eci:.1f}'
-        key.text((i%3)/3,1-(i//3)*.36,label,transform=key.transAxes,fontsize=9,va='top')
+        x=(i%3)/3; y=1-(i//3)*.36
+        add_provider_mark(key,row,x,y-.035,zoom=.035)
+        label=f'{row.event_number}. {row.provider} · {row.model_family}\n{row.release_date:%d %b %Y} | ECI {row.eci:.1f}'
+        key.text(x+.045,y,label,transform=key.transAxes,fontsize=8.6,va='top')
     fig.suptitle('Frontier advances alongside service-company price paths',fontsize=14,weight='bold')
     fig.subplots_adjust(top=.89,bottom=.06,left=.11,right=.98)
     save(fig,output,'06a_frontier_timeline','What happened around the mapped frontier advances?',
@@ -225,16 +247,32 @@ def events(output,india,us):
         cmap=plt.get_cmap('RdBu_r').copy();cmap.set_bad('#E8EBEF')
         im=ax.imshow(np.ma.masked_invalid(table.to_numpy()),vmin=-bound,vmax=bound,cmap=cmap,aspect='auto')
         ax.set_yticks(range(5),[s.replace('.NS','') for s in assets],color=color,fontsize=11)
-        ax.set_title(title,loc='left',color=color,fontsize=11,weight='bold',pad=10)
+        # The U.S. panel uses three compact visual rows: heading, provider
+        # marks, then heat-map cells.  Keep the bands distinct without leaving
+        # an oversized void between the title and the data.
+        ax.set_title(title,loc='left',color=color,fontsize=11,weight='bold',pad=32 if country=='U.S.' else 10)
         for i,j in np.ndindex(table.shape):
             v=table.iloc[i,j]
             ax.text(j,i,f'{v:+.1f}' if np.isfinite(v) else 'NA',ha='center',va='center',fontsize=10,color='white' if abs(v)>.65*bound else '#222')
-    axes[1].set_xticks(range(len(e)),[str(v) for v in e.event_number]);axes[1].set_xlabel('Numbered event (see timeline key); returns in percent')
-    fig.subplots_adjust(left=.13,right=.86,top=.9,bottom=.13,hspace=.38)
+    event_labels=[]
+    for row in e.itertuples():
+        model=str(row.model_family).replace('Claude 3.5 Sonnet','Claude 3.5').replace('Claude 3.7 Sonnet','Claude 3.7').replace('Gemini 2.5 Pro','Gemini 2.5')
+        event_labels.append(f'{row.event_number}\n{model}')
+    axes[1].set_xticks(range(len(e)),event_labels,fontsize=8)
+    axes[1].set_xlabel('Frontier model release; returns in percent')
+    for j,row in enumerate(e.itertuples()):
+        path=provider_icons.get(row.provider)
+        if path is not None:
+            axes[0].add_artist(AnnotationBbox(OffsetImage(plt.imread(path),zoom=.025),(j,1.080),
+                                             xycoords=axes[0].get_xaxis_transform(),frameon=False))
+        else:
+            axes[0].text(j,1.070,'xAI',transform=axes[0].get_xaxis_transform(),ha='center',va='bottom',
+                         fontsize=7.5,weight='bold')
+    fig.subplots_adjust(left=.13,right=.86,top=.865,bottom=.13,hspace=.38)
     cax=fig.add_axes([.9,.2,.02,.6]);fig.colorbar(im,cax=cax,label='Observed return (%)')
     save(fig,output,'06b_event_responses','Observed U.S. and Indian reactions',
-         'The upper and lower panels separate countries with explicit outcome definitions. U.S. close-to-close and Indian open-to-close returns cover different horizons, so magnitudes are not a like-for-like causal comparison. Reaction sessions follow the conservative publication-time mapping. Entries are observed returns, not market-adjusted abnormal returns. This is the limited mapped event subset shown in the timeline; no 2026 completeness is implied.',
-         'Removes overlapping country/ticker labels and discloses unequal return horizons.',placement='appendix')
+         'Provider marks and model names identify each mapped frontier advance. The upper and lower panels separate countries with explicit outcome definitions. U.S. close-to-close and Indian open-to-close returns cover different horizons, so magnitudes are not a like-for-like causal comparison. Reaction sessions follow the conservative publication-time mapping. Entries are observed returns, not market-adjusted abnormal returns. This is the limited Epoch-mapped subset shown in the timeline, not the complete 2026 event calendar.',
+         'Adds provider marks and model names, preserves readable country separation, and discloses unequal return horizons.',placement='main')
 
 
 def regimes(output,d):
@@ -284,7 +322,12 @@ def cost_and_performance(output,d,india):
     for off,col,c,label in [(-.18,'gross',GROSS,'Gross'),(.18,'net',NET,'Net')]:
         bars=axes[1].bar(x+off,table[col]*100,.34,color=c,label=label)
         axes[1].bar_label(bars,labels=[f'{v:.2%}' for v in table[col]],padding=4,fontsize=11)
-    axes[1].set_xticks(x,table.period);axes[1].set_ylabel('Period return (%)');axes[1].set_ylim(0,table[['gross','net']].max().max()*125)
+    # Preserve a full negative-return band so the 2025 net label sits inside
+    # the plotting area rather than colliding with the x-axis labels.
+    lower=min(-10.0,float(table[['gross','net']].min().min()*100*1.35))
+    upper=float(table[['gross','net']].max().max()*100*1.22)
+    axes[1].set_xticks(x,table.period);axes[1].set_ylabel('Period return (%)');axes[1].set_ylim(lower,upper)
+    axes[1].axhline(0,color='#777',lw=.9)
     for ax in axes:clean_axis(ax)
     fig.subplots_adjust(left=.11,right=.97,top=.94,bottom=.09,hspace=.38)
     save(fig,output,'07_transaction_cost_drag','The same trades, before and after costs',
@@ -343,26 +386,50 @@ def cost_and_performance(output,d,india):
 
 
 def family_and_ladder(output):
-    families=['autoregression','ridge','lasso','elastic_net','pca_ridge','rff_ridge','hist_gradient_boosting','extra_trees']
-    matrix=np.full((len(families),3),np.nan);labels={}
-    for j,folder in enumerate([old.SCREEN,old.CONFIRM,old.FINAL]):
-        d=csv(folder/'leaderboard.csv')
+    stages=[
+        ('Screening\n2021–2022',old.SCREEN,'search'),
+        ('Confirmation\n2023–2024',old.CONFIRM,'search'),
+        ('Frozen replication\n2025',old.FINAL,'evaluation'),
+        ('Fixed extension\n2026 Jan–Sep',old.FORWARD,'evaluation'),
+    ]
+    tables=[]
+    for _,folder,_ in stages:
+        frame=csv(folder/'leaderboard.csv')
+        frame['source_folder']=folder.name
+        tables.append(frame)
+    candidate_order=['autoregression','ridge','lasso','elastic_net','pca_ridge','hist_gradient_boosting','extra_trees']
+    # Omit families that have no finite trading Sharpe in any displayed stage.
+    # An undefined Sharpe is recorded in the underlying leaderboard and must
+    # never be plotted as a zero-return result.
+    families=[family for family in candidate_order if any(
+        table.loc[table.family.eq(family),'net_sharpe'].notna().any() for table in tables
+    )]
+    matrix=np.full((len(families),len(stages)),np.nan);labels={}
+    for j,((_,_,role),d) in enumerate(zip(stages,tables)):
         for i,family in enumerate(families):
-            g=d.loc[d.family.eq(family)];v=g.net_sharpe.max()
+            g=d.loc[d.family.eq(family)];finite=g.net_sharpe.dropna()
+            v=finite.max() if len(finite) else np.nan
             matrix[i,j]=v
-            labels[i,j]=f'{v:+.2f}\n{len(g)} configs' if pd.notna(v) else ('Undefined Sharpe' if len(g) else 'Not evaluated')
-    fig,ax=plt.subplots(figsize=(9,5.5));cmap=plt.get_cmap('RdBu').copy();cmap.set_bad('#E8EBEF')
+            if pd.notna(v):
+                if role=='search':
+                    suffix='config' if len(g)==1 else 'configs'
+                else:
+                    suffix='evaluated row' if len(g)==1 else 'evaluated rows'
+                labels[i,j]=f'{v:+.2f}\n{len(g)} {suffix}'
+            else:
+                labels[i,j]='Not evaluated'
+    fig,ax=plt.subplots(figsize=(10.2,5.5));cmap=plt.get_cmap('RdBu').copy();cmap.set_bad('#E8EBEF')
     bound=max(1,np.nanmax(abs(matrix)))
     im=ax.imshow(np.ma.masked_invalid(matrix),cmap=cmap,vmin=-bound,vmax=bound,aspect='auto')
     for (i,j),label in labels.items():ax.text(j,i,label,ha='center',va='center',fontsize=10,color='white' if abs(matrix[i,j])>.65*bound else '#222')
     ax.set_yticks(range(len(families)),[s.replace('_',' ').title().replace('Rff','RFF').replace('Pca','PCA') for s in families],fontsize=11)
-    ax.set_xticks(range(3),['Screening\n2021–2022','Confirmation\n2023–2024','Historical evaluation\n2025'])
-    ax.set_title('Original model-family search | Best net Sharpe per stage',fontsize=13,pad=18)
+    ax.set_xticks(range(len(stages)),[label for label,_,_ in stages])
+    ax.set_title('Model search and frozen-specification evaluation | Net Sharpe',fontsize=13,pad=18)
     fig.colorbar(im,ax=ax,fraction=.035,pad=.04,label='Net Sharpe (symmetric, unclipped scale)')
     fig.subplots_adjust(left=.29,right=.94,top=.88,bottom=.16)
     save(fig,output,'11_model_family_evidence','Model families and selection stages',
-         'Each populated cell is the best observed net Sharpe within that family and stage, with the number of evaluated configurations. It is not necessarily the same configuration across stages. Grey means not evaluated or undefined Sharpe, not a zero return. These are the original search runs, not the later F2 diagnostic candidate.',
-         'Fixes false neutral colouring of missing cells, clipped negative Sharpe values and undersized family labels.')
+         'Screening and confirmation cells show the best observed net Sharpe within each family and the number of searched configurations. The 2025 and 2026 columns are frozen-period evaluations rather than new family searches; 2026 uses one pre-2026 fit with no reselection. Grey means not evaluated. Families with no finite trading Sharpe in every displayed stage are omitted rather than represented as zero.',
+         'Adds the 2026 fixed-specification extension, separates search from evaluation and removes all-undefined family rows.')
     d=csv(old.LADDER/'information_ladder_summary.csv').sort_values('ladder_order')
     labels=[f"F{i}: {s}" for i,s in enumerate(['Own history','+ Indian peers','+ U.S. services','+ Nifty 50','+ S&P 500 aggregates','+ S&P 500 constituents','+ AI capability','+ Full context'])]
     assert len(d)==len(labels)
@@ -394,28 +461,46 @@ def hypothesis_figures(output):
     save(fig,output,'13_transmission_inference','Association can exist without a profitable strategy',
          'Conditional U.S.-services coefficients control for lagged Indian-cohort and Nifty50 returns. Blue denotes Holm-adjusted p < 0.05 within the declared analysis batch; intervals are pointwise. A +1% U.S. return corresponds to approximately +0.098 percentage points in the full-sample Indian intraday outcome. Annual differences are not themselves significant: the direct period-interaction test was inconclusive. This is exploratory association, not causality.',
          'Adds effect uncertainty and adjusted evidence; distinguishes association from profitable prediction.')
-    # Explicit coverage chart: zero marked events in 2026 is a data limitation.
+    # Explicit coverage chart built from the current audited event calendar.
     fig,ax=plt.subplots(figsize=(8.7,4.5));x=np.arange(len(coverage))
-    bars=ax.bar(x,coverage.event_sessions,color=[INDIA]*5+[FLAT],edgecolor=INDIA)
+    years=coverage.iloc[:,0].astype(int)
+    counts=coverage.event_sessions.astype(int)
+    colors=[US if year==2026 and count>0 else (FLAT if count==0 else INDIA) for year,count in zip(years,counts)]
+    bars=ax.bar(x,counts,color=colors,edgecolor=INDIA)
     ax.bar_label(bars,padding=4,fontsize=11)
-    ax.set_xticks(x,[str(v) for v in coverage.iloc[:,0]]);ax.set_ylim(0,16)
-    ax.text(5,4,'2026 coverage\nmissing',ha='center',color=SHORT,weight='bold',fontsize=11)
-    ax.set(title='AI-release evidence | What the current calendar actually covers',ylabel='Marked Indian trading sessions')
+    ax.set_xticks(x,[str(v) for v in years]);ax.set_ylim(0,max(5,int(counts.max())+4))
+    for index,(count,year) in enumerate(zip(counts,years)):
+        if count==0:
+            ax.text(index,1,'No mapped\nevents',ha='center',color=SHORT,weight='bold',fontsize=10)
+    ax.set(title='AI-release evidence | Audited official-provider calendar',ylabel='Marked Indian trading sessions')
     clean_axis(ax);fig.subplots_adjust(left=.1,right=.98,bottom=.13,top=.88)
+    coverage_text=', '.join(f'{year}: {count}' for year,count in zip(years,counts))
     save(fig,output,'14_event_coverage','Why later-period event conclusions remain unresolved',
-         'The current calendar contains 5 marked sessions in 2023, 12 in 2024 and 7 in 2025. Zero marks in 2026 means incomplete event coverage, not that no frontier releases occurred. The later-period minimum event requirement fails. This figure belongs in limitations rather than serving as evidence that market reactions disappeared.',
-         'New data-coverage audit required to prevent a false adaptation narrative.',placement='appendix')
-    p=csv(HYP/'portfolio_periods.csv');p=p.loc[p.period.ne('all')].copy();p['year']=p.period.astype(int);p=p.sort_values('year')
-    fig,ax=plt.subplots(figsize=(8.7,4.7));colors=[GROSS if y<2023 else SHORT for y in p.year]
-    bars=ax.bar(p.year.astype(str),p.cumulative_return*100,color=colors,width=.6)
-    ax.bar_label(bars,labels=[f'{v:+.2%}' for v in p.cumulative_return],padding=5,fontsize=12)
-    ax.axhline(0,color='#777',lw=1);ax.axvline(1.5,color='#777',ls='--');ax.set_ylim(-29,22)
-    ax.text(.5,19,'Screening',ha='center',color=GROSS,weight='bold');ax.text(2.5,19,'Confirmation',ha='center',color=SHORT,weight='bold')
-    ax.set(title='F2 diagnostic candidate | Attractive screening did not persist',ylabel='Calendar-year net return (%)')
+         f'Marked Indian sessions by year are {coverage_text}. The 2026 calendar now uses dated official-provider announcements through 30 September under a fixed general-purpose frontier-release rule. Same-session releases can map to one Indian session, so session counts need not equal release counts. Small annual event samples still limit power and do not establish causal effects.',
+         'Uses the audited 2026 calendar and no longer labels observed zero coverage as an economic result.',placement='appendix')
+    annual=[]
+    for stage,folder in [('Screening',old.SCREEN),('Confirmation',old.CONFIRM),('Replication',old.FINAL),('Extension',old.FORWARD)]:
+        q=parquet(folder/'strategy_ledgers.parquet')
+        q=q.loc[q.config_id.eq(old.SELECTED)].copy();q['year']=pd.to_datetime(q.decision_date).dt.year
+        for year,group in q.groupby('year'):
+            annual.append({'stage':stage,'year':int(year),'sessions':len(group),
+                           'cumulative_return':float((1+group.net_return.fillna(0)).prod()-1)})
+    p=pd.DataFrame(annual).sort_values('year');p.to_csv(output/'15_annual_model_record.csv',index=False)
+    stage_color={'Screening':'#7F8C9A','Confirmation':US,'Replication':SHORT,'Extension':GROSS}
+    fig,ax=plt.subplots(figsize=(9.4,4.9));colors=[stage_color[s] for s in p.stage]
+    bars=ax.bar(p.year.astype(str),p.cumulative_return*100,color=colors,width=.62)
+    ax.bar_label(bars,labels=[f'{v:+.2%}' for v in p.cumulative_return],padding=5,fontsize=11)
+    ax.axhline(0,color='#777',lw=1)
+    for x in [1.5,3.5]:ax.axvline(x,color='#A7ADB4',ls='--',lw=.9)
+    ax.set_ylim(min(-8,100*p.cumulative_return.min()-4),max(20,100*p.cumulative_return.max()+4))
+    ax.set(title='Selected Extra Trees specification | Annual net record, 2021–Sep 2026',ylabel='Calendar-period cumulative net return (%)')
+    handles=[plt.Rectangle((0,0),1,1,color=stage_color[s]) for s in stage_color]
+    ax.legend(handles,list(stage_color),frameon=False,ncol=4,loc='upper left',fontsize=9)
     clean_axis(ax);fig.subplots_adjust(left=.12,right=.98,bottom=.13,top=.89)
-    save(fig,output,'15_confirmation_diagnostic','A rejected candidate is evidence about robustness',
-         'This is the later F2 Extra Trees diagnostic candidate, not the canonical final model. The same configuration returned +9.08% and +15.11% in screening years, then −22.65% and +2.21% in confirmation years. Confirmation rejected promotion. Keeping this separate prevents mixing candidate and canonical model results.',
-         'New screening-to-confirmation figure with explicit model identity.',placement='appendix')
+    values=', '.join(f"{int(r.year)} {r.cumulative_return:+.2%}" for r in p.itertuples())
+    save(fig,output,'15_confirmation_diagnostic','One specification across search, confirmation, replication, and extension',
+         f'Annual net returns for the selected Extra Trees specification are {values}. The same configuration identifier is evaluated throughout, but each protocol stage uses its declared rolling or fixed-fit estimator. The 2021–2024 observations influenced model search and confirmation and are not holdout evidence; 2025 is a historical replication and 2026 is a retrospectively inspected fixed-specification extension through September. The wide 2025 and 2026 bootstrap Sharpe intervals prevent a stable-alpha claim.',
+         'Expands the stability view to the complete 2021–September 2026 protocol and clearly separates selection-exposed years from later evaluation.',placement='main')
 
 
 def gallery(output):

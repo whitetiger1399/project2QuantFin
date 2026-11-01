@@ -23,27 +23,46 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/cross_market_ai_services_research.yaml")
     parser.add_argument("--dataset-id")
+    parser.add_argument("--analysis-start")
+    parser.add_argument("--analysis-end")
     parser.add_argument("--plan-only", action="store_true")
     args = parser.parse_args()
     config = load_research_config(args.config)
     dataset = resolve_dataset(config, args.dataset_id)
+    default_end = config["sample"]["splits"]["confirmation"][1]
+    analysis_start = pd.Timestamp(args.analysis_start) if args.analysis_start else None
+    analysis_end = pd.Timestamp(args.analysis_end or default_end)
+    if analysis_start is not None and analysis_start > analysis_end:
+        parser.error("--analysis-start must not be after --analysis-end")
     content_hash = stable_object_hash({
         "dataset_manifest": sha256_file(dataset / "manifest.json"),
         "config": config,
         "script": sha256_file(Path(__file__)),
+        "analysis_start": str(analysis_start.date()) if analysis_start is not None else None,
+        "analysis_end": str(analysis_end.date()),
     })[:12]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     analysis_id = f"ai_services_analysis_{stamp}_{content_hash}"
     output = root_path(config["outputs"]["analysis_root"]) / analysis_id
     plan = {"action": "analyze_ai_services_experiment", "analysis_id": analysis_id,
-            "content_hash": content_hash, "dataset_id": dataset.name, "directory": str(output)}
+            "content_hash": content_hash, "dataset_id": dataset.name, "directory": str(output),
+            "analysis_start": str(analysis_start.date()) if analysis_start is not None else None,
+            "analysis_end": str(analysis_end.date()),
+            "classification": "retrospective_descriptive" if args.analysis_end else "development_only"}
     if args.plan_only:
         print(json.dumps(plan, indent=2)); return
     output.mkdir(parents=True, exist_ok=False)
     plots = output / "plots"; plots.mkdir()
     panel, _, _ = read_panel_dataset(dataset)
-    development_end = pd.Timestamp(config["sample"]["splits"]["confirmation"][1])
-    panel = panel.loc[panel["decision_date"].le(development_end)].copy()
+    mask = panel["decision_date"].le(analysis_end)
+    if analysis_start is not None:
+        mask &= panel["decision_date"].ge(analysis_start)
+    panel = panel.loc[mask].copy()
+    if panel.empty:
+        raise ValueError("The requested analysis interval contains no panel observations")
+    period_label = (
+        f"{panel['decision_date'].min().date()} to {panel['decision_date'].max().date()}"
+    )
     daily = panel.sort_values("asset").groupby("decision_date").first()
     service_columns = [c for c in panel if c.startswith("us_it_services__") and c.endswith("__ret_lag_1")]
     targets = panel.pivot(index="decision_date", columns="asset", values="target_oc_return")
@@ -56,7 +75,7 @@ def main() -> None:
     plt.figure(figsize=(12, 7))
     sns.heatmap(correlations, cmap="vlag", center=0, annot=True, fmt=".2f", linewidths=.4,
                 cbar_kws={"label": "Spearman correlation"})
-    plt.title("Prior U.S. IT-services return vs. Nifty IT open-to-close return\nDevelopment sample through 2024")
+    plt.title(f"Prior U.S. IT-services return vs. Nifty IT open-to-close return\n{period_label}")
     plt.xlabel("Indian Nifty IT constituent"); plt.ylabel("U.S. IT-services firm")
     plt.tight_layout(); plt.savefig(plots / "us_india_services_heatmap.png", dpi=220); plt.close()
 
@@ -83,7 +102,11 @@ def main() -> None:
         plt.xlabel("Nifty IT constituent"); plt.ylabel("Publishing company")
         plt.tight_layout(); plt.savefig(plots / "provider_nifty_it_event_heatmap.png", dpi=220); plt.close()
 
-    post_provider_columns = [column for column in daily if column.endswith("_post_us_reaction_today")]
+    post_provider_columns = [
+        column for column in daily
+        if column.startswith("ai_event__provider_")
+        and column.endswith("_post_us_reaction_today")
+    ]
     service_labels = [column.split("__")[1].upper() for column in service_columns]
     provider_us_effects = pd.DataFrame(columns=service_labels, dtype=float)
     mediated_india_effects = pd.DataFrame(columns=targets.columns, dtype=float)
@@ -131,7 +154,8 @@ def main() -> None:
         mask = np.zeros(len(values), dtype=bool); mask[chosen] = True
         permutations.append(float(values[mask].mean() - values[~mask].mean()))
     event_summary = {
-        "development_end": str(development_end.date()), "event_sessions": count,
+        "analysis_start": str(panel["decision_date"].min().date()),
+        "analysis_end": str(panel["decision_date"].max().date()), "event_sessions": count,
         "event_mean_return": float(event_rows.mean()), "non_event_mean_return": float(non_event_rows.mean()),
         "event_minus_non_event": observed, "hac_coefficient": float(fit.params.iloc[1]),
         "hac_t_statistic": float(fit.tvalues.iloc[1]), "hac_pvalue": float(fit.pvalues.iloc[1]),
@@ -148,7 +172,7 @@ def main() -> None:
     plt.tight_layout(); plt.savefig(plots / "frontier_event_return_distribution.png", dpi=220); plt.close()
     files = [p for p in output.rglob("*") if p.is_file()]
     manifest = {"schema_version": 1, **plan, "status": "complete", "created_at_utc": datetime.now(timezone.utc).isoformat(),
-                "development_only": True, "event_summary": event_summary,
+                "classification": plan["classification"], "event_summary": event_summary,
                 "files": {str(p.relative_to(output)): sha256_file(p) for p in files}}
     atomic_json_dump(manifest, output / "manifest.json")
     print(json.dumps({**plan, "status": "complete", "event_sessions": count}, indent=2))

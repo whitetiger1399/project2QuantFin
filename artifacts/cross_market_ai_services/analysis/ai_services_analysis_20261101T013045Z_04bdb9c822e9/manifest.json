@@ -1,0 +1,40 @@
+{
+  "action": "analyze_ai_services_experiment",
+  "analysis_end": "2024-12-31",
+  "analysis_id": "ai_services_analysis_20261101T013045Z_04bdb9c822e9",
+  "analysis_start": null,
+  "classification": "development_only",
+  "content_hash": "04bdb9c822e9",
+  "created_at_utc": "2026-11-01T01:30:47.129352+00:00",
+  "dataset_id": "ai_services_panel_20261101T012725Z_797e5df55a4898c6",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_services/analysis/ai_services_analysis_20261101T013045Z_04bdb9c822e9",
+  "event_summary": {
+    "analysis_end": "2024-12-31",
+    "analysis_start": "2016-07-21",
+    "event_mean_return": 0.0029484322180618047,
+    "event_minus_non_event": 0.0033101498038796977,
+    "event_sessions": 17,
+    "hac_coefficient": 0.0033101498038797007,
+    "hac_pvalue": 0.19127036573585454,
+    "hac_t_statistic": 1.306830259819154,
+    "non_event_mean_return": -0.000361717585817893,
+    "two_sided_randomization_pvalue": 0.2196,
+    "warning": "Small event counts imply low statistical power; this is hypothesis evidence, not causal identification."
+  },
+  "files": {
+    "frontier_event_sessions.csv": "bc59c12f5343a6a749aa98affb193e5467b5456ae008472627ea603778ef59e6",
+    "frontier_event_study.json": "3f72f6d22ac2fbdca85bc9c31992cd82dd493224f349c8258d561fd064563331",
+    "plots/frontier_event_return_distribution.png": "05acdc329ffc06b999d4412bcba7f4d60dc5bf289575959378e24d80c704ebb5",
+    "plots/provider_nifty_it_event_heatmap.png": "b9058ee67d07ce2b9494c5adfb3109b947072f1a311603102785f5478b9e2dde",
+    "plots/provider_nifty_it_post_us_heatmap.png": "2e97e2b4898d2253b2374b32a81c8916b972572d158a14a725521a3648a83297",
+    "plots/provider_us_services_event_heatmap.png": "0703cab4bd4b82563f66f631cabfc8991ea383f1dc9afc4de208f6c511f19188",
+    "plots/us_india_services_heatmap.png": "29998ffced1d29caf19a597bf469f3b74f9a12ebd127263514a764ca3b51ce30",
+    "provider_event_counts.csv": "19960495dbd9ff8bea3c38be3847696c206db35978c64bbd01b6b819208ae5a9",
+    "provider_nifty_it_abnormal_returns.csv": "0ed5fc0bcc1fb74f2d532c9d4f8438b9d505b3bc26cd602749f5dcd728cc447d",
+    "provider_nifty_it_post_us_reaction_effects.csv": "2ca8d0060ffcbb725f26082e223546b43790e448bd936e5991e273934ffe7790",
+    "provider_us_services_post_release_effects.csv": "cd26fc29f93396100eea9af46299b616def1a5885981ffd9c5987cdea9deaf99",
+    "us_india_it_services_spearman.csv": "0fd989fe9deafaae8c172d092e00cb8cb60b1f6a848dc0a56b027d32ef1c6857"
+  },
+  "schema_version": 1,
+  "status": "complete"
+}

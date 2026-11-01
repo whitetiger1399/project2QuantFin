@@ -1,0 +1,9 @@
+{
+  "capability_features": 25,
+  "disclosure_fraction": 0.15384615384615385,
+  "event_clock_policy": "Actual U.S. 16:00 America/New_York sessions and NSE 08:55 Asia/Kolkata cutoffs; DST-aware.",
+  "events": 52,
+  "events_with_disclosed_total_parameters": 8,
+  "guardrail": "Parameter count is a sparse scale proxy; undisclosed values are not imputed.",
+  "source_dataset_id": "ai_services_panel_20261101T012725Z_797e5df55a4898c6"
+}

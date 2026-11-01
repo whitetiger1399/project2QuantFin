@@ -71,8 +71,19 @@ def _parse_articles(path: Path) -> list[dict[str, str]]:
     return records
 
 
-def _curated(events: list[dict[str, Any]], inventory: pd.DataFrame) -> pd.DataFrame:
+def _curated(
+    events: list[dict[str, Any]],
+    inventory: pd.DataFrame,
+    policy: dict[str, Any],
+) -> pd.DataFrame:
     indexed = inventory.set_index("article_name", drop=False)
+    coverage_start = pd.Timestamp(policy["coverage_start"])
+    coverage_end = pd.Timestamp(policy["coverage_end"])
+    if coverage_start > coverage_end:
+        raise ValueError("coverage_start must not be after coverage_end")
+    allowed_providers = set(policy.get("primary_providers", [])) | set(
+        policy.get("robustness_providers", [])
+    )
     rows: list[dict[str, Any]] = []
     for event in progress(events, description="Validating frontier calendar", unit="event"):
         name = str(event.get("inventory_name", "")).strip()
@@ -83,8 +94,15 @@ def _curated(events: list[dict[str, Any]], inventory: pd.DataFrame) -> pd.DataFr
                 matched = matched.iloc[0]
             source = matched.to_dict()
         release_date = pd.Timestamp(event["release_date"])
-        if release_date > pd.Timestamp("2025-12-31"):
-            raise ValueError(f"Post-2025 event is outside the frozen experiment: {event['event_id']}")
+        if not coverage_start <= release_date <= coverage_end:
+            raise ValueError(
+                f"Event is outside [{coverage_start.date()}, {coverage_end.date()}]: "
+                f"{event['event_id']}"
+            )
+        if event["provider"] not in allowed_providers:
+            raise ValueError(f"Provider is outside the declared universe: {event['provider']}")
+        if not str(event.get("source_url", "")).startswith("https://"):
+            raise ValueError(f"Official HTTPS source is required: {event['event_id']}")
         rows.append({
             **event,
             "release_date": str(release_date.date()),
@@ -136,7 +154,7 @@ def main() -> None:
         keys = sorted({key for row in records for key in row}, key=lambda key: (key != "article_name", key))
         inventory = pd.DataFrame(records).reindex(columns=keys)
         inventory.to_csv(output / "model_publishing_inventory.csv", index=False, quoting=csv.QUOTE_MINIMAL)
-        events = _curated(config["events"], inventory)
+        events = _curated(config["events"], inventory, config["policy"])
         events.to_csv(output / "frontier_ai_releases.csv", index=False)
         files = []
         for name in ["model_publishing_inventory.csv", "frontier_ai_releases.csv"]:
@@ -152,6 +170,9 @@ def main() -> None:
             "inventory_records": len(inventory),
             "curated_events": len(events),
             "primary_events": int(events["primary_event"].sum()),
+            "coverage_start": config["policy"]["coverage_start"],
+            "coverage_end": config["policy"]["coverage_end"],
+            "release_scope": config["policy"]["release_scope"],
             "files": files,
         }
         atomic_json_dump(manifest, output / "manifest.json")

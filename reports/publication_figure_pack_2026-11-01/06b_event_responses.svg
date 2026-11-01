@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="651.220781pt" height="416.282469pt" viewBox="0 0 651.220781 416.282469" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="651.220781pt" height="429.429094pt" viewBox="0 0 651.220781 429.429094" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-01T08:51:43.983270</dc:date>
+    <dc:date>2026-11-01T13:32:30.546732</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -21,8 +21,8 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 416.282469 
-L 651.220781 416.282469 
+   <path d="M 0 429.429094 
+L 651.220781 429.429094 
 L 651.220781 0 
 L 0 0 
 z
@@ -30,83 +30,83 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 65.832656 173.799347 
-L 565.152656 173.799347 
-L 565.152656 27.046406 
-L 65.832656 27.046406 
+    <path d="M 65.832656 189.128759 
+L 565.152656 189.128759 
+L 565.152656 49.046406 
+L 65.832656 49.046406 
 z
 " style="fill: #ffffff"/>
    </g>
-   <g clip-path="url(#p171b4660a3)">
+   <g clip-path="url(#p062a46b2dc)">
     <image xlink:href="data:image/png;base64,
-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" id="imagebf8b211afb" transform="scale(1 -1) translate(0 -147)" x="65.832656" y="-26.799347" width="499.5" height="147"/>
+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" id="imageaa0783a6ad" transform="scale(1 -1) translate(0 -140.1)" x="65.832656" y="-49.028759" width="499.5" height="140.1"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="md5db8b2d1e" d="M 0 0 
+       <path id="mb5136e9532" d="M 0 0 
 L 0 3.5 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#md5db8b2d1e" x="93.572656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="93.572656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="149.052656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="149.052656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="204.532656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="204.532656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_4">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="260.012656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="260.012656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_5">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="315.492656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="315.492656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="xtick_6">
      <g id="line2d_6">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="370.972656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="370.972656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="xtick_7">
      <g id="line2d_7">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="426.452656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="426.452656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="xtick_8">
      <g id="line2d_8">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="481.932656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="481.932656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
     <g id="xtick_9">
      <g id="line2d_9">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="537.412656" y="173.799347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="537.412656" y="189.128759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
     </g>
@@ -115,629 +115,673 @@ L 0 3.5
     <g id="ytick_1">
      <g id="line2d_10">
       <defs>
-       <path id="me3c50d5437" d="M 0 0 
+       <path id="m7eb96e3599" d="M 0 0 
 L -3.5 0 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="41.7217" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="63.054642" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="45.900841" transform="rotate(-0 58.832656 45.900841)">ACN</text>
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="67.233782" transform="rotate(-0 58.832656 67.233782)">ACN</text>
      </g>
     </g>
     <g id="ytick_2">
      <g id="line2d_11">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="71.072289" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="91.071112" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="75.251429" transform="rotate(-0 58.832656 75.251429)">IBM</text>
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="95.250253" transform="rotate(-0 58.832656 95.250253)">IBM</text>
      </g>
     </g>
     <g id="ytick_3">
      <g id="line2d_12">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="100.422877" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="119.087583" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="104.602017" transform="rotate(-0 58.832656 104.602017)">CTSH</text>
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="123.266723" transform="rotate(-0 58.832656 123.266723)">CTSH</text>
      </g>
     </g>
     <g id="ytick_4">
      <g id="line2d_13">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="129.773465" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="147.104053" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_4">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="133.952606" transform="rotate(-0 58.832656 133.952606)">EPAM</text>
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="151.283194" transform="rotate(-0 58.832656 151.283194)">EPAM</text>
      </g>
     </g>
     <g id="ytick_5">
      <g id="line2d_14">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="159.124053" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="175.120524" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="163.303194" transform="rotate(-0 58.832656 163.303194)">DXC</text>
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b75b16" x="58.832656" y="179.299665" transform="rotate(-0 58.832656 179.299665)">DXC</text>
      </g>
     </g>
    </g>
    <g id="patch_3">
-    <path d="M 65.832656 173.799347 
-L 65.832656 27.046406 
+    <path d="M 65.832656 189.128759 
+L 65.832656 49.046406 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_4">
-    <path d="M 565.152656 173.799347 
-L 565.152656 27.046406 
+    <path d="M 565.152656 189.128759 
+L 565.152656 49.046406 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_5">
-    <path d="M 65.832656 173.799347 
-L 565.152656 173.799347 
+    <path d="M 65.832656 189.128759 
+L 565.152656 189.128759 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_6">
-    <path d="M 65.832656 27.046406 
-L 565.152656 27.046406 
+    <path d="M 65.832656 49.046406 
+L 565.152656 49.046406 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_6">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="44.481075" transform="rotate(-0 93.572656 44.481075)">-2.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="65.814017" transform="rotate(-0 93.572656 65.814017)">-2.5</text>
    </g>
    <g id="text_7">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="44.481075" transform="rotate(-0 149.052656 44.481075)">-0.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="65.814017" transform="rotate(-0 149.052656 65.814017)">-0.5</text>
    </g>
    <g id="text_8">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="44.481075" transform="rotate(-0 204.532656 44.481075)">-0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="65.814017" transform="rotate(-0 204.532656 65.814017)">-0.1</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="44.481075" transform="rotate(-0 260.012656 44.481075)">-0.6</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="65.814017" transform="rotate(-0 260.012656 65.814017)">-0.6</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="44.481075" transform="rotate(-0 315.492656 44.481075)">-0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="65.814017" transform="rotate(-0 315.492656 65.814017)">-0.1</text>
    </g>
    <g id="text_11">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="44.481075" transform="rotate(-0 370.972656 44.481075)">-1.0</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="65.814017" transform="rotate(-0 370.972656 65.814017)">-1.0</text>
    </g>
    <g id="text_12">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="44.481075" transform="rotate(-0 426.452656 44.481075)">-0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="65.814017" transform="rotate(-0 426.452656 65.814017)">-0.1</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="44.481075" transform="rotate(-0 481.932656 44.481075)">-0.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="65.814017" transform="rotate(-0 481.932656 65.814017)">-0.3</text>
    </g>
    <g id="text_14">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="44.481075" transform="rotate(-0 537.412656 44.481075)">+0.7</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="65.814017" transform="rotate(-0 537.412656 65.814017)">+0.7</text>
    </g>
    <g id="text_15">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="73.831664" transform="rotate(-0 93.572656 73.831664)">-1.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="93.830487" transform="rotate(-0 93.572656 93.830487)">-1.1</text>
    </g>
    <g id="text_16">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="73.831664" transform="rotate(-0 149.052656 73.831664)">+0.4</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="93.830487" transform="rotate(-0 149.052656 93.830487)">+0.4</text>
    </g>
    <g id="text_17">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="73.831664" transform="rotate(-0 204.532656 73.831664)">-0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="93.830487" transform="rotate(-0 204.532656 93.830487)">-0.1</text>
    </g>
    <g id="text_18">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="73.831664" transform="rotate(-0 260.012656 73.831664)">+1.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="93.830487" transform="rotate(-0 260.012656 93.830487)">+1.5</text>
    </g>
    <g id="text_19">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="73.831664" transform="rotate(-0 315.492656 73.831664)">+1.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="93.830487" transform="rotate(-0 315.492656 93.830487)">+1.5</text>
    </g>
    <g id="text_20">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="73.831664" transform="rotate(-0 370.972656 73.831664)">+0.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="93.830487" transform="rotate(-0 370.972656 93.830487)">+0.9</text>
    </g>
    <g id="text_21">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="73.831664" transform="rotate(-0 426.452656 73.831664)">+0.7</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="93.830487" transform="rotate(-0 426.452656 93.830487)">+0.7</text>
    </g>
    <g id="text_22">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="73.831664" transform="rotate(-0 481.932656 73.831664)">-1.6</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="93.830487" transform="rotate(-0 481.932656 93.830487)">-1.6</text>
    </g>
    <g id="text_23">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="73.831664" transform="rotate(-0 537.412656 73.831664)">+0.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="93.830487" transform="rotate(-0 537.412656 93.830487)">+0.2</text>
    </g>
    <g id="text_24">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="103.182252" transform="rotate(-0 93.572656 103.182252)">-2.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="121.846958" transform="rotate(-0 93.572656 121.846958)">-2.3</text>
    </g>
    <g id="text_25">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="103.182252" transform="rotate(-0 149.052656 103.182252)">-0.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="121.846958" transform="rotate(-0 149.052656 121.846958)">-0.9</text>
    </g>
    <g id="text_26">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="103.182252" transform="rotate(-0 204.532656 103.182252)">-0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="121.846958" transform="rotate(-0 204.532656 121.846958)">-0.1</text>
    </g>
    <g id="text_27">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="103.182252" transform="rotate(-0 260.012656 103.182252)">+0.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="121.846958" transform="rotate(-0 260.012656 121.846958)">+0.5</text>
    </g>
    <g id="text_28">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="103.182252" transform="rotate(-0 315.492656 103.182252)">+1.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="121.846958" transform="rotate(-0 315.492656 121.846958)">+1.2</text>
    </g>
    <g id="text_29">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="103.182252" transform="rotate(-0 370.972656 103.182252)">-1.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="121.846958" transform="rotate(-0 370.972656 121.846958)">-1.1</text>
    </g>
    <g id="text_30">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="103.182252" transform="rotate(-0 426.452656 103.182252)">-1.8</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="121.846958" transform="rotate(-0 426.452656 121.846958)">-1.8</text>
    </g>
    <g id="text_31">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="103.182252" transform="rotate(-0 481.932656 103.182252)">+0.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="121.846958" transform="rotate(-0 481.932656 121.846958)">+0.3</text>
    </g>
    <g id="text_32">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="103.182252" transform="rotate(-0 537.412656 103.182252)">-1.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="121.846958" transform="rotate(-0 537.412656 121.846958)">-1.2</text>
    </g>
    <g id="text_33">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="132.53284" transform="rotate(-0 93.572656 132.53284)">-3.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="149.863428" transform="rotate(-0 93.572656 149.863428)">-3.2</text>
    </g>
    <g id="text_34">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="149.052656" y="132.53284" transform="rotate(-0 149.052656 132.53284)">+3.6</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="149.052656" y="149.863428" transform="rotate(-0 149.052656 149.863428)">+3.6</text>
    </g>
    <g id="text_35">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="132.53284" transform="rotate(-0 204.532656 132.53284)">-1.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="149.863428" transform="rotate(-0 204.532656 149.863428)">-1.9</text>
    </g>
    <g id="text_36">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="132.53284" transform="rotate(-0 260.012656 132.53284)">-0.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="149.863428" transform="rotate(-0 260.012656 149.863428)">-0.9</text>
    </g>
    <g id="text_37">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="132.53284" transform="rotate(-0 315.492656 132.53284)">-0.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="149.863428" transform="rotate(-0 315.492656 149.863428)">-0.2</text>
    </g>
    <g id="text_38">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="132.53284" transform="rotate(-0 370.972656 132.53284)">-1.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="149.863428" transform="rotate(-0 370.972656 149.863428)">-1.2</text>
    </g>
    <g id="text_39">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="132.53284" transform="rotate(-0 426.452656 132.53284)">-2.0</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="149.863428" transform="rotate(-0 426.452656 149.863428)">-2.0</text>
    </g>
    <g id="text_40">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="132.53284" transform="rotate(-0 481.932656 132.53284)">+1.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="149.863428" transform="rotate(-0 481.932656 149.863428)">+1.5</text>
    </g>
    <g id="text_41">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="132.53284" transform="rotate(-0 537.412656 132.53284)">-1.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="149.863428" transform="rotate(-0 537.412656 149.863428)">-1.2</text>
    </g>
    <g id="text_42">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="93.572656" y="161.883428" transform="rotate(-0 93.572656 161.883428)">-5.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="93.572656" y="177.879899" transform="rotate(-0 93.572656 177.879899)">-5.1</text>
    </g>
    <g id="text_43">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="161.883428" transform="rotate(-0 149.052656 161.883428)">-2.0</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="177.879899" transform="rotate(-0 149.052656 177.879899)">-2.0</text>
    </g>
    <g id="text_44">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="161.883428" transform="rotate(-0 204.532656 161.883428)">+1.4</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="177.879899" transform="rotate(-0 204.532656 177.879899)">+1.4</text>
    </g>
    <g id="text_45">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="161.883428" transform="rotate(-0 260.012656 161.883428)">-0.8</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="177.879899" transform="rotate(-0 260.012656 177.879899)">-0.8</text>
    </g>
    <g id="text_46">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="161.883428" transform="rotate(-0 315.492656 161.883428)">+2.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="177.879899" transform="rotate(-0 315.492656 177.879899)">+2.3</text>
    </g>
    <g id="text_47">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="161.883428" transform="rotate(-0 370.972656 161.883428)">+0.7</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="177.879899" transform="rotate(-0 370.972656 177.879899)">+0.7</text>
    </g>
    <g id="text_48">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="426.452656" y="161.883428" transform="rotate(-0 426.452656 161.883428)">+4.7</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="426.452656" y="177.879899" transform="rotate(-0 426.452656 177.879899)">+4.7</text>
    </g>
    <g id="text_49">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="481.932656" y="161.883428" transform="rotate(-0 481.932656 161.883428)">-3.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="481.932656" y="177.879899" transform="rotate(-0 481.932656 177.879899)">-3.9</text>
    </g>
    <g id="text_50">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="161.883428" transform="rotate(-0 537.412656 161.883428)">+2.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="177.879899" transform="rotate(-0 537.412656 177.879899)">+2.5</text>
+   </g>
+   <g id="AnnotationBbox_1">
+    <image xlink:href="data:image/png;base64,
+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" id="image737abfd3e6" transform="scale(1 -1) translate(0 -16.2)" x="85.572656" y="-29.639818" width="16.2" height="16.2"/>
+   </g>
+   <g id="AnnotationBbox_2">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAADKUlEQVR4nOVavW/TQBS/O6BMWZooEUuqMIS/gK7ZW0tkaqcgwWYBg2cQFInOHqB4goFOdGJwGdi6IvEPBAEqCx9KumSiFRxynTr+uDvft134SZHOd+/8u/f83vPdi6HjeoAPGAAAgR2ocyF+UUhZAAWMIRtcSIWeadXcUBj4OPrZ4JJUTGJt0urIcyHxmeK+f7C3+zTVfmSSC8C0YkzDKAXLKWZHk7tJezrZMsl1BlRuGFuZUC8XKloMC1iy3MJh4B8T+n6Z4AIpkYt8aRaqWPgSoW/JCBdcNFG5BeTdIwz8J4yxWzq58mArps5znzH2UjNXmWIqmWkxl+dlHAb+bx1cnIqpmE54LtLDhXXemA6RrZPaNotuUO2KySxUXTlc6EH8MVUu937/TUdiVfHct+m5Anri3BNb7BV546Jc7ufXL9/5V5Sbe5ieKxCrkHytzRV1xIqeeGMphqtbkJ57YQCzpQGxI/mHd/udb5/G0u7HQmflav/62o2P3BMwc0sFhSxrSqkIPw4/j0ufHqYvXSrGdLqeEhck9M2lc65IkoL5LZCRlzoPHNfL5XVICB/Mo1iMMPBvAwBegHpg23G9B2X5gKlYfCCMzk61xInjeks0BQuKHeztbs2mE4GCS/VoNFs7g41RUlfJKGYzIdiIQwT+UcCCK75+9Xh2NH0IzhEay82dweZNsisyKkykYkyNkgcZ5zjdUzBPklyK1eQF/cdxvQu8wrFizHddcdB2Bs3uOAyWuGWIZCHLhbKX/GXniLDd7V0BhtDu9vrFvaGlEvfq+jA6tkDdrkl+ShWUuB2NrqnrXog5Cu0uSKeBULFL3qva3d416bkrvX5tS9yr68Ox9Ny1IX99o4oSt4w7qbsgLPQY2UWILFRPXGGzJW4ZUT1c0GyJOy3K8yToMjUqcVOwLTlWjxI3DazjRTJmZDuNSXtFjf8Hx7c7IYwcG+KaA8qXuHnLzqRTruN6l01wpaE/xqr+kAdzKVYWAJhyne1vLLeeJ+1m65lJLgDjoxdSMz/fVzSDzdGdpL0xumeSC5xeF2JMFWckNioHkMklUMz5r74JBoagzvUXO+knvRTfyfIAAAAASUVORK5CYII=" id="image2866e88d2a" transform="scale(1 -1) translate(0 -16.2)" x="141.052656" y="-29.639818" width="16.2" height="16.2"/>
+   </g>
+   <g id="AnnotationBbox_3">
+    <image xlink:href="data:image/png;base64,
+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" id="imageb0a58cbfc7" transform="scale(1 -1) translate(0 -16.2)" x="196.532656" y="-29.639818" width="16.2" height="16.2"/>
+   </g>
+   <g id="AnnotationBbox_4">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAD0UlEQVR4nN1a3UtUQRSfGa9gGilFVKQVRhZSKQVJFohmlO2l0gcpg8DI0kjSv2Qzis0KpKd8kh52JTR66dMQqacwLBBBkaBSUCxtJ9wU9+7OnPm81+r3tHvnnPM758zMmY97sdvSjuRAEUIYBQNzLiIvijkOcAA0BcFFTOjBrFrvXDUuok6g0RXavafPRdQ1NbpCu/f0uYg4MUaTRdGcPS4iTozlyRIQF0nPGFXIpESGuSL+cjlyZRbrZ5gr4i8XFqUie11uWdWFS2+RRSzMzztPHtyeh2TclnYwkmgkDPpNQs1toIHZ6akBZBmioE5dvUFMggo1t2GCsc3iYKeqEULM9i0Yy61j0Ug4Lmky6Tfbt2gkvIAMEOvseCQjR2TGs+VVOQPSEvlC4/FzMvrSOw9KVUeH5YVdEWTZgZOXr6eUfi9id2/Ke5qQTEo8lZv0eZs2l3oUUhAV6CdiWJJwlh1wMjN/IVvAegP5aN3590oKKUiOwVE54Yky5idinR1nBCIe3zxzzG1pNzyf6UOiaDwW6Cf5Tll7xX8UNPlP2jqGZUq/dRSXVxyG2kVTwF30OcXrVRt6ySgsOfDGmjEKB7YKY5JN+eH182tKivjPcYgZWJBFZGXos2fAp3eDdwT6xPtk0Q5OK/caDrGwsmr4v0RQZlK4PVN9sWkNZA52WC6o8rP1G9gtVEq/OuEjO7/cwLJy1s4hn7F+y9av7Ba5wpwF+Gg0l8ZHhvN5bT/n5sBdPAyK+h/ea9XXR3BgojVtqL93jNfW1xVZ0LeN0Y/ZmVvS+jS9/a9Yx4yBNQKrbGjMUz1dRyPhGUgnw3GOCGyCRaOyoTHX+Io7JzdvSiDCGlLZkEJNU+srEa/Ap+lArrjjcckrESEoetnTfTCwK25XUER6Ozuo0oYV4Po2OTGor2/titsEPC5Dk0tg7rNYWxaJm9nhgWhPFyRTsGfvFYjLrLeRxxy8V0zEJH08K/oyNloECZRUHr8PclkEAVsDPHKOf/54zOfAKFfY5HTN1l3hGuqLPVXTp6qBBXkzYMKFwSCVt1SlVSd2qOpsK94HDjNR0dhYsH0XzIDNA8vfXTyqqrO/ovoZMkCZWzcCS1D+FbcYBmWL8m286Omu0TeMuNfpRH6cY60i4r0aS1f7PjnRK9SXc4uxV/wPQXRH3aFQ7U4J+6cho6KiUebWFiItUIS9X79Z/sINNOcvF/G2WiCiAX6sQvnm7M8xxS/y/OIisKbII8r5n/J86do5SC4HNqb7zl3nlaZdLoKsAgf4TgODXAqBqThrWhjMuYipAX9gzvUbHac6KDQ23IgAAAAASUVORK5CYII=" id="image171ed24eb0" transform="scale(1 -1) translate(0 -16.2)" x="252.012656" y="-29.639818" width="16.2" height="16.2"/>
+   </g>
+   <g id="AnnotationBbox_5">
+    <image xlink:href="data:image/png;base64,
+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" id="image19fd133a99" transform="scale(1 -1) translate(0 -16.2)" x="307.492656" y="-29.639818" width="16.2" height="16.2"/>
+   </g>
+   <g id="AnnotationBbox_6">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAADKUlEQVR4nOVavW/TQBS/O6BMWZooEUuqMIS/gK7ZW0tkaqcgwWYBg2cQFInOHqB4goFOdGJwGdi6IvEPBAEqCx9KumSiFRxynTr+uDvft134SZHOd+/8u/f83vPdi6HjeoAPGAAAgR2ocyF+UUhZAAWMIRtcSIWeadXcUBj4OPrZ4JJUTGJt0urIcyHxmeK+f7C3+zTVfmSSC8C0YkzDKAXLKWZHk7tJezrZMsl1BlRuGFuZUC8XKloMC1iy3MJh4B8T+n6Z4AIpkYt8aRaqWPgSoW/JCBdcNFG5BeTdIwz8J4yxWzq58mArps5znzH2UjNXmWIqmWkxl+dlHAb+bx1cnIqpmE54LtLDhXXemA6RrZPaNotuUO2KySxUXTlc6EH8MVUu937/TUdiVfHct+m5Anri3BNb7BV546Jc7ufXL9/5V5Sbe5ieKxCrkHytzRV1xIqeeGMphqtbkJ57YQCzpQGxI/mHd/udb5/G0u7HQmflav/62o2P3BMwc0sFhSxrSqkIPw4/j0ufHqYvXSrGdLqeEhck9M2lc65IkoL5LZCRlzoPHNfL5XVICB/Mo1iMMPBvAwBegHpg23G9B2X5gKlYfCCMzk61xInjeks0BQuKHeztbs2mE4GCS/VoNFs7g41RUlfJKGYzIdiIQwT+UcCCK75+9Xh2NH0IzhEay82dweZNsisyKkykYkyNkgcZ5zjdUzBPklyK1eQF/cdxvQu8wrFizHddcdB2Bs3uOAyWuGWIZCHLhbKX/GXniLDd7V0BhtDu9vrFvaGlEvfq+jA6tkDdrkl+ShWUuB2NrqnrXog5Cu0uSKeBULFL3qva3d416bkrvX5tS9yr68Ox9Ny1IX99o4oSt4w7qbsgLPQY2UWILFRPXGGzJW4ZUT1c0GyJOy3K8yToMjUqcVOwLTlWjxI3DazjRTJmZDuNSXtFjf8Hx7c7IYwcG+KaA8qXuHnLzqRTruN6l01wpaE/xqr+kAdzKVYWAJhyne1vLLeeJ+1m65lJLgDjoxdSMz/fVzSDzdGdpL0xumeSC5xeF2JMFWckNioHkMklUMz5r74JBoagzvUXO+knvRTfyfIAAAAASUVORK5CYII=" id="imagec74d42c84b" transform="scale(1 -1) translate(0 -16.2)" x="362.972656" y="-29.639818" width="16.2" height="16.2"/>
    </g>
    <g id="text_51">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle" x="426.452656" y="37.680876" transform="rotate(-0 426.452656 37.680876)">xAI</text>
+   </g>
+   <g id="AnnotationBbox_7">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAD0UlEQVR4nN1a3UtUQRSfGa9gGilFVKQVRhZSKQVJFohmlO2l0gcpg8DI0kjSv2Qzis0KpKd8kh52JTR66dMQqacwLBBBkaBSUCxtJ9wU9+7OnPm81+r3tHvnnPM758zMmY97sdvSjuRAEUIYBQNzLiIvijkOcAA0BcFFTOjBrFrvXDUuok6g0RXavafPRdQ1NbpCu/f0uYg4MUaTRdGcPS4iTozlyRIQF0nPGFXIpESGuSL+cjlyZRbrZ5gr4i8XFqUie11uWdWFS2+RRSzMzztPHtyeh2TclnYwkmgkDPpNQs1toIHZ6akBZBmioE5dvUFMggo1t2GCsc3iYKeqEULM9i0Yy61j0Ug4Lmky6Tfbt2gkvIAMEOvseCQjR2TGs+VVOQPSEvlC4/FzMvrSOw9KVUeH5YVdEWTZgZOXr6eUfi9id2/Ke5qQTEo8lZv0eZs2l3oUUhAV6CdiWJJwlh1wMjN/IVvAegP5aN3590oKKUiOwVE54Yky5idinR1nBCIe3zxzzG1pNzyf6UOiaDwW6Cf5Tll7xX8UNPlP2jqGZUq/dRSXVxyG2kVTwF30OcXrVRt6ySgsOfDGmjEKB7YKY5JN+eH182tKivjPcYgZWJBFZGXos2fAp3eDdwT6xPtk0Q5OK/caDrGwsmr4v0RQZlK4PVN9sWkNZA52WC6o8rP1G9gtVEq/OuEjO7/cwLJy1s4hn7F+y9av7Ba5wpwF+Gg0l8ZHhvN5bT/n5sBdPAyK+h/ea9XXR3BgojVtqL93jNfW1xVZ0LeN0Y/ZmVvS+jS9/a9Yx4yBNQKrbGjMUz1dRyPhGUgnw3GOCGyCRaOyoTHX+Io7JzdvSiDCGlLZkEJNU+srEa/Ap+lArrjjcckrESEoetnTfTCwK25XUER6Ozuo0oYV4Po2OTGor2/titsEPC5Dk0tg7rNYWxaJm9nhgWhPFyRTsGfvFYjLrLeRxxy8V0zEJH08K/oyNloECZRUHr8PclkEAVsDPHKOf/54zOfAKFfY5HTN1l3hGuqLPVXTp6qBBXkzYMKFwSCVt1SlVSd2qOpsK94HDjNR0dhYsH0XzIDNA8vfXTyqqrO/ovoZMkCZWzcCS1D+FbcYBmWL8m286Omu0TeMuNfpRH6cY60i4r0aS1f7PjnRK9SXc4uxV/wPQXRH3aFQ7U4J+6cho6KiUebWFiItUIS9X79Z/sINNOcvF/G2WiCiAX6sQvnm7M8xxS/y/OIisKbII8r5n/J86do5SC4HNqb7zl3nlaZdLoKsAgf4TgODXAqBqThrWhjMuYipAX9gzvUbHac6KDQ23IgAAAAASUVORK5CYII=" id="imaged49704ef59" transform="scale(1 -1) translate(0 -16.2)" x="473.932656" y="-29.639818" width="16.2" height="16.2"/>
+   </g>
+   <g id="AnnotationBbox_8">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAADKUlEQVR4nOVavW/TQBS/O6BMWZooEUuqMIS/gK7ZW0tkaqcgwWYBg2cQFInOHqB4goFOdGJwGdi6IvEPBAEqCx9KumSiFRxynTr+uDvft134SZHOd+/8u/f83vPdi6HjeoAPGAAAgR2ocyF+UUhZAAWMIRtcSIWeadXcUBj4OPrZ4JJUTGJt0urIcyHxmeK+f7C3+zTVfmSSC8C0YkzDKAXLKWZHk7tJezrZMsl1BlRuGFuZUC8XKloMC1iy3MJh4B8T+n6Z4AIpkYt8aRaqWPgSoW/JCBdcNFG5BeTdIwz8J4yxWzq58mArps5znzH2UjNXmWIqmWkxl+dlHAb+bx1cnIqpmE54LtLDhXXemA6RrZPaNotuUO2KySxUXTlc6EH8MVUu937/TUdiVfHct+m5Anri3BNb7BV546Jc7ufXL9/5V5Sbe5ieKxCrkHytzRV1xIqeeGMphqtbkJ57YQCzpQGxI/mHd/udb5/G0u7HQmflav/62o2P3BMwc0sFhSxrSqkIPw4/j0ufHqYvXSrGdLqeEhck9M2lc65IkoL5LZCRlzoPHNfL5XVICB/Mo1iMMPBvAwBegHpg23G9B2X5gKlYfCCMzk61xInjeks0BQuKHeztbs2mE4GCS/VoNFs7g41RUlfJKGYzIdiIQwT+UcCCK75+9Xh2NH0IzhEay82dweZNsisyKkykYkyNkgcZ5zjdUzBPklyK1eQF/cdxvQu8wrFizHddcdB2Bs3uOAyWuGWIZCHLhbKX/GXniLDd7V0BhtDu9vrFvaGlEvfq+jA6tkDdrkl+ShWUuB2NrqnrXog5Cu0uSKeBULFL3qva3d416bkrvX5tS9yr68Ox9Ny1IX99o4oSt4w7qbsgLPQY2UWILFRPXGGzJW4ZUT1c0GyJOy3K8yToMjUqcVOwLTlWjxI3DazjRTJmZDuNSXtFjf8Hx7c7IYwcG+KaA8qXuHnLzqRTruN6l01wpaE/xqr+kAdzKVYWAJhyne1vLLeeJ+1m65lJLgDjoxdSMz/fVzSDzdGdpL0xumeSC5xeF2JMFWckNioHkMklUMz5r74JBoagzvUXO+knvRTfyfIAAAAASUVORK5CYII=" id="image96f37d9a28" transform="scale(1 -1) translate(0 -16.2)" x="529.412656" y="-29.639818" width="16.2" height="16.2"/>
+   </g>
+   <g id="text_52">
     <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b75b16" x="65.832656" y="17.046406" transform="rotate(-0 65.832656 17.046406)">U.S. | First completed reaction session: close-to-close</text>
    </g>
   </g>
   <g id="axes_2">
    <g id="patch_7">
-    <path d="M 65.832656 376.318406 
-L 565.152656 376.318406 
-L 565.152656 229.565465 
-L 65.832656 229.565465 
+    <path d="M 65.832656 382.442406 
+L 565.152656 382.442406 
+L 565.152656 242.360053 
+L 65.832656 242.360053 
 z
 " style="fill: #ffffff"/>
    </g>
-   <g clip-path="url(#p555a5c927d)">
+   <g clip-path="url(#pe8ed215fb0)">
     <image xlink:href="data:image/png;base64,
-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" id="image78f611ab29" transform="scale(1 -1) translate(0 -147)" x="65.832656" y="-229.318406" width="499.5" height="147"/>
+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" id="imagee3646b864f" transform="scale(1 -1) translate(0 -140.1)" x="65.832656" y="-242.342406" width="499.5" height="140.1"/>
    </g>
    <g id="matplotlib.axis_3">
     <g id="xtick_10">
      <g id="line2d_15">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="93.572656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="93.572656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_52">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="93.572656" y="390.916844" transform="rotate(-0 93.572656 390.916844)">1</text>
+     <g id="text_53">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(91.027656 395.521156)">1</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(81.995156 404.479406)">GPT-4</text>
      </g>
     </g>
     <g id="xtick_11">
      <g id="line2d_16">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="149.052656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="149.052656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_53">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="149.052656" y="390.916844" transform="rotate(-0 149.052656 390.916844)">2</text>
+     <g id="text_54">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(146.507656 395.521156)">2</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(127.205781 404.479406)">Gemini 1.5</text>
      </g>
     </g>
     <g id="xtick_12">
      <g id="line2d_17">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="204.532656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="204.532656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_54">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="204.532656" y="390.916844" transform="rotate(-0 204.532656 390.916844)">3</text>
+     <g id="text_55">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(201.987656 395.521156)">3</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(190.507656 404.479406)">GPT-4o</text>
      </g>
     </g>
     <g id="xtick_13">
      <g id="line2d_18">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="260.012656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="260.012656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_55">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="260.012656" y="390.916844" transform="rotate(-0 260.012656 390.916844)">4</text>
+     <g id="text_56">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(257.467656 395.521156)">4</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(238.488906 404.479406)">Claude 3.5</text>
      </g>
     </g>
     <g id="xtick_14">
      <g id="line2d_19">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="315.492656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="315.492656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_56">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="315.492656" y="390.916844" transform="rotate(-0 315.492656 390.916844)">5</text>
+     <g id="text_57">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(312.947656 395.521156)">5</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(310.500156 404.479406)">o1</text>
      </g>
     </g>
     <g id="xtick_15">
      <g id="line2d_20">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="370.972656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="370.972656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_57">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="370.972656" y="390.916844" transform="rotate(-0 370.972656 390.916844)">6</text>
+     <g id="text_58">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(368.427656 395.521156)">6</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(349.125781 404.479406)">Gemini 2.0</text>
      </g>
     </g>
     <g id="xtick_16">
      <g id="line2d_21">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="426.452656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="426.452656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_58">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="426.452656" y="390.916844" transform="rotate(-0 426.452656 390.916844)">7</text>
+     <g id="text_59">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(423.907656 395.521156)">7</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(413.218906 404.479406)">Grok 3</text>
      </g>
     </g>
     <g id="xtick_17">
      <g id="line2d_22">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="481.932656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="481.932656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_59">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="481.932656" y="390.916844" transform="rotate(-0 481.932656 390.916844)">8</text>
+     <g id="text_60">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(479.387656 395.521156)">8</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(460.408906 404.479406)">Claude 3.7</text>
      </g>
     </g>
     <g id="xtick_18">
      <g id="line2d_23">
       <g>
-       <use xlink:href="#md5db8b2d1e" x="537.412656" y="376.318406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mb5136e9532" x="537.412656" y="382.442406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_60">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="537.412656" y="390.916844" transform="rotate(-0 537.412656 390.916844)">9</text>
+     <g id="text_61">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(534.867656 395.521156)">9</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(515.565781 404.479406)">Gemini 2.5</text>
      </g>
     </g>
-    <g id="text_61">
-     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="315.492656" y="405.354812" transform="rotate(-0 315.492656 405.354812)">Numbered event (see timeline key); returns in percent</text>
+    <g id="text_62">
+     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="315.492656" y="418.501438" transform="rotate(-0 315.492656 418.501438)">Frontier model release; returns in percent</text>
     </g>
    </g>
    <g id="matplotlib.axis_4">
     <g id="ytick_6">
      <g id="line2d_24">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="244.240759" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="256.368289" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_62">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="248.4199" transform="rotate(-0 58.832656 248.4199)">TCS</text>
+     <g id="text_63">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="260.547429" transform="rotate(-0 58.832656 260.547429)">TCS</text>
      </g>
     </g>
     <g id="ytick_7">
      <g id="line2d_25">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="273.591347" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="284.384759" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_63">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="277.770488" transform="rotate(-0 58.832656 277.770488)">INFY</text>
+     <g id="text_64">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="288.5639" transform="rotate(-0 58.832656 288.5639)">INFY</text>
      </g>
     </g>
     <g id="ytick_8">
      <g id="line2d_26">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="302.941936" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="312.40123" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_64">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="307.121076" transform="rotate(-0 58.832656 307.121076)">WIPRO</text>
+     <g id="text_65">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="316.58037" transform="rotate(-0 58.832656 316.58037)">WIPRO</text>
      </g>
     </g>
     <g id="ytick_9">
      <g id="line2d_27">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="332.292524" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="340.4177" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_65">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="336.471665" transform="rotate(-0 58.832656 336.471665)">HCLTECH</text>
+     <g id="text_66">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="344.596841" transform="rotate(-0 58.832656 344.596841)">HCLTECH</text>
      </g>
     </g>
     <g id="ytick_10">
      <g id="line2d_28">
       <g>
-       <use xlink:href="#me3c50d5437" x="65.832656" y="361.643112" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m7eb96e3599" x="65.832656" y="368.434171" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_66">
-      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="365.822253" transform="rotate(-0 58.832656 365.822253)">TECHM</text>
+     <g id="text_67">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #175b9a" x="58.832656" y="372.613312" transform="rotate(-0 58.832656 372.613312)">TECHM</text>
      </g>
     </g>
    </g>
    <g id="patch_8">
-    <path d="M 65.832656 376.318406 
-L 65.832656 229.565465 
+    <path d="M 65.832656 382.442406 
+L 65.832656 242.360053 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_9">
-    <path d="M 565.152656 376.318406 
-L 565.152656 229.565465 
+    <path d="M 565.152656 382.442406 
+L 565.152656 242.360053 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_10">
-    <path d="M 65.832656 376.318406 
-L 565.152656 376.318406 
+    <path d="M 65.832656 382.442406 
+L 565.152656 382.442406 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_11">
-    <path d="M 65.832656 229.565465 
-L 565.152656 229.565465 
+    <path d="M 65.832656 242.360053 
+L 565.152656 242.360053 
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
-   <g id="text_67">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="247.000134" transform="rotate(-0 93.572656 247.000134)">-1.6</text>
-   </g>
    <g id="text_68">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="247.000134" transform="rotate(-0 149.052656 247.000134)">+0.4</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="259.127664" transform="rotate(-0 93.572656 259.127664)">-1.6</text>
    </g>
    <g id="text_69">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="247.000134" transform="rotate(-0 204.532656 247.000134)">-0.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="259.127664" transform="rotate(-0 149.052656 259.127664)">+0.4</text>
    </g>
    <g id="text_70">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="247.000134" transform="rotate(-0 260.012656 247.000134)">+0.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="259.127664" transform="rotate(-0 204.532656 259.127664)">-0.9</text>
    </g>
    <g id="text_71">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="247.000134" transform="rotate(-0 315.492656 247.000134)">-0.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="259.127664" transform="rotate(-0 260.012656 259.127664)">+0.2</text>
    </g>
    <g id="text_72">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="247.000134" transform="rotate(-0 370.972656 247.000134)">+0.6</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="259.127664" transform="rotate(-0 315.492656 259.127664)">-0.2</text>
    </g>
    <g id="text_73">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="247.000134" transform="rotate(-0 426.452656 247.000134)">-0.6</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="259.127664" transform="rotate(-0 370.972656 259.127664)">+0.6</text>
    </g>
    <g id="text_74">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="247.000134" transform="rotate(-0 481.932656 247.000134)">+0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="259.127664" transform="rotate(-0 426.452656 259.127664)">-0.6</text>
    </g>
    <g id="text_75">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="247.000134" transform="rotate(-0 537.412656 247.000134)">-0.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="259.127664" transform="rotate(-0 481.932656 259.127664)">+0.1</text>
    </g>
    <g id="text_76">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="276.350722" transform="rotate(-0 93.572656 276.350722)">-1.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="259.127664" transform="rotate(-0 537.412656 259.127664)">-0.3</text>
    </g>
    <g id="text_77">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="276.350722" transform="rotate(-0 149.052656 276.350722)">+0.7</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="287.144134" transform="rotate(-0 93.572656 287.144134)">-1.3</text>
    </g>
    <g id="text_78">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="276.350722" transform="rotate(-0 204.532656 276.350722)">-0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="287.144134" transform="rotate(-0 149.052656 287.144134)">+0.7</text>
    </g>
    <g id="text_79">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="276.350722" transform="rotate(-0 260.012656 276.350722)">+0.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="287.144134" transform="rotate(-0 204.532656 287.144134)">-0.1</text>
    </g>
    <g id="text_80">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="276.350722" transform="rotate(-0 315.492656 276.350722)">-0.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="287.144134" transform="rotate(-0 260.012656 287.144134)">+0.2</text>
    </g>
    <g id="text_81">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="276.350722" transform="rotate(-0 370.972656 276.350722)">+0.6</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="287.144134" transform="rotate(-0 315.492656 287.144134)">-0.3</text>
    </g>
    <g id="text_82">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="276.350722" transform="rotate(-0 426.452656 276.350722)">+0.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="287.144134" transform="rotate(-0 370.972656 287.144134)">+0.6</text>
    </g>
    <g id="text_83">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="276.350722" transform="rotate(-0 481.932656 276.350722)">+1.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="287.144134" transform="rotate(-0 426.452656 287.144134)">+0.5</text>
    </g>
    <g id="text_84">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="276.350722" transform="rotate(-0 537.412656 276.350722)">-1.6</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="287.144134" transform="rotate(-0 481.932656 287.144134)">+1.3</text>
    </g>
    <g id="text_85">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="305.701311" transform="rotate(-0 93.572656 305.701311)">-2.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="287.144134" transform="rotate(-0 537.412656 287.144134)">-1.6</text>
    </g>
    <g id="text_86">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="149.052656" y="305.701311" transform="rotate(-0 149.052656 305.701311)">+3.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="315.160605" transform="rotate(-0 93.572656 315.160605)">-2.1</text>
    </g>
    <g id="text_87">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="305.701311" transform="rotate(-0 204.532656 305.701311)">+0.8</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="149.052656" y="315.160605" transform="rotate(-0 149.052656 315.160605)">+3.9</text>
    </g>
    <g id="text_88">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="305.701311" transform="rotate(-0 260.012656 305.701311)">+0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="315.160605" transform="rotate(-0 204.532656 315.160605)">+0.8</text>
    </g>
    <g id="text_89">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="305.701311" transform="rotate(-0 315.492656 305.701311)">+3.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="315.160605" transform="rotate(-0 260.012656 315.160605)">+0.1</text>
    </g>
    <g id="text_90">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="305.701311" transform="rotate(-0 370.972656 305.701311)">+0.4</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="315.160605" transform="rotate(-0 315.492656 315.160605)">+3.1</text>
    </g>
    <g id="text_91">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="305.701311" transform="rotate(-0 426.452656 305.701311)">+2.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="315.160605" transform="rotate(-0 370.972656 315.160605)">+0.4</text>
    </g>
    <g id="text_92">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="305.701311" transform="rotate(-0 481.932656 305.701311)">-1.0</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="315.160605" transform="rotate(-0 426.452656 315.160605)">+2.2</text>
    </g>
    <g id="text_93">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="305.701311" transform="rotate(-0 537.412656 305.701311)">-1.7</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="315.160605" transform="rotate(-0 481.932656 315.160605)">-1.0</text>
    </g>
    <g id="text_94">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="335.051899" transform="rotate(-0 93.572656 335.051899)">-1.4</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="315.160605" transform="rotate(-0 537.412656 315.160605)">-1.7</text>
    </g>
    <g id="text_95">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="335.051899" transform="rotate(-0 149.052656 335.051899)">-0.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="343.177075" transform="rotate(-0 93.572656 343.177075)">-1.4</text>
    </g>
    <g id="text_96">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="335.051899" transform="rotate(-0 204.532656 335.051899)">-0.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="343.177075" transform="rotate(-0 149.052656 343.177075)">-0.5</text>
    </g>
    <g id="text_97">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="335.051899" transform="rotate(-0 260.012656 335.051899)">+0.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="343.177075" transform="rotate(-0 204.532656 343.177075)">-0.1</text>
    </g>
    <g id="text_98">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="335.051899" transform="rotate(-0 315.492656 335.051899)">+0.4</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="343.177075" transform="rotate(-0 260.012656 343.177075)">+0.2</text>
    </g>
    <g id="text_99">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="335.051899" transform="rotate(-0 370.972656 335.051899)">+0.6</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="343.177075" transform="rotate(-0 315.492656 343.177075)">+0.4</text>
    </g>
    <g id="text_100">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="335.051899" transform="rotate(-0 426.452656 335.051899)">+1.1</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="343.177075" transform="rotate(-0 370.972656 343.177075)">+0.6</text>
    </g>
    <g id="text_101">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="335.051899" transform="rotate(-0 481.932656 335.051899)">+0.0</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="343.177075" transform="rotate(-0 426.452656 343.177075)">+1.1</text>
    </g>
    <g id="text_102">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="335.051899" transform="rotate(-0 537.412656 335.051899)">+0.5</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="343.177075" transform="rotate(-0 481.932656 343.177075)">+0.0</text>
    </g>
    <g id="text_103">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="364.402487" transform="rotate(-0 93.572656 364.402487)">-0.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="343.177075" transform="rotate(-0 537.412656 343.177075)">+0.5</text>
    </g>
    <g id="text_104">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="364.402487" transform="rotate(-0 149.052656 364.402487)">-0.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="93.572656" y="371.193546" transform="rotate(-0 93.572656 371.193546)">-0.9</text>
    </g>
    <g id="text_105">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="364.402487" transform="rotate(-0 204.532656 364.402487)">+0.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="149.052656" y="371.193546" transform="rotate(-0 149.052656 371.193546)">-0.2</text>
    </g>
    <g id="text_106">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="364.402487" transform="rotate(-0 260.012656 364.402487)">+0.8</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="204.532656" y="371.193546" transform="rotate(-0 204.532656 371.193546)">+0.9</text>
    </g>
    <g id="text_107">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="364.402487" transform="rotate(-0 315.492656 364.402487)">+0.4</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="260.012656" y="371.193546" transform="rotate(-0 260.012656 371.193546)">+0.8</text>
    </g>
    <g id="text_108">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="364.402487" transform="rotate(-0 370.972656 364.402487)">+1.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="315.492656" y="371.193546" transform="rotate(-0 315.492656 371.193546)">+0.4</text>
    </g>
    <g id="text_109">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="364.402487" transform="rotate(-0 426.452656 364.402487)">+2.2</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="370.972656" y="371.193546" transform="rotate(-0 370.972656 371.193546)">+1.2</text>
    </g>
    <g id="text_110">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="364.402487" transform="rotate(-0 481.932656 364.402487)">-0.9</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="426.452656" y="371.193546" transform="rotate(-0 426.452656 371.193546)">+2.2</text>
    </g>
    <g id="text_111">
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="364.402487" transform="rotate(-0 537.412656 364.402487)">-3.3</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="481.932656" y="371.193546" transform="rotate(-0 481.932656 371.193546)">-0.9</text>
    </g>
    <g id="text_112">
-    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #175b9a" x="65.832656" y="219.565465" transform="rotate(-0 65.832656 219.565465)">INDIA | First eligible session: open-to-close</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="537.412656" y="371.193546" transform="rotate(-0 537.412656 371.193546)">-3.3</text>
+   </g>
+   <g id="text_113">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #175b9a" x="65.832656" y="232.360053" transform="rotate(-0 65.832656 232.360053)">INDIA | First eligible session: open-to-close</text>
    </g>
   </g>
   <g id="axes_3">
    <g id="patch_12">
-    <path d="M 592.512656 344.566406 
-L 606.192656 344.566406 
-L 606.192656 72.406406 
-L 592.512656 72.406406 
+    <path d="M 592.512656 350.690406 
+L 606.192656 350.690406 
+L 606.192656 78.530406 
+L 592.512656 78.530406 
 z
 " style="fill: #ffffff"/>
    </g>
    <image xlink:href="data:image/png;base64,
-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" id="imagea72d00db26" transform="scale(1 -1) translate(0 -272.1)" x="592.5" y="-72.3" width="13.8" height="272.1"/>
+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" id="imagebffd0d9f74" transform="scale(1 -1) translate(0 -272.4)" x="592.5" y="-78.3" width="13.8" height="272.4"/>
    <g id="matplotlib.axis_5"/>
    <g id="matplotlib.axis_6">
     <g id="ytick_11">
      <g id="line2d_29">
       <defs>
-       <path id="md4d9e0fd28" d="M 0 0 
+       <path id="m5000a2ed22" d="M 0 0 
 L 3.5 0 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#md4d9e0fd28" x="606.192656" y="315.521491" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m5000a2ed22" x="606.192656" y="321.645491" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_113">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="319.320709" transform="rotate(-0 613.192656 319.320709)">−4</text>
+     <g id="text_114">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="325.444709" transform="rotate(-0 613.192656 325.444709)">−4</text>
      </g>
     </g>
     <g id="ytick_12">
      <g id="line2d_30">
       <g>
-       <use xlink:href="#md4d9e0fd28" x="606.192656" y="262.003948" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m5000a2ed22" x="606.192656" y="268.127948" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_114">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="265.803167" transform="rotate(-0 613.192656 265.803167)">−2</text>
+     <g id="text_115">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="271.927167" transform="rotate(-0 613.192656 271.927167)">−2</text>
      </g>
     </g>
     <g id="ytick_13">
      <g id="line2d_31">
       <g>
-       <use xlink:href="#md4d9e0fd28" x="606.192656" y="208.486406" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m5000a2ed22" x="606.192656" y="214.610406" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_115">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="212.285625" transform="rotate(-0 613.192656 212.285625)">0</text>
+     <g id="text_116">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="218.409625" transform="rotate(-0 613.192656 218.409625)">0</text>
      </g>
     </g>
     <g id="ytick_14">
      <g id="line2d_32">
       <g>
-       <use xlink:href="#md4d9e0fd28" x="606.192656" y="154.968864" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m5000a2ed22" x="606.192656" y="161.092864" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_116">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="158.768083" transform="rotate(-0 613.192656 158.768083)">2</text>
+     <g id="text_117">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="164.892083" transform="rotate(-0 613.192656 164.892083)">2</text>
      </g>
     </g>
     <g id="ytick_15">
      <g id="line2d_33">
       <g>
-       <use xlink:href="#md4d9e0fd28" x="606.192656" y="101.451322" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m5000a2ed22" x="606.192656" y="107.575322" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
-     <g id="text_117">
-      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="105.250541" transform="rotate(-0 613.192656 105.250541)">4</text>
+     <g id="text_118">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="613.192656" y="111.374541" transform="rotate(-0 613.192656 111.374541)">4</text>
      </g>
     </g>
-    <g id="text_118">
-     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="640.293125" y="208.486406" transform="rotate(-90 640.293125 208.486406)">Observed return (%)</text>
+    <g id="text_119">
+     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="640.293125" y="214.610406" transform="rotate(-90 640.293125 214.610406)">Observed return (%)</text>
     </g>
    </g>
    <g id="LineCollection_1"/>
    <g id="patch_13">
-    <path d="M 592.512656 344.566406 
-L 599.352656 344.566406 
-L 606.192656 344.566406 
-L 606.192656 72.406406 
-L 599.352656 72.406406 
-L 592.512656 72.406406 
-L 592.512656 344.566406 
+    <path d="M 592.512656 350.690406 
+L 599.352656 350.690406 
+L 606.192656 350.690406 
+L 606.192656 78.530406 
+L 599.352656 78.530406 
+L 592.512656 78.530406 
+L 592.512656 350.690406 
 z
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p171b4660a3">
-   <rect x="65.832656" y="27.046406" width="499.32" height="146.752941"/>
+  <clipPath id="p062a46b2dc">
+   <rect x="65.832656" y="49.046406" width="499.32" height="140.082353"/>
   </clipPath>
-  <clipPath id="p555a5c927d">
-   <rect x="65.832656" y="229.565465" width="499.32" height="146.752941"/>
+  <clipPath id="pe8ed215fb0">
+   <rect x="65.832656" y="242.360053" width="499.32" height="140.082353"/>
   </clipPath>
  </defs>
 </svg>

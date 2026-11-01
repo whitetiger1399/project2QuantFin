@@ -79,7 +79,7 @@ git lfs fsck
 | Rates, yields, spreads, dollar, VIX and India macro | [FRED/ALFRED](https://fred.stlouisfed.org/docs/api/fred/) | `fetch_point_in_time_context.py` | Initial-release observations where available; fallbacks are marked current-vintage. |
 | Historical S&P 500 membership | Committed source from [fja05680/sp500](https://github.com/fja05680/sp500) | `prepare_provisional_memberships.py` | Public provisional reconstruction, not CRSP/Compustat. |
 | Nifty 50/500 histories | Committed sources from [NiftyHistory](https://niftyhistory.in/) | `prepare_provisional_memberships.py` | Effective dates; announcement timestamps unavailable. |
-| Frontier AI releases | Committed `model_publishing.txt` and curated whitelist | `build_frontier_ai_release_calendar.py` | Official provider URLs in the whitelist determine accepted dates. |
+| Frontier AI releases | Committed `model_publishing.txt` and curated whitelist | `build_frontier_ai_release_calendar.py` | Official provider announcements determine accepted dates. The declared general-purpose release universe covers 14 March 2023–30 September 2026; specialized media/embedding models and product-only updates are excluded. |
 | Disclosed model scale | Committed `frontier_ai_disclosed_parameters.yaml` | `build_ai_capability_panel.py` | Missing proprietary sizes remain missing; scale is not complete capability. |
 | AI benchmark snapshot | [Epoch AI](https://epoch.ai/benchmarks/use-this-data), committed `benchmark_data.zip` | `ingest_epoch_benchmark_snapshot.py` | Ex-post evidence only; never a backfilled tradable feature. |
 | RBI, holidays, events, rainfall | CSVs in `data/external/manual/cross_market/` | Official exports supplied manually | Optional context; blank templates add no observations. |
@@ -180,9 +180,18 @@ The downloader uses verified TLS and partitions ALFRED real-time dates to stay b
 Build the curated AI calendar and ingest the verified Epoch archive:
 
 ```bash
+python scripts/build_frontier_ai_release_calendar.py
 python scripts/build_frontier_ai_release_calendar.py --execute
 python scripts/ingest_epoch_benchmark_snapshot.py --execute
 ```
+
+The first command is a no-write plan. The second materializes an immutable,
+hash-tracked calendar snapshot. Release dates are maintained in
+`configs/frontier_ai_release_whitelist.yaml` with one official-provider URL per
+event. Date-only announcements are conservatively mapped to the first NSE
+08:55 IST decision cutoff strictly after 23:59:59 UTC on the published date;
+this prevents an announcement of unknown intraday time from becoming available
+too early.
 
 ## 5. Audit raw inputs
 
@@ -261,14 +270,14 @@ export EPOCH_ANALYSIS_ID=$(python -c "from pathlib import Path; r=Path('artifact
 
 ## 8. Screen, confirm, freeze, and evaluate
 
-The `focused_improvement` profile compares baselines, shrinkage, PCA, Extra Trees, boosting, and random-feature Ridge across the information ladder. Quarterly refits retain daily out-of-sample predictions. Three workers are the tested laptop default.
+The `submission_rerun` profile compares baselines, shrinkage, PCA, Extra Trees, and histogram boosting across the information ladder. It excludes RFF Ridge because the earlier RFF configurations never crossed the trading hurdle and therefore had undefined trading Sharpe. Quarterly refits retain daily out-of-sample predictions. Three workers are the tested laptop default.
 
 ```bash
 python scripts/run_cross_market_experiments.py \
   --config configs/cross_market_ai_capability_research.yaml \
   --dataset-id "$DATASET_ID" \
   --stage screening \
-  --profile focused_improvement \
+  --profile submission_rerun \
   --training-scheme rolling \
   --parallel-workers 3
 
@@ -283,7 +292,7 @@ python scripts/run_cross_market_experiments.py \
   --config configs/cross_market_ai_capability_research.yaml \
   --dataset-id "$DATASET_ID" \
   --stage screening \
-  --profile focused_improvement \
+  --profile submission_rerun \
   --training-scheme rolling \
   --parallel-workers 3 \
   --resume-run-id "$SCREENING_RUN_ID"
@@ -296,7 +305,7 @@ python scripts/run_cross_market_experiments.py \
   --config configs/cross_market_ai_capability_research.yaml \
   --dataset-id "$DATASET_ID" \
   --stage confirmation \
-  --profile focused_improvement \
+  --profile submission_rerun \
   --training-scheme rolling \
   --parallel-workers 3 \
   --screening-run-id "$SCREENING_RUN_ID"
@@ -311,7 +320,7 @@ python scripts/run_cross_market_experiments.py \
   --config configs/cross_market_ai_capability_research.yaml \
   --dataset-id "$DATASET_ID" \
   --stage final_test \
-  --profile focused_improvement \
+  --profile submission_rerun \
   --training-scheme rolling \
   --parallel-workers 3 \
   --freeze-id "$FREEZE_ID"

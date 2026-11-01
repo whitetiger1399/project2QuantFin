@@ -60,17 +60,17 @@
     "title": "What happened around the mapped frontier advances?"
   },
   {
-    "caption": "The upper and lower panels separate countries with explicit outcome definitions. U.S. close-to-close and Indian open-to-close returns cover different horizons, so magnitudes are not a like-for-like causal comparison. Reaction sessions follow the conservative publication-time mapping. Entries are observed returns, not market-adjusted abnormal returns. This is the limited mapped event subset shown in the timeline; no 2026 completeness is implied.",
-    "change": "Removes overlapping country/ticker labels and discloses unequal return horizons.",
+    "caption": "Provider marks and model names identify each mapped frontier advance. The upper and lower panels separate countries with explicit outcome definitions. U.S. close-to-close and Indian open-to-close returns cover different horizons, so magnitudes are not a like-for-like causal comparison. Reaction sessions follow the conservative publication-time mapping. Entries are observed returns, not market-adjusted abnormal returns. This is the limited Epoch-mapped subset shown in the timeline, not the complete 2026 event calendar.",
+    "change": "Adds provider marks and model names, preserves readable country separation, and discloses unequal return horizons.",
     "id": "06b_event_responses",
     "pdf": "06b_event_responses.pdf",
-    "placement": "appendix",
+    "placement": "main",
     "png": "06b_event_responses.png",
     "svg": "06b_event_responses.svg",
     "title": "Observed U.S. and Indian reactions"
   },
   {
-    "caption": "Recorded 2025 returns are 11.05% gross and 0.086% net. Both paths use identical holdings and execution dates. The shaded terminal wealth gap includes foregone compounding and is not simply the sum of cash fees. Costs are the implementation's assumed 7.5 bps per side, charged on turnover. 2026 is January\u2013September; the joined path crosses from quarterly refits to a fixed-fit extension.",
+    "caption": "Recorded 2025 returns are 5.16% gross and -4.038% net. Both paths use identical holdings and execution dates. The shaded terminal wealth gap includes foregone compounding and is not simply the sum of cash fees. Costs are the implementation's assumed 7.5 bps per side, charged on turnover. 2026 is January\u2013September; the joined path crosses from quarterly refits to a fixed-fit extension.",
     "change": "New cost-isolation figure with exact ledger accounting; replaces illustrative unverified gross numbers.",
     "id": "07_transaction_cost_drag",
     "pdf": "07_transaction_cost_drag.pdf",
@@ -110,8 +110,8 @@
     "title": "How much trading friction can the strategy withstand?"
   },
   {
-    "caption": "Each populated cell is the best observed net Sharpe within that family and stage, with the number of evaluated configurations. It is not necessarily the same configuration across stages. Grey means not evaluated or undefined Sharpe, not a zero return. These are the original search runs, not the later F2 diagnostic candidate.",
-    "change": "Fixes false neutral colouring of missing cells, clipped negative Sharpe values and undersized family labels.",
+    "caption": "Screening and confirmation cells show the best observed net Sharpe within each family and the number of searched configurations. The 2025 and 2026 columns are frozen-period evaluations rather than new family searches; 2026 uses one pre-2026 fit with no reselection. Grey means not evaluated. Families with no finite trading Sharpe in every displayed stage are omitted rather than represented as zero.",
+    "change": "Adds the 2026 fixed-specification extension, separates search from evaluation and removes all-undefined family rows.",
     "id": "11_model_family_evidence",
     "pdf": "11_model_family_evidence.pdf",
     "placement": "main",
@@ -140,8 +140,8 @@
     "title": "Association can exist without a profitable strategy"
   },
   {
-    "caption": "The current calendar contains 5 marked sessions in 2023, 12 in 2024 and 7 in 2025. Zero marks in 2026 means incomplete event coverage, not that no frontier releases occurred. The later-period minimum event requirement fails. This figure belongs in limitations rather than serving as evidence that market reactions disappeared.",
-    "change": "New data-coverage audit required to prevent a false adaptation narrative.",
+    "caption": "Marked Indian sessions by year are 2021: 0, 2022: 0, 2023: 5, 2024: 12, 2025: 7, 2026: 22. The 2026 calendar now uses dated official-provider announcements through 30 September under a fixed general-purpose frontier-release rule. Same-session releases can map to one Indian session, so session counts need not equal release counts. Small annual event samples still limit power and do not establish causal effects.",
+    "change": "Uses the audited 2026 calendar and no longer labels observed zero coverage as an economic result.",
     "id": "14_event_coverage",
     "pdf": "14_event_coverage.pdf",
     "placement": "appendix",
@@ -150,14 +150,14 @@
     "title": "Why later-period event conclusions remain unresolved"
   },
   {
-    "caption": "This is the later F2 Extra Trees diagnostic candidate, not the canonical final model. The same configuration returned +9.08% and +15.11% in screening years, then \u221222.65% and +2.21% in confirmation years. Confirmation rejected promotion. Keeping this separate prevents mixing candidate and canonical model results.",
-    "change": "New screening-to-confirmation figure with explicit model identity.",
+    "caption": "Annual net returns for the selected Extra Trees specification are 2021 +8.31%, 2022 +0.11%, 2023 +6.26%, 2024 +9.93%, 2025 -4.04%, 2026 +15.01%. The same configuration identifier is evaluated throughout, but each protocol stage uses its declared rolling or fixed-fit estimator. The 2021\u20132024 observations influenced model search and confirmation and are not holdout evidence; 2025 is a historical replication and 2026 is a retrospectively inspected fixed-specification extension through September. The wide 2025 and 2026 bootstrap Sharpe intervals prevent a stable-alpha claim.",
+    "change": "Expands the stability view to the complete 2021\u2013September 2026 protocol and clearly separates selection-exposed years from later evaluation.",
     "id": "15_confirmation_diagnostic",
     "pdf": "15_confirmation_diagnostic.pdf",
-    "placement": "appendix",
+    "placement": "main",
     "png": "15_confirmation_diagnostic.png",
     "svg": "15_confirmation_diagnostic.svg",
-    "title": "A rejected candidate is evidence about robustness"
+    "title": "One specification across search, confirmation, replication, and extension"
   },
   {
     "caption": "Dots show individual 2025\u2013September 2026 monthly model returns; orange strokes are group means. Regimes use realized Nifty IT ETF monthly returns: rising \u22653%, falling \u2264\u22123%, otherwise sideways. A reversal changes the latest non-sideways direction. These labels are known after the month ends and are descriptive, not pre-trade signals. Small reversal groups cannot establish reliable regime-specific skill.",

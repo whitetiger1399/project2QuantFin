@@ -37,8 +37,22 @@ def daily_panel(paths, start, end):
     panel = pd.concat(frames, ignore_index=True)
     panel["decision_date"] = pd.to_datetime(panel["decision_date"])
     panel = panel.loc[panel.decision_date.between(start, end)]
-    if panel.duplicated(["decision_date", "asset"]).any():
-        raise ValueError("Overlapping panel dates/assets: pass disjoint datasets")
+    keys = ["decision_date", "asset"]
+    duplicate_mask = panel.duplicated(keys, keep=False)
+    if duplicate_mask.any():
+        compared = wanted[2:]
+        distinct = panel.loc[duplicate_mask].groupby(keys, dropna=False)[compared].nunique(dropna=False)
+        conflicting = distinct.gt(1).any(axis=1)
+        if conflicting.any():
+            examples = [tuple(value) for value in conflicting.index[conflicting][:5]]
+            raise ValueError(
+                "Overlapping panel dates/assets disagree on hypothesis inputs; "
+                f"examples: {examples}"
+            )
+        # The historical and forward panels intentionally share the pre-2026
+        # training history. Reconcile only byte-equivalent hypothesis inputs;
+        # conflicting overlap remains a hard failure above.
+        panel = panel.drop_duplicates(keys, keep="first")
     daily = panel.groupby("decision_date")[wanted[2:]].mean().rename(columns={
         "target_oc_return": "india_oc", "own__ret_lag_1": "india_lag",
         "nifty50_aggregate__mean": "market_lag",
@@ -145,7 +159,10 @@ def portfolio_tests(folders, repetitions, block, seed):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset", action="append", required=True, help="Dataset directory; repeat only for disjoint dates")
+    parser.add_argument(
+        "--dataset", action="append", required=True,
+        help="Dataset directory; exact overlapping hypothesis inputs are reconciled, conflicts fail",
+    )
     parser.add_argument("--run", action="append", default=[], help="Completed run directory; repeat for screening/confirmation")
     parser.add_argument("--epoch-events", help="Existing epoch_event_capability_returns.csv; retrospective only")
     parser.add_argument("--company-evidence", default="configs/company_adaptation_evidence_2026-11-01.json")

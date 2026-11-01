@@ -1,0 +1,83 @@
+{
+  "action": "run_frozen_2026_extension",
+  "completed_at_utc": "2026-11-01T03:03:28.524668+00:00",
+  "configuration_count": 4,
+  "content_hash": "6a066bcfcc82",
+  "dataset_id": "ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82",
+  "disclosure": "The frozen specification was fitted once on observations strictly before 2026. No 2026 labels were used for fitting, tuning, reselection, or estimator updates. Realized 2026 returns are used only for retrospective evaluation.",
+  "environment": {
+    "created_at_utc": "2026-11-01T03:03:28.524859+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "evaluation_end": "2026-09-30",
+  "evaluation_start": "2026-01-01",
+  "files": {
+    "annual_performance.csv": "6ed82d82c6b26b8621e4158645fe40e240aea042b7fa7bc321558c0b1fd11cb1",
+    "configurations.json": "348857a24bc1d52fa74598ad70a3c1904d172a73ce8a0a0b4a0c947e1153e62e",
+    "cost_sensitivity.csv": "f31b94f46e45696ee1e03c6e9304e333cc14640fea853b0524b51f26437b0ec4",
+    "feature_importance_by_refit.csv": "80bd4a3a6488e7131954a82147113411ce301bf65f9b6620f94b8a6f3267b55d",
+    "forecast_hac_comparisons.csv": "c7dd8df4e1434733614d2e6bff0ec74fa58de95bbab98ad580bc78f7b54ed213",
+    "leaderboard.csv": "9e6246648698b45d8f9b5aa0215f410fec8a0551f4a7c8b60afd5d734352cd83",
+    "plots/01_validation_leaderboard.png": "b846f4c79df316d4c1f166626202ee60a9c91d7d49f73f459903dbc8b2b0f25e",
+    "plots/02_cumulative_wealth.png": "ae0cef15da40ce800a3268d5d284450bdf0062a803b3c8e86e82c399756c6142",
+    "plots/03_drawdown.png": "e0b56b51a74056c0873f3f3ab9a9b3f024f11808fe9da1c2c60e446f6b6b2439",
+    "plots/05_rolling_information_coefficient.png": "7125292a3e20370426c09350a43edbc902edec487ac9cf45043b950519daa7b2",
+    "predictions.parquet": "b34c17516183b0349191cb8010a02fef62f97720081e2f473ed700ec7eb24c43",
+    "refit_diagnostics.csv": "3881a3283c01bcf9d9169ef7b116f7045b415944e210c1bdff7769db0011dead",
+    "selected_model_inference.json": "cee424808e8284d69846bb70b116ddb457120ff3601d4b327887a103fa8ebcf9",
+    "strategy_ledgers.parquet": "3e7d56353b2dee39d36d7bff6beee1a9b589744c448ded6ba06b0477789aa3a3"
+  },
+  "hyperparameter_tuning_performed": false,
+  "model_reselection_performed": false,
+  "prediction_dates": 185,
+  "prediction_rows": 7400,
+  "refit_count_selected_model": 1,
+  "run_id": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82",
+  "schema_version": 1,
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "selected_family": "extra_trees",
+  "selected_feature_set": "F7_full_context",
+  "source_confirmation_run_id": "cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd",
+  "source_freeze_id": "cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16",
+  "source_identity": {
+    "confirmation_manifest_sha256": "dabd6cb54ab573b7d474ce4b799477e2e39263e031d8c236b3447b0b07bdb2f5",
+    "dataset_manifest_sha256": "47a64c6f7eb75c595c2f3f6304436e1aa4b371d64d8ef97eb67d0c1f6df87225",
+    "end": "2026-09-30",
+    "fit_policy": "single_fit_before_2026_no_updates_no_reselection",
+    "forecast_config_sha256": "16942a3679a9b258c444cc30782590979aee8d1caf247df5ea7096619727055b",
+    "freeze_sha256": "dca7f5a286da16f74f3d769b8965972f748784409a3e2e0f4152add7c22d00a6",
+    "script_sha256": "6e8bc7584e3b2ce9321d83f338ce39ee78a7549ada9ec56fac2fcdc66504a9b8",
+    "selected_config_id": "cm_extra_trees_cd9235695e6b",
+    "selected_configuration": {
+      "config_id": "cm_extra_trees_cd9235695e6b",
+      "experiment": "model_family",
+      "family": "extra_trees",
+      "feature_set": "F7_full_context",
+      "parameters": {
+        "max_depth": 6,
+        "max_features": 0.5,
+        "min_samples_leaf": 40,
+        "n_estimators": 250
+      }
+    },
+    "source_config_sha256": "59e5acbeeb116286d7fd34585ad8b2a55e9147e78aee0c19db88eb1617b96607",
+    "start": "2026-01-01",
+    "training_scheme": "rolling"
+  },
+  "stage": "forward_extension_2026",
+  "status": "complete",
+  "training_end": "2025-12-30",
+  "training_start": "2020-11-25"
+}
