@@ -1,7 +1,7 @@
 [
   {
-    "caption": "The implemented signed_forecast policy screens each stock independently, selects up to three names per side and applies the gross-exposure and per-stock caps. Flat positions incur no trading cost. The 15 bps round-trip assumption includes a fee/spread proxy and slippage; it is not a complete instrument-specific Indian tax schedule. Historical evaluation and retrospective hypothesis analysis remain distinct.",
-    "change": "Replaces crowded connectors; corrects monthly to quarterly 2025 refits and market-wide-state interpretation.",
+    "caption": "Country flags and provider marks distinguish available inputs. The signed_forecast policy selects up to three stocks per side, subject to exposure caps. The 15 bps round-trip assumption includes a fee/spread proxy and slippage, not a complete Indian tax schedule. Hypotheses are discussed separately; retrospective benchmark scores do not enter historical forecasts.",
+    "change": "Added country flags, sourced AI-provider marks, timing and process icons; removed hypotheses from the operational flow.",
     "id": "01_architecture",
     "pdf": "01_architecture.pdf",
     "placement": "main",

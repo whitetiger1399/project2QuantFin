@@ -75,41 +75,13 @@ def save(fig, output, name, title, caption, reason, placement="main"):
 
 
 def architecture(output):
-    fig, ax = plt.subplots(figsize=(10.5, 8.6))
-    ax.set(xlim=(0, 10.5), ylim=(0, 10)); ax.axis("off")
-    def box(x,y,w,h,title,body,color=NET,fill="#F4F7FA"):
-        ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle="round,pad=.03,rounding_size=.06",fc=fill,ec=color,lw=1.2))
-        ax.text(x+.13,y+h-.16,title,va="top",fontsize=10,color=color,weight="bold")
-        ax.text(x+.13,y+h-.47,body,va="top",fontsize=9,linespacing=1.2)
-    def arrow(x,y,xx,yy):
-        ax.annotate("",xy=(xx,yy),xytext=(x,y),arrowprops=dict(arrowstyle="->",color="#657487",lw=1.2))
-    ax.text(0,9.8,"From observable information to a costed trading decision",fontsize=16,weight="bold",color=NET)
-    box(.05,8.4,3.3,1,"INDIA | Local information","Own history → Nifty IT peers\nNifty 50 context",INDIA)
-    box(3.6,8.4,3.3,1,"U.S. | Completed sessions","IT-services returns\nBroad S&P 500 context",US)
-    box(7.15,8.4,3.3,1,"Context | Available inputs","Rates, FX and dated AI releases")
-    for x in [1.7,5.25,8.8]: arrow(x,8.38,x,8.08)
-    box(.05,7.05,10.4,1.02,"08:55 IST information gate | Before the NSE open",
-        "Calendar alignment • availability timestamps • clean prices • missingness and vintage checks")
-    arrow(5.25,7.02,5.25,6.73)
-    box(.05,5.65,5.05,1.05,"Features | Eligible history",
-        "Lags, trends, volatility and peers\nFit transforms within training windows")
-    box(5.4,5.65,5.05,1.05,"Models | Temporal evaluation",
-        "2021–22 screening → 2023–24 confirmation → freeze\n2025 quarterly refits → 2026 fixed fit")
-    arrow(2.57,5.62,2.57,5.33); arrow(7.92,5.62,7.92,5.33)
-    box(.05,4.4,10.4,.9,"Forecast each Nifty IT stock's same-day open-to-close return",
-        "Compare expected return with ±15 bps eligibility hurdle; apply ranking and exposure caps")
-    for x in [1.7,5.25,8.8]: arrow(x,4.37,x,4.05)
-    box(.05,3.05,3.3,.98,"LONG | forecast > +15 bps","Buy at open; sell at close\nUp to 3 strongest eligible stocks",GROSS,"#EEF8F5")
-    box(3.6,3.05,3.3,.98,"FLAT | inside hurdle","No position in that stock\nNo trade cost on a flat position",NET,"#F0F2F5")
-    box(7.15,3.05,3.3,.98,"SHORT | forecast < −15 bps","Sell at open; buy back at close\nUp to 3 weakest eligible stocks",SHORT,"#FBF0F3")
-    for x in [1.7,5.25,8.8]: arrow(x,3.02,x,2.72)
-    box(.05,1.75,10.4,.95,"Daily portfolio ledger | Long and short positions can coexist",
-        "Gross return − turnover × 7.5 bps one-way cost = net return\nCost assumption: 5 bps fee/spread proxy + 2.5 bps slippage per side; gross exposure ≤ 1")
-    box(.05,.1,10.4,1.28,"Six research questions | Interpretation, not a trading override",
-        "H1 U.S. transmission   •   H2 AI-release response   •   H3 effect changes over time\nH4 capability advances   •   H5 returns after costs   •   H6 company adaptation\nRetrospective Epoch scores and company disclosures do not enter historical forecasts",fill="#F3F0F7")
-    save(fig,output,"01_architecture","Research architecture",
-         "The implemented signed_forecast policy screens each stock independently, selects up to three names per side and applies the gross-exposure and per-stock caps. Flat positions incur no trading cost. The 15 bps round-trip assumption includes a fee/spread proxy and slippage; it is not a complete instrument-specific Indian tax schedule. Historical evaluation and retrospective hypothesis analysis remain distinct.",
-         "Replaces crowded connectors; corrects monthly to quarterly 2025 refits and market-wide-state interpretation.")
+    from architecture_visual import draw_architecture
+    track(ROOT/'reports/architecture_visual.py')
+    for icon in (ROOT/'assets/architecture_icons').glob('*'):
+        if icon.is_file(): track(icon)
+    save(draw_architecture(), output, '01_architecture', 'Research architecture',
+         'Country flags and provider marks distinguish available inputs. The signed_forecast policy selects up to three stocks per side, subject to exposure caps. The 15 bps round-trip assumption includes a fee/spread proxy and slippage, not a complete Indian tax schedule. Hypotheses are discussed separately; retrospective benchmark scores do not enter historical forecasts.',
+         'Added country flags, sourced AI-provider marks, timing and process icons; removed hypotheses from the operational flow.')
 
 
 def load_prices(root, assets):
@@ -470,11 +442,27 @@ def retain_importance(output):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',default='reports/publication_figure_pack_2026-11-01')
+    parser.add_argument('--architecture-only',action='store_true',help='Refresh only the architecture and its catalog/hash records.')
     args=parser.parse_args();output=ROOT/args.output
     output.mkdir(parents=True,exist_ok=True)
     plt.rcParams.update({'font.family':'DejaVu Sans','font.size':11,'axes.titlesize':13,'axes.labelsize':11,
                          'xtick.labelsize':10,'ytick.labelsize':10,'svg.fonttype':'none','pdf.fonttype':42})
     track(Path(__file__));track(ROOT/'reports/build_report_ai_capability.py')
+    if args.architecture_only:
+        previous=json.loads((output/'manifest.json').read_text())
+        current_inputs=dict(INPUTS)
+        INPUTS.update(previous['inputs']); INPUTS.update(current_inputs)
+        CATALOG.extend(x for x in json.loads((output/'figure_catalog.json').read_text()) if x['id']!='01_architecture')
+        architecture(output)
+        CATALOG.sort(key=lambda item:item['id'])
+        gallery(output)
+        atomic_json_dump(CATALOG,output/'figure_catalog.json')
+        previous.update(created_at_utc=datetime.now(timezone.utc).isoformat(),inputs=INPUTS,
+                        content_hash=stable_object_hash(INPUTS)[:16])
+        previous['files']={str(p.relative_to(output)):sha256_file(p) for p in output.iterdir() if p.is_file() and p.name!='manifest.json'}
+        atomic_json_dump(previous,output/'manifest.json')
+        print('Architecture refreshed; other statistical figures retained.')
+        return
     india=load_prices(old.RAW_INDIA,old.INDIA_ASSETS);us=load_prices(old.RAW_US_SERVICES,old.US_SERVICE_ASSETS)
     d=ledgers()
     tasks=[('architecture',lambda:architecture(output)),('market context and correlations',lambda:market_figures(output,india,us)),

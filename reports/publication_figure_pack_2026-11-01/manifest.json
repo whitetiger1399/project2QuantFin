@@ -1,12 +1,12 @@
 {
   "canonical_config": "cm_extra_trees_05a83581b70b",
-  "content_hash": "f1007e48e6bb4618",
-  "created_at_utc": "2026-11-01T00:51:49.812611+00:00",
+  "content_hash": "b744f2bc2c63c5bc",
+  "created_at_utc": "2026-11-01T01:06:30.829385+00:00",
   "figure_count": 18,
   "files": {
-    "01_architecture.pdf": "fdefb50a3d303522362b85954532cd0525fc8cfbd18e80dc568975a90157077c",
-    "01_architecture.png": "6779f96da9b3b623c087fac19861f2b48ae385876d7e0dcb8f7360c7f0d6c949",
-    "01_architecture.svg": "2e55e623fe32e3d1aa3dff888da1d186e189b69a78d9c4475f92a884b0e9d6e8",
+    "01_architecture.pdf": "1d8a3c560284c4daca4bb352c1c55d1dfadc3ffb3c448b5e0227ba8d3ce5711c",
+    "01_architecture.png": "33acf6cc778b9468a953dec0694dca7edf67949ceedbb41c3ce97aef9a71b22b",
+    "01_architecture.svg": "68d77e296b461be90b8310f90e99bdb58db88f82f2d1b5278dbc7880c59bbd32",
     "02_india_paths.pdf": "a05c68de07271f417f9a4a8ab14db91ba27e0ffd2a17866729922b1c7c3acaea",
     "02_india_paths.png": "f9199d3e83c749b93187e6d0cc293ee2ea01dc77a4d9acaff21410402313e2ae",
     "02_india_paths.svg": "7b5553725572143abfeafa40cb5cad98e9b03d70a825412c2e20bc0e6741a5a7",
@@ -64,9 +64,9 @@
     "16_regime_distributions.png": "afa6974091ca3f6e6afb1084f80835c621eed60aae0f21ed3ef074d34f778e4c",
     "16_regime_distributions.svg": "3a49ae5913bea1fb30a4f4a51e5744160fb0345fd4c4934f7a822253627ba313",
     "17_group_importance_existing.png": "3a93c1fcd16797fe2bf2366b7a8a2708245103c82922895191b3f6ecdce47c30",
-    "figure_catalog.json": "ef2fa8034c84bf92e90c63deeaf331b0d50c3aec135761a38a985394ff22786a",
-    "figure_review.pdf": "d775e8b44487f0ee9e8af9004c4d85cbfdb5174465fd66ee26f1cbf625e8568b",
-    "index.html": "a1ab8da942bc7f3a2cc1af2129ce4fae7b9866c2f6749cb545ba6bbbedf37c0b"
+    "figure_catalog.json": "f4f52d6d5c7c8efe320e0ef141d2c9b3bb543fe8e6cd61b149b92933d88b4231",
+    "figure_review.pdf": "2846d614f30c25eff3dbc71e1c3d194b51f70cdb4dc396ec7cf3903457459039",
+    "index.html": "81b540702fd210b905a5cc721298054e422c2ee3a8af3b41b3e1ebe2046ef96d"
   },
   "inputs": {
     "artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261031T063613Z_f3595944da18/epoch_event_capability_returns.csv": "7aa63f7a90ff41d9e949c3c1cf0fbe8c111ec662b7e0e85d03adcda7b3cf89c4",
@@ -81,6 +81,11 @@
     "artifacts/research_hypotheses/hypotheses_20261101T004002Z_509b866eb35063f9/event_coverage_by_year.csv": "b53d26ff49a6fa5d8f93dcb2d348f1a7daa25aee7860ae545a8a8bc9f96fe292",
     "artifacts/research_hypotheses/hypotheses_20261101T004002Z_509b866eb35063f9/hypothesis_tests.csv": "add96b2051f06705eabec2d8857807d3d27ce0b32fb63012ddc12be80bf69d9c",
     "artifacts/research_hypotheses/hypotheses_20261101T004002Z_509b866eb35063f9/portfolio_periods.csv": "72d643ab5ebe67ced5f04e1b4f729aba5c90329ec1c82c2f0d8cdc182c1a8436",
+    "assets/architecture_icons/anthropic.png": "389105af72687ae02e5dfbbafe24ed99a84a77a6cf6ea339c13993615b64b37e",
+    "assets/architecture_icons/gemini.png": "e88ad7929d463e0d459398709a86d943b6797163a706d9875c7357918feb4977",
+    "assets/architecture_icons/google.png": "77006e9ef5e66e09287040a00e7b03bd28153c41f47b452de646755ff5c62e9f",
+    "assets/architecture_icons/openai.png": "8a33312f6bb17c1edddf8f9d7fbac09ce1d1d697d6601f37227afa879e94c52e",
+    "assets/architecture_icons/sources.json": "ff9f2f691812744e5949ec20eec147d2688f1e787aa185130bc74eea7b309e83",
     "data/processed/cross_market_ai_capability/ai_capability_panel_20261031T063249Z_928de985ea1dd4f8/panel.parquet": "10f014e1dc12251c681f05ece3f92c0c57d1f2dd9a25f3fdbe07508dcad403a9",
     "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/COFORGE.NS.parquet": "633123235f8a45f70b2d0edb1ef69d84898c122f5d7fce19e158cd08e46a6167",
     "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/HCLTECH.NS.parquet": "e5263375d3f13d10704a0b3a1c38a16f34574a08d2d21be902adb54d972b3f08",
@@ -103,9 +108,10 @@
     "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/JKHY.parquet": "441654f6c05d4bd49e497e20d92b2be7eea6ff1d548280be12ce833d2c13d949",
     "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/LDOS.parquet": "e32e9879deb23b2566db862ad5e992e11adfeaa41740e07bfdd89a0e6e101356",
     "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/SAIC.parquet": "a2208caac0cb4532cb30ccaa9aed078533a0a61d6fc41e53d6a97c683ebd08d9",
-    "reports/build_report_ai_capability.py": "e99784dc752885c8eef52758de254d82fb5a7213bc0acd15eb42c78ec1ae1873",
+    "reports/architecture_visual.py": "2add8b7e81b99aee2c4a06fa3f90dd94d13acc764cb4da0d6fbb7188b82603a2",
+    "reports/build_report_ai_capability.py": "308d5161cea7e9d0dc8aed409692b4f89623ee438d7caface4b5b3a02b857739",
     "reports/figures_ai_capability/group_importance_2025_2026.png": "3a93c1fcd16797fe2bf2366b7a8a2708245103c82922895191b3f6ecdce47c30",
-    "scripts/build_publication_figure_pack.py": "f06762db4cc2ec346883d914ebadefe3c3b2ad6524c52da764a79224bcb8d38b"
+    "scripts/build_publication_figure_pack.py": "9c7a0056a820e63000c59c3e886188db1dae378b33b4e164245b81a27faa73f9"
   },
   "status": "complete"
 }
