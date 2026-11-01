@@ -84,8 +84,38 @@ def architecture(output):
     for icon in (ROOT/'assets/architecture_icons').glob('*'):
         if icon.is_file(): track(icon)
     save(draw_architecture(), output, '01_architecture', 'Research architecture',
-         'Country flags and provider marks distinguish available inputs. The signed_forecast policy selects up to three stocks per side, subject to exposure caps. The 15 bps round-trip assumption includes a fee/spread proxy and slippage, not a complete Indian tax schedule. Hypotheses are discussed separately; retrospective benchmark scores do not enter historical forecasts.',
-         'Added country flags, sourced AI-provider marks, timing and process icons; removed hypotheses from the operational flow.')
+         'Three information sources feed a pre-open feature pipeline, temporal model selection, and a long/short/flat decision. Positions close within the same session. The 15 bps threshold includes modeled round-trip costs. Data-vintage tests are reported in the methodology.',
+         'Compact black-outline process diagram with no audit-status banners or overlapping labels.')
+
+
+def strict_vintage(output):
+    analysis_id = old.evidence_id("STRICT_VINTAGE_ANALYSIS_ID", "")
+    if not analysis_id:
+        raise ValueError("STRICT_VINTAGE_ANALYSIS_ID is required for the traceable report")
+    source = ROOT / "artifacts/cross_market_ai_capability/analysis" / analysis_id
+    track(source / "manifest.json")
+    track(source / "strict_vintage_metrics.csv")
+    track(source / "strict_vintage_paired_inference.csv")
+    track(source / "excluded_features.csv")
+    for suffix in ["png", "pdf"]:
+        path = source / f"strict_vintage_sensitivity.{suffix}"
+        track(path)
+        shutil.copy2(path, output / f"11c_strict_vintage.{suffix}")
+    CATALOG.append(dict(
+        id="11c_strict_vintage",
+        title="Strict-vintage sensitivity",
+        png="11c_strict_vintage.png",
+        pdf="11c_strict_vintage.pdf",
+        caption=(
+            "The exact selected depth-6 Extra Trees specification is refitted after excluding all 60 "
+            "fallback-flagged F7 columns; zero flagged columns remain. Bars compare cumulative net returns. "
+            "The paired forest plot uses identical sessions and a 2,000-draw circular 10-session date-block "
+            "bootstrap. Both mean-difference intervals cross zero, so the improved strict-vintage point estimates "
+            "are robustness evidence rather than proof of superiority."
+        ),
+        change="Replaces the pending architecture caveat with a completed, exact-specification empirical sensitivity.",
+        placement="main",
+    ))
 
 
 def load_prices(root, assets):
@@ -370,9 +400,20 @@ def cost_and_performance(output,d,india):
     # Existing cost assumptions, fixed realized holdings; no policy optimization.
     fig,ax=plt.subplots(figsize=(8.8,4.8));cost_grid=np.arange(0,51)
     sensitivity=[]
+    break_even={}
     for period,g,color in [('2025',d.loc['2025'],NET),('2026 Jan–Sep',d.loc['2026'],US)]:
-        vals=[(1+g.gross_return-g.turnover*(cost/2)/10000).prod()-1 for cost in cost_grid]
+        def period_return(cost):
+            return float((1+g.gross_return-g.turnover*(cost/2)/10000).prod()-1)
+        vals=[period_return(cost) for cost in cost_grid]
+        low,high=0.0,100.0
+        for _ in range(80):
+            mid=(low+high)/2
+            if period_return(mid)>0: low=mid
+            else: high=mid
+        break_even[period]=(low+high)/2
         ax.plot(cost_grid,vals,color=color,lw=2,label=period)
+        ax.scatter([break_even[period]],[0],s=34,color=color,zorder=4)
+        ax.annotate(f"{break_even[period]:.2f} bps",(break_even[period],0),xytext=(4,8),textcoords='offset points',fontsize=9,color=color)
         sensitivity.extend(dict(period=period,round_trip_bps=int(c),cumulative_return=v) for c,v in zip(cost_grid,vals))
     ax.axhline(0,color='#777',lw=1);ax.axvline(15,color='#777',ls='--',lw=1,label='Recorded 15 bps assumption')
     ax.set(title='Cost sensitivity | Fixed holdings and fixed decisions',xlabel='Round-trip trading cost at full exposure (basis points)',ylabel='Period cumulative return')
@@ -380,7 +421,7 @@ def cost_and_performance(output,d,india):
     fig.subplots_adjust(left=.11,right=.98,bottom=.23,top=.89)
     pd.DataFrame(sensitivity).to_csv(output/'10_fixed_holdings_cost_sensitivity.csv',index=False)
     save(fig,output,'10_cost_sensitivity','How much trading friction can the strategy withstand?',
-         'Counterfactual cost deductions on the exact same recorded decisions; forecast hurdles and holdings are never recalculated. This isolates cost exposure. The 2025 curve approaches zero at the recorded 15 bps assumption. These sweeps are descriptive stress tests, not a choice of the most attractive fee assumption.',
+         f"Counterfactual cost deductions on the exact same recorded decisions; forecast hurdles and holdings are never recalculated. At the modeled 15 bps round-trip cost, 2025 returns {((1+d.loc['2025'].net_return).prod()-1):+.2%} net; its fixed-holdings break-even cost is approximately {break_even['2025']:.2f} bps. The January–September 2026 extension breaks even near {break_even['2026 Jan–Sep']:.2f} bps. These are unchanged-holdings descriptive stress tests, not optimized fee choices.",
          'New fixed-holdings sensitivity avoids confusing cost-induced policy changes with pure cost drag.',placement='appendix')
     return frame
 
@@ -430,6 +471,39 @@ def family_and_ladder(output):
     save(fig,output,'11_model_family_evidence','Model families and selection stages',
          'Screening and confirmation cells show the best observed net Sharpe within each family and the number of searched configurations. The 2025 and 2026 columns are frozen-period evaluations rather than new family searches; 2026 uses one pre-2026 fit with no reselection. Grey means not evaluated. Families with no finite trading Sharpe in every displayed stage are omitted rather than represented as zero.',
          'Adds the 2026 fixed-specification extension, separates search from evaluation and removes all-undefined family rows.')
+    progression_quarters(output)
+
+
+def progression_quarters(output):
+    source=ROOT/'artifacts/report_reviews/feature_progression_20261101'
+    track(source/'manifest.json')
+    d=csv(source/'quarterly_feature_progression.csv')
+    d['year']=d.quarter.str[:4]
+    d['sse']=d.mse*d.observations
+    d['baseline_sse']=d.baseline_mse*d.observations
+    annual=d.groupby(['feature_set','year'])[['sse','baseline_sse']].sum()
+    annual['r2']=100*(1-annual.sse/annual.baseline_sse)
+    matrix=annual.r2.unstack('year').sort_index()
+    labels=['F0 Own','F1 + Peers','F2 + U.S. services','F3 + Nifty 50','F4 + S&P aggregate','F5 + S&P stocks','F6 + AI','F7 Full context']
+    fig,ax=plt.subplots(figsize=(10,4.8))
+    bound=max(abs(matrix.to_numpy()).max(),1)
+    im=ax.imshow(matrix,cmap='RdBu',vmin=-bound,vmax=bound,aspect='auto')
+    ax.set_yticks(range(8),labels,fontsize=10)
+    ax.set_xticks(range(len(matrix.columns)),matrix.columns,fontsize=11)
+    for j in [1.5,3.5]: ax.axvline(j,color='white',lw=2)
+    for i in range(8):
+        for j in range(len(matrix.columns)):
+            v=matrix.iloc[i,j];ax.text(j,i,f'{v:+.1f}',ha='center',va='center',fontsize=12,color='white' if abs(v)>.55*bound else '#111')
+    fig.colorbar(im,ax=ax,fraction=.03,pad=.025,label='OOS R² vs asset mean (%)')
+    ax.set_xlabel('2021–22: screening | 2023–24: confirmation | 2025: replication')
+    fig.suptitle('Does more information improve prediction? Fixed ridge penalty',fontsize=13,weight='bold')
+    fig.subplots_adjust(left=.21,right=.92,top=.80,bottom=.15)
+    save(fig,output,'12_information_ladder','Feature additions across five annual evaluations',
+         'Each column compares the same dates and stocks at ridge penalty 0.1. Positive R² improves on the rolling asset-mean forecast; negative R² worsens it. Screening covers 2021–2022, confirmation 2023–2024 and historical replication 2025. Raw constituent expansion usually increases error. This is evidence about this fixed linear specification, not all possible models or optimally tuned penalties.',
+         'Adds temporal context and matched quarterly comparisons in place of a single-period aggregate.')
+
+
+def _legacy_ladder(output):
     d=csv(old.LADDER/'information_ladder_summary.csv').sort_values('ladder_order')
     labels=[f"F{i}: {s}" for i,s in enumerate(['Own history','+ Indian peers','+ U.S. services','+ Nifty 50','+ S&P 500 aggregates','+ S&P 500 constituents','+ AI capability','+ Full context'])]
     assert len(d)==len(labels)
@@ -444,6 +518,34 @@ def family_and_ladder(output):
     save(fig,output,'12_information_ladder','Feature progression at fixed ridge family',
          'The controlled ridge ladder in the historical 2025 period compares forecast R² against an asset-mean baseline and net Sharpe. Horizontal rows represent distinct information sets rather than a continuous parameter. This diagnoses information complexity and does not establish that the best row generalizes.',
          'Replaces steep rotated labels with aligned horizontal rows and explicit predictive/economic objectives.')
+
+
+def forecast_calibration(output):
+    historical=old.EVIDENCE/'prediction_calibration_deciles.csv'
+    forward_id=old.evidence_id('FORWARD_MODEL_EVIDENCE_ID','model_evidence_forward_extension_2026_20261101T030629Z_2f2c1a45c5fc')
+    forward=ROOT/'artifacts/cross_market_ai_capability_2026/analysis'/forward_id/'prediction_calibration_deciles.csv'
+    sources=[('2025 historical replication',historical,NET),('2026 retrospective extension',forward,US)]
+    fig,axes=plt.subplots(1,2,figsize=(10,4.9),sharex=True,sharey=True)
+    all_values=[]
+    for ax,(label,path,color) in zip(axes,sources):
+        track(path);q=pd.read_csv(path).sort_values('mean_prediction')
+        x=q.mean_prediction*100;y=q.mean_realized_return*100;err=q.date_clustered_standard_error*100
+        all_values.extend(x.tolist()+y.sub(err).tolist()+y.add(err).tolist())
+        ax.errorbar(x,y,yerr=err,fmt='o',color=color,ecolor=color,capsize=3,lw=0,elinewidth=1.2,ms=5)
+        ax.axvline(-.15,color=SHORT,ls='--',lw=.9);ax.axvline(.15,color=GROSS,ls='--',lw=.9)
+        ax.axhline(0,color='#888',lw=.8);ax.set_title(label,fontsize=11,weight='bold')
+        ax.set_xlabel('Mean prediction in numerical decile (%)');clean_axis(ax)
+    bound=max(.85,max(abs(v) for v in all_values)*1.12)
+    for ax in axes:
+        ax.plot([-bound,bound],[-bound,bound],color='#777',ls=':',lw=1,label='45° calibration')
+        ax.set_xlim(-bound,bound);ax.set_ylim(-bound,bound)
+    axes[0].set_ylabel('Mean realized open-to-close return (%)')
+    axes[1].legend(frameon=False,fontsize=8,loc='lower right')
+    fig.suptitle('Forecast calibration | Date-clustered uncertainty',fontsize=14,weight='bold')
+    fig.subplots_adjust(left=.1,right=.98,bottom=.16,top=.84,wspace=.12)
+    save(fig,output,'11b_forecast_calibration','Forecast magnitude is weakly calibrated',
+         'Numerically sorted prediction deciles are plotted against mean realized Nifty IT constituent open-to-close returns. Points are intentionally unconnected: no fitted calibration curve is implied. Error bars are one date-clustered standard error and all endpoints are included in the shared axis limits; they preserve common shocks across stocks but are not simultaneous confidence bands. Historical bins contain 240–253 stock-day observations and extension bins 180–190. Dashed vertical lines mark the ±15 bps trading hurdle and the dotted diagonal marks perfect calibration. Neither panel establishes a stable calibration map.',
+         'Includes every uncertainty endpoint in the axis calculation, removes curve-like connecting lines and reports compact bin-count ranges.',placement='main')
 
 
 def hypothesis_figures(output):
@@ -493,13 +595,13 @@ def hypothesis_figures(output):
     ax.axhline(0,color='#777',lw=1)
     for x in [1.5,3.5]:ax.axvline(x,color='#A7ADB4',ls='--',lw=.9)
     ax.set_ylim(min(-8,100*p.cumulative_return.min()-4),max(20,100*p.cumulative_return.max()+4))
-    ax.set(title='Selected Extra Trees specification | Annual net record, 2021–Sep 2026',ylabel='Calendar-period cumulative net return (%)')
+    ax.set(title='Selected Extra Trees specification | Calendar-period net record, 2021–Sep 2026',ylabel='Calendar-period cumulative net return (%)')
     handles=[plt.Rectangle((0,0),1,1,color=stage_color[s]) for s in stage_color]
     ax.legend(handles,list(stage_color),frameon=False,ncol=4,loc='upper left',fontsize=9)
     clean_axis(ax);fig.subplots_adjust(left=.12,right=.98,bottom=.13,top=.89)
     values=', '.join(f"{int(r.year)} {r.cumulative_return:+.2%}" for r in p.itertuples())
     save(fig,output,'15_confirmation_diagnostic','One specification across search, confirmation, replication, and extension',
-         f'Annual net returns for the selected Extra Trees specification are {values}. The same configuration identifier is evaluated throughout, but each protocol stage uses its declared rolling or fixed-fit estimator. The 2021–2024 observations influenced model search and confirmation and are not holdout evidence; 2025 is a historical replication and 2026 is a retrospectively inspected fixed-specification extension through September. The wide 2025 and 2026 bootstrap Sharpe intervals prevent a stable-alpha claim.',
+         f'Calendar-period cumulative net returns for the selected Extra Trees specification are {values}; 2026 ends on 30 September and is not a full-year return. The same configuration identifier is evaluated throughout, but each protocol stage uses its declared rolling or fixed-fit estimator. The 2021–2024 observations influenced model search and confirmation and are not holdout evidence; 2025 is a historical replication and 2026 is a retrospectively inspected fixed-specification extension. The wide 2025 and 2026 bootstrap Sharpe intervals prevent a stable-alpha claim.',
          'Expands the stability view to the complete 2021–September 2026 protocol and clearly separates selection-exposed years from later evaluation.',placement='main')
 
 
@@ -517,11 +619,36 @@ def gallery(output):
 
 
 def retain_importance(output):
-    source=track(old.FIG/'group_importance_2025_2026.png')
-    name='17_group_importance_existing.png';shutil.copy2(source,output/name)
+    measure='oos_date_block_group_permutation_mse_increase'
+    sources=[('2025 historical replication',old.FINAL/'feature_importance_by_refit.csv',NET),
+             ('2026 retrospective extension',old.FORWARD/'feature_importance_by_refit.csv',US)]
+    summaries={}
+    for label,path,_ in sources:
+        track(path)
+        frame=pd.read_csv(path)
+        frame=frame.loc[frame.config_id.eq(old.SELECTED)&frame.measure.eq(measure)].copy()
+        if frame.empty:
+            raise ValueError(f'No selected grouped permutation rows in {path}')
+        frame['feature']=frame.feature.str.replace('GROUP::','',regex=False)
+        summaries[label]=frame.groupby('feature').importance.agg(['mean','std','count'])
+    ranking=pd.concat([q['mean'].abs().rename(label) for label,q in summaries.items()],axis=1).max(axis=1)
+    groups=ranking.nlargest(12).index.tolist()[::-1]
+    fig,axes=plt.subplots(1,2,figsize=(10,5.8),sharey=True)
+    for ax,(label,_,color) in zip(axes,sources):
+        q=summaries[label].reindex(groups)
+        y=np.arange(len(groups))
+        ax.errorbar(q['mean']*1e6,y,xerr=q['std'].fillna(0)*1e6,fmt='o',color=color,ecolor=color,alpha=.9,capsize=2)
+        ax.axvline(0,color='#777',lw=.9);ax.set_title(label,fontsize=11,weight='bold')
+        ax.set_xlabel('OOS MSE increase after permutation (×10⁻⁶)')
+        clean_axis(ax)
+    axes[0].set_yticks(np.arange(len(groups)),[g.replace('_',' ') for g in groups],fontsize=9)
+    fig.suptitle('Grouped model reliance | Whole-date permutations',fontsize=14,weight='bold')
+    fig.subplots_adjust(left=.27,right=.98,bottom=.15,top=.86,wspace=.12)
+    name='17_group_importance_existing.png'
+    fig.savefig(output/name,bbox_inches='tight',dpi=240);plt.close(fig)
     CATALOG.append(dict(id='17_group_importance_existing',title='Exploratory model reliance',png=name,
-                        caption='Existing grouped permutation importance for the canonical model in 2025 and 2026. Positive values indicate greater prediction error after permutation. These historical artifacts use a single stock-day permutation, not repeated date-block uncertainty; values are exploratory model reliance, not causal or isolated feature contributions.',
-                        change='Retained unchanged: labels and zero baseline are readable. Restrict to appendix because the historical importance estimator has limited uncertainty assessment.',placement='appendix'))
+                        caption='Grouped permutation importance rebuilt directly from the pinned 2025 and 2026 selected-model CSVs. Each repetition permutes a feature group by whole dates while preserving asset identities. Points are mean OOS MSE increases; bars are one standard deviation across repetitions and, in 2025, refits. They are descriptive variability, not confidence intervals. Positive values indicate predictive reliance; negative values can arise from finite-sample noise. The diagnostic is not a causal or isolated feature contribution.',
+                        change='Rebuilt from raw pinned CSVs; removes the legacy-PNG dependency and corrects the permutation-method description.',placement='appendix'))
 
 
 def main():
@@ -533,6 +660,8 @@ def main():
     plt.rcParams.update({'font.family':'DejaVu Sans','font.size':11,'axes.titlesize':13,'axes.labelsize':11,
                          'xtick.labelsize':10,'ytick.labelsize':10,'svg.fonttype':'none','pdf.fonttype':42})
     track(Path(__file__));track(ROOT/'reports/build_report_ai_capability.py')
+    track(ROOT/'reports/publication_report_sections.py');track(ROOT/'reports/report_release.py')
+    if old.REGISTRY_PATH is not None: track(old.REGISTRY_PATH)
     if args.architecture_only:
         previous=json.loads((output/'manifest.json').read_text())
         current_inputs=dict(INPUTS)
@@ -553,7 +682,8 @@ def main():
     tasks=[('architecture',lambda:architecture(output)),('market context and correlations',lambda:market_figures(output,india,us)),
            ('event timeline and responses',lambda:events(output,india,us)),
            ('returns and transaction costs',lambda:cost_and_performance(output,d,india)),
-           ('model-family evidence',lambda:family_and_ladder(output)),('hypothesis diagnostics',lambda:hypothesis_figures(output)),
+           ('model-family evidence',lambda:family_and_ladder(output)),('forecast calibration',lambda:forecast_calibration(output)),
+           ('strict-vintage sensitivity',lambda:strict_vintage(output)),('hypothesis diagnostics',lambda:hypothesis_figures(output)),
            ('regime diagnostics',lambda:regimes(output,d)),('retained importance',lambda:retain_importance(output))]
     for name,fn in progress(tasks,description='Publication figure pack',unit='section'):fn()
     CATALOG.sort(key=lambda item:item['id'])

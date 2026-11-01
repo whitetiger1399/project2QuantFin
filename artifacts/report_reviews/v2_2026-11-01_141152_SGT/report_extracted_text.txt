@@ -1,0 +1,364 @@
+Cross-Market Forecasting and Signed Trading of Nifty IT Stocks
+Information complexity and signed trading in a temporally aligned retrospective design
+Data Science in Quantitative Finance DSA5205Project2 Teams 16
+VERSION 2 · TRACEABLE RESEARCH REPORT
+TABLE
+AUTHOR | STUDENT ID
+PRATYUSH SINHA | A0352482A
+RAMYANI PALIT | A0357066X
+RITIK SRIVASTAVA | A0355860X
+VICTOR LEE CHIA SWEA | A0350886R
+Repository: https://github.com/whitetiger1399/project2QuantFin
+Daily market data: Yahoo Finance · Macro context: FRED/ALFRED · AI benchmarks: Epoch AI
+November 2026
+Contents
+Abstract3
+1. Research question and hypotheses3
+2. Markets, data, and information clock4
+3. Data engineering and exploratory analysis5
+4. Feature and capability design7
+5. Models, validation, and trading protocol10
+6. Combined evaluation: January 2025–September 202612
+7. Hypothesis evidence and regime diagnostics16
+8. Interpretation, limitations, and conclusion19
+Team contribution statement19
+AI usage declaration19
+Academic integrity19
+References20
+Appendix A. Reproducibility and provenance21
+Appendix B. Assignment alignment21
+Appendix C. Deliverable inventory22
+Appendix D. Sensitivity and diagnostic evidence22
+Appendix E. Evidence addresses and reproduction23
+TABLE
+Evidence status  The combined path is a presentation view, not one pristine holdout. The latest run excludes 2025 and 2026 from its mechanical selection routine, but both periods had been inspected during prior research iterations. Results are therefore historical replication and retrospective extension evidence.
+Repository and reproducibility artifacts
+Abstract
+This study forecasts same-session open-to-close returns for ten fixed current Nifty IT constituents from information aligned to the 08:55 IST decision clock. The canonical depth-constrained Extra Trees model combines own-stock, peer, U.S. IT-services, broad-market, macro and dated AI context, while current-vintage macro fallbacks remain an identified limitation. The signed strategy applies a 15-bps effective round-trip hurdle and modeled turnover costs. In the 2025 historical replication it earns -4.04% net with 12.86% annualized volatility, Sharpe -0.26, and OOS R² versus the asset mean of -0.75%. In the separate January–September 2026 retrospective extension it earns 15.01%, with 13.74% volatility, Sharpe 1.46, and positive mean IC. The combined 10.37% path is dominated by the declining 2026 segment. The pooled AI-release effect is inconclusive, while the 2026 coefficient is negative after multiplicity adjustment; neither result identifies causality. The evidence supports a conditional defensive-timing hypothesis, not robust stock-selection alpha.
+TABLE
+Principal result  Across the displayed 2025–September 2026 path, long exposure is active on 14 days, short exposure on 113 days, both sides on 0 days, and neither side on 307 days. Its value is defensive and conditional, not evidence for a deterministic AI-release short rule.
+1. Research question and hypotheses
+The primary question is whether completed U.S. and global information improves the decision to take a long, short, or flat position in current Nifty IT constituents at the Indian open. The secondary question is whether frontier-model releases or capability improvements contain incremental information about the subsequent returns of U.S. IT-services and Indian IT-services firms.
+Six evidence questions organize the final report. H1–H6 below follow the saved hypothesis-analysis protocol; they replace the earlier draft numbering. Peer information and feature complexity remain controlled modeling comparisons in Sections 4–5. These questions were refined after inspecting historical results and are exploratory, not prospectively preregistered tests.
+TABLE
+ID | Question / anticipated result | Evidence
+H1 | Positive U.S. services returns predict stronger subsequent Indian intraday returns. | Date-level conditional association and annual stability.
+H2 | Frontier AI releases precede negative Indian IT intraday returns. | Event indicator with lagged Indian and market controls.
+H3 | An initially negative AI-event effect becomes less negative after 2024. | Fixed 1 January 2025 interaction; adequate events on both sides.
+H4 | Larger capability advances precede more negative Indian returns. | Retrospective frontier-increment regression; minimum 30 scored dates.
+H5 | Signed forecasts generate robust positive returns after costs. | Frozen ledgers, benchmarks, HAC and date-block uncertainty.
+H6 | IT services adapt through AI offerings and workforce change. | Company disclosures; descriptive evidence, not an AI treatment effect.
+1.1 Relation to the assigned research
+Chinco, Clark-Joseph, and Ye (2019) motivate many-stock, short-lived predictors with explicit complexity penalties. This study implements sparse and shrinkage baselines, training-only feature selection, and frequent temporal refits. Kelly, Malamud, and Zhou (2024) motivate the possibility that a large feature space improves market timing when complexity is tuned carefully. Here, complexity is tested through nested information sets, PCA, regularized linear models, boosting, and constrained tree ensembles; increasing dimension is treated as an empirical hypothesis rather than a guaranteed benefit. [1,2]
+TABLE
+Study | Frequency / target | Complexity control | Adaptation here
+Chinco et al. (2019) | Intraday cross-section | Sparse penalized signals | Daily cross-market lags, Lasso/Elastic Net, forward timing
+Kelly et al. (2024) | Monthly market timing | Large nonlinear feature maps with shrinkage | RFF–Ridge complexity ratios and nested information sets
+This study | Daily NSE open-to-close | Shrinkage, PCA, shallow ensembles, staged confirmation | Signed Nifty IT timing and stock selection after costs
+Figure 1. Research architecture. Country flags and provider marks distinguish available inputs. The signed_forecast policy selects up to three stocks per side, subject to exposure caps. The 15 bps round-trip assumption includes a fee/spread proxy and slippage, not a complete Indian tax schedule. Hypotheses are discussed separately; retrospective benchmark scores do not enter historical forecasts.
+2. Markets, data, and information clock
+2.1 Tradable universe and target
+The tradable cohort is fixed to the ten current Nifty IT constituents available in the project reference file: Coforge, HCL Technologies, Infosys, LTIMindtree, Mphasis, Oracle Financial Services Software, Persistent Systems, Tata Consultancy Services, Tech Mahindra, and Wipro. This fixed-cohort design answers a current-universe question and is explicitly conditioned on survivorship; it does not reconstruct historical index membership. [3]
+TABLE
+ | rOCi,t = Ci,t / Oi,t − 1 | (1)
+Constituent response: same-session NSE open-to-close return.
+TABLE
+ | ℐt08:55 = {xj,s : τj,savailable < 08:55 IST on t} | (2)
+Point-in-time information set at the pre-open decision time.
+A prediction is formed just before the Indian open. Positions are denominated in INR, enter at the reported NSE open, and are squared off at the close. Completed U.S. sessions are therefore eligible; same-day Indian closes, highs, lows, and volumes are not. The panel begins in July 2016, screening covers 2021–2022, confirmation covers 2023–2024, 2025 is a historical replication, and January–September 2026 is a retrospective extension. Exchange holidays create no target row; invalid or zero opens are quarantined rather than imputed. Public opens are fill proxies, not opening-auction executions.
+2.2 Data sources and frequency
+TABLE
+Source block | Frequency and coverage | Research use | Primary limitation
+Yahoo Finance OHLCV [4] | Daily; Indian, U.S., ADR, FX and index histories | Returns, gaps, volatility, breadth, tradable benchmarks | Vendor-adjusted public data; not exchange-certified.
+FRED / ALFRED [5] | Daily to monthly, with vintages where available | Fed rates, yields, curve, credit and macro state | Some series require release lags or current-vintage fallback.
+NiftyHistory / project reference [7] | Dated Nifty 50/500 histories; current Nifty IT list | Point-in-time broad-universe filters and fixed target cohort | Nifty IT history is not reconstructed.
+S&P 500 historical components [8] | Dated membership snapshots | Point-in-time U.S. breadth and constituent features | Public reconstruction; ticker changes require mapping.
+Frontier release inventory | Event dates and curated providers | Release-day and decaying event pressure | Small, curated sample; announcement timing uncertainty.
+Epoch AI benchmarks [6] | Current-vintage benchmark records | Ex-post capability study and mapped event context | Never backfilled into historical tradable features.
+Benchmark identity is explicit in the saved panel: ITBEES.NS is the Nifty IT opportunity-cost proxy and NIFTYBEES.NS is the Nifty 50 proxy; both files are present in Yahoo snapshot yahoo_india_core_20261029T124839Z, so the index fallbacks were not used. Returns use vendor adjusted close-to-close prices in INR. They include overnight exposure and are not execution-matched to the strategy's NSE open-to-close holding period. The fixed-share current-cohort basket is a separate passive, survivorship-conditioned comparator.
+TABLE
+Comparator contract  Nifty 50 and Nifty IT ETF proxies are close-to-close opportunity-cost references, not matched intraday trades. The fixed-cohort passive basket is survivorship-conditioned. The panel also stores an equal-weight cohort open-to-close return for matched intraday diagnostics; zero, asset-mean and autoregressive forecasts are statistical baselines. Cash earns zero in the simulation.
+3. Data engineering and exploratory analysis
+3.1 Cleaning and reproducibility
+TABLE
+Control | Implementation | Why it matters
+Immutable snapshots | Each raw and processed snapshot carries timestamp, content hash, manifest, and source inventory. | Allows exact reconstruction and prevents silent data replacement.
+OHLC validation | Impossible envelopes and zero opens are quarantined; INR=X is close-to-close only. | Prevents fabricated intraday features from bad vendor bars.
+Calendar alignment | U.S. observations map to the next eligible Indian decision session. | Preserves the actual time-zone ordering.
+Missingness | No full-sample imputation; training-window medians and exclusion thresholds are refitted. | Prevents future distribution information from entering earlier models.
+Outliers | Winsorization/scaling parameters are learned inside each training window. | Contains unstable tails without contaminating validation.
+Resume and audit | Checkpoints, run states, hashes, and verification scripts survive interruption. | Supports long laptop runs and evidence integrity.
+TABLE
+Diagnostic | Observed implication | Modeling response
+Return dispersion and changing volatility | A single constant-risk summary is inadequate. | Tree models, robust preprocessing, drawdown and date-block inference.
+Strong intra-sector common component | Stock forecasts can collapse into market timing. | Leave-one-out peer features and explicit cross-sectional IC reporting.
+U.S.–India timing | Completed U.S. information is available before NSE opens. | One-way alignment through availability timestamps.
+Sparse AI events | Event estimates have low power. | Randomization/HAC tests and conservative interpretation.
+Large broad-universe panels | Dimension can exceed effective temporal sample size. | Shrinkage, PCA, depth/min-leaf constraints and independent confirmation.
+3.2 Market paths and exploratory findings
+Development-only EDA shows substantial common movement within the Nifty IT cohort and time variation in constituent price paths. The figures below establish that economic setting before presenting prediction-aligned correlations or forecasts. The shaded period begins at the 2025 replication boundary; it is displayed retrospectively and was not used in the mechanical screening/confirmation selection routine. No calendar-effect claim is made without a dedicated test.
+Figure 2. Daily market context. Daily adjusted-price paths in local currency. The logarithmic axis makes proportional changes comparable when one constituent grows much faster than others. Shading marks the 2025–September 2026 reported evaluation period. Constituents are the frozen current-member cohort, not a historical Nifty IT membership portfolio.
+Figure 3. India and U.S. services: distinct markets. Selected Indian firms (blue solid) and U.S. firms (orange dashed), on shared scales and normalized independently at their first available 2020 observation. These are local-currency price paths, without FX conversion. Visual co-movement is descriptive; predictive association is tested on decision-aligned returns in Figure 5.
+3.3 Peer and cross-market correlation evidence
+Two correlations answer different questions. The peer matrix uses same-day adjusted-close returns during the 2020–2024 development sample and measures common movement inside the Indian cohort. The cross-market matrix respects the information clock: each completed U.S. close-to-close return is mapped to the next Indian session and correlated with that stock's open-to-close return. Correlation is descriptive and is not interpreted as causality.
+Figure 4. INDIA | Peer return correlation, 2020–2024. Pearson correlations of daily adjusted close-to-close returns during development. Only the lower triangle is shown to remove duplicate information; blank cells are intentionally masked. Correlation supports studying shared movements but does not establish incremental forecast value.
+Figure 5. U.S. → INDIA | Decision-aligned return association. Pearson correlation between each completed U.S. services return available at the Indian decision cutoff and each Indian constituent's subsequent open-to-close return, 2020–2024. Values come from the engineered modelling panel, preserving its calendar alignment. U.S. predictor labels are orange; Indian targets are blue. Colour limits are printed on the colour bar; associations are small and not causal.
+4. Feature and capability design
+4.1 Nested information ladder
+TABLE
+Set | Increment | Representative features
+F0 | Own history | 1–21 day lags; momentum; volatility; moving-average distance; RSI; volume z-score; Fourier calendar.
+F1 | + Nifty IT peers | Leave-one-out peer mean, dispersion, breadth, rolling co-movement.
+F2 | + U.S. IT services | ACN, IBM, CTSH, EPAM and peers; sector breadth, dispersion and volatility.
+F3 | + Nifty 50 | Domestic breadth, index state, Bank/VIX and cross-sectional context.
+F4 | + S&P 500 aggregate | Point-in-time broad U.S. breadth and aggregate return state.
+F5 | + S&P 500 constituents | Point-in-time constituent return and breadth features.
+F6 | + AI capability | Release pressure, disclosed scale, generation and capability context.
+F7 | + full context | Macro, global, nonlinear and regime interactions.
+Figure 6. Feature progression at fixed ridge family. The controlled ridge ladder in the historical 2025 period compares forecast R² against an asset-mean baseline and net Sharpe. Horizontal rows represent distinct information sets rather than a continuous parameter. This diagnoses information complexity and does not establish that the best row generalizes.
+4.2 AI event, parameter, and benchmark features
+AI context is represented at three distinct evidentiary levels. Tradable event features use dated frontier releases and decaying pressure measures. Parameter features use disclosed total or active parameter counts only when explicitly reported and never treat missing disclosure as zero capability. Epoch benchmark scores are used for ex-post hypothesis analysis; current-vintage benchmark records are not injected into historical predictions. To avoid a visually uninformative inventory dump, the timeline marks only releases that establish a new running maximum in the mapped Epoch capability index. [6]
+Figure 7. What happened around the mapped frontier advances?. Numbered markers identify record improvements within the available retrospective Epoch mapping, not every frontier release. The plot ends in June 2025 to match that evidence. Median paths and cross-stock interquartile bands summarize five firms per country; the bands are dispersion, not confidence intervals. India: TCS, Infosys, Wipro, HCLTech, Tech Mahindra. U.S.: Accenture, IBM, Cognizant, EPAM, DXC. Price levels and event coincidence do not identify causal announcement effects.
+4.3 Capability hypothesis tests
+TABLE
+Test | Estimate | p-value | Interpretation
+2026 frontier release: event minus non-event Nifty IT return | -0.70% | 0.001 | Negative exploratory association; retrospective and not causal.
+2026 randomization test for release-day difference | two-sided | 0.026 | Observed difference is unusual under shuffled event labels.
+Disclosed parameter scale vs direct Nifty IT return | ρ = 0.299 | 0.471 | Small non-random subset; no negative relationship.
+Epoch capability index vs direct Nifty IT return | ρ = 0.237 | 0.289 | No statistically decisive monotone relationship.
+Time-controlled Epoch capability coefficient | −0.000676 | 0.363 | Sign turns negative after time control, but uncertainty remains large.
+Figure 8. Observed U.S. and Indian reactions. Provider marks and model names identify each mapped frontier advance. The upper and lower panels separate countries with explicit outcome definitions. U.S. close-to-close and Indian open-to-close returns cover different horizons, so magnitudes are not a like-for-like causal comparison. Reaction sessions follow the conservative publication-time mapping. Entries are observed returns, not market-adjusted abnormal returns. This is the limited Epoch-mapped subset shown in the timeline, not the complete 2026 event calendar.
+TABLE
+Hypothesis decision  The audited 2026 release-day comparison is negative and statistically unusual, while the pooled multi-year regression remains inconclusive and capability samples are small. This supports an exploratory 2026 association, not a causal or mandatory short rule. AI variables remain contextual predictors.
+5. Models, validation, and trading protocol
+5.1 Candidate families and complexity
+TABLE
+Family | Role | Capacity control
+Zero / asset mean / AR | Forecast baselines | No or minimal trainable capacity.
+Ridge / Lasso / Elastic Net | Dense and sparse shrinkage | Penalty, training-only preselection and scaling.
+PCA + Ridge | Compressed linear structure | Component count and ridge penalty.
+RFF + Ridge | Nonlinear feature-map complexity | Realized feature ratio, 2,048 cap and ridge penalty.
+Histogram boosting | Nonlinear threshold interactions | Learning rate, leaves, depth, iterations.
+Extra Trees | Nonlinear cross-market regimes | Depth, max features, minimum leaf size, trees.
+Elastic Net remains part of the completed candidate suite. Its best screening net Sharpe is −0.328, compared with +0.482 for Extra Trees and +0.642 for histogram boosting. RFF–Ridge is excluded from this submission rerun because its earlier configurations generated no threshold-crossing trades and therefore undefined Sharpe; the omission is explicit rather than plotted as zero. Extra Trees ranks highest in confirmation with net Sharpe 1.546, while histogram boosting reverses to −0.364. The selected specification uses the extremely randomized tree family [18] with 250 trees, maximum depth 6, 50% feature subsampling, and minimum leaf size 40.
+5.2 Temporal protocol
+TABLE
+Stage | Evaluation dates | Configurations | Role
+Screening | 2021–2022 | 25 evaluated configurations; quarterly refits | Compare families and complexity.
+Confirmation | 2023–2024 | 13 rows including promoted candidates and controls; quarterly refits | Historical selection stage.
+Freeze | 1 Nov 2026 | One config and selection rule | Research freeze after historical periods had been inspected.
+Historical replication | 2025 calendar year | Selected config; quarterly refits | Estimator-OOS evidence, not a pristine research holdout.
+Retrospective extension | 1 Jan–30 Sep 2026 | Same config, one pre-2026 fit | No reselection within this run; historically inspected.
+TABLE
+Protocol item | Artifact-derived value | Interpretation
+Evaluated rows | 25 screening; 13 confirmation; 12 final diagnostics; 4 extension diagnostics | Only one frozen Extra Trees specification is the selected strategy; other rows are controls or diagnostics.
+Selection rule | Minimum coverage 0.98; primary net Sharpe; tie-breakers R² vs asset mean, IC, turnover, then complexity | Selection is confined to the historical screening/confirmation protocol.
+Window and embargo | At most 1,260 prior sessions; one-session embargo; seed 17 | All preprocessing is refitted inside the available training window.
+Saved environment | Python 3.10.10; scikit-learn 1.7.2; pandas 2.3.3; NumPy 2.2.6 | Versions come from the run manifests, not the current shell.
+RFF status | Earlier historical diagnostic only; excluded from this submission rerun | Undefined historical Sharpe is not plotted as zero or claimed as a new result.
+Figure 9. Model families and selection stages. Screening and confirmation cells show the best observed net Sharpe within each family and the number of searched configurations. The 2025 and 2026 columns are frozen-period evaluations rather than new family searches; 2026 uses one pre-2026 fit with no reselection. Grey means not evaluated. Families with no finite trading Sharpe in every displayed stage are omitted rather than represented as zero.
+TABLE
+Training contract  Every rolling fit uses at most 1,260 prior trading sessions, a one-session embargo, seed 17, and training-only filtering, imputation, winsorization, scaling, selection and PCA. Screening, confirmation and the 2025 replication refit quarterly; the 2026 extension fits once on pre-2026 data.
+5.3 Signed strategy and evaluation
+TABLE
+ | si,t ∈ {−1, 0, +1},   rp,tnet = Σi wi,t ri,tOC − c × turnovert | (3)
+Forecast state and post-cost daily portfolio return.
+The active signed rule uses 5 bps fee/spread proxy plus 2.5 bps slippage each way. The effective threshold is therefore max(5 bps configured forecast floor, 15 bps round-trip friction) = 15 bps. Up to three forecasts above +15 bps are long and up to three below −15 bps are short. Absolute stock weight is capped near one-third and total gross exposure at one. Positions enter from cash at the vendor open, exit at the close, and incur two-sided turnover equal to twice gross exposure. The +1/0/−1 states describe direction, not literal unit weights.
+TABLE
+Layer | Metrics | Purpose
+Forecast | RMSE, MAE, OOS R² versus zero and asset mean | Tests statistical improvement under identical dates.
+Direction and rank | Directional accuracy, confusion matrix, Spearman IC | Separates sign skill from cross-sectional ranking.
+Portfolio | Net return, volatility, Sharpe, Sortino, drawdown, Calmar | Measures risk-adjusted economic value.
+Implementation | Turnover, costs, long/short/flat days, exposure | Tests whether the signal is tradable rather than merely accurate.
+Inference | HAC alpha/loss tests and circular block-bootstrap Sharpe interval | Accounts for serial dependence and finite calendar length.
+Interpretability | Grouped OOS permutation importance | Identifies information families used without causal attribution.
+Figure 10. Forecast magnitude is weakly calibrated. Numerically sorted prediction deciles are plotted against mean realized Nifty IT constituent open-to-close returns. Error bars are one date-clustered standard error; they preserve common shocks across the ten stocks but are not simultaneous confidence bands. Dashed vertical lines mark the ±15 bps trading hurdle and the dotted diagonal marks perfect calibration. The 2025 incremental directional-accuracy interval versus the descriptive majority-down baseline spans zero; neither panel establishes a stable calibration map.
+In 2025, directional accuracy is 54.18% versus a descriptive majority-down rate of 53.69%; the date-block interval for incremental accuracy is −2.29 to +3.70 percentage points, and the calibration-slope interval is −0.77 to 1.72. The corresponding evidence does not establish incremental directional skill or stable magnitude calibration. The majority sign is computed from evaluation labels and is therefore a descriptive reference, not a prospectively deployable forecast.
+TABLE
+Comparator contract  Forecast models and statistical baselines share decision dates, target, information clock, and trading-cost convention. Nifty IT, Nifty 50, and fixed-cohort buy-and-hold are economic opportunity-cost references with close-to-close or passive exposure; their return horizons and costs differ from the open-to-close signed strategy and are reported explicitly.
+6. Combined evaluation: January 2025–September 2026
+6.1 Cumulative performance and signed decisions
+The reporting view concatenates the 2025 historical-replication ledger and January–September 2026 retrospective extension. It is one performance display, not one untouched test or one estimator-update policy: the vertical boundary records the later pre-2026 fit required to issue extension predictions.
+TABLE
+Metric | Combined estimate | Interpretation
+Signed model cumulative net return | 10.37% | Compounded after modeled turnover costs across both segments.
+Nifty IT cumulative return | -33.83% | Sector benchmark declines across the combined interval.
+Nifty 50 cumulative return | -2.26% | Broad-market opportunity-cost benchmark.
+Current-member buy-and-hold | -25.28% | Passive fixed-cohort reference initialized from the last pre-evaluation close; survivorship-conditioned.
+Annualized model return / Sharpe | 5.90% / 0.499 | Descriptive aggregation; the two protocol segments retain separate inference.
+Maximum drawdown | -14.77% | Worst peak-to-trough loss in the displayed path.
+Long-active / short-active / mixed / flat days | 14 / 113 / 0 / 307 | Long and short activity counts may overlap on mixed books; flat means zero gross exposure.
+Figure 11. Combined evaluation and passive alternatives. One continuous compounded path across 2025 and the January–September 2026 extension. The dashed line identifies the change in refit protocol, not a capital reset. Model returns include recorded trading costs. ETF and fixed-share current-cohort buy-and-hold comparisons include overnight exposure and do not receive the intraday strategy cost model; the cohort has current-membership selection bias.
+TABLE
+Protocol segment | Model net | Nifty IT | Nifty 50 | Long / short / flat days
+2025 historical replication | -4.04% | -10.66% | 11.66% | 3 / 58 / 188
+2026 retrospective extension | 15.01% | -25.94% | -12.46% | 11 / 55 / 119
+TABLE
+Segment | Dates | Net return | Volatility | Sharpe | R² vs mean | Mean IC
+2025 replication | 249 | -4.04% | 12.86% | -0.260 | -0.75% | -0.044
+2026 extension | 185 | 15.01% | 13.74% | 1.456 | 1.41% | 0.082
+The 2025 policy uses 3 long-active days, 58 short-active days and 188 flat days. Gross return is 5.16%, but modeled friction reduces compounded net return to -4.04%; the arithmetic ledger cost sum is 9.15%. The 2026 extension uses 11 long-active days, 55 short-active days and 119 flat days; gross return is 26.95% and net return 15.01%. The change from negative 2025 IC to positive 2026 IC makes timing-versus-ranking stability a central unresolved question.
+6.2 Monthly behavior, attribution, and uncertainty
+Figure 12. The same trades, before and after costs. Recorded 2025 returns are 5.16% gross and -4.038% net. Both paths use identical holdings and execution dates. The shaded terminal wealth gap includes foregone compounding and is not simply the sum of cash fees. Costs are the implementation's assumed 7.5 bps per side, charged on turnover. 2026 is January–September; the joined path crosses from quarterly refits to a fixed-fit extension.
+The cost comparison holds forecasts and positions fixed. The gap between compounded gross and net wealth includes lost compounding; it is not the arithmetic sum of daily charges. The assumed 7.5 bps per side is a fee/spread proxy plus slippage, not a complete Indian statutory-tax schedule. Appendix D provides a fixed-holdings cost sensitivity curve rather than selecting a new strategy from that curve.
+Figure 13. What was actually traded. Daily gross long and short exposures are shown with opposite signs. The lower panel counts actual sessions classified as long-only, short-only, mixed or flat. A flat month or session is retained rather than omitted. The policy allows simultaneous long and short positions even if the observed ledger contains none.
+TABLE
+Matched diagnostic policy | 2025 net Sharpe | 2026 net Sharpe | Reading
+Selected signed stock portfolio | -0.260 | 1.456 | Retrospective comparator; not a reselection rule
+Cohort-mean signed timing | -0.427 | 2.203 | Timing comparator exceeds selected portfolio in 2026
+U.S.-services direction / equal weight | -0.906 | 2.021 | Retrospective comparator; not a reselection rule
+Always-short cohort | -0.763 | -0.139 | Retrospective comparator; not a reselection rule
+Cross-sectional residual policy | undefined | undefined | No trades
+The comparator evidence separates timing from stock ranking. Positive 2026 mean IC did not translate into higher Sharpe than the cohort-mean timing policy, while an always-short cohort performed poorly. This weakens both a pure stock-selection explanation and a permanent-short explanation. The comparison is retrospective; paired date-block uncertainty for the difference remains future work and is not replaced by subtracting Sharpe ratios.
+TABLE
+Attribution question | Evidence | Conclusion
+Was the strategy buy-only? | 113 active short days and 307 flat days. | No; the economic rule is genuinely signed.
+Was performance simply long beta? | The largest gain occurs while Nifty IT falls during 2026. | No; downside timing and short exposure dominate.
+Was it an AI-release rule? | The audited calendar extends through 30 September 2026, but event variables are only contextual inputs. | No; the strategy is not a mandatory event-day short rule.
+Did cross-market data matter? | The fitted model relies heavily on U.S. IT-services predictors in 2026. | Incremental value remains unresolved until matched ablation.
+Appendix D rebuilds grouped permutation diagnostics directly from the pinned run CSVs. Each repetition permutes a feature group by whole dates while preserving asset identities. Dispersion across repetitions and refits is descriptive variability, not a causal effect or a formal confidence interval.
+Inference remains segment-aware. The 2025 HAC alpha test is inconclusive (p=0.887) and its block-bootstrap Sharpe interval spans negative and positive outcomes. The 2026 extension is stronger (HAC alpha p=0.303; Sharpe 1.46) but covers only 185 sessions in a pronounced decline. The combined curve is therefore an accurate return summary, not evidence that the same edge is stable in every regime.
+TABLE
+Critical limitation  The audited official-provider calendar extends through 30 September 2026, but it is retrospective and sparse. The combined result evaluates a signed cross-market model, not a causal frontier-announcement trading rule.
+7. Hypothesis evidence and regime diagnostics
+7.1 Test definitions and multiplicity
+The saved analysis aggregates observations by trading date rather than treating ten correlated stock rows as independent replications. H1 regresses Indian cohort intraday return on the available U.S. services return, lagged Indian return and lagged broad-market return. H2 replaces the U.S. term with the release indicator to avoid conditioning on a possible transmission channel. Newey–West HAC covariance uses five lags [19]. All estimable regression p-values in the saved family receive Holm step-down correction [20]; displayed confidence intervals are pointwise, not simultaneous. Circular date-block resampling uses 2,000 draws for H5. These controls do not erase prior researcher exposure to the sample.
+TABLE
+Question | Observed evidence | Verdict
+H1: U.S. association | β=0.098; 95% CI [0.045, 0.151]; Holm p=0.0056; n=1,421 dates. | Exploratory support for association; incremental trading alpha unproven.
+H2: negative release | Pooled effect=-0.169 pp (Holm p=1.000; 46 sessions); 2026=-0.695 pp (Holm p=0.0155; 22 sessions). | Pooled evidence is inconclusive; 2026 provides exploratory negative association, not causal identification.
+H3: attenuation | Early effect count=17; late count=29; interaction=-0.736 pp, Holm p=0.914. | No adjusted evidence that the event response attenuated; the point estimate becomes more negative.
+H4: capability shock | 21 scored event dates versus a minimum of 30. | Not estimable under the final protocol.
+H5: economic robustness | Canonical model loses 4.04% net in 2025 and gains 15.01% in the 2026 decline; both Sharpe intervals span zero. | Conditional historical gains; robust repeatable alpha not established.
+H6: adaptation | AI offerings are documented; headcount changes differ across firms. | Descriptive adaptation supported; causal margin benefit unproven.
+7.2 Cross-market association and event uncertainty
+Figure 14. Association can exist without a profitable strategy. Conditional U.S.-services coefficients control for lagged Indian-cohort and Nifty50 returns. Blue denotes Holm-adjusted p < 0.05 within the declared analysis batch; intervals are pointwise. A +1% U.S. return corresponds to approximately +0.098 percentage points in the full-sample Indian intraday outcome. Annual differences are not themselves significant: the direct period-interaction test was inconclusive. This is exploratory association, not causality.
+Because both return variables are in decimal units, the pooled H1 coefficient implies approximately +0.098 percentage points of Indian intraday return per +1 percentage point of the available U.S. return, conditional on the included lags. The 2026 coefficient is 0.181 (Holm p=0.0240), but the post-2024 change interaction is inconclusive (Holm p=1.000). A significant coefficient in one year and an insignificant coefficient in another is not itself a significant difference between years.
+The pooled 2023–2026 H2 estimate is −0.169 percentage points with an interval spanning zero. In 2026 alone, 22 marked sessions yield −0.695 percentage points (95% HAC interval −1.099 to −0.292; Holm p=0.0155). That year-specific association is exploratory because the calendar is retrospective, events are sparse, and no market-adjusted causal design is claimed. H3 does not show attenuation after 2024: its interaction is negative but does not survive multiplicity adjustment. H4 is withheld under its sample-size rule rather than promoted from the small capability sample.
+7.3 Selected-specification record across protocol stages
+Figure 15. One specification across search, confirmation, replication, and extension. Annual net returns for the selected Extra Trees specification are 2021 +8.31%, 2022 +0.11%, 2023 +6.26%, 2024 +9.93%, 2025 -4.04%, 2026 +15.01%. The same configuration identifier is evaluated throughout, but each protocol stage uses its declared rolling or fixed-fit estimator. The 2021–2024 observations influenced model search and confirmation and are not holdout evidence; 2025 is a historical replication and 2026 is a retrospectively inspected fixed-specification extension through September. The wide 2025 and 2026 bootstrap Sharpe intervals prevent a stable-alpha claim.
+The selected specification returns +8.31% in 2021, +0.11% in 2022, +6.26% in 2023, +9.93% in 2024, −4.04% in the 2025 historical replication and +15.01% in the January–September 2026 extension. These values form one protocol history, not six independent tests: 2021–2024 influenced screening and confirmation, 2025 is an estimator-OOS historical replication after researcher exposure, and 2026 uses one fit on the declared rolling pre-2026 window, 25 November 2020–30 December 2025. The 2025 and 2026 bootstrap Sharpe intervals are wide and overlap zero. The full record therefore supports regime sensitivity and disciplined staged validation, not a claim of stable annual alpha.
+7.4 Sideways markets and trend reversals
+Figure 16. Sideways markets and reversals: observed monthly outcomes. Dots show individual 2025–September 2026 monthly model returns; orange strokes are group means. Regimes use realized Nifty IT ETF monthly returns: rising ≥3%, falling ≤−3%, otherwise sideways. A reversal changes the latest non-sideways direction. These labels are known after the month ends and are descriptive, not pre-trade signals. Small reversal groups cannot establish reliable regime-specific skill.
+TABLE
+Realized regime | Months | Model mean | IT ETF mean | 50 ETF mean
+Rising | 5 | -1.25% | +7.57% | +2.82%
+Sideways | 9 | -0.24% | -0.26% | +1.01%
+Falling | 7 | +2.94% | -10.03% | -3.38%
+These are averages of observed monthly returns, not annualized estimates or forecasts of the next regime. The distribution and reversal counts matter: a few favorable falling months cannot establish stable downside skill, and sparse upward-reversal observations cannot identify a response mechanism. The ±3% classification is ex post and never enters the trading signal. Full-sample development wealth is deliberately excluded from the headline evaluation because those dates influenced model selection.
+7.5 H6: adaptation, staffing and credible counterevidence
+Commercial adaptation is observable without assuming that AI necessarily improves margins. Infosys announced its Topaz generative-AI services offering on 23 May 2023 [9]. The Bank of England/FCA 2024 survey reports human oversight in semi-autonomous financial-services applications and only 2% of use cases with fully autonomous decision-making [10]. These sources support the relevance of enterprise integration and governance. They do not establish that Indian clients retained particular vendors because of cybersecurity, or that AI caused an equity recovery.
+CX Dive reported on 9 May 2025 that Klarna was piloting recruitment of human customer-service staff while retaining its chatbot [11]. This is evidence of a hybrid support arrangement, not proof that the company abandoned AI or rehired a specified number of software developers. Conversely, Reuters reported renewed Indian IT disruption concerns on 5 February 2026, alongside analysts who considered the selloff excessive [12]. This counterexample prevents a one-directional narrative of early fear followed by universal acceptance.
+TABLE
+Company / interval | Headcount | Change | Source
+TCS: Mar–Sep 2026 | 584,519 → 598,056 | +13,537 / +2.32% | [13], [14]
+Infosys: Jun–Sep 2026 | 328,062 → 332,542 | +4,480 / +1.37% | [15], employee metrics, p. 2
+Wipro: Jun–Sep 2026 | 243,044 → 236,328 | −6,716 / −2.76% | [16], p. 1; [17]
+Quarterly and six-month changes are labelled separately. The three firms do not show a uniform reduction in staff. TCS reports a March headline operating margin of 25.3% excluding one-offs and a September headline margin of 24.0%; those bases must not be interpreted as a clean AI productivity experiment [13,14]. Infosys reports 21.0% for September versus 21.1% for June [15]. Wipro reports IT-services margins of 16.5% versus 16.0% [16,17]. Different segment definitions and adjustment bases preclude a pooled margin test. Hiring, attrition, acquisitions, demand, currency and restructuring are alternative explanations.
+September-quarter disclosures were published after the September trading endpoint and are used only for retrospective discussion. They are not historical forecasting inputs. The defensible conclusion is heterogeneous adaptation alongside continuing disruption risk, not that stronger models uniformly destroy or restore IT-services value.
+8. Interpretation, limitations, and conclusion
+8.1 Evidence-weighted interpretation
+TABLE
+Claim | Evidence status | Report conclusion
+U.S. and global information can help pre-open Nifty IT decisions. | Unresolved incrementally | Extra Trees ranks highest under the configured confirmation metric; matched group ablations are required.
+More features always improve prediction. | Rejected | The fixed ridge ladder deteriorates as raw S&P 500 dimension expands; complexity requires shrinkage and nonlinear capacity control.
+Frontier AI releases reliably cause Nifty IT declines. | Not established | The pooled effect is inconclusive; a negative 2026 association survives Holm correction, but sparse retrospective events do not identify causality.
+The strategy is already production-ready. | Rejected | The 2025 replication loses 4.04% net; the positive 2026 extension remains retrospective, short and regime-specific.
+8.2 Limitations
+The fixed current-member cohort creates survivorship conditioning. Public vendor opens abstract from opening-auction queueing, bid–ask spread variation, taxes, borrow availability, short-sale constraints, market impact, and corporate-action edge cases. S&P and Nifty membership histories are public reconstructions rather than licensed exchange archives. Macro releases may require conservative lags, and some current-vintage fallbacks are not fully point-in-time.
+The effective inference sample is the number of serially dependent trading days, not the number of stock-day rows. AI releases are few, parameter disclosure is selective, parameter counts are not comparable across dense and mixture-of-experts architectures, and benchmark progress is multidimensional. The 2026 extension occurs during a sharp sector drawdown; its official-provider release calendar was reconstructed retrospectively through 30 September rather than maintained prospectively.
+8.3 Conclusion
+The strongest contribution is a temporally aligned, auditable retrospective design that converts cross-market forecasts into signed positions and reconciled costs. Extra Trees ranks highest under the configured historical confirmation rule, but the 2025 replication has weak forecast and net economic evidence: R² versus the asset mean and mean IC are negative, and costs more than eliminate the 2025 gross gain, taking +5.16% gross to −4.04% net. The 2026 extension is strongly positive during a sharp sector decline, making the combined result promising but regime-sensitive and dominated by defensive timing. Pooled AI-event evidence remains inconclusive; the negative 2026 association is exploratory rather than causal. The next evidentiary steps are strict-vintage sensitivity, paired timing-versus-selection inference and genuinely future observations after a prospective freeze.
+Team contribution statement
+The submitting team comprises PRATYUSH SINHA, RAMYANI PALIT, RITIK SRIVASTAVA, and VICTOR LEE CHIA SWEA.
+AI usage declaration
+OpenAI coding and language tools were used for implementation ideas, Python drafting and refactoring, runtime diagnosis, research organization, statistical discussion, source lookup, figure preparation and report formatting. Automated checks and source review support the evidence trail but do not replace author review. The authors retain responsibility for verifying the content and quality of the submitted work.
+Academic integrity
+The submission is prepared with reference to the NUS Plagiarism Policy, the NUS Code of Student Conduct (Section A: Academic Integrity), Academic Integrity Essentials, and the Policy for Use of AI in Teaching and Learning. AI assistance is declared transparently; external data, code, and research sources are attributed.
+NUS Plagiarism Policy
+NUS Code of Student Conduct
+Academic Integrity Essentials
+Policy for Use of AI in Teaching and Learning
+References
+Web references were checked on 1 November 2026. Company statements are attributed disclosures, not independent causal findings. Sources [9]–[17] support the bounded discussion in Section 7.5; no article substitutes for an experiment result.
+[1] Chinco, A., Clark-Joseph, A. D., and Ye, M. Sparse signals in the cross-section of returns. Journal of Finance 74(1), 449–492, 2019. Source / DOI
+[2] Kelly, B. T., Malamud, S., and Zhou, K. The virtue of complexity in return prediction. Journal of Finance 79(1), 459–503, 2024. Source / DOI
+[3] NSE Indices. Nifty IT: index description and constituent resources. Source / DOI
+[4] Yahoo Finance historical prices, accessed through yfinance; software documentation. Source / DOI
+[5] Federal Reserve Bank of St. Louis. FRED/ALFRED API documentation. Source / DOI
+[6] Epoch AI. AI benchmarks and capabilities; current-vintage dataset. Source / DOI
+[7] NiftyHistory. Nifty Constituent Ledger; public reconstruction. Source / DOI
+[8] fja05680. Current and historical lists of S&P 500 components; public GitHub repository. Source / DOI
+[9] Infosys. Launched today: Infosys Topaz—an AI-first offering for global enterprises. 23 May 2023. Source / DOI
+[10] Bank of England and Financial Conduct Authority. Artificial intelligence in UK financial services—2024. Survey report. Source / DOI
+[11] Doerer, K. Klarna changes its AI tune and again recruits humans for customer service. CX Dive, 9 May 2025. Source / DOI
+[12] Reuters. Anthropic’s AI push raises analyst concerns over Indian IT services revenues. 5 February 2026; syndicated by Investing.com. Source / DOI
+[13] TCS. TCS closes FY26 with improving sequential growth momentum and strong deal wins. 9 April 2026. Source / DOI
+[14] TCS. International growth and strategic wins underpin TCS’ Q2. 8 October 2026. Source / DOI
+[15] Infosys. Fact sheet: second quarter, fiscal 2027. Employee metrics p. 2; financial metrics p. 1. Source / DOI
+[16] Wipro. Highlights for the quarter ended 30 June 2026. Data sheet, p. 1. Source / DOI
+[17] Wipro. Highlights for the quarter ended 30 September 2026. SEC Exhibit 99.5. Source / DOI
+[18] Geurts, P., Ernst, D., and Wehenkel, L. Extremely randomized trees. Machine Learning 63, 3–42, 2006. Source / DOI
+[19] Newey, W. K., and West, K. D. A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix. Econometrica 55(3), 703–708, 1987. Source / DOI
+[20] Holm, S. A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics 6, 65–70, 1979. Source / DOI
+Appendix A. Reproducibility and provenance
+TABLE
+Evidence object | Immutable identifier
+Processed dataset | ai_capability_panel_20261101T012801Z_ff277b55597d727a
+Screening run | cm_ai_capability_screening_20261101T013231Z_038064c84d36
+Confirmation run | cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd
+Frozen specification | cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16
+2025 historical replication | cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090
+2026 retrospective extension | cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82
+Selected configuration | cm_extra_trees_cd9235695e6b
+The saved verification artifacts report zero failed checks for the canonical chain; the 2026 retrospective extension passed 28 checks. Manifests record configuration hashes, parent runs, input snapshots, environment metadata, output hashes, evaluation dates, and the absence of model reselection. Predictions, ledgers, cost sensitivity, refit diagnostics, inference, and plots are retained beside each run.
+TABLE
+Selected-model parameter | Frozen value
+Family | Extra Trees regressor
+Trees | 250
+Maximum depth | 6
+Maximum features | 0.50
+Minimum samples per leaf | 40
+Feature set | F7_full_context
+2026 fitting policy | One fit on rolling pre-2026 window, 25 Nov 2020–30 Dec 2025; no updates
+TABLE
+Reproduction principle  Run identifiers are evidence addresses, not presentation labels. The report builder reads only the listed immutable objects and fails if a required manifest is missing.
+Appendix B. Assignment alignment
+TABLE
+Project requirement | Implementation | Report location
+Non-trivial market prediction | Nifty IT constituent same-day O–C forecasts from cross-market information. | Sections 1–2
+Data exploration and cleaning | OHLC audit, missingness, regime, seasonality, event and capability diagnostics. | Section 3
+Leakage and timing control | 08:55 IST availability clock; training-only transforms; temporal alignment. | Sections 2–3
+Feature engineering and complexity | Nested F0–F7 sets, lags, rolling, Fourier, breadth, macro and nonlinear features. | Section 4
+Model comparison | Baselines, shrinkage, PCA, boosting and forests through screening/confirmation. | Section 5
+Out-of-sample evaluation | Combined January 2025–September 2026 display with protocol-separated final and extension segments. | Sections 6–7
+Economic evaluation | Signed long/short/flat ledger, costs, Nifty IT and Nifty 50 benchmarks. | Sections 5–7
+Interpretability and inference | Grouped permutation importance, HAC tests and block bootstrap. | Sections 6–8
+Clear interpretation | Unsupported AI causality rejected; regime dependence and limitations disclosed. | Section 8
+Reproducibility | Timestamped hashes, manifests, checkpoints, frozen IDs and verification checks. | Appendix A
+Appendix C. Deliverable inventory
+The repository contains configuration files, ingestion scripts, cleaning and panel builders, EDA and event-study scripts, walk-forward model runners, parallel checkpoint logic, freeze and verification commands, predictions, per-day long/short decisions, performance tables, figures, and the deterministic report builder. Large raw and intermediate artifacts are tracked separately from source-code review through the project’s large-file workflow.
+Appendix D. Sensitivity and diagnostic evidence
+The following figures qualify the main result rather than add independent confirmations. Cost sensitivity holds positions fixed; event counts expose missing coverage; permutation importance describes the existing fitted models.
+Figure 17. How much trading friction can the strategy withstand?. Counterfactual cost deductions on the exact same recorded decisions; forecast hurdles and holdings are never recalculated. At the modeled 15 bps round-trip cost, 2025 returns -4.04% net; its fixed-holdings break-even cost is approximately 8.25 bps. The January–September 2026 extension breaks even near 36.21 bps. These are unchanged-holdings descriptive stress tests, not optimized fee choices.
+Figure 18. Why later-period event conclusions remain unresolved. Marked Indian sessions by year are 2021: 0, 2022: 0, 2023: 5, 2024: 12, 2025: 7, 2026: 22. The 2026 calendar now uses dated official-provider announcements through 30 September under a fixed general-purpose frontier-release rule. Same-session releases can map to one Indian session, so session counts need not equal release counts. Small annual event samples still limit power and do not establish causal effects.
+Figure 19. Exploratory model reliance. Grouped permutation importance rebuilt directly from the pinned 2025 and 2026 selected-model CSVs. Each repetition permutes a feature group by whole dates while preserving asset identities. Points are mean OOS MSE increases; bars are one standard deviation across repetitions and, in 2025, refits. They are descriptive variability, not confidence intervals. Positive values indicate predictive reliance; negative values can arise from finite-sample noise. The diagnostic is not a causal or isolated feature contribution.
+Appendix E. Evidence addresses and reproduction
+Hypothesis analysis: hypotheses_20261101T030841Z_d494c2f238ca64a6. The accompanying hypothesis_tests.csv contains estimates, sample sizes, covariance choices, raw and Holm p-values, and not-estimable statuses. Company_headcount_changes.csv retains source IDs and quarter definitions. The hypothesis manifest records the input and result hashes.
+TABLE
+Evidence object | Immutable identifier
+Historical EDA | analysis_20261101T013012Z_d50423d05d5c
+2026 EDA | analysis_20261101T013030Z_3ebb036affd8
+2026 event study | ai_services_analysis_20261101T013058Z_e88408b9a16d
+Capability analysis | ai_capability_analysis_20261101T013123Z_97f653e82ec8
+Epoch capability analysis | epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec
+2025 model evidence | model_evidence_final_test_20261101T030544Z_a4d9077ee46e
+2026 model evidence | model_evidence_forward_extension_2026_20261101T030629Z_2f2c1a45c5fc
+Information ladder | information_ladder_final_test_20261101T030705Z_4fcf7b07672b
+2025 strategy comparison | ai_strategy_comparison_20261101T030717Z_591c864e3aba
+2026 strategy comparison | ai_strategy_comparison_20261101T030726Z_9660a3a84bc3
+Hypothesis family | hypotheses_20261101T030841Z_d494c2f238ca64a6
+The canonical screening, confirmation, freeze, 2025 replication and 2026 extension identifiers are listed in Appendix A. Main-text discussions refer to these evidence addresses through the appendices rather than embedding hashes in the narrative.
+Figure evidence: reports/publication_figure_pack_v2_2026-11-01/manifest.json. Its catalog provides figure captions, placement and changes; accompanying CSV files contain the exact cost, benchmark and regime summaries. The report builder verifies the figure file hashes before insertion.
+python scripts/build_publication_figure_pack.py
+python reports/build_report_ai_capability.py

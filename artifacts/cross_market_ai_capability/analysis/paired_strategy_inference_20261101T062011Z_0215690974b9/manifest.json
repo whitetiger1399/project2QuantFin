@@ -1,0 +1,26 @@
+{
+  "analysis_id": "paired_strategy_inference_20261101T062011Z_0215690974b9",
+  "status": "complete",
+  "created_at_utc": "2026-11-01T06:20:12.686882+00:00",
+  "method": "paired circular date-block bootstrap; identical resampled dates for both policies",
+  "identity": {
+    "sources": {
+      "artifacts/cross_market_ai_capability/analysis/ai_strategy_comparison_20261101T030717Z_591c864e3aba/strategy_ledgers.parquet": "b29f01dea6780d5b28e165bd3b70271f328b364092fefd3781d6dc5fc19c024c",
+      "artifacts/cross_market_ai_capability_2026/analysis/ai_strategy_comparison_20261101T030726Z_9660a3a84bc3/strategy_ledgers.parquet": "fa85ac0047429167da3040945f3ae80ac5fd273eccbabf3f86634e3fed8b4c9d"
+    },
+    "comparators": [
+      "cohort_mean_signed",
+      "services_direction_equal_weight"
+    ],
+    "draws": 2000,
+    "seed": 17,
+    "block_lengths": [
+      5,
+      10,
+      20
+    ]
+  },
+  "files": {
+    "paired_strategy_inference.csv": "173e00061315fe81ef4541058da7239505316da368a6317a0dbe7985ca6b53c8"
+  }
+}

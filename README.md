@@ -393,41 +393,62 @@ Non-significance is inconclusive, not proof of no effect. Event associations and
 
 ## 11. Figures and report
 
-The submitted publication pack and report are evidence-bound to the verified canonical chain. For an exact rebuild of the committed report, leave `REPORT_*` variables unset and retain the committed canonical artifacts. For a fresh chain, export the verified core IDs:
+### Strict-vintage sensitivity used by Version 2
+
+The report's data-vintage diagnostic is a separately tracked post-selection sensitivity. It preserves the frozen depth-6 Extra Trees parameters and trading policy while excluding every feature marked `current_vintage_fallback`. Run it before rebuilding the publication pack:
 
 ```bash
-export SELECTED_CONFIG_ID=$(python -c "import json,os; print(json.load(open('artifacts/cross_market_ai_capability/runs/' + os.environ['FINAL_RUN_ID'] + '/manifest.json'))['selected_config_id'])")
-export REPORT_DATASET_ID="$DATASET_ID"
-export REPORT_EDA_RUN_ID="$EDA_RUN_ID"
-export REPORT_CAPABILITY_ANALYSIS_ID="$CAPABILITY_ANALYSIS_ID"
-export REPORT_EPOCH_ANALYSIS_ID="$EPOCH_ANALYSIS_ID"
-export REPORT_SCREENING_RUN_ID="$SCREENING_RUN_ID"
-export REPORT_CONFIRMATION_RUN_ID="$CONFIRMATION_RUN_ID"
-export REPORT_FREEZE_ID="$FREEZE_ID"
-export REPORT_FINAL_RUN_ID="$FINAL_RUN_ID"
-export REPORT_FORWARD_RUN_ID="$FORWARD_RUN_ID"
-export REPORT_SELECTED_CONFIG_ID="$SELECTED_CONFIG_ID"
-export REPORT_LADDER_ANALYSIS_ID="$LADDER_ANALYSIS_ID"
-export REPORT_MODEL_EVIDENCE_ID="$MODEL_EVIDENCE_ID"
-export REPORT_STRATEGY_ANALYSIS_ID="$STRATEGY_ANALYSIS_ID"
+python scripts/run_strict_vintage_sensitivity.py \
+  --release-registry reports/releases/project2_team16_v2_2026-11-01/release_registry.json \
+  --parallel-workers 3
+```
 
-python scripts/build_publication_figure_pack.py
+The output manifest records the exact parent model, excluded columns, zero retained fallback flags, per-period metrics, paired circular date-block intervals, source hashes and output hashes. A new run receives a new timestamped analysis ID; bind that ID as `STRICT_VINTAGE_ANALYSIS_ID` in the release registry before rebuilding the figures and report.
+
+### Rebuild the verified Version 2 release
+
+The report release is selected explicitly. Do not rely on the builder defaults, which target the legacy V1 filenames when no registry is supplied. The canonical V2 outputs are `reports/Project2_Team16_Report_V2.docx` and `reports/Project2_Team16_Report_V2.pdf`.
+
+External rendering prerequisites are LibreOffice (DOCX→PDF) and Poppler (`pdfinfo`, `pdftotext`, and `pdftoppm`). The Python environment is created from `pyproject.toml` or `requirements.txt`; the contents resolver no longer depends on an undeclared system PyMuPDF installation.
+
+```bash
+cd /path/to/project2QuantFin
+source .venv/bin/activate                  # Windows PowerShell: .venv\Scripts\Activate.ps1
+
+export REPORT_RELEASE_REGISTRY=reports/releases/project2_team16_v2_2026-11-01/release_registry.json
+# Windows PowerShell:
+# $env:REPORT_RELEASE_REGISTRY = "reports/releases/project2_team16_v2_2026-11-01/release_registry.json"
+
+python scripts/build_publication_figure_pack.py \
+  --output reports/publication_figure_pack_v2_2026-11-01
 python reports/build_report_ai_capability.py
+
+# First render. Use the full soffice path when it is not on PATH.
+mkdir -p reports/_render_v2
+soffice --headless --convert-to pdf --outdir reports/_render_v2 \
+  reports/Project2_Team16_Report_V2.docx
+
+python scripts/resolve_report_toc_pages.py \
+  --docx reports/Project2_Team16_Report_V2.docx \
+  --pdf reports/_render_v2/Project2_Team16_Report_V2.pdf \
+  --output reports/releases/project2_team16_v2_2026-11-01/toc_pages.json
+
+# Rebuild with resolved page numbers, render again, and copy the canonical PDF.
+python reports/build_report_ai_capability.py
+soffice --headless --convert-to pdf --outdir reports/_render_v2 \
+  reports/Project2_Team16_Report_V2.docx
+cp reports/_render_v2/Project2_Team16_Report_V2.pdf \
+  reports/Project2_Team16_Report_V2.pdf
+
+python scripts/verify_report_release.py \
+  --release-registry "$REPORT_RELEASE_REGISTRY"
 ```
 
-A fresh submission also requires reviewing and updating the separately pinned raw snapshots, event analysis, hypothesis analysis, and publication-figure references. The builder intentionally fails on absent or hash-mismatched evidence.
+If layout changes move headings, run the contents resolver and rebuild/render sequence once more until `toc_pages.json` stabilizes. Inspect every rendered page at 100% before submission. The expected release is 15–25 pages, has no zero contents destinations, uses selected configuration `cm_extra_trees_cd9235695e6b`, and must pass the lineage, figure-input, claim and output checks. The Office Viewer extension may be used as an additional manual preview when it exposes a connected Word session, but it does not replace the deterministic build hashes or page-image review.
 
-Export PDF with Microsoft Word or LibreOffice and update fields. A LibreOffice CLI example is:
+For a new release, first copy the registry into a new versioned directory and change every output destination. Never rebuild a new experiment over an archived release identity.
 
-```bash
-mkdir -p reports/_render_final
-soffice --headless --convert-to pdf --outdir reports/_render_final reports/Project2_Team16_Report.docx
-python scripts/cache_report_contents.py --pdf reports/_render_final/Project2_Team16_Report.pdf
-soffice --headless --convert-to pdf --outdir reports/_render_final reports/Project2_Team16_Report.docx
-cp reports/_render_final/Project2_Team16_Report.pdf reports/Project2_Team16_Report.pdf
-```
-
-On macOS, use `/Applications/LibreOffice.app/Contents/MacOS/soffice` if `soffice` is not on `PATH`. On Windows, use the full path to `soffice.exe`. Inspect every rendered page before submission.
+The older `REPORT_*` environment variables remain available for development diagnostics, but they are not a publication recipe because they can omit newer evidence addresses. Published releases must use one explicit registry. On macOS, use `/Applications/LibreOffice.app/Contents/MacOS/soffice` if `soffice` is not on `PATH`; on Windows, use the full path to `soffice.exe`.
 
 ## Outputs
 

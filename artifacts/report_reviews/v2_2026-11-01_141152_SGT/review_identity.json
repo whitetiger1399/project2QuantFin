@@ -1,0 +1,19 @@
+{
+  "review_started_sgt": "2026-11-01T14:11:52+08:00",
+  "recorded_at_sgt": "2026-11-01T14:14:18.614350+08:00",
+  "git_head": "9dc39aff5a503a5bd308c243634bac48381e7964",
+  "sha256": {
+    "reports/Project2_Team16_Report_V2.docx": "e21629dc964f63a91b0055b07a0a1969fa40eab9f617eb7c7f5f97c7d5b1a722",
+    "reports/Project2_Team16_Report_V2.pdf": "deb276c8ed51addb84e30010953d291fbb501cdfa122ea7f032dac0489552c4e",
+    "documents/markdown/Project2.md": "66f0175dcfc155e67c922a38e53ce9f73f589c37d736a8b2eb4b7d5af4972220",
+    "reports/releases/project2_team16_v2_2026-11-01/release_registry.json": "1ad1e60d0c7e910cae9d3fcf4e2a8fb6468d4b0b24914ea13ec3f87efd65006a",
+    "reports/build_report_ai_capability.py": "a47eb17562a441b2f0827512b9cbf666c8c64c3a2ba955eb7ab2eb5d03bca025",
+    "reports/publication_report_sections.py": "eba41f681c968513f2bd82678531bf60d5e8c4e05207d10c3a90cd3581444b4d",
+    "scripts/build_publication_figure_pack.py": "9ddf7beb8fe87f20ba3814c7c0c3014aafcdf95d780584e583170c1f17d0106c",
+    "scripts/verify_report_release.py": "8cd61cb930cae808136fbcdbcfcbc949a793c91e5a3ce891c5f6090448692ed0",
+    "requirements.txt": "3589e6012363e8a0553d0bd4ca6a9a032a95b551b014dd77bf86b96885e30280",
+    "pyproject.toml": "a90b43655fd6beee5a1cb9450acee60244d2a970da66ea09912aaaf4d0358823"
+  },
+  "visual_review": "Existing rendered PDF and four contact sheets (all 23 pages); detailed pages 4,12,23. Rendered PDF matches supplied PDF SHA256. No independent DOCX re-render this review.",
+  "toc_matches_release": true
+}

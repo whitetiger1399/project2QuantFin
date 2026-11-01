@@ -1,0 +1,39 @@
+{
+  "status": "pass",
+  "controls": [
+    {
+      "name": "wrong_freeze",
+      "exit_code": 1,
+      "failed_checks": [
+        "freeze_manifest_exists",
+        "final_parent:freeze_id",
+        "forward_parent:source_freeze_id",
+        "forward_source_hash:freeze_sha256"
+      ]
+    },
+    {
+      "name": "wrong_config",
+      "exit_code": 1,
+      "failed_checks": [
+        "freeze_selected_config",
+        "final_selected_config",
+        "forward_selected_config",
+        "figure_pack_selected_config"
+      ]
+    },
+    {
+      "name": "altered_claim",
+      "exit_code": 1,
+      "failed_checks": [
+        "claim:return_2025_net"
+      ]
+    },
+    {
+      "name": "stale_figure_input",
+      "exit_code": 1,
+      "failed_checks": [
+        "figure_input_hash:artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec/epoch_event_capability_returns.csv"
+      ]
+    }
+  ]
+}

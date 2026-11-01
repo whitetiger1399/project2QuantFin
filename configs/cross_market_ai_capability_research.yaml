@@ -57,30 +57,30 @@ models:
         - family: extra_trees
           feature_set: F7_full_context
           experiment: selected_family_reference
-          parameters: {n_estimators: 250, max_depth: 8, min_samples_leaf: 40, max_features: 0.5}
+          parameters: {n_estimators: 250, max_depth: 6, min_samples_leaf: 40, max_features: 0.5}
         - family: extra_trees
           feature_set: F7_full_context
           experiment: strict_vintage_sensitivity
           exclude_current_vintage_fallback: true
-          parameters: {n_estimators: 250, max_depth: 8, min_samples_leaf: 40, max_features: 0.5}
+          parameters: {n_estimators: 250, max_depth: 6, min_samples_leaf: 40, max_features: 0.5}
         - family: extra_trees
           feature_set: F0_own
           experiment: selected_family_information_ablation
-          parameters: {n_estimators: 250, max_depth: 8, min_samples_leaf: 40, max_features: 0.5}
+          parameters: {n_estimators: 250, max_depth: 6, min_samples_leaf: 40, max_features: 0.5}
         - family: extra_trees
           feature_set: F2_us_services
           experiment: selected_family_information_ablation
-          parameters: {n_estimators: 250, max_depth: 8, min_samples_leaf: 40, max_features: 0.5}
+          parameters: {n_estimators: 250, max_depth: 6, min_samples_leaf: 40, max_features: 0.5}
         - family: extra_trees
           feature_set: F7_full_context
           experiment: selected_family_minus_us_services
           excluded_feature_families: [us_it_services, us_it_services_aggregate]
-          parameters: {n_estimators: 250, max_depth: 8, min_samples_leaf: 40, max_features: 0.5}
+          parameters: {n_estimators: 250, max_depth: 6, min_samples_leaf: 40, max_features: 0.5}
         - family: extra_trees
           feature_set: F7_full_context
           experiment: selected_family_minus_ai
           excluded_feature_families: [ai_event, ai_interaction, ai_capability, ai_capability_interaction]
-          parameters: {n_estimators: 250, max_depth: 8, min_samples_leaf: 40, max_features: 0.5}
+          parameters: {n_estimators: 250, max_depth: 6, min_samples_leaf: 40, max_features: 0.5}
     focused_improvement:
       feature_sets: [F0_own, F1_nifty_it_peers, F2_us_services, F3_nifty50, F4_sp500_aggregate, F5_sp500_constituents, F6_ai_capability, F7_full_context]
       families: [zero, asset_mean, autoregression, ridge, elastic_net, extra_trees, hist_gradient_boosting, rff_ridge]

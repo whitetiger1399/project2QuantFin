@@ -1,0 +1,397 @@
+{
+  "status": "pass",
+  "checks_passed": 78,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "dataset_manifest",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a"
+    },
+    {
+      "check": "dataset_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset_hash:capability_event_mapping.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset_hash:capability_evidence.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset_hash:feature_dictionary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset_hash:panel.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "unique_panel_key",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "analysis_manifest",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/analysis_20261101T013012Z_d50423d05d5c"
+    },
+    {
+      "check": "analysis_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "analysis_dataset",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "analysis_file:analysis_summary.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "analysis_file:dataset_quality_by_asset.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "analysis_file:return_statistical_tests.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "analysis_file:feature_target_tests.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_manifest",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36"
+    },
+    {
+      "check": "screening_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_label",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_dataset",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_file:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_file:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_file:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_file:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_file:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:annual_performance.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:configurations.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:forecast_hac_comparisons.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:selected_model_inference.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening_hash:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_manifest",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd"
+    },
+    {
+      "check": "confirmation_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_label",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_dataset",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_file:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_file:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_file:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_file:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_file:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:annual_performance.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:configurations.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:forecast_hac_comparisons.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:selected_model_inference.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_hash:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_manifest",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090"
+    },
+    {
+      "check": "final_test_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_label",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_dataset",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_file:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_file:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_file:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_file:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_file:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:annual_performance.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:configurations.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:forecast_hac_comparisons.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:selected_model_inference.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test_hash:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "freeze_file",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/freezes/cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16.json"
+    },
+    {
+      "check": "freeze_confirmation_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "freeze_single_model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_freeze_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_frozen_config",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

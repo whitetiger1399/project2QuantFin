@@ -10,13 +10,16 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt
 from report_components import table, figure, hyperlink
+from report_release import load_registry, registry_id, registry_output
 
-HYP_ID = os.environ.get('REPORT_HYPOTHESIS_ANALYSIS_ID', 'hypotheses_20261101T030841Z_d494c2f238ca64a6')
+ROOT = Path(__file__).resolve().parents[1]
+REGISTRY_PATH, RELEASE = load_registry(ROOT)
+HYP_ID = os.environ.get('REPORT_HYPOTHESIS_ANALYSIS_ID', registry_id(RELEASE,'HYPOTHESIS_ANALYSIS_ID','hypotheses_20261101T030841Z_d494c2f238ca64a6'))
 FIGURES = []
 
 
 def publication_pack(root):
-    folder = root / 'reports/publication_figure_pack_2026-11-01'
+    folder = registry_output(root,RELEASE,'figure_pack','reports/publication_figure_pack_2026-11-01')
     manifest = json.loads((folder / 'manifest.json').read_text())
     for name, digest in manifest['files'].items():
         assert hashlib.sha256((folder / name).read_bytes()).hexdigest() == digest, name
@@ -28,7 +31,7 @@ def add_reviewed_figure(doc, pack, key, width=6.2):
     item = pack['catalog'][key]
     FIGURES.append(key)
     caption = f"Figure {len(FIGURES)}. {item['title']}. {item['caption']}"
-    figure(doc, pack['folder']/item['png'], caption, width)
+    figure(doc, pack['folder']/item['png'], caption, min(width, 6.2 if key=='01_architecture' else 5.6))
     doc.paragraphs[-1].paragraph_format.keep_together = True
 
 
@@ -66,25 +69,26 @@ def hypothesis_results(doc, root, reviewed):
     h3=row('H3_event_attenuation','fixed_break_2025-01-01')
     doc.add_heading('7. Hypothesis evidence and regime diagnostics',level=1)
     doc.add_heading('7.1 Test definitions and multiplicity',level=2)
-    doc.add_paragraph('The saved analysis aggregates observations by trading date rather than treating ten correlated stock rows as independent replications. H1 regresses Indian cohort intraday return on the available U.S. services return, lagged Indian return and lagged broad-market return. H2 replaces the U.S. term with the release indicator to avoid conditioning on a possible transmission channel. HAC covariance uses five lags. All estimable regression p-values in the saved family receive Holm correction; displayed confidence intervals are pointwise, not simultaneous. Circular date-block resampling uses 2,000 draws for H5. These controls do not erase prior researcher exposure to the sample.')
+    doc.add_paragraph('The saved analysis aggregates observations by trading date rather than treating ten correlated stock rows as independent replications. H1 regresses Indian cohort intraday return on the available U.S. services return, lagged Indian return and lagged broad-market return. H2 replaces the U.S. term with the release indicator to avoid conditioning on a possible transmission channel. Newey–West HAC covariance uses five lags [19]. All estimable regression p-values in the saved family receive Holm step-down correction [20]; displayed confidence intervals are pointwise, not simultaneous. Circular date-block resampling uses 2,000 draws for H5 [21]. These controls do not erase prior researcher exposure to the sample.')
     table(doc,['Question','Observed evidence','Verdict'],[
-        ('H1: U.S. association',f"β={h1.coefficient:.3f}; 95% CI [{h1.ci_low:.3f}, {h1.ci_high:.3f}]; Holm p={h1.pvalue_holm:.4f}; n={int(h1.n_dates):,} dates.",'Exploratory support for association; incremental trading alpha unproven.'),
-        ('H2: negative release',f"Pooled effect={100*h2.coefficient:+.3f} pp (Holm p={h2.pvalue_holm:.3f}; {int(h2.count_event)} sessions); 2026={100*h2_2026.coefficient:+.3f} pp (Holm p={h2_2026.pvalue_holm:.4f}; {int(h2_2026.count_event)} sessions).",'Pooled evidence is inconclusive; 2026 provides exploratory negative association, not causal identification.'),
-        ('H3: attenuation',f"Early effect count={int(h3.count_early_event)}; late count={int(h3.count_late_event)}; interaction={100*h3.coefficient:+.3f} pp, Holm p={h3.pvalue_holm:.3f}.",'No adjusted evidence that the event response attenuated; the point estimate becomes more negative.'),
-        ('H4: capability shock','21 scored event dates versus a minimum of 30.','Not estimable under the final protocol.'),
-        ('H5: economic robustness','Canonical model loses 4.04% net in 2025 and gains 15.01% in the 2026 decline; both Sharpe intervals span zero.','Conditional historical gains; robust repeatable alpha not established.'),
-        ('H6: adaptation','AI offerings are documented; headcount changes differ across firms.','Descriptive adaptation supported; causal margin benefit unproven.'),
+        ('H1: U.S. association',f"β={h1.coefficient:.3f}; 95% CI [{h1.ci_low:.3f}, {h1.ci_high:.3f}]; Holm p={h1.pvalue_holm:.4f}; n={int(h1.n_dates):,} dates.",'Supported: positive conditional association. This test does not estimate trading alpha.'),
+        ('H2: negative release',f"Pooled effect={100*h2.coefficient:+.3f} pp (Holm p={h2.pvalue_holm:.3f}; {int(h2.count_event)} sessions); 2026={100*h2_2026.coefficient:+.3f} pp (Holm p={h2_2026.pvalue_holm:.4f}; {int(h2_2026.count_event)} sessions).",'Inconclusive overall; supported as a negative association in the exploratory 2026 subgroup.'),
+        ('H3: attenuation',f"Early effect count={int(h3.count_early_event)}; late count={int(h3.count_late_event)}; interaction={100*h3.coefficient:+.3f} pp, Holm p={h3.pvalue_holm:.3f}.",'Inconclusive: interval is too wide; the negative point estimate alone does not disprove attenuation.'),
+        ('H4: capability shock','21 scored event dates versus a minimum of 30.','Inconclusive: insufficient scored event dates for the declared test.'),
+        ('H5: economic robustness','Canonical model loses 4.04% net in 2025 and gains 15.01% in the 2026 decline; both Sharpe intervals span zero.','Inconclusive for repeatable positive alpha. The narrower claim of a gain in every evaluation year is contradicted by 2025.'),
+        ('H6: adaptation','AI offerings are documented; headcount changes differ across firms.','Supported descriptively: firms offer AI services and adapt their workforce. A causal profit-margin effect is a separate question.'),
     ],[3.1,8.0,4.9],8.1)
+    doc.add_paragraph('Supported means that the measured claim has evidence in this sample; contradicted means evidence conflicts with that claim; inconclusive means the data and design cannot decide. A nonsignificant p-value is not proof of no relationship. H1 and the descriptive H6 claim have support. H2 varies by period. H3–H5 retain uncertainty. More tests on the same inspected sample cannot establish causality: the company disclosures lack a comparable untreated group, and AI releases coincide with other market news.')
     doc.add_heading('7.2 Cross-market association and event uncertainty',level=2)
     reviewed('13_transmission_inference')
     doc.add_paragraph('Because both return variables are in decimal units, the pooled H1 coefficient implies approximately +0.098 percentage points of Indian intraday return per +1 percentage point of the available U.S. return, conditional on the included lags. The 2026 coefficient is 0.181 (Holm p=0.0240), but the post-2024 change interaction is inconclusive (Holm p=1.000). A significant coefficient in one year and an insignificant coefficient in another is not itself a significant difference between years.')
     doc.add_paragraph('The pooled 2023–2026 H2 estimate is −0.169 percentage points with an interval spanning zero. In 2026 alone, 22 marked sessions yield −0.695 percentage points (95% HAC interval −1.099 to −0.292; Holm p=0.0155). That year-specific association is exploratory because the calendar is retrospective, events are sparse, and no market-adjusted causal design is claimed. H3 does not show attenuation after 2024: its interaction is negative but does not survive multiplicity adjustment. H4 is withheld under its sample-size rule rather than promoted from the small capability sample.')
     doc.add_heading('7.3 Selected-specification record across protocol stages',level=2)
     reviewed('15_confirmation_diagnostic')
-    doc.add_paragraph('The selected specification returns +8.31% in 2021, +0.11% in 2022, +6.26% in 2023, +9.93% in 2024, −4.04% in the 2025 historical replication and +15.01% in the January–September 2026 extension. These values form one protocol history, not six independent tests: 2021–2024 influenced screening and confirmation, 2025 is an estimator-OOS historical replication after researcher exposure, and 2026 uses one fit on all pre-2026 observations. The 2025 and 2026 bootstrap Sharpe intervals are wide and overlap zero. The full record therefore supports regime sensitivity and disciplined staged validation, not a claim of stable annual alpha.')
+    doc.add_paragraph('The selected specification returns +8.31% in 2021, +0.11% in 2022, +6.26% in 2023, +9.93% in 2024, −4.04% in the 2025 historical replication and +15.01% in the January–September 2026 extension. These values form one protocol history, not six independent tests: 2021–2024 influenced screening and confirmation, 2025 is an estimator-OOS historical replication after researcher exposure, and 2026 uses one fit on the declared rolling pre-2026 window, 25 November 2020–30 December 2025. The 2025 and 2026 bootstrap Sharpe intervals are wide and overlap zero. The full record therefore supports regime sensitivity and disciplined staged validation, not a claim of stable annual alpha.')
     doc.add_heading('7.4 Sideways markets and trend reversals',level=2)
     reviewed('16_regime_distributions')
-    monthly=pd.read_csv(root/'reports/publication_figure_pack_2026-11-01/16_monthly_regimes.csv')
+    monthly=pd.read_csv(pack_folder(root)/'16_monthly_regimes.csv')
     rows=[]
     for regime in ['Rising','Sideways','Falling']:
         g=monthly.loc[monthly.regime.eq(regime)]
@@ -108,7 +112,7 @@ def company_discussion(doc):
 
 REFS = [
 ('Chinco, A., Clark-Joseph, A. D., and Ye, M. Sparse signals in the cross-section of returns. Journal of Finance 74(1), 449–492, 2019.', 'https://doi.org/10.1111/jofi.12733'),
-('Kelly, B. T., Malamud, S., and Zhou, K. The virtue of complexity in return prediction. Journal of Finance 79(1), 459–501, 2024.', 'https://doi.org/10.1111/jofi.13298'),
+('Kelly, B. T., Malamud, S., and Zhou, K. The virtue of complexity in return prediction. Journal of Finance 79(1), 459–503, 2024.', 'https://doi.org/10.1111/jofi.13298'),
 ('NSE Indices. Nifty IT: index description and constituent resources.', 'https://www.niftyindices.com/indices/equity/sectoral-indices/nifty-it'),
 ('Yahoo Finance historical prices, accessed through yfinance; software documentation.', 'https://ranaroussi.github.io/yfinance/'),
 ('Federal Reserve Bank of St. Louis. FRED/ALFRED API documentation.', 'https://fred.stlouisfed.org/docs/api/fred/'),
@@ -124,6 +128,10 @@ REFS = [
 ('Infosys. Fact sheet: second quarter, fiscal 2027. Employee metrics p. 2; financial metrics p. 1.', 'https://www.infosys.com/investors/reports-filings/quarterly-results/2026-2027/q2/documents/fact-sheet.pdf'),
 ('Wipro. Highlights for the quarter ended 30 June 2026. Data sheet, p. 1.', 'https://www.wipro.com/content/dam/nexus/en/investor/quarterly-results/2026-2027/q1fy27/datasheet-q1fy27.pdf'),
 ('Wipro. Highlights for the quarter ended 30 September 2026. SEC Exhibit 99.5.', 'https://www.sec.gov/Archives/edgar/data/1123799/000119312526426841/d188224dex995.htm'),
+('Geurts, P., Ernst, D., and Wehenkel, L. Extremely randomized trees. Machine Learning 63, 3–42, 2006.', 'https://doi.org/10.1007/s10994-006-6226-1'),
+('Newey, W. K., and West, K. D. A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix. Econometrica 55(3), 703–708, 1987.', 'https://doi.org/10.2307/1913610'),
+('Holm, S. A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics 6, 65–70, 1979.', 'https://doi.org/10.2307/4615733'),
+('Politis, D. N., and Romano, J. P. A circular block-resampling procedure for stationary data. In Exploring the Limits of Bootstrap, 263–270, 1992.', 'https://mathweb.ucsd.edu/~politis/DPpublication.html'),
 ]
 
 
@@ -142,31 +150,40 @@ def append_publication_diagnostics(doc, root, reviewed):
     doc.add_heading('Appendix D. Sensitivity and diagnostic evidence',level=1)
     doc.add_paragraph('The following figures qualify the main result rather than add independent confirmations. Cost sensitivity holds positions fixed; event counts expose missing coverage; permutation importance describes the existing fitted models.')
     reviewed('10_cost_sensitivity')
-    reviewed('14_event_coverage')
-    reviewed('17_group_importance_existing')
+    doc.add_paragraph('Event coverage is 0 mapped sessions in 2021–2022, 5 in 2023, 12 in 2024, 7 in 2025 and 22 in January–September 2026. Sparse early coverage limits comparisons across periods. Full calibration, event-count and grouped-permutation plots remain available in the figure pack; they are omitted here because the main text already reports their decision-relevant findings.')
     doc.add_heading('Appendix E. Evidence addresses and reproduction',level=1)
     doc.add_paragraph('Hypothesis analysis: '+HYP_ID+'. The accompanying hypothesis_tests.csv contains estimates, sample sizes, covariance choices, raw and Holm p-values, and not-estimable statuses. Company_headcount_changes.csv retains source IDs and quarter definitions. The hypothesis manifest records the input and result hashes.')
-    table(doc,['Evidence object','Immutable identifier'],[
-        ('Historical EDA','analysis_20261101T013012Z_d50423d05d5c'),
-        ('2026 EDA','analysis_20261101T013030Z_3ebb036affd8'),
-        ('2026 event study','ai_services_analysis_20261101T013058Z_e88408b9a16d'),
-        ('Capability analysis','ai_capability_analysis_20261101T013123Z_97f653e82ec8'),
-        ('Epoch capability analysis','epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec'),
-        ('2025 model evidence','model_evidence_final_test_20261101T030544Z_a4d9077ee46e'),
-        ('2026 model evidence','model_evidence_forward_extension_2026_20261101T030629Z_2f2c1a45c5fc'),
-        ('Information ladder','information_ladder_final_test_20261101T030705Z_4fcf7b07672b'),
-        ('2025 strategy comparison','ai_strategy_comparison_20261101T030717Z_591c864e3aba'),
-        ('2026 strategy comparison','ai_strategy_comparison_20261101T030726Z_9660a3a84bc3'),
-        ('Hypothesis family',HYP_ID),
-    ],[5.2,10.8],7.1)
+    labels=[('Historical EDA','EDA_RUN_ID'),('2026 EDA','FORWARD_EDA_ID'),('2026 event study','EVENT_ANALYSIS_ID'),
+            ('Capability analysis','CAPABILITY_ANALYSIS_ID'),('Epoch capability analysis','EPOCH_ANALYSIS_ID'),
+            ('2025 model evidence','MODEL_EVIDENCE_ID'),('2026 model evidence','FORWARD_MODEL_EVIDENCE_ID'),
+            ('Information ladder','LADDER_ANALYSIS_ID'),('2025 strategy comparison','STRATEGY_ANALYSIS_ID'),
+            ('2026 strategy comparison','FORWARD_STRATEGY_ANALYSIS_ID'),('Paired strategy inference','PAIRED_STRATEGY_ANALYSIS_ID'),
+            ('Strict-vintage sensitivity','STRICT_VINTAGE_ANALYSIS_ID')]
+    rows=[(label,registry_id(RELEASE,key,'not-bound')) for label,key in labels]+[('Hypothesis family',HYP_ID)]
+    table(doc,['Ref.','Evidence object','Immutable identifier'],[(f'E{i}',label,value) for i,(label,value) in enumerate(rows,1)],[1.0,4.2,10.8],7.1)
     doc.add_paragraph('The canonical screening, confirmation, freeze, 2025 replication and 2026 extension identifiers are listed in Appendix A. Main-text discussions refer to these evidence addresses through the appendices rather than embedding hashes in the narrative.')
-    doc.add_paragraph('Figure evidence: reports/publication_figure_pack_2026-11-01/manifest.json. Its catalog provides figure captions, placement and changes; accompanying CSV files contain the exact cost, benchmark and regime summaries. The report builder verifies the figure file hashes before insertion.')
-    for command in ['python scripts/build_publication_figure_pack.py','python reports/build_report_ai_capability.py']:
-        p=doc.add_paragraph(command)
-        for r in p.runs:r.font.name='Consolas';r.font.size=Pt(8.5)
+    doc.add_paragraph('Figure evidence: '+str(registry_output(root,RELEASE,'figure_pack','reports/publication_figure_pack_2026-11-01').relative_to(root)/'manifest.json')+'. Its catalog provides figure captions, placement and changes; accompanying CSV files contain the exact cost, benchmark and regime summaries. The report builder verifies the figure file hashes before insertion.')
+    doc.add_paragraph('README.md documents the complete figure, DOCX, contents, PDF, visual-QA and verification sequence. The release registry is retained beside this appendix.')
 
 
 def finalize_report(doc, root, pack):
+    pointers={
+        'The fixed ridge experiment uses': ' Analysis record: Appendix E8.',
+        'The saved analysis aggregates': ' Analysis record: Appendix E13.',
+        'This is a post-selection robustness check': ' Analysis record: Appendix A8.',
+        'The reporting view concatenates': ' Model and evaluation records: Appendix A5–A7.',
+        'Development-only EDA shows': ' Dataset and exploratory-analysis records: Appendix A1 and E1–E2.',
+    }
+    for p in doc.paragraphs:
+        for prefix,reference in pointers.items():
+            if p.text.startswith(prefix):p.add_run(reference)
+    # Submission prose uses appendix references; full machine identifiers stay there.
+    for node in doc._element.body:
+        content=''.join(node.itertext())
+        if content.startswith('Appendix A. Reproducibility and provenance'):
+            break
+        if re.search(r'\b\w*\d{8}T\d{6}\w*|\b[a-f0-9]{12,64}\b',content):
+            raise ValueError('Technical identifier outside appendices: '+content[:160])
     doc.styles['Caption'].font.bold = False
     for name in ['Normal','Title','Subtitle','Heading 1','Heading 2','Heading 3','Caption']:
         fonts=doc.styles[name]._element.get_or_add_rPr().rFonts
@@ -219,6 +236,30 @@ def finalize_report(doc, root, pack):
     # Explain the EDA responses before its market paths rather than splitting this table.
     diagnostic=next(t._tbl for t in doc.tables if t.cell(0,0).text=='Diagnostic')
     move_before([diagnostic],pstart('3.2 Market paths'))
+    # Put interpretation ahead of the annual chart so prose can fill the previous page.
+    annual_text=next(p._p for p in doc.paragraphs if p.text.startswith('The selected specification returns'))
+    annual_heading=pstart('7.3 Selected-specification')
+    annual_heading.addnext(annual_text)
+    # Let explanatory prose fill space before an indivisible figure/caption pair.
+    # Keep the figure order and all evidence intact; never move section headings.
+    for p in list(doc.paragraphs):
+        if not p.text.startswith('Figure '):
+            continue
+        image_node=p._p.getprevious()
+        if image_node is None or not image_node.xpath('.//w:drawing'):
+            continue
+        following=p._p.getnext()
+        if following is not None and following.tag.endswith('}p'):
+            from docx.text.paragraph import Paragraph
+            candidate=Paragraph(following,doc._body)
+            if candidate.text and candidate.style.name=='Normal' and not candidate.text.startswith('Figure '):
+                image_node.addprevious(following)
+    # Keep short tables together without chaining entire sections to large figures.
+    for t in doc.tables:
+        if len(t.rows)<=4:
+            for row in list(t.rows)[:-1]:
+                for cell in row.cells:
+                    for p in cell.paragraphs:p.paragraph_format.keep_with_next=True
     order=[]
     for p in doc.paragraphs:
         match=re.match(r'Figure (\d+)\.',p.text)
@@ -230,22 +271,36 @@ def finalize_report(doc, root, pack):
                     break
     FIGURES[:]=order
     # Generate real heading bookmarks and a cached TOC, populated after the first render.
-    make_contents(doc)
-    # Native figure alt text and simple explicit table geometry.
-    for shape,key in zip(list(doc.inline_shapes)[1:],FIGURES):
+    toc_path=registry_output(root,RELEASE,'toc_pages','reports/releases/_missing_toc_pages.json') if RELEASE else None
+    pages=json.loads(toc_path.read_text()) if toc_path is not None and toc_path.is_file() else None
+    make_contents(doc,pages=pages)
+    # Native image alt text and simple explicit table geometry.
+    shapes=list(doc.inline_shapes)
+    if shapes:
+        shapes[0]._inline.docPr.set('descr','National University of Singapore logo')
+    for shape,key in zip(shapes[1:],FIGURES):
         shape._inline.docPr.set('descr',pack['catalog'][key]['title'])
     for t in doc.tables:
+        first_row_properties=t.rows[0]._tr.get_or_add_trPr()
+        if first_row_properties.find(qn('w:tblHeader')) is None:
+            header=OxmlElement('w:tblHeader');header.set(qn('w:val'),'true');first_row_properties.append(header)
         grid=[int(x.get(qn('w:w'))) for x in t._tbl.tblGrid]
         t._tbl.tblPr.find(qn('w:tblW')).set(qn('w:w'),str(sum(grid)))
         for row in t.rows:
             for c,w in zip(row.cells,grid):
                 c._tc.get_or_add_tcPr().find(qn('w:tcW')).set(qn('w:w'),str(w))
-    (root/'reports/report_publication_evidence.json').write_text(json.dumps({
+    evidence_path=registry_output(root,RELEASE,'publication_evidence','reports/report_publication_evidence.json')
+    evidence_path.parent.mkdir(parents=True,exist_ok=True)
+    evidence_path.write_text(json.dumps({
         'figure_pack_hash':pack['manifest']['content_hash'],'figures':FIGURES,
         'hypothesis_analysis':HYP_ID,'reference_check_date':'2026-11-01',
         'references':[{'number':i,'title':t,'url':u} for i,(t,u) in enumerate(REFS,1)],
         'note':'Source facts and experimental findings are separate; no model training performed.'
     },indent=2))
+
+
+def pack_folder(root):
+    return registry_output(root,RELEASE,'figure_pack','reports/publication_figure_pack_2026-11-01')
 
 
 def make_contents(doc, pages=None):

@@ -1,0 +1,17 @@
+{
+  "2025": {
+    "sessions": 249,
+    "cumulative_net": -0.040384226973328,
+    "cumulative_gross": 0.05156881580076278,
+    "cost_sum": 0.09149999999085001,
+    "annualized_geometric_net_252": -0.04086070598904212
+  },
+  "2026": {
+    "sessions": 185,
+    "cumulative_net": 0.15014116382859455,
+    "cumulative_gross": 0.26948505479453533,
+    "cost_sum": 0.09899999999010001,
+    "annualized_geometric_net_252": 0.20990957611323147
+  },
+  "combined_net": 0.10369360201717304
+}

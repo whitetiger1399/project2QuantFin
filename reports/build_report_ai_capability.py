@@ -21,20 +21,22 @@ from quantfin.cross_market.timing import map_release_sessions
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from report_release import load_registry, registry_id, registry_output  # noqa: E402
 from report_components import (  # noqa: E402
     NUS_BLUE, MUTED, PALE, PALE_BLUE, TEXT, callout, configure, equation,
     figure, hyperlink, margins, set_widths, shade, table,
 )
 
-OUT = ROOT / "reports/Project2_Team16_Report.docx"
-FIG = ROOT / "reports/figures_ai_capability"
+REGISTRY_PATH, RELEASE = load_registry(ROOT)
+OUT = registry_output(ROOT, RELEASE, "docx", "reports/Project2_Team16_Report.docx")
+FIG = registry_output(ROOT, RELEASE, "generated_figures", "reports/figures_ai_capability")
 FIG.mkdir(parents=True, exist_ok=True)
 LOGO = ROOT / "assets/nus_logo_full-vertical.jpg"
 GITHUB = "https://github.com/whitetiger1399/project2QuantFin"
 
 def evidence_id(name: str, default: str) -> str:
     """Allow a verified rerun to be rendered without editing report source code."""
-    return os.environ.get(f"REPORT_{name}", default)
+    return os.environ.get(f"REPORT_{name}", registry_id(RELEASE, name, default))
 
 
 DATASET_ID = evidence_id("DATASET_ID", "ai_capability_panel_20261101T012801Z_ff277b55597d727a")
@@ -59,6 +61,7 @@ EPOCH = ANALYSIS / evidence_id("EPOCH_ANALYSIS_ID", "epoch_capability_analysis_2
 LADDER = ANALYSIS / evidence_id("LADDER_ANALYSIS_ID", "information_ladder_final_test_20261101T030705Z_4fcf7b07672b")
 EVIDENCE = ANALYSIS / evidence_id("MODEL_EVIDENCE_ID", "model_evidence_final_test_20261101T030544Z_a4d9077ee46e")
 STRATEGY = ANALYSIS / evidence_id("STRATEGY_ANALYSIS_ID", "ai_strategy_comparison_20261101T030717Z_591c864e3aba")
+STRICT_VINTAGE = ANALYSIS / evidence_id("STRICT_VINTAGE_ANALYSIS_ID", "strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8")
 EVENT_ROOT = ROOT / os.environ.get("REPORT_EVENT_ANALYSIS_ROOT", "artifacts/cross_market_ai_services_2026/analysis")
 EVENT = EVENT_ROOT / evidence_id(
     "EVENT_ANALYSIS_ID", "ai_services_analysis_20261101T013058Z_e88408b9a16d"
@@ -95,7 +98,7 @@ def load_raw(root: Path, assets: list[str], column: str = "adjusted_close") -> p
 def combined_evaluation():
     """Concatenate the two reported evaluation segments for presentation only."""
     parts = []
-    for segment, path in [("2025 frozen final", FINAL), ("2026 forward extension", FORWARD)]:
+    for segment, path in [("2025 historical replication", FINAL), ("2026 retrospective extension", FORWARD)]:
         frame = pd.read_parquet(path / "strategy_ledgers.parquet")
         frame = frame.loc[frame.config_id.eq(SELECTED)].copy()
         frame["segment"] = segment
@@ -565,13 +568,13 @@ def cover(doc, authors):
         row=t.add_row();
         for c in row.cells: margins(c)
         for i,v in enumerate([a["name"],a["student_id"]]): p=row.cells[i].paragraphs[0]; p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run(v)
-    p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run("Repository: "); hyperlink(p,GITHUB,GITHUB)
+    p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run("Repository: "); hyperlink(p,"Project source and reproducibility package",GITHUB)
     p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; r=p.add_run("Daily market data: Yahoo Finance · Macro context: FRED/ALFRED · AI benchmarks: Epoch AI"); r.italic=True; r.font.color.rgb=RGBColor.from_string(MUTED)
     p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run("November 2026")
 
 
 def build():
-    required=[DATASET/"manifest.json",SCREEN/"manifest.json",CONFIRM/"manifest.json",FINAL/"manifest.json",FORWARD/"manifest.json",FREEZE,LOGO]
+    required=[DATASET/"manifest.json",SCREEN/"manifest.json",CONFIRM/"manifest.json",FINAL/"manifest.json",FORWARD/"manifest.json",STRICT_VINTAGE/"manifest.json",FREEZE,LOGO]
     missing=[str(x) for x in required if not x.exists()]
     if missing: raise FileNotFoundError("Missing evidence:\n"+"\n".join(missing))
     authors=sorted(read_json(ROOT/"assets/authors.json"),key=lambda x:x["name"].casefold())
@@ -579,6 +582,9 @@ def build():
     screening_count, confirmation_count = len(screen), len(confirm)
     f25=selected(final); f26=selected(forward); a25=pd.read_csv(FINAL/"annual_performance.csv").iloc[0]; a26=pd.read_csv(FORWARD/"annual_performance.csv").iloc[0]
     i25=read_json(FINAL/"selected_model_inference.json"); i26=read_json(FORWARD/"selected_model_inference.json"); event=read_json(EVENT/"frontier_event_study.json"); cap=read_json(CAP/"capability_effect_summary.json")
+    strict_metrics=pd.read_csv(STRICT_VINTAGE/"strict_vintage_metrics.csv")
+    strict_inference=pd.read_csv(STRICT_VINTAGE/"strict_vintage_paired_inference.csv")
+    strict_manifest=read_json(STRICT_VINTAGE/"manifest.json")
     from publication_report_sections import (
         publication_pack, add_contents, hypotheses_intro, hypothesis_results,
         company_discussion, append_publication_diagnostics, references,
@@ -597,13 +603,20 @@ def build():
     ledger26=pd.read_parquet(FORWARD/"strategy_ledgers.parquet"); ledger26=ledger26.loc[ledger26.config_id.eq(SELECTED)]
     gross25=float((1+ledger25.gross_return.fillna(0)).prod()-1); net25=float((1+ledger25.net_return.fillna(0)).prod()-1)
     gross26=float((1+ledger26.gross_return.fillna(0)).prod()-1); net26=float((1+ledger26.net_return.fillna(0)).prod()-1)
+    annualized25=(1+net25)**(252/len(ledger25))-1
+    annualized26=(1+net26)**(252/len(ledger26))-1
     segment_rows = []
     for segment, group in evaluation_daily.groupby("segment", sort=False):
+        sessions=len(group)
+        def cumulative_and_annualized(column):
+            cumulative=float((1+group[column].fillna(0)).prod()-1)
+            annualized=(1+cumulative)**(252/sessions)-1
+            return f"{fmt_pct(cumulative)} / {fmt_pct(annualized)}"
         segment_rows.append((segment,
-                             fmt_pct((1+group.net_return.fillna(0)).prod()-1),
-                             fmt_pct((1+group.benchmark_nifty_it.fillna(0)).prod()-1),
-                             fmt_pct((1+group.benchmark_nifty50.fillna(0)).prod()-1),
-                             f"{int((group.long_exposure>0).sum())} / {int((group.short_exposure>0).sum())} / {int(((group.long_exposure==0)&(group.short_exposure==0)).sum())}"))
+                             str(sessions),
+                             cumulative_and_annualized("net_return"),
+                             cumulative_and_annualized("benchmark_nifty_it"),
+                             cumulative_and_annualized("benchmark_nifty50")))
 
     doc=Document(); configure(doc); doc.settings.odd_and_even_pages_header_footer = False
     header = doc.sections[0].header.paragraphs[0]
@@ -611,17 +624,18 @@ def build():
     header.alignment = WD_ALIGN_PARAGRAPH.LEFT
     for run in header.runs:
         run.font.name = "Times New Roman"; run.font.size = Pt(8.4); run.font.bold = True
-    doc.core_properties.title="Cross-Market Forecasting and Signed Trading of Nifty IT Stocks"; doc.core_properties.author="; ".join(a["name"] for a in authors)
+    title="Cross-Market Forecasting and Signed Trading of Nifty IT Stocks"
+    doc.core_properties.title=title; doc.core_properties.author="; ".join(a["name"] for a in authors)
     cover(doc,authors); doc.add_page_break()
 
     doc.add_heading("Contents",level=1)
     add_contents(doc)
-    callout(doc,"Evidence status","The combined path is a presentation view, not one pristine holdout. The latest run excludes 2025 and 2026 from its mechanical selection routine, but both periods had been inspected during prior research iterations. Results are therefore historical replication and retrospective extension evidence.")
+    callout(doc,"How training and testing work","Models are compared on 2021–2022 and selected using 2023–2024 results. The chosen model settings are then evaluated on 2025 and January–September 2026. In 2025, the model is retrained each quarter using only earlier data; in 2026, it is trained once using data before 2026. Each prediction therefore uses past data only. However, these evaluation periods had already been examined in earlier project iterations, so they are not a completely unseen final test. The combined graph shows performance across both periods; the training schedules differ (Appendix A2–A6).")
     p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; hyperlink(p,"Repository and reproducibility artifacts",GITHUB)
     doc.add_page_break()
 
     doc.add_heading("Abstract",level=1)
-    doc.add_paragraph(f"This study forecasts same-session open-to-close returns for ten fixed current Nifty IT constituents from information aligned to the 08:55 IST decision clock. The selected depth-constrained Extra Trees model combines own-stock, peer, U.S. IT-services, broad-market, macro and dated AI context, while current-vintage macro fallbacks remain an identified limitation. The signed strategy applies a 15-bps effective round-trip hurdle and modeled turnover costs. In the 2025 historical replication it earns {fmt_pct(net25)} net with {fmt_pct(float(f25.net_annual_volatility))} annualized volatility, Sharpe {f25.net_sharpe:.2f}, and OOS R² versus the asset mean of {fmt_pct(float(f25.oos_r2_asset_mean))}. In the separate January–September 2026 retrospective extension it earns {fmt_pct(net26)}, with {fmt_pct(float(f26.net_annual_volatility))} volatility, Sharpe {f26.net_sharpe:.2f}, and positive mean IC. The combined {fmt_pct(evaluation_total['Signed model'])} path is dominated by the declining 2026 segment. The pooled AI-release effect is inconclusive, while the 2026 coefficient is negative after multiplicity adjustment; neither result identifies causality. The evidence supports a conditional defensive-timing hypothesis, not robust stock-selection alpha.")
+    doc.add_paragraph(f"This study forecasts same-session open-to-close returns for ten fixed current Nifty IT constituents from information aligned to the 08:55 IST decision clock. The selected depth-constrained Extra Trees model combines own-stock, peer, U.S. IT-services, broad-market, macro and dated AI context. A completed strict-vintage sensitivity refits the exact specification after excluding all {strict_manifest['fallback_flagged_features_excluded']} fallback-flagged features and retains zero flagged inputs. The signed strategy applies a 15-bps effective round-trip hurdle and modeled turnover costs. In the 2025 historical replication it earns {fmt_pct(net25)} net with {fmt_pct(float(f25.net_annual_volatility))} annualized volatility, Sharpe {f25.net_sharpe:.2f}, and OOS R² versus the asset mean of {fmt_pct(float(f25.oos_r2_asset_mean))}. In the separate January–September 2026 retrospective extension it earns {fmt_pct(net26)}, with {fmt_pct(float(f26.net_annual_volatility))} volatility, Sharpe {f26.net_sharpe:.2f}, and positive mean IC. The combined {fmt_pct(evaluation_total['Signed model'])} path is dominated by the declining 2026 segment. The pooled AI-release effect is inconclusive, while the 2026 coefficient is negative after multiplicity adjustment; neither result identifies causality. The evidence supports a conditional defensive-timing hypothesis, not robust stock-selection alpha.")
     callout(doc,"Principal result",f"Across the displayed 2025–September 2026 path, long exposure is active on {evaluation_counts['long']} days, short exposure on {evaluation_counts['short']} days, both sides on {evaluation_counts['mixed']} days, and neither side on {evaluation_counts['flat']} days. Its value is defensive and conditional, not evidence for a deterministic AI-release short rule.")
 
     doc.add_heading("1. Research question and hypotheses",level=1)
@@ -653,6 +667,7 @@ def build():
         ("Frontier release inventory","Event dates and curated providers","Release-day and decaying event pressure","Small, curated sample; announcement timing uncertainty."),
         ("Epoch AI benchmarks","Current-vintage benchmark records","Ex-post capability study and mapped event context","Never backfilled into historical tradable features."),
     ],[3.4,3.8,5.4,3.4],7.3)
+    doc.add_paragraph("ITBEES.NS represents the Nifty IT benchmark and NIFTYBEES.NS represents Nifty 50. Both ETF price files are available in the archived Yahoo Finance dataset (Appendix A9), so index fallbacks were not used. Returns use vendor adjusted close-to-close prices in INR. They include overnight exposure and are not execution-matched to the strategy's NSE open-to-close holding period. The fixed-share current-cohort basket is a separate passive, survivorship-conditioned comparator.")
     callout(doc,"Comparator contract","Nifty 50 and Nifty IT are close-to-close index opportunity-cost references, not matched intraday trades. The fixed-cohort passive basket is survivorship-conditioned. The panel also stores an equal-weight cohort open-to-close return for matched intraday diagnostics; zero, asset-mean and autoregressive forecasts are statistical baselines. Cash earns zero in the simulation.")
 
     doc.add_heading("3. Data engineering and exploratory analysis",level=1)
@@ -666,11 +681,10 @@ def build():
         ("Resume and audit","Checkpoints, run states, hashes, and verification scripts survive interruption.","Supports long laptop runs and evidence integrity."),
     ],[3.2,8.0,4.8],7.5)
     doc.add_heading("3.2 Market paths and exploratory findings",level=2)
-    doc.add_paragraph("Development-only EDA shows heavy-tailed constituent returns, changing volatility, substantial common movement within the Nifty IT cohort, and modest calendar effects. The price paths below establish the economic setting before presenting correlations or forecasts. The shaded period begins at the frozen 2025 evaluation boundary; it is displayed for context but was not used to tune the selected model.")
+    doc.add_paragraph("Development-only EDA shows substantial common movement within the Nifty IT cohort and time variation in constituent price paths. The figures below establish that economic setting before presenting prediction-aligned correlations or forecasts. The shaded period begins at the 2025 replication boundary; it is displayed retrospectively and was not used in the mechanical screening/confirmation selection routine. No calendar-effect claim is made without a dedicated test.")
     reviewed("02_india_paths")
-    reviewed("03_india_us_paths")
     table(doc,["Diagnostic","Observed implication","Modeling response"],[
-        ("Return tails and volatility clustering","Normal-error intuition is inadequate.","Tree models, robust preprocessing, drawdown and block-bootstrap inference."),
+        ("Return dispersion and changing volatility","A single constant-risk summary is inadequate.","Tree models, robust preprocessing, drawdown and date-block inference."),
         ("Strong intra-sector common component","Stock forecasts can collapse into market timing.","Leave-one-out peer features and explicit cross-sectional IC reporting."),
         ("U.S.–India timing","Completed U.S. information is available before NSE opens.","One-way alignment through availability timestamps."),
         ("Sparse AI events","Event estimates have low power.","Randomization/HAC tests and conservative interpretation."),
@@ -694,6 +708,7 @@ def build():
         ("F7","+ full context","Macro, global, nonlinear and regime interactions."),
     ],[1.2,4.0,10.8],7.4)
     reviewed("12_information_ladder")
+    doc.add_paragraph("The fixed ridge experiment uses penalty 0.1 on identical stock/session observations across twenty quarters from 2021 to 2025. Average quarterly R² falls from approximately −0.7% for own history to −39.7% after adding raw S&P constituents and −55.2% for full context. These averages describe quarterly scores, not a pooled R². Volatility is shared by every information set within each quarter, so volatility alone cannot explain their relative deterioration. The ridge path uses a quadratic solver rather than the Lasso coordinate-descent routine that emitted convergence warnings. The evidence is consistent with additional noisy or redundant predictors overwhelming this fixed shrinkage choice; it does not isolate that mechanism or establish that information harms a differently tuned model. The selected nonlinear Extra Trees result must be assessed separately.")
     doc.add_heading("4.2 AI event, parameter, and benchmark features",level=2)
     p=doc.add_paragraph("AI context is represented at three distinct evidentiary levels. Tradable event features use dated frontier releases and decaying pressure measures. Parameter features use disclosed total or active parameter counts only when explicitly reported and never treat missing disclosure as zero capability. Epoch benchmark scores are used for ex-post hypothesis analysis; current-vintage benchmark records are not injected into historical predictions. To avoid a visually uninformative inventory dump, the timeline marks only releases that establish a new running maximum in the mapped Epoch capability index.")
     p.paragraph_format.keep_together = True
@@ -720,7 +735,7 @@ def build():
         ("Histogram boosting","Nonlinear threshold interactions","Learning rate, leaves, depth, iterations."),
         ("Extra Trees","Nonlinear cross-market regimes","Depth, max features, minimum leaf size, trees."),
     ],[4.1,6.0,5.9],7.5)
-    doc.add_paragraph("Elastic Net remains part of the completed candidate suite. Its best screening net Sharpe is −0.328, compared with +0.482 for Extra Trees and +0.642 for histogram boosting. RFF–Ridge is excluded from this submission rerun because its earlier configurations generated no threshold-crossing trades and therefore undefined Sharpe; the omission is explicit rather than plotted as zero. Extra Trees ranks highest in confirmation with net Sharpe 1.546, while histogram boosting reverses to −0.364. The selected specification uses 250 trees, maximum depth 6, 50% feature subsampling, and minimum leaf size 40.")
+    doc.add_paragraph("Elastic Net remains part of the completed candidate suite. Its best screening net Sharpe is −0.328, compared with +0.482 for Extra Trees and +0.642 for histogram boosting. RFF–Ridge is excluded from this submission rerun because its earlier configurations generated no threshold-crossing trades and therefore undefined Sharpe; the omission is explicit rather than plotted as zero. Extra Trees ranks highest in confirmation with net Sharpe 1.546, while histogram boosting reverses to −0.364. The selected specification uses the extremely randomized tree family [18] with 250 trees, maximum depth 6, 50% feature subsampling, and minimum leaf size 40.")
     doc.add_heading("5.2 Temporal protocol",level=2)
     table(doc,["Stage","Evaluation dates","Configurations","Role"],[
         ("Screening","2021–2022",f"{screening_count} evaluated configurations; quarterly refits","Compare families and complexity."),
@@ -729,10 +744,30 @@ def build():
         ("Historical replication","2025 calendar year","Selected config; quarterly refits","Estimator-OOS evidence, not a pristine research holdout."),
         ("Retrospective extension","1 Jan–30 Sep 2026","Same config, one pre-2026 fit","No reselection within this run; historically inspected."),
     ],[3.1,3.4,5.1,4.4],7.4)
+    table(doc,["Protocol item","Artifact-derived value","Interpretation"],[
+        ("Evaluated rows","25 screening; 13 confirmation; 12 final diagnostics; 4 extension diagnostics","Only one frozen Extra Trees specification is the selected strategy; other rows are controls or diagnostics."),
+        ("Selection rule","Minimum coverage 0.98; primary net Sharpe; tie-breakers R² vs asset mean, IC, turnover, then complexity","Selection is confined to the historical screening/confirmation protocol."),
+        ("Window and embargo","At most 1,260 prior sessions; one-session embargo; seed 17","All preprocessing is refitted inside the available training window."),
+        ("Saved environment","Python 3.10.10; scikit-learn 1.7.2; pandas 2.3.3; NumPy 2.2.6","Versions come from the run manifests, not the current shell."),
+        ("RFF status","Earlier historical diagnostic only; excluded from this submission rerun","Undefined historical Sharpe is not plotted as zero or claimed as a new result."),
+    ],[4.0,6.3,5.7],7.0)
     reviewed("11_model_family_evidence")
     callout(doc,"Training contract","Every rolling fit uses at most 1,260 prior trading sessions, a one-session embargo, seed 17, and training-only filtering, imputation, winsorization, scaling, selection and PCA. Screening, confirmation and the 2025 replication refit quarterly; the 2026 extension fits once on pre-2026 data.")
+    doc.add_heading("5.3 Strict-vintage sensitivity",level=2)
+    def strict_row(period_label, display_label):
+        reference=strict_metrics.loc[strict_metrics.period.eq(period_label)&strict_metrics.variant.eq("selected_reference")].iloc[0]
+        strict=strict_metrics.loc[strict_metrics.period.eq(period_label)&strict_metrics.variant.eq("strict_vintage")].iloc[0]
+        inference=strict_inference.loc[strict_inference.period.eq(period_label)].iloc[0]
+        return (display_label,fmt_pct(reference.cumulative_net_return),fmt_pct(strict.cumulative_net_return),
+                f"{inference.strict_minus_reference_mean_daily_bps:+.2f} [{inference.mean_daily_ci_low_bps:+.2f}, {inference.mean_daily_ci_high_bps:+.2f}]",
+                f"{int(reference.mean_input_features):,} → {int(strict.mean_input_features):,}")
+    table(doc,["Period","Selected F7 net","Strict-vintage F7 net","Strict − selected bps/day, 95% CI","Mean viable features"],[
+        strict_row("2025 historical replication","2025 replication"),
+        strict_row("2026 Jan-Sep extension","2026 Jan–Sep"),
+    ],[3.0,2.3,2.6,5.1,3.0],7.0)
+    doc.add_paragraph("This is a post-selection robustness check, not a replacement holdout. It preserves the selected depth-6 Extra Trees parameters, dates, rolling windows, seed, signed policy and costs. All 60 F7 columns marked current-vintage fallback are removed before training; zero flagged columns remain. The strict variant improves the return point estimate in both segments, but both paired intervals cross zero. Exclusion removes the identified vintage uncertainty; it does not prove that every remaining public series has perfect historical publication timestamps.")
 
-    doc.add_heading("5.3 Signed strategy and evaluation",level=2)
+    doc.add_heading("5.4 Signed strategy and evaluation",level=2)
     compact_equation(doc,[("s","math"),("i,t","sub"),(" ∈ {−1, 0, +1},   r","roman"),("p,t","sub"),("net","sup"),(" = Σ","math"),("i","sub"),(" w","math"),("i,t","sub"),(" r","math"),("i,t","sub"),("OC","sup"),(" − c × turnover","roman"),("t","sub")],3,
                      "Forecast state and post-cost daily portfolio return.")
     doc.add_paragraph("The active signed rule uses 5 bps commission plus 2.5 bps slippage each way. The effective threshold is therefore max(5 bps configured forecast floor, 15 bps round-trip friction) = 15 bps. Up to three forecasts above +15 bps are long and up to three below −15 bps are short. Absolute stock weight is capped near one-third and total gross exposure at one. Positions enter from cash at the vendor open, exit at the close, and incur two-sided turnover equal to twice gross exposure. The +1/0/−1 states describe direction, not literal unit weights.")
@@ -744,6 +779,7 @@ def build():
         ("Inference","HAC alpha/loss tests and circular block-bootstrap Sharpe interval","Accounts for serial dependence and finite calendar length."),
         ("Interpretability","Grouped OOS permutation importance","Identifies information families used without causal attribution."),
     ],[3.0,6.5,6.5],7.4)
+    doc.add_paragraph("In 2025, directional accuracy is 54.18% versus a descriptive majority-down rate of 53.69%; the date-block interval for incremental accuracy is −2.29 to +3.70 percentage points, and the calibration-slope interval is −0.77 to 1.72. The corresponding evidence does not establish incremental directional skill or stable magnitude calibration. The majority sign is computed from evaluation labels and is therefore a descriptive reference, not a prospectively deployable forecast.")
     callout(doc,"Comparator contract","Forecast models and statistical baselines share decision dates, target, information clock, and trading-cost convention. Nifty IT, Nifty 50, and fixed-cohort buy-and-hold are economic opportunity-cost references with close-to-close or passive exposure; their return horizons and costs differ from the open-to-close signed strategy and are reported explicitly.")
 
     doc.add_heading("6. Combined evaluation: January 2025–September 2026",level=1)
@@ -759,24 +795,55 @@ def build():
         ("Long-active / short-active / mixed / flat days",f"{evaluation_counts['long']} / {evaluation_counts['short']} / {evaluation_counts['mixed']} / {evaluation_counts['flat']}","Long and short activity counts may overlap on mixed books; flat means zero gross exposure."),
     ],[5.3,4.0,6.7],7.6)
     reviewed("08_combined_benchmarks",5.8)
-    table(doc,["Protocol segment","Model net","Nifty IT","Nifty 50","Long / short / flat days"],segment_rows,[4.2,2.5,2.5,2.5,4.3],7.3)
-    table(doc,["Segment","Dates","Net return","Volatility","Sharpe","R² vs mean","Mean IC"],[
-        ("2025 replication","249",fmt_pct(net25),fmt_pct(float(f25.net_annual_volatility)),f"{f25.net_sharpe:.3f}",fmt_pct(float(f25.oos_r2_asset_mean)),f"{f25.spearman_ic:.3f}"),
-        ("2026 extension","185",fmt_pct(net26),fmt_pct(float(f26.net_annual_volatility)),f"{f26.net_sharpe:.3f}",fmt_pct(float(f26.oos_r2_asset_mean)),f"{f26.spearman_ic:.3f}"),
-    ],[3.1,1.4,2.2,2.2,1.8,2.3,2.0],7.1)
+    table(doc,["Protocol segment","Sessions","Model cumulative / annualized","Nifty IT cumulative / annualized","Nifty 50 cumulative / annualized"],segment_rows,[4.0,1.6,3.5,3.5,3.4],7.1)
+    table(doc,["Segment","Cumulative net","Annualized net","Annualized volatility","Sharpe","R² vs mean","Mean IC"],[
+        ("2025 replication",fmt_pct(net25),fmt_pct(annualized25),fmt_pct(float(f25.net_annual_volatility)),f"{f25.net_sharpe:.3f}",fmt_pct(float(f25.oos_r2_asset_mean)),f"{f25.spearman_ic:.3f}"),
+        ("2026 extension",fmt_pct(net26),fmt_pct(annualized26),fmt_pct(float(f26.net_annual_volatility)),f"{f26.net_sharpe:.3f}",fmt_pct(float(f26.oos_r2_asset_mean)),f"{f26.spearman_ic:.3f}"),
+    ],[3.0,2.1,2.1,2.6,1.7,2.2,1.9],7.0)
+    doc.add_paragraph("Cumulative return compounds the observed segment only. Geometric annualization applies (1 + cumulative return)^(252 / sessions) − 1: −4.09% for the 249-session 2025 replication and +20.99% for the 185-session January–September 2026 extension. Annualization is a scaling convention, not a forecast or a full-calendar-year result.")
     doc.add_paragraph(f"The 2025 policy uses {int((ledger25.long_exposure>0).sum())} long-active days, {int((ledger25.short_exposure>0).sum())} short-active days and {int(((ledger25.long_exposure==0)&(ledger25.short_exposure==0)).sum())} flat days. Gross return is {fmt_pct(gross25)}, but modeled friction reduces compounded net return to {fmt_pct(net25)}; the arithmetic ledger cost sum is {fmt_pct(float(ledger25.trading_cost.sum()))}. The 2026 extension uses {int((ledger26.long_exposure>0).sum())} long-active days, {int((ledger26.short_exposure>0).sum())} short-active days and {int(((ledger26.long_exposure==0)&(ledger26.short_exposure==0)).sum())} flat days; gross return is {fmt_pct(gross26)} and net return {fmt_pct(net26)}. The change from negative 2025 IC to positive 2026 IC makes timing-versus-ranking stability a central unresolved question.")
 
     doc.add_heading("6.2 Monthly behavior, attribution, and uncertainty",level=2)
     reviewed("07_transaction_cost_drag")
     doc.add_paragraph("The cost comparison holds forecasts and positions fixed. The gap between compounded gross and net wealth includes lost compounding; it is not the arithmetic sum of daily charges. The assumed 7.5 bps per side is a fee/spread proxy plus slippage, not a complete Indian statutory-tax schedule. Appendix D provides a fixed-holdings cost sensitivity curve rather than selecting a new strategy from that curve.")
     reviewed("09_signed_positions")
+    strategy25=pd.read_csv(STRATEGY/"strategy_summary.csv").set_index("strategy")
+    strategy26_path=ROOT/"artifacts/cross_market_ai_capability_2026/analysis"/evidence_id("FORWARD_STRATEGY_ANALYSIS_ID","ai_strategy_comparison_20261101T030726Z_9660a3a84bc3")/"strategy_summary.csv"
+    strategy26=pd.read_csv(strategy26_path).set_index("strategy")
+    strategy_labels=[("signed_forecast","Selected signed stock portfolio"),("cohort_mean_signed","Cohort-mean signed timing"),("services_direction_equal_weight","U.S.-services direction / equal weight"),("always_short_cohort","Always-short cohort"),("cross_sectional_residual_signed","Cross-sectional residual policy")]
+    table(doc,["Matched diagnostic policy","2025 net Sharpe","2026 net Sharpe","Reading"],[
+        (label,
+         "undefined" if pd.isna(strategy25.loc[key,"sharpe"]) else f"{strategy25.loc[key,'sharpe']:.3f}",
+         "undefined" if pd.isna(strategy26.loc[key,"sharpe"]) else f"{strategy26.loc[key,'sharpe']:.3f}",
+         "No trades" if key=="cross_sectional_residual_signed" else ("Timing comparator exceeds selected portfolio in 2026" if key=="cohort_mean_signed" else "Retrospective comparator; not a reselection rule"))
+        for key,label in strategy_labels
+    ],[5.1,2.5,2.5,5.9],7.0)
+    paired_id=evidence_id("PAIRED_STRATEGY_ANALYSIS_ID","")
+    if paired_id:
+        paired_path=ANALYSIS/paired_id/"paired_strategy_inference.csv"
+        paired=pd.read_csv(paired_path)
+        paired=paired.loc[paired.block_length_sessions.eq(10)]
+        def paired_row(period, comparator, label):
+            row=paired.loc[paired.period.eq(period)&paired.comparator.eq(comparator)].iloc[0]
+            return (period.replace(" historical replication","").replace(" retrospective extension",""),label,
+                    f"{row.mean_daily_difference_bps:+.2f} [{row.mean_daily_difference_ci_low_bps:+.2f}, {row.mean_daily_difference_ci_high_bps:+.2f}]",
+                    f"{row.sharpe_difference:+.2f} [{row.sharpe_difference_ci_low:+.2f}, {row.sharpe_difference_ci_high:+.2f}]")
+        table(doc,["Period","Comparator","Selected − comparator mean (bps/day), 95% CI","Sharpe difference, 95% CI"],[
+            paired_row("2025 historical replication","cohort_mean_signed","Cohort-mean timing"),
+            paired_row("2025 historical replication","services_direction_equal_weight","U.S.-services timing"),
+            paired_row("2026 retrospective extension","cohort_mean_signed","Cohort-mean timing"),
+            paired_row("2026 retrospective extension","services_direction_equal_weight","U.S.-services timing"),
+        ],[2.0,3.2,5.5,5.3],6.8)
+        doc.add_paragraph("Paired circular date-block intervals use 2,000 draws, seed 17 and a 10-session block, with 5- and 20-session sensitivities retained in the analysis artifact. Identical sampled dates are used for both policies. Intervals crossing zero mean incremental stock-selection value remains unestablished; Sharpe differences are bootstrapped directly rather than inferred by subtracting point estimates.")
+    else:
+        doc.add_paragraph("The comparator evidence separates timing from stock ranking. Positive 2026 mean IC did not translate into higher Sharpe than the cohort-mean timing policy, while an always-short cohort performed poorly. This weakens both a pure stock-selection explanation and a permanent-short explanation. Paired date-block uncertainty remains required before claiming incremental stock-selection value.")
     table(doc,["Attribution question","Evidence","Conclusion"],[
         ("Was the strategy buy-only?",f"{evaluation_counts['short']} active short days and {evaluation_counts['flat']} flat days.","No; the economic rule is genuinely signed."),
         ("Was performance simply long beta?","The largest gain occurs while Nifty IT falls during 2026.","No; downside timing and short exposure dominate."),
         ("Was it an AI-release rule?","The audited calendar extends through 30 September 2026, but event variables are only contextual inputs.","No; the strategy is not a mandatory event-day short rule."),
         ("Did cross-market data matter?","The fitted model relies heavily on U.S. IT-services predictors in 2026.","Incremental value remains unresolved until matched ablation."),
     ],[5.0,6.1,4.9],7.4)
-    doc.add_paragraph("Appendix D retains the grouped permutation diagnostic. It measures fitted-model reliance, not causal importance. The original artifact uses one stock-day permutation, so it should not be mistaken for repeated, date-block uncertainty analysis.")
+    doc.add_paragraph("Grouped permutation diagnostics use the saved model results (Appendix E6–E7; supplementary plots described in Appendix D). Each repetition permutes a feature group by whole dates while preserving asset identities. Dispersion across repetitions and refits is descriptive variability, not a causal effect or a formal confidence interval.")
     doc.add_paragraph(f"Inference remains segment-aware. The 2025 HAC alpha test is inconclusive (p={i25['alpha_hac_pvalue']:.3f}) and its block-bootstrap Sharpe interval spans negative and positive outcomes. The 2026 extension is stronger (HAC alpha p={i26['alpha_hac_pvalue']:.3f}; Sharpe {f26.net_sharpe:.2f}) but covers only 185 sessions in a pronounced decline. The combined curve is therefore an accurate return summary, not evidence that the same edge is stable in every regime.")
     callout(doc,"Critical limitation","The audited official-provider calendar extends through 30 September 2026, but it is retrospective and sparse. The combined result evaluates a signed cross-market model, not a causal frontier-announcement trading rule.")
 
@@ -789,13 +856,13 @@ def build():
         ("U.S. and global information can help pre-open Nifty IT decisions.","Unresolved incrementally","Extra Trees ranks highest under the configured confirmation metric; matched group ablations are required."),
         ("More features always improve prediction.","Rejected","The fixed ridge ladder deteriorates as raw S&P 500 dimension expands; complexity requires shrinkage and nonlinear capacity control."),
         ("Frontier AI releases reliably cause Nifty IT declines.","Not established","The pooled effect is inconclusive; a negative 2026 association survives Holm correction, but sparse retrospective events do not identify causality."),
-        ("The strategy is already production-ready.","Rejected","2025 is flat, data are public end-of-day proxies, and 2026 is a short single-regime extension."),
+        ("The strategy is already production-ready.","Rejected","The 2025 replication loses 4.04% net; the positive 2026 extension remains retrospective, short and regime-specific."),
     ],[5.8,3.2,7.0],7.5)
     doc.add_heading("8.2 Limitations",level=2)
-    doc.add_paragraph("The fixed current-member cohort creates survivorship conditioning. Public vendor opens abstract from opening-auction queueing, bid–ask spread variation, taxes, borrow availability, short-sale constraints, market impact, and corporate-action edge cases. S&P and Nifty membership histories are public reconstructions rather than licensed exchange archives. Macro releases may require conservative lags, and some current-vintage fallbacks are not fully point-in-time.")
+    doc.add_paragraph("The fixed current-member cohort creates survivorship conditioning. Public vendor opens abstract from opening-auction queueing, bid–ask spread variation, taxes, borrow availability, short-sale constraints, market impact, and corporate-action edge cases. S&P and Nifty membership histories are public reconstructions rather than licensed exchange archives. The canonical model contains macro series whose histories were flagged as current-vintage fallbacks; the completed strict-vintage refit removes all 60 flagged columns and improves both return point estimates, but paired uncertainty remains wide. Feature exclusion addresses the known flags without proving perfect publication-time reconstruction for every remaining public series.")
     doc.add_paragraph("The effective inference sample is the number of serially dependent trading days, not the number of stock-day rows. AI releases are few, parameter disclosure is selective, parameter counts are not comparable across dense and mixture-of-experts architectures, and benchmark progress is multidimensional. The 2026 extension occurs during a sharp sector drawdown; its official-provider release calendar was reconstructed retrospectively through 30 September rather than maintained prospectively.")
     doc.add_heading("8.3 Conclusion",level=2)
-    doc.add_paragraph("The strongest contribution is a temporally aligned, auditable retrospective design that converts cross-market forecasts into signed positions and reconciled costs. Extra Trees ranks highest under the configured historical confirmation rule, but the 2025 replication has weak forecast and net economic evidence: R² versus the asset mean and mean IC are negative, and costs remove most gross gains. The 2026 extension is strongly positive during a sharp sector decline, making the combined result promising but regime-sensitive and dominated by defensive timing. Pooled AI-event evidence remains inconclusive; the negative 2026 association is exploratory rather than causal. The next evidentiary steps are strict-vintage sensitivity, matched timing-versus-selection attribution, date-block inference and genuinely future observations after a prospective freeze.")
+    doc.add_paragraph("The strongest contribution is a temporally aligned, auditable retrospective design that converts cross-market forecasts into signed positions and reconciled costs. Extra Trees ranks highest under the configured historical confirmation rule, but the 2025 replication has weak forecast and net economic evidence: R² versus the asset mean and mean IC are negative, and costs more than eliminate the 2025 gross gain, taking +5.16% gross to −4.04% net. The 2026 extension is strongly positive during a sharp sector decline, making the combined result promising but regime-sensitive and dominated by defensive timing. The exact-specification strict-vintage sensitivity is complete: removing 60 flagged inputs improves both segment point estimates, yet paired intervals cross zero. Pooled AI-event evidence remains inconclusive; the negative 2026 association is exploratory rather than causal. The remaining evidentiary requirement is genuinely future observation after a prospective freeze.")
 
     doc.add_heading("Team contribution statement",level=1)
     doc.add_paragraph("The submitting team comprises PRATYUSH SINHA, RAMYANI PALIT, RITIK SRIVASTAVA, and VICTOR LEE CHIA SWEA.")
@@ -814,19 +881,21 @@ def build():
     doc.add_heading("References",level=1)
     references(doc)
     doc.add_heading("Appendix A. Reproducibility and provenance",level=1)
-    table(doc,["Evidence object","Immutable identifier"],[
-        ("Processed dataset",DATASET_ID),("Screening run",SCREEN_ID),("Confirmation run",CONFIRM_ID),("Frozen specification",FREEZE_ID),("Canonical final run",FINAL_ID),("2026 forward extension",FORWARD_ID),("Selected configuration",SELECTED),
-    ],[5.2,10.8],7.5)
-    doc.add_paragraph("The saved verification artifacts report zero failed checks for the canonical chain; the 2026 forward extension passed 28 checks. Manifests record configuration hashes, parent runs, input snapshots, environment metadata, output hashes, evaluation dates, and the absence of model reselection. Predictions, ledgers, cost sensitivity, refit diagnostics, inference, and plots are retained beside each run.")
+    provenance_rows=[
+        ("Processed dataset",DATASET_ID),("Screening run",SCREEN_ID),("Confirmation run",CONFIRM_ID),("Frozen specification",FREEZE_ID),("2025 historical replication",FINAL_ID),("2026 retrospective extension",FORWARD_ID),("Selected configuration",SELECTED),("Strict-vintage sensitivity",STRICT_VINTAGE.name),
+        ("Yahoo Finance Indian market prices",RAW_INDIA.name),
+    ]
+    table(doc,["Ref.","Evidence object","Immutable identifier"],[(f"A{i}",label,value) for i,(label,value) in enumerate(provenance_rows,1)],[1.0,4.2,10.8],7.5)
+    doc.add_paragraph("The saved verification artifacts report zero failed checks for the canonical chain; the 2026 retrospective extension passed 28 checks. Manifests record configuration hashes, parent runs, input snapshots, environment metadata, output hashes, evaluation dates, and the absence of model reselection. Predictions, ledgers, cost sensitivity, refit diagnostics, inference, and plots are retained beside each run.")
     table(doc,["Selected-model parameter","Frozen value"],[
-        ("Family","Extra Trees regressor"),("Trees","250"),("Maximum depth","6"),("Maximum features","0.50"),("Minimum samples per leaf","40"),("Feature set","F7_full_context"),("2026 fitting policy","One fit on pre-2026 data; no updates"),
+        ("Family","Extra Trees regressor"),("Trees","250"),("Maximum depth","6"),("Maximum features","0.50"),("Minimum samples per leaf","40"),("Feature set","F7_full_context"),("2026 fitting policy","One fit on rolling pre-2026 window, 25 Nov 2020–30 Dec 2025; no updates"),
     ],[8.2,7.8],7.7)
     callout(doc,"Reproduction principle","Run identifiers are evidence addresses, not presentation labels. The report builder reads only the listed immutable objects and fails if a required manifest is missing.")
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
     doc.add_heading("Appendix B. Assignment alignment",level=1)
     table(doc,["Project requirement","Implementation","Report location"],[
         ("Non-trivial market prediction","Nifty IT constituent same-day O–C forecasts from cross-market information.","Sections 1–2"),
-        ("Data exploration and cleaning","OHLC audit, missingness, regime, seasonality, event and capability diagnostics.","Section 3"),
+        ("Data exploration and cleaning","OHLC audit, missingness, realized-regime, event and capability diagnostics; no standalone seasonality claim.","Section 3"),
         ("Leakage and timing control","08:55 IST availability clock; training-only transforms; temporal alignment.","Sections 2–3"),
         ("Feature engineering and complexity","Nested F0–F7 sets, lags, rolling, Fourier, breadth, macro and nonlinear features.","Section 4"),
         ("Model comparison","Baselines, shrinkage, PCA, boosting and forests through screening/confirmation.","Section 5"),

@@ -1,0 +1,30 @@
+[
+  {
+    "period": "2025 historical replication",
+    "config_id": "cm_asset_mean_947f6b0b0f9a",
+    "sessions": 249,
+    "cumulative_net": 0.0,
+    "accounting_max_error": 0.0
+  },
+  {
+    "period": "2025 historical replication",
+    "config_id": "cm_extra_trees_strict_18f79972113b",
+    "sessions": 249,
+    "cumulative_net": -0.01844205363850815,
+    "accounting_max_error": 0.0
+  },
+  {
+    "period": "2026 Jan-Sep extension",
+    "config_id": "cm_asset_mean_947f6b0b0f9a",
+    "sessions": 185,
+    "cumulative_net": 0.0,
+    "accounting_max_error": 0.0
+  },
+  {
+    "period": "2026 Jan-Sep extension",
+    "config_id": "cm_extra_trees_strict_18f79972113b",
+    "sessions": 185,
+    "cumulative_net": 0.24929796058845843,
+    "accounting_max_error": 0.0
+  }
+]
