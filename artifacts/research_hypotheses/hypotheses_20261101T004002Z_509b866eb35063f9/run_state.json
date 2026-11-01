@@ -1,0 +1,38 @@
+{
+  "analysis_id": "hypotheses_20261101T004002Z_509b866eb35063f9",
+  "classification": "exploratory_after_prior_result_inspection",
+  "content_hash": "509b866eb35063f9",
+  "created_at_utc": "2026-11-01T00:40:02.796021+00:00",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/research_hypotheses/hypotheses_20261101T004002Z_509b866eb35063f9",
+  "input_hashes": {
+    "artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261031T063613Z_f3595944da18/epoch_event_capability_returns.csv": "7aa63f7a90ff41d9e949c3c1cf0fbe8c111ec662b7e0e85d03adcda7b3cf89c4",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T001942Z_ebff5b985708/manifest.json": "43985c7fb3dc391150f02eb3a1a935ce8fb69e78fb39bf1c62fd63e164c7fa50",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T001942Z_ebff5b985708/strategy_ledgers.parquet": "7625194538393e1bff7930738c0e2b82a88d25799e44815ec848188e010da631",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261031T131402Z_b2cf65577643/manifest.json": "b8a0dc9e1a5b807115e4d95c1f07e2a23c760905ed34483a374de4c986b91f96",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261031T131402Z_b2cf65577643/strategy_ledgers.parquet": "2bb2346243758286f1b86f0f0c377cb4819319ab1c62c361921e706d479388ac",
+    "configs/company_adaptation_evidence_2026-11-01.json": "96bfee5b552a2be74388c20e608af6792a56305fa861b1e6efc14b9ab574aff3",
+    "data/processed/cross_market_ai_capability_2026/ai_capability_2026_panel_20261031T072834Z_950e4bb969ac963e/manifest.json": "4ab85f7a1989062c4280223f5cf7e5e8c6eb47f7c4e3a3b6c76769419a861e52",
+    "data/processed/cross_market_ai_capability_2026/ai_capability_2026_panel_20261031T072834Z_950e4bb969ac963e/panel.parquet": "b1bd51219fa61353bf023a79461b68d2b1a9ea5db4785b6c2a154e233a2d5c32",
+    "scripts/analyze_research_hypotheses.py": "3dcba779246690e2c8143ce54bd0c65cc3511348c3b0ef9fdab7481e99fe2f7a",
+    "src/quantfin/cross_market/hypotheses.py": "b3b008bbdcf0f3363c00ee7e8937bb410bd9a9620d3bb239b74db88b7a09694d"
+  },
+  "settings": {
+    "block_sessions": 20,
+    "bootstrap_draws": 2000,
+    "break_date": "2025-01-01",
+    "company_evidence": "configs/company_adaptation_evidence_2026-11-01.json",
+    "dataset": [
+      "data/processed/cross_market_ai_capability_2026/ai_capability_2026_panel_20261031T072834Z_950e4bb969ac963e"
+    ],
+    "end": "2026-09-30",
+    "epoch_events": "artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261031T063613Z_f3595944da18/epoch_event_capability_returns.csv",
+    "minimum_events": 8,
+    "run": [
+      "artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261031T131402Z_b2cf65577643",
+      "artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T001942Z_ebff5b985708"
+    ],
+    "seed": 5205,
+    "start": "2021-01-01"
+  },
+  "status": "complete"
+}

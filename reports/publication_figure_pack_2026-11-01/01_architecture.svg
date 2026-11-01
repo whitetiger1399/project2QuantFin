@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="603.18pt" height="496.68582pt" viewBox="0 0 603.18 496.68582" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-01T08:51:39.650844</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 496.68582 
+L 603.18 496.68582 
+L 603.18 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 13.104 88.977612 
+L 193.896 88.977612 
+Q 197.244 88.977612 197.244 86.116908 
+L 197.244 41.299212 
+Q 197.244 38.438508 193.896 38.438508 
+L 13.104 38.438508 
+Q 9.756 38.438508 9.756 41.299212 
+L 9.756 86.116908 
+Q 9.756 88.977612 13.104 88.977612 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f4f7fa; stroke: #175b9a; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 211.194 88.977612 
+L 391.986 88.977612 
+Q 395.334 88.977612 395.334 86.116908 
+L 395.334 41.299212 
+Q 395.334 38.438508 391.986 38.438508 
+L 211.194 38.438508 
+Q 207.846 38.438508 207.846 41.299212 
+L 207.846 86.116908 
+Q 207.846 88.977612 211.194 88.977612 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f4f7fa; stroke: #b75b16; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 409.284 88.977612 
+L 590.076 88.977612 
+Q 593.424 88.977612 593.424 86.116908 
+L 593.424 41.299212 
+Q 593.424 38.438508 590.076 38.438508 
+L 409.284 38.438508 
+Q 405.936 38.438508 405.936 41.299212 
+L 405.936 86.116908 
+Q 405.936 88.977612 409.284 88.977612 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f4f7fa; stroke: #123d65; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 13.104 153.343452 
+L 590.076 153.343452 
+Q 593.424 153.343452 593.424 150.482748 
+L 593.424 104.711484 
+Q 593.424 101.85078 590.076 101.85078 
+L 13.104 101.85078 
+Q 9.756 101.85078 9.756 104.711484 
+L 9.756 150.482748 
+Q 9.756 153.343452 13.104 153.343452 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f4f7fa; stroke: #123d65; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 13.104 220.093212 
+L 291.546 220.093212 
+Q 294.894 220.093212 294.894 217.232508 
+L 294.894 170.030892 
+Q 294.894 167.170188 291.546 167.170188 
+L 13.104 167.170188 
+Q 9.756 167.170188 9.756 170.030892 
+L 9.756 217.232508 
+Q 9.756 220.093212 13.104 220.093212 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f4f7fa; stroke: #123d65; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 311.634 220.093212 
+L 590.076 220.093212 
+Q 593.424 220.093212 593.424 217.232508 
+L 593.424 170.030892 
+Q 593.424 167.170188 590.076 167.170188 
+L 311.634 167.170188 
+Q 308.286 167.170188 308.286 170.030892 
+L 308.286 217.232508 
+Q 308.286 220.093212 311.634 220.093212 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f4f7fa; stroke: #123d65; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 13.104 279.691212 
+L 590.076 279.691212 
+Q 593.424 279.691212 593.424 276.830508 
+L 593.424 236.780652 
+Q 593.424 233.919948 590.076 233.919948 
+L 13.104 233.919948 
+Q 9.756 233.919948 9.756 236.780652 
+L 9.756 276.830508 
+Q 9.756 279.691212 13.104 279.691212 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f4f7fa; stroke: #123d65; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 13.104 344.057052 
+L 193.896 344.057052 
+Q 197.244 344.057052 197.244 341.196348 
+L 197.244 297.33222 
+Q 197.244 294.471516 193.896 294.471516 
+L 13.104 294.471516 
+Q 9.756 294.471516 9.756 297.33222 
+L 9.756 341.196348 
+Q 9.756 344.057052 13.104 344.057052 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #eef8f5; stroke: #138577; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 211.194 344.057052 
+L 391.986 344.057052 
+Q 395.334 344.057052 395.334 341.196348 
+L 395.334 297.33222 
+Q 395.334 294.471516 391.986 294.471516 
+L 211.194 294.471516 
+Q 207.846 294.471516 207.846 297.33222 
+L 207.846 341.196348 
+Q 207.846 344.057052 211.194 344.057052 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f0f2f5; stroke: #123d65; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 409.284 344.057052 
+L 590.076 344.057052 
+Q 593.424 344.057052 593.424 341.196348 
+L 593.424 297.33222 
+Q 593.424 294.471516 590.076 294.471516 
+L 409.284 294.471516 
+Q 405.936 294.471516 405.936 297.33222 
+L 405.936 341.196348 
+Q 405.936 344.057052 409.284 344.057052 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #fbf0f3; stroke: #b34155; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 13.104 406.038972 
+L 590.076 406.038972 
+Q 593.424 406.038972 593.424 403.178268 
+L 593.424 360.744492 
+Q 593.424 357.883788 590.076 357.883788 
+L 13.104 357.883788 
+Q 9.756 357.883788 9.756 360.744492 
+L 9.756 403.178268 
+Q 9.756 406.038972 13.104 406.038972 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f4f7fa; stroke: #123d65; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 13.104 484.708332 
+L 590.076 484.708332 
+Q 593.424 484.708332 593.424 481.847628 
+L 593.424 423.67998 
+Q 593.424 420.819276 590.076 420.819276 
+L 13.104 420.819276 
+Q 9.756 420.819276 9.756 423.67998 
+L 9.756 481.847628 
+Q 9.756 484.708332 13.104 484.708332 
+z
+" clip-path="url(#pa74d438a6e)" style="fill: #f3f0f7; stroke: #123d65; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="8.64" y="20.7975" transform="rotate(-0 8.64 20.7975)">From observable information to a costed trading decision</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #175b9a" x="18.684" y="55.139592" transform="rotate(-0 18.684 55.139592)">INDIA | Local information</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 69.116302)">Own history → Nifty IT peers</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 79.194333)">Nifty 50 context</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b75b16" x="216.774" y="55.139592" transform="rotate(-0 216.774 55.139592)">U.S. | Completed sessions</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(216.774 69.116302)">IT-services returns</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(216.774 79.194333)">Broad S&amp;P 500 context</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="414.864" y="55.139592" transform="rotate(-0 414.864 55.139592)">Context | Available inputs</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start" x="414.864" y="69.116302" transform="rotate(-0 414.864 69.116302)">Rates, FX and dated AI releases</text>
+   </g>
+   <g id="patch_14">
+    <path d="M 103.5 90.501784 
+Q 103.5 95.654384 103.5 99.465343 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 105.7 95.065343 
+L 103.5 99.465343 
+L 101.3 95.065343 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 301.59 90.501784 
+Q 301.59 95.654384 301.59 99.465343 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 303.79 95.065343 
+L 301.59 99.465343 
+L 299.39 95.065343 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 499.68 90.501784 
+Q 499.68 95.654384 499.68 99.465343 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 501.88 95.065343 
+L 499.68 99.465343 
+L 497.48 95.065343 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="18.684" y="118.551864" transform="rotate(-0 18.684 118.551864)">08:55 IST information gate | Before the NSE open</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.684" y="132.528574" transform="rotate(-0 18.684 132.528574)">Calendar alignment • availability timestamps • clean prices • missingness and vintage checks</text>
+   </g>
+   <g id="patch_17">
+    <path d="M 301.59 155.345223 
+Q 301.59 160.257376 301.59 163.827888 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 303.79 159.427888 
+L 301.59 163.827888 
+L 299.39 159.427888 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="18.684" y="183.871272" transform="rotate(-0 18.684 183.871272)">Features | Eligible history</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 197.847982)">Lags, trends, volatility and peers</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 207.926013)">Fit transforms within training windows</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="317.214" y="183.871272" transform="rotate(-0 317.214 183.871272)">Models | Temporal evaluation</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(317.214 197.847982)">2021–22 screening → 2023–24 confirmation → freeze</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(317.214 207.926013)">2025 quarterly refits → 2026 fixed fit</text>
+   </g>
+   <g id="patch_18">
+    <path d="M 152.046 222.094983 
+Q 152.046 227.007136 152.046 230.577648 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 154.246 226.177648 
+L 152.046 230.577648 
+L 149.846 226.177648 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 450.576 222.094983 
+Q 450.576 227.007136 450.576 230.577648 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 452.776 226.177648 
+L 450.576 230.577648 
+L 448.376 226.177648 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="18.684" y="250.577282" transform="rotate(-0 18.684 250.577282)">Forecast each Nifty IT stock's same-day open-to-close return</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start" x="18.684" y="264.597742" transform="rotate(-0 18.684 264.597742)">Compare expected return with ±15 bps eligibility hurdle; apply ranking and exposure caps</text>
+   </g>
+   <g id="patch_20">
+    <path d="M 103.5 281.69147 
+Q 103.5 287.321415 103.5 291.60972 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 105.7 287.20972 
+L 103.5 291.60972 
+L 101.3 287.20972 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 301.59 281.69147 
+Q 301.59 287.321415 301.59 291.60972 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 303.79 287.20972 
+L 301.59 291.60972 
+L 299.39 287.20972 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 499.68 281.69147 
+Q 499.68 287.321415 499.68 291.60972 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 501.88 287.20972 
+L 499.68 291.60972 
+L 497.48 287.20972 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #138577" x="18.684" y="311.1726" transform="rotate(-0 18.684 311.1726)">LONG | forecast &gt; +15 bps</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 325.14931)">Buy at open; sell at close</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 335.227341)">Up to 3 strongest eligible stocks</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="216.774" y="311.1726" transform="rotate(-0 216.774 311.1726)">FLAT | inside hurdle</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(216.774 325.14931)">No position in that stock</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(216.774 335.227341)">No trade cost on a flat position</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b34155" x="414.864" y="311.1726" transform="rotate(-0 414.864 311.1726)">SHORT | forecast &lt; −15 bps</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(414.864 325.14931)">Sell at open; buy back at close</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(414.864 335.227341)">Up to 3 weakest eligible stocks</text>
+   </g>
+   <g id="patch_23">
+    <path d="M 103.5 346.058008 
+Q 103.5 351.210608 103.5 355.021567 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 105.7 350.621567 
+L 103.5 355.021567 
+L 101.3 350.621567 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_24">
+    <path d="M 301.59 346.058008 
+Q 301.59 351.210608 301.59 355.021567 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 303.79 350.621567 
+L 301.59 355.021567 
+L 299.39 350.621567 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_25">
+    <path d="M 499.68 346.058008 
+Q 499.68 351.210608 499.68 355.021567 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 501.88 350.621567 
+L 499.68 355.021567 
+L 497.48 350.621567 
+" style="fill: none; stroke: #657487; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="18.684" y="374.584872" transform="rotate(-0 18.684 374.584872)">Daily portfolio ledger | Long and short positions can coexist</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 388.561582)">Gross return − turnover × 7.5 bps one-way cost = net return</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 398.639613)">Cost assumption: 5 bps fee/spread proxy + 2.5 bps slippage per side; gross exposure ≤ 1</text>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #123d65" x="18.684" y="437.52036" transform="rotate(-0 18.684 437.52036)">Six research questions | Interpretation, not a trading override</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 451.49707)">H1 U.S. transmission   •   H2 AI-release response   •   H3 effect changes over time</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 461.575101)">H4 capability advances   •   H5 returns after costs   •   H6 company adaptation</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(18.684 471.653132)">Retrospective Epoch scores and company disclosures do not enter historical forecasts</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa74d438a6e">
+   <rect x="8.64" y="11.26182" width="585.9" height="476.784"/>
+  </clipPath>
+ </defs>
+</svg>

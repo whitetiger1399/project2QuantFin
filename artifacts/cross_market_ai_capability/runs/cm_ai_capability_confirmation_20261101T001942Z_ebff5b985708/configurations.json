@@ -1,0 +1,14 @@
+[
+  {
+    "config_id": "cm_extra_trees_cc3daa00b74b",
+    "experiment": "selected_family_information_ablation",
+    "family": "extra_trees",
+    "feature_set": "F2_us_services",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  }
+]

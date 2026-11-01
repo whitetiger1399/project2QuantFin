@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "verified_at_utc": "2026-11-01T01:01:31.362260+00:00",
+  "pages": 20,
+  "figures": 18,
+  "hypotheses": 6,
+  "contents_entries_checked": 18,
+  "visual_review": "All pages reviewed; final pages 1\u201319 retain reviewed content; orphan final paragraph removed.",
+  "files": {
+    "Project2_Team16_Report.docx": "361b13da218467ca47872927d93111c79e06a69e31e6fb11197c399c3a114090",
+    "Project2_Team16_Report.pdf": "8d0e3865170abab7da27e4d85552508b670352b11a05aa62a68b626e3af2484e"
+  }
+}

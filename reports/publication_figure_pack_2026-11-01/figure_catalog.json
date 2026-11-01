@@ -1,0 +1,180 @@
+[
+  {
+    "caption": "The implemented signed_forecast policy screens each stock independently, selects up to three names per side and applies the gross-exposure and per-stock caps. Flat positions incur no trading cost. The 15 bps round-trip assumption includes a fee/spread proxy and slippage; it is not a complete instrument-specific Indian tax schedule. Historical evaluation and retrospective hypothesis analysis remain distinct.",
+    "change": "Replaces crowded connectors; corrects monthly to quarterly 2025 refits and market-wide-state interpretation.",
+    "id": "01_architecture",
+    "pdf": "01_architecture.pdf",
+    "placement": "main",
+    "png": "01_architecture.png",
+    "svg": "01_architecture.svg",
+    "title": "Research architecture"
+  },
+  {
+    "caption": "Daily adjusted-price paths in local currency. The logarithmic axis makes proportional changes comparable when one constituent grows much faster than others. Shading marks the 2025\u2013September 2026 reported evaluation period. Constituents are the frozen current-member cohort, not a historical Nifty IT membership portfolio.",
+    "change": "Replaces compressed linear-axis ten-stock chart; explicit log scale and membership caveat.",
+    "id": "02_india_paths",
+    "pdf": "02_india_paths.pdf",
+    "placement": "main",
+    "png": "02_india_paths.png",
+    "svg": "02_india_paths.svg",
+    "title": "Daily market context"
+  },
+  {
+    "caption": "Selected Indian firms (blue solid) and U.S. firms (orange dashed), on shared scales and normalized independently at their first available 2020 observation. These are local-currency price paths, without FX conversion. Visual co-movement is descriptive; predictive association is tested on decision-aligned returns in Figure 5.",
+    "change": "Separates countries into labelled panels; consistent colour and line-style encoding.",
+    "id": "03_india_us_paths",
+    "pdf": "03_india_us_paths.pdf",
+    "placement": "main",
+    "png": "03_india_us_paths.png",
+    "svg": "03_india_us_paths.svg",
+    "title": "India and U.S. services: distinct markets"
+  },
+  {
+    "caption": "Pearson correlations of daily adjusted close-to-close returns during development. Only the lower triangle is shown to remove duplicate information; blank cells are intentionally masked. Correlation supports studying shared movements but does not establish incremental forecast value.",
+    "change": "Regenerated with readable labels, explicit countries, missing-value treatment and plotted-data export.",
+    "id": "04_peer_correlations",
+    "pdf": "04_peer_correlations.pdf",
+    "placement": "main",
+    "png": "04_peer_correlations.png",
+    "svg": "04_peer_correlations.svg",
+    "title": "INDIA | Peer return correlation, 2020\u20132024"
+  },
+  {
+    "caption": "Pearson correlation between each completed U.S. services return available at the Indian decision cutoff and each Indian constituent's subsequent open-to-close return, 2020\u20132024. Values come from the engineered modelling panel, preserving its calendar alignment. U.S. predictor labels are orange; Indian targets are blue. Colour limits are printed on the colour bar; associations are small and not causal.",
+    "change": "Regenerated with readable labels, explicit countries, missing-value treatment and plotted-data export.",
+    "id": "05_cross_market_correlations",
+    "pdf": "05_cross_market_correlations.pdf",
+    "placement": "main",
+    "png": "05_cross_market_correlations.png",
+    "svg": "05_cross_market_correlations.svg",
+    "title": "U.S. \u2192 INDIA | Decision-aligned return association"
+  },
+  {
+    "caption": "Numbered markers identify record improvements within the available retrospective Epoch mapping, not every frontier release. The plot ends in June 2025 to match that evidence. Median paths and cross-stock interquartile bands summarize five firms per country; the bands are dispersion, not confidence intervals. India: TCS, Infosys, Wipro, HCLTech, Tech Mahindra. U.S.: Accenture, IBM, Cognizant, EPAM, DXC. Price levels and event coincidence do not identify causal announcement effects.",
+    "change": "Replaces cramped vertical event names with a numbered key, country colours and labelled dispersion bands.",
+    "id": "06a_frontier_timeline",
+    "pdf": "06a_frontier_timeline.pdf",
+    "placement": "main",
+    "png": "06a_frontier_timeline.png",
+    "svg": "06a_frontier_timeline.svg",
+    "title": "What happened around the mapped frontier advances?"
+  },
+  {
+    "caption": "The upper and lower panels separate countries with explicit outcome definitions. U.S. close-to-close and Indian open-to-close returns cover different horizons, so magnitudes are not a like-for-like causal comparison. Reaction sessions follow the conservative publication-time mapping. Entries are observed returns, not market-adjusted abnormal returns. This is the limited mapped event subset shown in the timeline; no 2026 completeness is implied.",
+    "change": "Removes overlapping country/ticker labels and discloses unequal return horizons.",
+    "id": "06b_event_responses",
+    "pdf": "06b_event_responses.pdf",
+    "placement": "appendix",
+    "png": "06b_event_responses.png",
+    "svg": "06b_event_responses.svg",
+    "title": "Observed U.S. and Indian reactions"
+  },
+  {
+    "caption": "Recorded 2025 returns are 11.05% gross and 0.086% net. Both paths use identical holdings and execution dates. The shaded terminal wealth gap includes foregone compounding and is not simply the sum of cash fees. Costs are the implementation's assumed 7.5 bps per side, charged on turnover. 2026 is January\u2013September; the joined path crosses from quarterly refits to a fixed-fit extension.",
+    "change": "New cost-isolation figure with exact ledger accounting; replaces illustrative unverified gross numbers.",
+    "id": "07_transaction_cost_drag",
+    "pdf": "07_transaction_cost_drag.pdf",
+    "placement": "main",
+    "png": "07_transaction_cost_drag.png",
+    "svg": "07_transaction_cost_drag.svg",
+    "title": "The same trades, before and after costs"
+  },
+  {
+    "caption": "One continuous compounded path across 2025 and the January\u2013September 2026 extension. The dashed line identifies the change in refit protocol, not a capital reset. Model returns include recorded trading costs. ETF and fixed-share current-cohort buy-and-hold comparisons include overnight exposure and do not receive the intraday strategy cost model; the cohort has current-membership selection bias.",
+    "change": "Moves legend outside the data, labels final returns and explains the different execution exposures.",
+    "id": "08_combined_benchmarks",
+    "pdf": "08_combined_benchmarks.pdf",
+    "placement": "main",
+    "png": "08_combined_benchmarks.png",
+    "svg": "08_combined_benchmarks.svg",
+    "title": "Combined evaluation and passive alternatives"
+  },
+  {
+    "caption": "Daily gross long and short exposures are shown with opposite signs. The lower panel counts actual sessions classified as long-only, short-only, mixed or flat. A flat month or session is retained rather than omitted. The policy allows simultaneous long and short positions even if the observed ledger contains none.",
+    "change": "Makes flat states explicit and avoids interpolating decisions with misleading smooth exposure paths.",
+    "id": "09_signed_positions",
+    "pdf": "09_signed_positions.pdf",
+    "placement": "main",
+    "png": "09_signed_positions.png",
+    "svg": "09_signed_positions.svg",
+    "title": "What was actually traded"
+  },
+  {
+    "caption": "Counterfactual cost deductions on the exact same recorded decisions; forecast hurdles and holdings are never recalculated. This isolates cost exposure. The 2025 curve approaches zero at the recorded 15 bps assumption. These sweeps are descriptive stress tests, not a choice of the most attractive fee assumption.",
+    "change": "New fixed-holdings sensitivity avoids confusing cost-induced policy changes with pure cost drag.",
+    "id": "10_cost_sensitivity",
+    "pdf": "10_cost_sensitivity.pdf",
+    "placement": "appendix",
+    "png": "10_cost_sensitivity.png",
+    "svg": "10_cost_sensitivity.svg",
+    "title": "How much trading friction can the strategy withstand?"
+  },
+  {
+    "caption": "Each populated cell is the best observed net Sharpe within that family and stage, with the number of evaluated configurations. It is not necessarily the same configuration across stages. Grey means not evaluated or undefined Sharpe, not a zero return. These are the original search runs, not the later F2 diagnostic candidate.",
+    "change": "Fixes false neutral colouring of missing cells, clipped negative Sharpe values and undersized family labels.",
+    "id": "11_model_family_evidence",
+    "pdf": "11_model_family_evidence.pdf",
+    "placement": "main",
+    "png": "11_model_family_evidence.png",
+    "svg": "11_model_family_evidence.svg",
+    "title": "Model families and selection stages"
+  },
+  {
+    "caption": "The controlled ridge ladder in the historical 2025 period compares forecast R\u00b2 against an asset-mean baseline and net Sharpe. Horizontal rows represent distinct information sets rather than a continuous parameter. This diagnoses information complexity and does not establish that the best row generalizes.",
+    "change": "Replaces steep rotated labels with aligned horizontal rows and explicit predictive/economic objectives.",
+    "id": "12_information_ladder",
+    "pdf": "12_information_ladder.pdf",
+    "placement": "main",
+    "png": "12_information_ladder.png",
+    "svg": "12_information_ladder.svg",
+    "title": "Feature progression at fixed ridge family"
+  },
+  {
+    "caption": "Conditional U.S.-services coefficients control for lagged Indian-cohort and Nifty50 returns. Blue denotes Holm-adjusted p < 0.05 within the declared analysis batch; intervals are pointwise. A +1% U.S. return corresponds to approximately +0.098 percentage points in the full-sample Indian intraday outcome. Annual differences are not themselves significant: the direct period-interaction test was inconclusive. This is exploratory association, not causality.",
+    "change": "Adds effect uncertainty and adjusted evidence; distinguishes association from profitable prediction.",
+    "id": "13_transmission_inference",
+    "pdf": "13_transmission_inference.pdf",
+    "placement": "main",
+    "png": "13_transmission_inference.png",
+    "svg": "13_transmission_inference.svg",
+    "title": "Association can exist without a profitable strategy"
+  },
+  {
+    "caption": "The current calendar contains 5 marked sessions in 2023, 12 in 2024 and 7 in 2025. Zero marks in 2026 means incomplete event coverage, not that no frontier releases occurred. The later-period minimum event requirement fails. This figure belongs in limitations rather than serving as evidence that market reactions disappeared.",
+    "change": "New data-coverage audit required to prevent a false adaptation narrative.",
+    "id": "14_event_coverage",
+    "pdf": "14_event_coverage.pdf",
+    "placement": "appendix",
+    "png": "14_event_coverage.png",
+    "svg": "14_event_coverage.svg",
+    "title": "Why later-period event conclusions remain unresolved"
+  },
+  {
+    "caption": "This is the later F2 Extra Trees diagnostic candidate, not the canonical final model. The same configuration returned +9.08% and +15.11% in screening years, then \u221222.65% and +2.21% in confirmation years. Confirmation rejected promotion. Keeping this separate prevents mixing candidate and canonical model results.",
+    "change": "New screening-to-confirmation figure with explicit model identity.",
+    "id": "15_confirmation_diagnostic",
+    "pdf": "15_confirmation_diagnostic.pdf",
+    "placement": "appendix",
+    "png": "15_confirmation_diagnostic.png",
+    "svg": "15_confirmation_diagnostic.svg",
+    "title": "A rejected candidate is evidence about robustness"
+  },
+  {
+    "caption": "Dots show individual 2025\u2013September 2026 monthly model returns; orange strokes are group means. Regimes use realized Nifty IT ETF monthly returns: rising \u22653%, falling \u2264\u22123%, otherwise sideways. A reversal changes the latest non-sideways direction. These labels are known after the month ends and are descriptive, not pre-trade signals. Small reversal groups cannot establish reliable regime-specific skill.",
+    "change": "Replaces bare three-bar regime summaries with individual observations, group sizes and explicit ex-post classification.",
+    "id": "16_regime_distributions",
+    "pdf": "16_regime_distributions.pdf",
+    "placement": "main",
+    "png": "16_regime_distributions.png",
+    "svg": "16_regime_distributions.svg",
+    "title": "Sideways markets and reversals: observed monthly outcomes"
+  },
+  {
+    "caption": "Existing grouped permutation importance for the canonical model in 2025 and 2026. Positive values indicate greater prediction error after permutation. These historical artifacts use a single stock-day permutation, not repeated date-block uncertainty; values are exploratory model reliance, not causal or isolated feature contributions.",
+    "change": "Retained unchanged: labels and zero baseline are readable. Restrict to appendix because the historical importance estimator has limited uncertainty assessment.",
+    "id": "17_group_importance_existing",
+    "placement": "appendix",
+    "png": "17_group_importance_existing.png",
+    "title": "Exploratory model reliance"
+  }
+]
