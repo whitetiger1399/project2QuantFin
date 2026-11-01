@@ -15,7 +15,6 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import statsmodels.api as sm
-from scipy import stats
 
 from quantfin.cross_market.common import load_research_config, root_path
 from quantfin.io import atomic_json_dump, sha256_file, stable_object_hash
@@ -45,6 +44,47 @@ def _metrics(values: pd.Series, annualization: int = 252) -> dict[str, float | i
 def _save(fig: plt.Figure, path: Path) -> None:
     fig.savefig(path, dpi=220, bbox_inches="tight", facecolor="white")
     plt.close(fig)
+
+
+def _date_block_forecast_inference(valid: pd.DataFrame, seed: int, block_length: int = 20,
+                                   repetitions: int = 1000) -> dict[str, object]:
+    """Resample whole dates so cross-sectional dependence is preserved."""
+    dates = pd.Index(sorted(valid["decision_date"].unique()))
+    if dates.empty:
+        return {}
+    realized_sign = np.sign(valid["target_oc_return"])
+    majority_sign = -1.0 if (realized_sign < 0).mean() >= (realized_sign > 0).mean() else 1.0
+    majority_accuracy = float((realized_sign == majority_sign).mean())
+    rng = np.random.default_rng(seed)
+    accuracy: list[float] = []
+    incremental: list[float] = []
+    slopes: list[float] = []
+    for _ in range(repetitions):
+        starts = rng.integers(0, len(dates), size=int(np.ceil(len(dates) / block_length)))
+        sampled_dates = np.concatenate([
+            np.take(dates.to_numpy(), np.arange(start, start + block_length) % len(dates))
+            for start in starts
+        ])[: len(dates)]
+        sample = pd.concat([valid.loc[valid["decision_date"].eq(date)] for date in sampled_dates], ignore_index=True)
+        score = float((np.sign(sample["prediction"]) == np.sign(sample["target_oc_return"])).mean())
+        accuracy.append(score)
+        incremental.append(score - float((np.sign(sample["target_oc_return"]) == majority_sign).mean()))
+        if sample["prediction"].nunique() > 1:
+            fit = sm.OLS(sample["target_oc_return"], sm.add_constant(sample["prediction"])).fit()
+            slopes.append(float(fit.params["prediction"]))
+    interval = lambda values: [float(np.nanquantile(values, 0.025)), float(np.nanquantile(values, 0.975))]
+    return {
+        "method": "circular_date_block_bootstrap",
+        "unique_dates": len(dates),
+        "stock_day_observations": len(valid),
+        "block_length_sessions": block_length,
+        "repetitions": repetitions,
+        "majority_sign": "down" if majority_sign < 0 else "up",
+        "majority_sign_accuracy": majority_accuracy,
+        "directional_accuracy_95_ci": interval(accuracy),
+        "incremental_accuracy_vs_majority_95_ci": interval(incremental),
+        "calibration_slope_95_ci": interval(slopes) if slopes else [None, None],
+    }
 
 
 def main() -> None:
@@ -103,7 +143,8 @@ def main() -> None:
     portfolio = pd.DataFrame(portfolio_rows)
     portfolio.to_csv(output / "portfolio_performance_comparison.csv", index=False)
 
-    valid = selected_predictions[["prediction", "target_oc_return"]].dropna().copy()
+    valid = selected_predictions[["decision_date", "asset", "prediction", "target_oc_return"]].dropna().copy()
+    valid["decision_date"] = pd.to_datetime(valid["decision_date"])
     if valid["prediction"].nunique() > 1:
         valid["prediction_decile"] = pd.qcut(valid["prediction"], 10, duplicates="drop").astype(str)
     else:
@@ -112,25 +153,21 @@ def main() -> None:
         mean_prediction=("prediction", "mean"), mean_realized_return=("target_oc_return", "mean"),
         observations=("target_oc_return", "size"), realized_std=("target_oc_return", "std"),
     ).reset_index()
-    calibration["standard_error"] = calibration["realized_std"] / np.sqrt(calibration["observations"])
+    daily_bin = valid.groupby(["prediction_decile", "decision_date"], observed=True)["target_oc_return"].mean()
+    daily_se = daily_bin.groupby(level=0).agg(lambda values: values.std(ddof=1) / np.sqrt(len(values)))
+    calibration["date_clustered_standard_error"] = calibration["prediction_decile"].map(daily_se)
     calibration.to_csv(output / "prediction_calibration_deciles.csv", index=False)
     signs = pd.crosstab(np.sign(valid["prediction"]).map({-1.0: "predicted_short", 0.0: "predicted_flat", 1.0: "predicted_long"}),
                         np.sign(valid["target_oc_return"]).map({-1.0: "realized_down", 0.0: "realized_flat", 1.0: "realized_up"}))
     signs.to_csv(output / "direction_confusion_matrix.csv")
     correct = int((np.sign(valid["prediction"]) == np.sign(valid["target_oc_return"])).sum())
-    sign_test = stats.binomtest(correct, len(valid), p=.5, alternative="greater") if len(valid) else None
-    calibration_fit = None
-    if len(valid) > 20 and valid["prediction"].nunique() > 1:
-        design = sm.add_constant(valid["prediction"])
-        calibration_fit = sm.OLS(valid["target_oc_return"], design).fit(cov_type="HAC", cov_kwds={"maxlags": 5})
+    block_inference = _date_block_forecast_inference(
+        valid, int(config["validation"]["random_seed"]) + 303
+    )
     forecast_inference = {
         "observations": len(valid), "directionally_correct": correct,
         "directional_accuracy": correct / len(valid) if len(valid) else np.nan,
-        "one_sided_binomial_pvalue_vs_50_percent": float(sign_test.pvalue) if sign_test else np.nan,
-        "calibration_intercept": float(calibration_fit.params["const"]) if calibration_fit is not None else np.nan,
-        "calibration_slope": float(calibration_fit.params["prediction"]) if calibration_fit is not None else np.nan,
-        "calibration_slope_hac_t": float(calibration_fit.tvalues["prediction"]) if calibration_fit is not None else np.nan,
-        "calibration_slope_hac_pvalue": float(calibration_fit.pvalues["prediction"]) if calibration_fit is not None else np.nan,
+        **block_inference,
     }
     atomic_json_dump(forecast_inference, output / "forecast_inference.json")
 
@@ -161,7 +198,7 @@ def main() -> None:
             fig, ax = plt.subplots(figsize=(10.5, 3.8)); ax.fill_between(pd.to_datetime(selected_ledger["decision_date"]), drawdown, 0, color=COLORS["negative"], alpha=.75)
             ax.set(title="Selected strategy drawdown", ylabel="Drawdown", xlabel=""); _save(fig, plots / "04_drawdown.png")
         elif task == 4:
-            fig, ax = plt.subplots(figsize=(7.5, 5)); ax.errorbar(calibration["mean_prediction"], calibration["mean_realized_return"], yerr=1.96 * calibration["standard_error"], fmt="o", color=COLORS["strategy"])
+            fig, ax = plt.subplots(figsize=(7.5, 5)); ax.errorbar(calibration["mean_prediction"], calibration["mean_realized_return"], yerr=1.96 * calibration["date_clustered_standard_error"], fmt="o", color=COLORS["strategy"])
             limits = [min(calibration["mean_prediction"].min(), calibration["mean_realized_return"].min()), max(calibration["mean_prediction"].max(), calibration["mean_realized_return"].max())]
             ax.plot(limits, limits, ls="--", color="#777"); ax.axhline(0, color="#444", lw=.7)
             ax.set(title="Prediction calibration by forecast decile", xlabel="Mean predicted return", ylabel="Mean realized return (95% CI)")

@@ -30,8 +30,11 @@ def main() -> None:
     if not manifest_path.is_file(): raise FileNotFoundError(manifest_path)
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     predictions_path = run / "predictions.parquet"
-    variants = ["long_top_k_positive", "signed_forecast", "services_direction_equal_weight",
-                "frontier_event_short_only", "hybrid_ai_services_signed"]
+    variants = [
+        "signed_forecast", "cohort_mean_signed", "cross_sectional_residual_signed",
+        "always_long_cohort", "always_short_cohort", "services_direction_equal_weight",
+        "frontier_event_short_only", "hybrid_ai_services_signed",
+    ]
     content_hash = stable_object_hash({"run": sha256_file(manifest_path), "predictions": sha256_file(predictions_path),
                                       "config": config, "variants": variants, "script": sha256_file(Path(__file__))})[:12]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")

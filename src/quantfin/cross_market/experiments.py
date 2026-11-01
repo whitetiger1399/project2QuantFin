@@ -31,11 +31,24 @@ from quantfin.models import NormalizedRidge
 from quantfin.progress import progress
 
 
-def feature_columns(dictionary: pd.DataFrame, feature_set: str) -> list[str]:
-    return dictionary.loc[
+def feature_columns(
+    dictionary: pd.DataFrame,
+    feature_set: str,
+    *,
+    exclude_current_vintage_fallback: bool = False,
+    excluded_feature_families: list[str] | None = None,
+) -> list[str]:
+    eligible = dictionary.loc[
         dictionary["feature_sets"].fillna("").str.split("|").apply(lambda values: feature_set in values),
-        "feature",
-    ].tolist()
+    ].copy()
+    if exclude_current_vintage_fallback and "current_vintage_fallback" in eligible:
+        fallback = eligible["current_vintage_fallback"].fillna(False).astype(str).str.lower().isin({"true", "1"})
+        eligible = eligible.loc[~fallback]
+    excluded = set(excluded_feature_families or [])
+    if excluded:
+        families = eligible["feature"].str.split("__", n=1).str[0]
+        eligible = eligible.loc[~families.isin(excluded)]
+    return eligible["feature"].tolist()
 
 
 def _parameter_grid(values: dict[str, Any]) -> list[dict[str, Any]]:
@@ -49,13 +62,15 @@ def enumerate_configurations(config: dict[str, Any], profile: str) -> list[dict[
     permitted = set(profile_config["families"])
     configurations: list[dict[str, Any]] = []
 
-    # Forecast baselines are fit under the same temporal protocol.
-    for baseline in config["models"]["baselines"]:
-        if baseline["family"] in permitted:
-            configurations.append({**baseline, "feature_set": "F0_own", "experiment": "baseline"})
+    include_standard = bool(profile_config.get("include_standard_components", True))
+    if include_standard:
+        # Forecast baselines are fit under the same temporal protocol.
+        for baseline in config["models"]["baselines"]:
+            if baseline["family"] in permitted:
+                configurations.append({**baseline, "feature_set": "F0_own", "experiment": "baseline"})
 
     # Predeclared one-factor-at-a-time feature progression under identical ridge shrinkage.
-    if "ridge" in permitted:
+    if include_standard and "ridge" in permitted:
         progression_alpha = float(config["models"]["feature_progression_alpha"])
         for feature_set in profile_config["feature_sets"]:
             configurations.append({
@@ -75,7 +90,7 @@ def enumerate_configurations(config: dict[str, Any], profile: str) -> list[dict[
                 })
 
     # Full model-family comparison uses F4, the economic question's complete US information set.
-    for family in profile_config["families"]:
+    for family in profile_config["families"] if include_standard else []:
         if family in {"zero", "asset_mean", "autoregression", "ridge", "rff_ridge"}:
             continue
         limit = profile_config.get("grid_limit_by_family", {}).get(
@@ -93,7 +108,7 @@ def enumerate_configurations(config: dict[str, Any], profile: str) -> list[dict[
             })
 
     # Kelly–Malamud–Zhou-style approximation complexity with ridge shrinkage.
-    if "rff_ridge" in permitted:
+    if include_standard and "rff_ridge" in permitted:
         values = config["models"]["families"]["rff_ridge"]
         complexity_ratios = profile_config.get("complexity_ratios", values["complexity_ratio"])
         maximum_components = int(profile_config.get("complexity_maximum_components", values["maximum_components"]))
@@ -125,9 +140,19 @@ def enumerate_configurations(config: dict[str, Any], profile: str) -> list[dict[
                 "feature_set": config["models"].get("complexity_feature_set", "F2_us_tech"), "experiment": "complexity",
             })
 
+    for custom in profile_config.get("custom_configurations", []):
+        configurations.append(deepcopy(custom))
+
     unique: dict[str, dict[str, Any]] = {}
     for item in configurations:
-        payload = {key: item[key] for key in ["family", "parameters", "feature_set", "experiment"]}
+        payload = {
+            key: item[key]
+            for key in [
+                "family", "parameters", "feature_set", "experiment",
+                "exclude_current_vintage_fallback", "excluded_feature_families",
+            ]
+            if key in item
+        }
         item = {**payload, "config_id": f"cm_{item['family']}_{stable_object_hash(payload)[:12]}"}
         unique[item["config_id"]] = item
     return list(unique.values())
@@ -290,7 +315,12 @@ def _fit_block(
     if len(train) < int(config["validation"]["minimum_training_rows"]):
         raise ValueError(f"Insufficient training rows before {block_start.date()}: {len(train)}")
     family = configuration["family"]
-    base = feature_columns(dictionary, configuration["feature_set"])
+    base = feature_columns(
+        dictionary,
+        configuration["feature_set"],
+        exclude_current_vintage_fallback=bool(configuration.get("exclude_current_vintage_fallback", False)),
+        excluded_feature_families=configuration.get("excluded_feature_families", []),
+    )
     base = _select_model_columns(configuration, base)
     columns = _viable_columns(train, base, config)
     if not columns and family not in {"zero", "asset_mean"}:
@@ -311,21 +341,32 @@ def _fit_block(
         prediction = estimator.predict(x_test)
         importance = _extract_importance(estimator, columns, family)
         if explain:
-            rng = np.random.default_rng(int(config["validation"]["random_seed"]))
             baseline_mse = float(np.mean(np.square(test["target_oc_return"].to_numpy() - prediction)))
             grouped_rows: list[dict[str, Any]] = []
+            unique_dates = pd.Index(test["decision_date"].unique())
+            repetitions = int(config.get("interpretability", {}).get("date_block_permutation_repetitions", 10))
             for feature_family in sorted({column.split("__", 1)[0] for column in columns}):
                 family_columns = [column for column in columns if column.split("__", 1)[0] == feature_family]
-                permuted = x_test.copy()
-                order = rng.permutation(len(permuted))
-                permuted.loc[:, family_columns] = permuted[family_columns].to_numpy()[order]
-                permuted_prediction = estimator.predict(permuted)
-                permuted_mse = float(np.mean(np.square(test["target_oc_return"].to_numpy() - permuted_prediction)))
-                grouped_rows.append({
-                    "feature": f"GROUP::{feature_family}",
-                    "importance": permuted_mse - baseline_mse,
-                    "measure": "oos_group_permutation_mse_increase",
-                })
+                for repetition in range(repetitions):
+                    rng = np.random.default_rng(int(config["validation"]["random_seed"]) + repetition)
+                    shuffled_dates = rng.permutation(unique_dates)
+                    date_map = dict(zip(unique_dates, shuffled_dates))
+                    source_dates = test["decision_date"].map(date_map)
+                    source = x_test[family_columns].copy()
+                    source["__decision_date"] = test["decision_date"].to_numpy()
+                    source["__asset"] = test["asset"].to_numpy()
+                    lookup = source.set_index(["__decision_date", "__asset"])[family_columns]
+                    keys = pd.MultiIndex.from_arrays([source_dates, test["asset"]])
+                    permuted = x_test.copy()
+                    permuted.loc[:, family_columns] = lookup.reindex(keys).to_numpy()
+                    permuted_prediction = estimator.predict(permuted)
+                    permuted_mse = float(np.mean(np.square(test["target_oc_return"].to_numpy() - permuted_prediction)))
+                    grouped_rows.append({
+                        "feature": f"GROUP::{feature_family}",
+                        "importance": permuted_mse - baseline_mse,
+                        "measure": "oos_date_block_group_permutation_mse_increase",
+                        "repetition": repetition,
+                    })
             importance = pd.concat([importance, pd.DataFrame(grouped_rows)], ignore_index=True)
     state_columns = [
         column for column in config.get("strategy", {}).get("state_columns", [])
@@ -408,6 +449,28 @@ def _strategy_ledger(predictions: pd.DataFrame, config: dict[str, Any]) -> pd.Da
             elif np.isfinite(services_return):
                 longs = group
                 regime = "services_up_long"
+        elif strategy_name == "always_long_cohort":
+            longs = group
+            regime = "always_long"
+        elif strategy_name == "always_short_cohort":
+            shorts = group
+            regime = "always_short"
+        elif strategy_name == "cohort_mean_signed":
+            common_forecast = float(group["prediction"].mean())
+            if common_forecast > hurdle:
+                longs = group
+                regime = "cohort_timing_long"
+            elif common_forecast < -hurdle:
+                shorts = group
+                regime = "cohort_timing_short"
+            else:
+                regime = "cohort_timing_flat"
+        elif strategy_name == "cross_sectional_residual_signed":
+            centered = group.copy()
+            centered["prediction"] = centered["prediction"] - centered["prediction"].mean()
+            longs = centered.loc[centered["prediction"] > hurdle].nlargest(top_k, "prediction")
+            shorts = centered.loc[centered["prediction"] < -hurdle].nsmallest(short_k, "prediction")
+            regime = "cross_sectional_residual"
         else:
             raise ValueError(f"Unknown strategy name: {strategy_name}")
 
@@ -445,11 +508,11 @@ def _annualized_metrics(returns: pd.Series, annualization: int) -> dict[str, flo
     values = returns.dropna().astype(float)
     if values.empty:
         return {key: float("nan") for key in ["annual_return", "annual_volatility", "sharpe", "sortino", "maximum_drawdown", "calmar"]}
-    wealth = (1.0 + values).cumprod()
+    wealth = pd.concat([pd.Series([1.0]), (1.0 + values.reset_index(drop=True)).cumprod()], ignore_index=True)
     years = len(values) / annualization
     annual_return = float(wealth.iloc[-1] ** (1 / years) - 1) if wealth.iloc[-1] > 0 and years > 0 else float("nan")
     volatility = float(values.std(ddof=1) * np.sqrt(annualization))
-    downside = float(values.where(values.lt(0), 0).std(ddof=1) * np.sqrt(annualization))
+    downside = float(np.sqrt(np.mean(np.square(np.minimum(values.to_numpy(), 0.0)))) * np.sqrt(annualization))
     drawdown = wealth / wealth.cummax() - 1.0
     maximum_drawdown = float(drawdown.min())
     return {
@@ -592,12 +655,26 @@ def cost_sensitivity(predictions: pd.DataFrame, config: dict[str, Any], config_i
         config["strategy"]["robustness"]["forecast_hurdle"],
     ):
         base["strategy"]["primary"]["top_k"] = top_k
+        base["strategy"]["primary"]["short_k"] = top_k
         base["strategy"]["primary"]["one_way_cost_bps"] = cost / 2
         base["strategy"]["primary"]["slippage_bps"] = 0
         base["strategy"]["primary"]["forecast_hurdle"] = hurdle
         ledger = _strategy_ledger(selected, base)
         metrics = _annualized_metrics(ledger["net_return"], int(config["validation"]["annualization_sessions"]))
-        rows.append({"top_k": top_k, "round_trip_cost_bps": cost, "forecast_hurdle": hurdle, **metrics, "mean_turnover": ledger["turnover"].mean()})
+        rows.append({"mode": "policy_responsive", "top_k": top_k, "short_k": top_k,
+                     "round_trip_cost_bps": cost, "forecast_hurdle": hurdle, **metrics,
+                     "mean_turnover": ledger["turnover"].mean()})
+    reference = _strategy_ledger(selected, config)
+    for cost in config["strategy"]["robustness"]["round_trip_cost_bps"]:
+        fixed = reference.copy()
+        fixed["trading_cost"] = fixed["turnover"] * (float(cost) / 2.0 / 10_000.0)
+        fixed["net_return"] = fixed["gross_return"] - fixed["trading_cost"]
+        metrics = _annualized_metrics(fixed["net_return"], int(config["validation"]["annualization_sessions"]))
+        rows.append({"mode": "fixed_holdings", "top_k": config["strategy"]["primary"]["top_k"],
+                     "short_k": config["strategy"]["primary"].get("short_k", config["strategy"]["primary"]["top_k"]),
+                     "round_trip_cost_bps": cost,
+                     "forecast_hurdle": config["strategy"]["primary"]["forecast_hurdle"], **metrics,
+                     "mean_turnover": fixed["turnover"].mean()})
     return pd.DataFrame(rows)
 
 

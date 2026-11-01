@@ -1,0 +1,49 @@
+{
+  "action": "run_cross_market_experiments",
+  "checkpoint_count": 48,
+  "completed_at_utc": "2026-10-31T13:50:26.334421+00:00",
+  "config_sha256": "f1f6abdfc3869b86dad2c72a96ca4b5b5a09747c77cf94326e52ab5e1530dd83",
+  "configuration_count": 6,
+  "content_hash": "b2cf65577643",
+  "dataset_id": "ai_capability_panel_20261031T063249Z_928de985ea1dd4f8",
+  "dataset_manifest_sha256": "9080ad73aff27d29462fcdf2e9043851e825c46282b48d1b0a745b40f0f39615",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261031T131402Z_b2cf65577643",
+  "effective_estimator_jobs": 1,
+  "environment": {
+    "created_at_utc": "2026-10-31T13:50:26.335553+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "expected_checkpoint_count": 48,
+  "files": {
+    "annual_performance.csv": "654a66e319d50b83472e4bd0ca71ec335e11367496724fd3212026ef1a92f82b",
+    "configurations.json": "e6b5f2301ac56e6f8ce89308da3d7df2685916cfaa8c610777d901efd845e3ab",
+    "cost_sensitivity.csv": "01583b208e22c170656ac8531c44b4ff3939e4e75a219045bbb3d03a57f616fb",
+    "feature_importance_by_refit.csv": "7e0728b47001d35938c3238fbe6850cad915d5d21901be47a7e2b60819884d61",
+    "forecast_hac_comparisons.csv": "3784429878c289186b34fb97d1a4252ba129fe871c60ea79645c3e6d05793bbc",
+    "leaderboard.csv": "f07fd8e157c3e49404260a3ad06874e1ae43aa4ab26a3a967cbd3e5e94501669",
+    "predictions.parquet": "e0384aed287a70be3f8af94e87a1efffda70933086f4a2a4e632350baea0612e",
+    "refit_diagnostics.csv": "53d91ec99a01ef1ad3b77d6abe3531ea48e8cb4e107742ab144af632485711ae",
+    "selected_model_inference.json": "8ac5d5b8a636fa85e18d9b283a18c6e9084fd6407771a6913dad18a7dde31fc9",
+    "strategy_ledgers.parquet": "2bb2346243758286f1b86f0f0c377cb4819319ab1c62c361921e706d479388ac"
+  },
+  "parallel_workers": 4,
+  "profile": "gap_diagnostics",
+  "refit_frequency": "quarter_start",
+  "run_id": "cm_ai_capability_screening_20261031T131402Z_b2cf65577643",
+  "schema_version": 1,
+  "selected_config_id": "cm_extra_trees_cc3daa00b74b",
+  "stage": "screening",
+  "status": "complete",
+  "training_scheme": "rolling"
+}

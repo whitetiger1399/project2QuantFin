@@ -99,7 +99,9 @@ def main() -> None:
         "rows": len(panel), "decision_dates": int(pd.to_datetime(panel["decision_date"]).nunique()),
         "assets": sorted(panel["asset"].unique().tolist()),
         "feature_count_by_set": feature_sets,
-        "current_vintage_fallback_feature_count": int(dictionary["current_vintage_fallback"].fillna(False).astype(bool).sum()),
+        "current_vintage_fallback_feature_count": int(
+            dictionary["current_vintage_fallback"].fillna(False).astype(str).str.lower().isin({"true", "1"}).sum()
+        ),
         "event_count": len(events), "runs": run_records, "checks": checks,
     }
     identity = stable_object_hash({"dataset": report["dataset_manifest_sha256"], "config": report["config_sha256"],

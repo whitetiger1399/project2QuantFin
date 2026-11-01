@@ -75,12 +75,10 @@ python scripts/profile_compute.py \
 
 ## 6. Rebuild the report
 
-```bash
-python scripts/verify_outputs.py
-python reports/build_report_ieee.py
-```
-
-The report contains one detailed model specification. Candidate searches appear only as selection evidence, and benchmark series appear only for fair evaluation.
+This document describes the superseded v1 workflow. Do not use its old report
+builder. The canonical AI-capability commands, audits, evidence variables, and
+report-rendering steps are maintained in
+`documents/markdown/AI_CAPABILITY_COMPLETE_RUNBOOK_2026-10-31.md`.
 
 ## External data checkpoint
 

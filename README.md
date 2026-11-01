@@ -80,7 +80,11 @@ The report builder reads pinned immutable evidence and does not train models:
 python reports/build_report_ai_capability.py
 ```
 
-The builder currently points to the completed canonical identifiers near the top of the file. After the fresh rerun, replace those pins only after the dataset, model-lineage, 2026-extension, and contract audits pass. Then render and inspect every page before replacing the PDF.
+The builder defaults to the completed canonical identifiers and accepts verified
+rerun identifiers through `REPORT_*` environment variables. The current runbook
+contains the exact exports. Do not edit source pins or replace the PDF until the
+dataset, model-lineage, 2026-extension, and contract audits pass; then render and
+inspect every page.
 
 ## Repository structure
 
