@@ -1,0 +1,17 @@
+{
+  "block_end": "2022-11-30",
+  "block_start": "2022-11-01",
+  "config_id": "cm_ridge_f5f707cf5bcc",
+  "family": "ridge",
+  "feature_set": "F5_macro_nonlinear",
+  "input_features": 2453,
+  "parameter_to_feature_ratio": 1.000407664084794,
+  "parameter_to_observation_ratio": 0.19476190476190477,
+  "runtime_seconds": 4.19584554200037,
+  "test_rows": 210,
+  "trainable_parameters_proxy": 2454,
+  "training_dates": 1260,
+  "training_end": "2022-10-28",
+  "training_rows": 12600,
+  "training_start": "2017-09-22"
+}

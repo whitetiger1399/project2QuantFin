@@ -1,271 +1,285 @@
-# Quantitative Finance Project 2
+# Cross-Market Forecasting and Long/Short Trading of Nifty IT Stocks
 
-This repository contains the staged research pipeline for a daily SPY timing study. The core data are daily Yahoo Finance observations for SPY, QQQ, IWM, TLT, and GLD from 2005 through 2025. SPY is the only traded asset; the other ETFs are predictors. Stooq is an optional verification source and is never silently merged into the Yahoo series.
+[Watch the project demonstration on YouTube](https://youtu.be/VhtQpD3C_rs).
 
-The current implementation covers environment setup, immutable source snapshots, data audits, conservative cleaning, a research panel, causal feature creation, delayed labels, split assignment, source comparison, and timing checks. Model fitting and portfolio evaluation come after this data layer passes its quality gates.
+**Team 16 · Data Science in Quantitative Finance DSA5205 · NUS**
 
-## Timing convention
+Predict daily open-to-close returns for ten fixed Nifty IT constituents using information available at **08:55 IST**. Compare own-stock history, Indian peers, U.S. IT-services stocks, broad-market context, macro data and frontier AI releases. Forecasts determine **long, short or flat** positions; returns account for trading costs.
 
-For each observed trading session `t`:
+Choose one complete path:
 
-1. Features are calculated after the close of `t`.
-2. The target position executes at the close of `t+1`.
-3. The label is the adjusted-close return from `t+1` to `t+2`.
-4. That label can enter a future training fit only after the close of `t+2`.
+| Path | Use it when | Starting data |
+|---|---|---|
+| **A — Clone and train (recommended)** | Using the complete data-bearing branch | Bundled preprocessed panels; no raw downloads or API key needed |
+| **B — Rebuild from raw data** | Using a code-only ZIP, missing processed panels, or deliberately refreshing data | Download raw snapshots, audit, preprocess, then train |
 
-This deliberate delay prevents a same-close look-ahead assumption. The feature output contains both causal predictors and future labels, so later training code must enforce `label_available_session <= fit_cutoff` at every refit.
+Raw downloads under `data/raw/` are excluded from Git and LFS. Preprocessed panels and retained run evidence use LFS; small reference/metric CSVs use ordinary Git. Use Python **3.10–3.12**, Git and Git LFS. A ZIP may contain LFS pointers rather than actual panels; Path A requires `git lfs pull` or a data-complete archive.
 
-## Cross-platform setup
+The cohort reflects membership observed on 30 October 2026. The 2025–September 2026 evaluation is retrospective because these periods have already been inspected during development.
 
-Python 3.10 or newer is required; Python 3.11 is the recommended common version for macOS and Windows. Open a terminal in the repository directory—the directory containing this README and `pyproject.toml`—before running the commands below. The code uses `pathlib` and project-relative paths, so no source file contains a required user-specific or operating-system-specific data path.
+## Submission filenames (Project2.md, Section 7)
 
-Use `python -m quantfin` in scripts because it works even when the environment's console-script directory is not on `PATH`. After installation, the shorter `quantfin` command is equivalent.
+| Deliverable | Filename / submission method |
+|---|---|
+| Required report PDF | `Group_16_Report.pdf` |
+| Editable report companion | `Group_16_Report.docx` |
+| Video | [YouTube demo](https://youtu.be/VhtQpD3C_rs), supplied as a link in Canvas; MP4 is also permitted |
+| Code with preprocessed data | `Group_16_Code_Preprocessed_Data.zip` — recommended for a clean training run |
+| Code with raw and preprocessed data | `Group_16_Code_Full_Data.zip` — alternative complete local archive |
+| Code with logs/results, without input data | `Group_16_Code_With_Logs.zip` |
+| Code only, without data or logs | `Group_16_Code_Only.zip` — follow the raw rebuild instructions |
 
-### Apple Silicon macOS (`arm64`)
+Only the report PDF filename is prescribed exactly by the assignment. The ZIP names above are consistent labels for the four editions, not additional course requirements. Submit one chosen code package or the GitHub link; the four editions are alternatives. The assignment also requires README commands, `requirements.txt`, runnable fetch/build/train/evaluate scripts, and reproducible settings. It prohibits secrets and large proprietary datasets; keep the full-data archive as a local alternative unless redistribution and submission are appropriate. The report must be 15–25 pages, and the video 15–25 minutes.
 
-Use a native Apple Silicon Python rather than a Python running through Rosetta:
+## A. Clone and train from preprocessed data — recommended
 
-```bash
-python3 --version
-python3 -c "import platform; print(platform.machine())"
+The shared branch is **[`v6-ritik`](https://github.com/whitetiger1399/project2QuantFin/tree/v6-ritik)**. It contains the pinned historical and January–September 2026 preprocessed datasets, configurations and retained experiment evidence. Clone this branch and restore its Git LFS objects before running Path A. Raw-data downloads and API keys are not required for this path.
+
+### A1. Clone the data-bearing branch and install
+
+```sh
+git lfs install
+git clone --branch v6-ritik https://github.com/whitetiger1399/project2QuantFin.git
+cd project2QuantFin
+git lfs pull
+git lfs fsck
+```
+
+macOS / Linux:
+
+```sh
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel
 python -m pip install -e .
-python -m quantfin --help
 ```
 
-The architecture command should print `arm64`.
+Windows PowerShell:
 
-### Intel macOS (`x86_64`)
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .
+```
 
-```bash
-python3 --version
-python3 -c "import platform; print(platform.machine())"
+Skip environment creation if `.venv` exists. No shell switching is needed. `quantfin` is this repository’s own package, installed by `pip install -e .`.
+
+### A2. Prepare a fresh session from bundled panels
+
+```sh
+python scripts/run_recording_demo.py prepare --session video_demo_02 --workers 3
+```
+
+This checks `data/preprocessed_bundle.json`, verifies the pinned dataset/configuration hashes, reuses the historical and 2026 panels, and creates new training output roots. Preprocessing and feature creation have already been completed in these panels. Existing EDA is retained with the supplied evidence. No raw data is required by this path.
+
+Use an unused session name. If `video_demo_02` exists, choose `video_demo_03` in **every command** of this path. Workers are saved during prepare; use 1 or 2 on a machine with less memory.
+
+### A3. Train, confirm, evaluate and inspect
+
+Train and compare models on 2021–2022:
+
+```sh
+python scripts/run_recording_demo.py screen --session video_demo_02
+```
+
+Confirm the selection on 2023–2024 and freeze one specification:
+
+```sh
+python scripts/run_recording_demo.py confirm --session video_demo_02
+```
+
+Evaluate 2025 with quarterly refits and January–September 2026 with one pre-2026 fit of the frozen specification:
+
+```sh
+python scripts/run_recording_demo.py evaluate --session video_demo_02
+```
+
+Verify and display gross/net returns, daily positions and plot locations:
+
+```sh
+python scripts/run_recording_demo.py results --session video_demo_02
+```
+
+### A4. Find your results
+
+All new outputs are under `artifacts/recording_demos/video_demo_02/`:
+
+| Location | Contents |
+|---|---|
+| `session.json` | Exact dataset/run/freeze IDs, input mode and configuration hashes |
+| `configs/` | Configuration copies resolved for your checkout and session |
+| `logs/` | Terminal output and progress from each task |
+| `model/runs/` | Screening, confirmation, final 2025 predictions, daily ledgers, metrics and plots |
+| `model/freezes/` | Frozen selected specification |
+| `model_2026/runs/` | January–September 2026 predictions, ledgers, metrics and plots |
+| `results.csv` | Compounded gross/net returns for each segment and their combined period |
+| `verification.json` | Hash, lineage, extension, daily-return and cost-accounting checks |
+
+Each new model run has a UTC timestamp and content hash; sessions also have a unique ID. Existing sessions and completed stages are protected. Bundled input panels are read in place. Historical absolute paths inside their manifests describe the original machine; the bundle registry resolves input locations relative to the current checkout.
+
+For detailed metrics, open `leaderboard.csv`, `annual_performance.csv`, `cost_sensitivity.csv`, `predictions.parquet`, `strategy_ledgers.parquet` and `plots/` inside the exact run recorded in `session.json`.
+
+The preparation command verifies the bundled inputs and stops if a required file is missing or an LFS pointer has not been restored. Use `git lfs pull` after cloning; an ordinary code-only ZIP is not equivalent to a complete data checkout.
+
+---
+
+## B. Download raw data, preprocess and train — independent alternative
+
+### B1. Install from a code-only checkout or extracted ZIP
+
+Open a terminal in the extracted repository root (the folder containing `pyproject.toml`), then install:
+
+macOS / Linux:
+
+```sh
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel
 python -m pip install -e .
-python -m quantfin --help
 ```
 
-The architecture command should print `x86_64`.
-
-### Intel/AMD Windows using PowerShell
-
-Open PowerShell in the repository directory. Quote the path when it contains spaces:
+Windows PowerShell:
 
 ```powershell
-Set-Location 'C:\path\to\project2QuantFin'
-py -3.11 --version
-py -3.11 -c "import platform; print(platform.machine())"
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip setuptools wheel
 python -m pip install -e .
-python -m quantfin --help
 ```
 
-On a conventional 64-bit Intel Windows laptop, Python usually reports `AMD64`; that label includes Intel-compatible 64-bit Windows installations. If PowerShell blocks the activation script, allow it for the current process only and activate again:
+Skip environment creation if `.venv` exists. No shell switching is needed. `quantfin` is this repository’s own package, installed by `pip install -e .`.
 
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\.venv\Scripts\Activate.ps1
+### B2. Restore reference inputs
+
+If using a Git checkout, restore any LFS reference objects:
+
+```sh
+git lfs install
+git lfs pull
+git lfs fsck
 ```
 
-### Intel/AMD Windows using Command Prompt
+Only if the generated membership CSVs are absent:
 
-```bat
-cd /d C:\path\to\project2QuantFin
-py -3.11 --version
-py -3.11 -m venv .venv
-.venv\Scripts\activate.bat
-python -m pip install --upgrade pip setuptools wheel
-python -m pip install -e .
-python -m quantfin --help
+```sh
+python scripts/prepare_provisional_memberships.py --execute
 ```
 
-To return to the environment in a later terminal session, activate the existing `.venv`; do not recreate it. Use `deactivate` to leave it.
+Existing membership files are protected; do not use `--overwrite` for the demo. For code-only ZIPs, obtain reference files from the source table below before continuing. Optional RBI/rainfall/calendar exports are described there; they are not automatically downloaded by these commands.
 
-After a successful setup, record exact installed versions for the reproducibility package:
+### B3. Download raw Yahoo data
 
-```bash
-python -m pip freeze > requirements-lock.txt
+```sh
+python scripts/fetch_cross_market_markets.py --group india_core --execute
+python scripts/fetch_cross_market_markets.py --group us_limited_tech --execute
+python scripts/fetch_cross_market_markets.py --group us_it_services --execute
+python scripts/fetch_cross_market_markets.py --group us_it_enabled_payments --execute
+python scripts/fetch_cross_market_markets.py --group us_enterprise_software --execute
+python scripts/fetch_cross_market_markets.py --group us_context --execute
+python scripts/fetch_cross_market_markets.py --group indian_it_adrs --execute
+python scripts/fetch_cross_market_markets.py --group global_context --execute
+python scripts/fetch_cross_market_markets.py --group nifty50_point_in_time --membership-file data/external/manual/cross_market/nifty50_membership.csv --execute
+python scripts/fetch_cross_market_markets.py --group sp500_point_in_time --membership-file data/external/manual/cross_market/sp500_membership.csv --execute
 ```
 
-`requirements.txt` and `pyproject.toml` contain bounded, cross-platform direct dependencies. `requirements-lock.txt`, produced on the working machine, records the complete resolved environment. Keep separate lock files when the team uses different operating systems, for example `requirements-lock-macos-arm64.txt` and `requirements-lock-windows-amd64.txt`, because transitive wheels can be platform-specific.
+Optional Nifty 500 context (not required by this model):
 
-## Configuration review
-
-Before downloading anything, review:
-
-- `configs/protocol.yaml`: symbols, sample dates, timing, splits, and paths.
-- `configs/features.yaml`: trailing windows and feature-set membership.
-
-The Yahoo end date is exclusive. The configured `2026-01-01` endpoint includes sessions through 31 December 2025. Changing a source, asset, sample boundary, or timing rule after inspecting validation results is a research decision and should be recorded.
-
-## Data pipeline commands
-
-Run one command at a time and inspect the generated manifest or report before continuing.
-
-### 1. Fetch the primary Yahoo snapshot
-
-```bash
-python -m quantfin fetch --source yahoo
+```sh
+python scripts/fetch_cross_market_markets.py --group nifty500_point_in_time --membership-file data/external/manual/cross_market/nifty500_membership.csv --execute
 ```
 
-This creates a timestamped folder such as `data/raw/yahoo/yahoo_YYYYMMDDTHHMMSSZ/`. It stores one Parquet file per symbol and a `manifest.json` with request settings, coverage, versions, and hashes. A later fetch creates a new snapshot and does not overwrite the old one.
+### B4. Download raw FRED/ALFRED data
 
-If a request fails, inspect `FAILED.json` in the newly created snapshot directory. A failed directory has no `manifest.json` and is ignored when a later command selects the latest completed snapshot.
+Obtain a [FRED API key](https://fredaccount.stlouisfed.org/apikeys). This command prompts privately and passes the key only to the downloader; it works in zsh, Bash and PowerShell:
 
-### 2. Audit the latest Yahoo snapshot
-
-```bash
-python -m quantfin audit-data
+```sh
+python -c "import getpass,os,subprocess,sys; env=dict(os.environ,FRED_API_KEY=getpass.getpass('FRED API key: ')); subprocess.run([sys.executable,'scripts/fetch_point_in_time_context.py','--config','configs/cross_market_data_2026-10-29.yaml','--start','2004-01-01','--end','2026-10-29','--output-root','data/raw/cross_market/fred_alfred','--execute'],env=env,check=True)"
 ```
 
-Inspect the printed `artifacts/data_audits/.../quality_report.json`. The audit reports duplicates, nulls, impossible OHLC relationships, nonpositive prices, negative or zero volume, weekend records, corporate-action counts, and predictor-session differences relative to observed SPY sessions.
+### B5. Prepare AI snapshots and audit raw data
 
-To audit a particular snapshot:
+These ingest the restored reference files; they do not scrape new AI announcements. Epoch benchmark data is supplementary retrospective evidence, not a trading feature.
 
-```bash
-python -m quantfin audit-data --snapshot-id yahoo_YYYYMMDDTHHMMSSZ
+```sh
+python scripts/build_frontier_ai_release_calendar.py --execute
+python scripts/ingest_epoch_benchmark_snapshot.py --execute
+python scripts/audit_cross_market_raw.py --required-group india_core --required-group us_limited_tech --required-group us_it_services --required-group us_it_enabled_payments --required-group us_enterprise_software --required-group us_context --required-group indian_it_adrs --required-group global_context --required-group nifty50_point_in_time --required-group sp500_point_in_time
 ```
 
-Export dividend, split, and capital-gain event windows separately:
+Continue only after the audit passes; review any warnings and quarantine restrictions. These downloads create new snapshots rather than replacing previous model results.
 
-```bash
-python -m quantfin audit-actions
+### B6. Preprocess, engineer features and generate EDA
+
+```sh
+python scripts/run_recording_demo.py build --session video_demo_02 --workers 3
 ```
 
-Inspect `artifacts/corporate_actions/.../action_report.json`, `events.parquet`, and `event_windows.parquet`. The cash-dividend calculation is a diagnostic rather than an assumption that it exactly matches the vendor's adjustment method. Split windows require manual review because vendor "raw" prices can already contain split normalization.
+This cleans and quarantines audited anomalies, aligns market sessions and availability times, creates lag/rolling/peer/cross-market/context features, adds AI-capability inputs, and generates historical and 2026 EDA. It creates new source and model panels under this session. Do not run `prepare` for this path. Choose an unused session name before starting.
 
-### 3. Clean and align market data
+### B7. Train, confirm, evaluate and inspect
 
-```bash
-python -m quantfin clean
+Train and compare models on 2021–2022:
+
+```sh
+python scripts/run_recording_demo.py screen --session video_demo_02
 ```
 
-The cleaning command stops on conflicting duplicates, structurally impossible bars, nonpositive prices, negative volumes, weekend rows, or missing adjusted closes. It retains structurally valid extreme returns and zero-volume rows for investigation. It does not forward-fill market prices.
+Confirm the selection on 2023–2024 and freeze one specification:
 
-The output contains:
-
-- `market_long.parquet`: one row per session and symbol.
-- `market_panel.parquet`: one row per observed SPY session, with asset/field columns.
-- `manifest.json`: source hashes, cleaning rules, coverage, and remaining predictor null counts.
-
-### 4. Fetch and compare the optional Stooq verification source
-
-```bash
-python -m quantfin fetch --source stooq
-python -m quantfin verify-sources
+```sh
+python scripts/run_recording_demo.py confirm --session video_demo_02
 ```
 
-Stooq is optional and its public download service can be unavailable, rate limited, moved, or require credentials. A failed fetch writes `FAILED.json` and prints a concise error without a traceback. Running `verify-sources` without a completed Stooq snapshot records `comparison_skipped.json`, returns successfully, and allows the Yahoo pipeline to continue.
+Evaluate 2025 with quarterly refits and January–September 2026 with one pre-2026 fit of the frozen specification:
 
-When Stooq succeeds, inspect `artifacts/source_verification/.../comparison.json`. Differences may reflect adjustment conventions or session definitions. This diagnostic never modifies the Yahoo data and does not authorize joining the two vendors.
-
-### 5. Build features and delayed labels
-
-```bash
-python -m quantfin build-features
+```sh
+python scripts/run_recording_demo.py evaluate --session video_demo_02
 ```
 
-This writes a new `data/processed/features_.../` dataset containing:
+Verify and display gross/net returns, daily positions and plot locations:
 
-- trailing SPY returns, momentum, moving averages, volatility, drawdown, intraday, and volume features;
-- QQQ, IWM, TLT, and GLD momentum and cross-asset relationships;
-- signal, entry, label-end, and label-availability sessions;
-- the delayed target return;
-- warmup, training, screening, confirmation, and final-test labels.
-
-No full-sample scaler, imputer, clipping threshold, or learned feature selector is applied at this stage. Those transformations belong inside each past-only training fit.
-
-### 6. Audit temporal alignment
-
-```bash
-python -m quantfin check-timing
+```sh
+python scripts/run_recording_demo.py results --session video_demo_02
 ```
 
-Inspect `artifacts/timing_audits/.../timing_report.json`. The command checks that signal, entry, and label sessions are ordered correctly, labels reconstruct from their stored entry and exit prices, and signal sessions are unique.
+Outputs and run-ID tracking follow the same layout described in A4. For this path, new processed panels and EDA also appear under the session’s `source/`, `source_2026/`, `model/` and `model_2026/` folders.
 
-### 7. Inspect the selected manifests
+### Data sources for a code-only ZIP
 
-```bash
-python -m quantfin show-manifest --kind yahoo
-python -m quantfin show-manifest --kind stooq
-python -m quantfin show-manifest --kind market
-python -m quantfin show-manifest --kind features
+Small CSVs supplied with a complete repository do not need a separate download. If the archive omits reference inputs, restore them as follows:
+
+| Input | Source | Required local path |
+|---|---|---|
+| Current Nifty IT cohort | [NSE Indices](https://niftyindices.com/indices/equity/sectoral-indices/nifty-it) | `data/external/reference/current_constituents/ind_niftyitlist.csv` |
+| Historical S&P 500 membership | [fja05680/sp500](https://github.com/fja05680/sp500) | `data/external/reference/current_constituents/S&P 500 Historical Components & Changes (Updated).csv` |
+| Nifty 50/500 histories | [NiftyHistory](https://niftyhistory.in/) | `data/external/reference/current_constituents/nifty50_2001-01-01_to_2026-12-31.csv` and corresponding `nifty500_...csv` |
+| AI releases and disclosed model sizes | Supplied curated catalogs with source URLs | `model_publishing.txt` in the constituent-reference folder; `configs/frontier_ai_release_whitelist.yaml` and `configs/frontier_ai_disclosed_parameters.yaml` |
+| Epoch benchmark archive | [Epoch AI](https://epoch.ai/benchmarks/use-this-data) | `data/external/reference/epoch_ai/benchmark_data.zip` |
+
+Epoch ingestion expects SHA-256 `28a006632f325e82c61ed28603056784ae185b5b596da6e019edd84fe02ddb43`; it is supplementary retrospective evidence. Current downloads may differ from that frozen archive. The raw rebuild uses the curated AI catalog rather than scraping new announcements automatically.
+
+Optional RBI rates, rainfall and event calendars require timestamped official exports from [RBI](https://data.rbi.org.in/), [IMD](https://mausam.imd.gov.in/imd_latest/contents/index_rainfall_state_new.php), [NSE](https://www.nseindia.com/resources/exchange-communication-holidays) or [NYSE](https://www.nyse.com/markets/hours-calendars). Empty templates contribute no observations. Do not substitute invented values. Changed vendor history, source coverage or optional inputs can change rebuilt results.
+
+### Troubleshooting for either path
+
+| Problem | Action |
+|---|---|
+| `No module named quantfin` | Activate the intended environment and run `python -m pip install -e .` from the repository root. |
+| LFS pointer or bundle hash mismatch | Run `git lfs pull` and `git lfs fsck`. Do not edit panels to bypass verification. Use Path B if processed data was omitted. |
+| Session already exists | Choose a new name for a fresh run; preserve the existing session. |
+| Interrupted training | Preserve the folder and logs. The wrapper does not automatically resume; the underlying experiment runner supports exact-ID resumption with unchanged settings. |
+| `.running` exists after a shutdown | Confirm no process still uses the session before addressing a stale lock. |
+| Raw audit fails | Resolve the reported blocking issues. Review quarantine restrictions when warnings are present. |
+| PowerShell activation is blocked | Use `.\.venv\Scripts\python.exe` in place of `python` for install/run commands. |
+
+### Reports, checks and repository layout
+
+[Video deck](reports/video/Group_16_Video_Deck.pdf) · [Report DOCX](reports/Group_16_Report.docx) · [Report PDF](reports/Group_16_Report.pdf) · [Recording commands](reports/video/recording_commands.md) · [Assignment](documents/markdown/Project2.md)
+
+Training does not automatically rewrite the report or supplementary hypothesis studies. Report evidence must be rebound and verified explicitly. Source code is in `src/quantfin/`, executable entry points in `scripts/`, and research contracts in `configs/`. Raw inputs stay local; the bundle registry pins existing processed inputs under `artifacts/recording_demos/video_demo_01/`. All prior logs, runs and analysis evidence are retained.
+
+Local checks (no downloads or model training):
+
+```sh
+python -m unittest discover -s tests -p test_recording_demo.py -v
+python -m unittest discover -s tests/leakage -v
 ```
 
-All commands default to the latest completed matching snapshot or dataset. For reproducible report runs, pass explicit IDs rather than relying on `latest` behavior:
-
-```bash
-python -m quantfin clean --snapshot-id yahoo_YYYYMMDDTHHMMSSZ
-python -m quantfin build-features --market-dataset-id market_yahoo_YYYYMMDDTHHMMSSZ
-python -m quantfin check-timing --feature-dataset-id features_yahoo_YYYYMMDDTHHMMSSZ_CONFIGHASH
-```
-
-## Useful inspection commands
-
-These Python commands work on macOS and Windows and read generated files without changing them:
-
-```bash
-python -c "import pandas as pd; p='data/processed/MARKET_DATASET_ID/market_panel.parquet'; d=pd.read_parquet(p); print(d.info()); print(d.head()); print(d.tail())"
-
-python -c "import pandas as pd; p='data/processed/FEATURE_DATASET_ID/features_and_labels.parquet'; d=pd.read_parquet(p); print(d.shape); print(d[['signal_session','entry_session','label_end_session','target_return','split']].tail())"
-```
-
-Replace `MARKET_DATASET_ID` and `FEATURE_DATASET_ID` with the directory names printed by the pipeline.
-
-## Data and legal notes
-
-Yahoo/yfinance is used for educational research. Review Yahoo's terms before use and do not publish the downloaded raw dataset unless redistribution is permitted. The repository excludes `data/raw`, `data/processed`, and generated `artifacts`; submit the scripts and retrieval instructions instead.
-
-Adjusted Close is treated as a vendor-provided total-return research proxy. It is a synthetic adjusted series rather than an exchange execution price. Raw OHLC, dividends, and splits are retained for a later corporate-action reconciliation. Do not add dividends again to returns computed from Adjusted Close.
-
-Stooq is only an independent check. Its price-adjustment semantics must be reconciled before interpreting differences. The core pipeline never fills one vendor's missing data with another vendor's values.
-
-## Troubleshooting
-
-### No completed Stooq snapshot
-
-If Stooq returns HTML, a moved-page response, a rate-limit response, or a credential requirement, the fetch ends with exit code 3 and points to its `FAILED.json`. This does not invalidate the primary Yahoo dataset. Record the skipped comparison and continue:
-
-```bash
-python -m quantfin verify-sources
-python -m quantfin clean
-python -m quantfin build-features
-python -m quantfin check-timing
-```
-
-### `quantfin` is not recognized on Windows
-
-Use the module form, which does not depend on the console-script `PATH`:
-
-```powershell
-python -m quantfin --help
-```
-
-If that fails with `No module named quantfin`, activate `.venv` and rerun `python -m pip install -e .` from the repository directory.
-
-### Wrong Python or environment
-
-Use these portable checks:
-
-```bash
-python -c "import sys, platform; print(sys.executable); print(sys.version); print(platform.system(), platform.machine())"
-python -m pip --version
-python -m pip show project2-quantfin
-```
-
-The Python and pip paths should both point inside `.venv`. If they do not, reactivate the environment using the operating-system-specific command above.
-
-### Re-running immutable stages
-
-Fetching creates a new timestamped snapshot. Cleaning the same snapshot or rebuilding the same feature/configuration combination intentionally refuses to overwrite its previous output. Use the existing manifest, or fetch a new source snapshot after intentionally changing the protocol. Do not delete prior research artifacts merely to hide a failed or changed experiment.
-
-## Current boundary
-
-The next implementation phase is the walk-forward modeling and portfolio layer: training-only preprocessing, expanding and five-year rolling fits, forecast baselines, ridge/elastic-net/tree/RFF models, monthly refits, immutable predictions, trade accounting, costs, benchmark metrics, and reporting. The research design and work sequence are documented in [documents/markdown/AGENT_ACTION_PLAN.md](documents/markdown/AGENT_ACTION_PLAN.md).
-
+The [submission cleanup inventory](SUBMISSION_CLEANUP.md) lists removed internal documents, narration deliverables and unused assets. All Python files and research run evidence are retained.

@@ -1,0 +1,20 @@
+test_drawdown_includes_initial_capital (test_cross_market_evaluation.EvaluationAccountingTest) ... ok
+test_sortino_uses_target_downside_deviation (test_cross_market_evaluation.EvaluationAccountingTest) ... ok
+test_strict_vintage_and_family_exclusions (test_cross_market_evaluation.EvaluationAccountingTest) ... ok
+test_timing_only_strategy_uses_equal_weight_cohort (test_cross_market_evaluation.EvaluationAccountingTest) ... ok
+test_nse_direct_decision_is_independent_of_us_reaction (test_cross_market_timing.ReleaseSessionMappingTest) ... ok
+test_release_after_us_close_uses_next_us_session (test_cross_market_timing.ReleaseSessionMappingTest) ... ok
+test_release_before_us_close_uses_same_us_session (test_cross_market_timing.ReleaseSessionMappingTest) ... ok
+test_2026_primary_provider_coverage_is_frozen (test_frontier_ai_calendar.FrontierAICalendarTests) ... ok
+test_identifiers_dates_and_sources_are_valid (test_frontier_ai_calendar.FrontierAICalendarTests) ... ok
+test_block_indices_are_reproducible_and_bounded (test_research_hypotheses.HypothesisTests) ... ok
+test_constant_predictor_is_not_estimable (test_research_hypotheses.HypothesisTests) ... ok
+test_first_day_loss_counts_in_drawdown (test_research_hypotheses.HypothesisTests) ... ok
+test_holm_counts_every_test_and_checks_direction (test_research_hypotheses.HypothesisTests) ... ok
+test_missing_quarter_is_not_qoq (test_research_hypotheses.HypothesisTests) ... ok
+test_sparse_period_interaction_is_not_evidence (test_research_hypotheses.HypothesisTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.113s
+
+OK

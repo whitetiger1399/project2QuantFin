@@ -1,0 +1,656 @@
+schema_version: 1
+study_id: nifty_it_ai_services_forward_extension_2026
+study:
+  cohort_design: fixed_current_nifty_it_constituents
+  cohort_as_of: '2026-10-30'
+  cohort_source: data/external/reference/current_constituents/ind_niftyitlist.csv
+  target_symbols:
+  - COFORGE
+  - HCLTECH
+  - INFY
+  - LTM
+  - MPHASIS
+  - OFSS
+  - PERSISTENT
+  - TCS
+  - TECHM
+  - WIPRO
+  target_suffix: .NS
+  frequency: daily
+  decision_timezone: Asia/Kolkata
+  decision_time: 08:55
+  execution: NSE reported open to reported close on the decision session
+  target: simple open-to-close return
+  base_currency: INR
+  interpretation: Retrospective forward extension through 2026-09-30. The frozen model
+    specification is inherited from the verified 2025 experiment. No 2026 observation
+    may be used for model selection or hyperparameter tuning.
+raw_data:
+  yahoo_root: data/raw/cross_market/yahoo
+  fred_root: data/raw/cross_market/fred_alfred
+  audit_root: artifacts/data_audits/cross_market
+  required_groups:
+  - india_core
+  - us_limited_tech
+  - us_it_services
+  - us_it_enabled_payments
+  - us_enterprise_software
+  - us_context
+  - indian_it_adrs
+  - global_context
+  - nifty50_point_in_time
+  - sp500_point_in_time
+  optional_groups:
+  - nifty500_point_in_time
+  membership_files:
+    nifty50: data/external/manual/cross_market/nifty50_membership.csv
+    sp500: data/external/manual/cross_market/sp500_membership.csv
+    nifty500: data/external/manual/cross_market/nifty500_membership.csv
+  manual_context:
+    nse_holidays: data/external/manual/cross_market/nse_holidays.csv
+    nyse_holidays: data/external/manual/cross_market/nyse_holidays.csv
+    scheduled_events: data/external/manual/cross_market/scheduled_events.csv
+    global_events: data/external/manual/cross_market/global_events.csv
+    rbi_rates: data/external/manual/cross_market/rbi_rates.csv
+    rainfall: data/external/manual/cross_market/imd_rainfall.csv
+  frontier_ai_events_root: data/raw/cross_market/frontier_ai_events
+sample:
+  common_start: '2016-07-21'
+  end_exclusive: '2026-10-01'
+  feature_warmup_sessions: 252
+  splits:
+    initial_train:
+    - '2016-07-21'
+    - '2020-12-31'
+    screening:
+    - '2021-01-01'
+    - '2022-12-31'
+    confirmation:
+    - '2023-01-01'
+    - '2024-12-31'
+    final_test:
+    - '2026-01-01'
+    - '2026-09-30'
+cleaning:
+  require_positive_ohlc: true
+  quarantine_impossible_ohlc: true
+  duplicate_policy: fail
+  target_winsorization: none
+  feature_winsor_quantiles:
+  - 0.005
+  - 0.995
+  winsor_fit_scope: training_window_only
+  maximum_feature_missing_fraction: 0.4
+  minimum_feature_variance: 1.0e-12
+  fx_close_to_close_only: true
+  explicit_quarantine:
+    NIFTYBEES.NS:
+    - '2009-07-07'
+  excluded_optional_symbols:
+  - ASAHIINDIA.NS
+  - DEEPAKNTR.NS
+  - DYNAMATECH.NS
+  - HTMEDIA.NS
+  - MADRASFERT.NS
+  - REGENCERAM.NS
+  - SHYAMTEL.NS
+  - TRIGYN.NS
+  - VARDMNPOLY.NS
+  - VHL.NS
+  - WINDMACHIN.NS
+feature_engineering:
+  return_lags:
+  - 1
+  - 2
+  - 3
+  - 5
+  - 10
+  - 21
+  momentum_windows:
+  - 5
+  - 10
+  - 21
+  - 63
+  - 126
+  - 252
+  volatility_windows:
+  - 5
+  - 10
+  - 21
+  - 63
+  moving_average_windows:
+  - 5
+  - 10
+  - 21
+  - 50
+  - 100
+  - 200
+  volume_windows:
+  - 5
+  - 21
+  - 63
+  rsi_window: 14
+  broad_universe_selection_cutoff: '2020-12-31'
+  membership_terminal_carry_forward: true
+  broad_universe_max_symbols:
+    sp500: 1100
+    nifty50: 150
+    nifty500: 0
+  macro_release_lags_calendar_days:
+    DFF: 1
+    DFEDTARL: 0
+    DFEDTARU: 0
+    DGS3MO: 1
+    DGS2: 1
+    DGS10: 1
+    T10Y2Y: 1
+    T10Y3M: 1
+    BAMLH0A0HYM2: 1
+    BAMLC0A0CM: 1
+    DTWEXBGS: 2
+    DEXINUS: 1
+    VIXCLS: 1
+    IRSTCI01INM156N: 45
+    INTDSRINM193N: 45
+    INDIRLTLT01STM: 45
+    INDCPIALLMINMEI: 45
+  current_vintage_macro_policy: Current-vintage fallbacks are marked in the feature
+    dictionary and use the conservative release lag above. Revised monthly India macro
+    series are used only in F5 robustness experiments, never in the primary F0-F4
+    comparison.
+feature_sets:
+  F0_own:
+  - asset
+  - calendar
+  - own
+  F1_india:
+  - asset
+  - calendar
+  - own
+  - india_core
+  - nifty50_aggregate
+  F2_us_tech:
+  - asset
+  - calendar
+  - own
+  - india_core
+  - nifty50_aggregate
+  - us_tech
+  - adr
+  F3_global:
+  - asset
+  - calendar
+  - own
+  - india_core
+  - nifty50_aggregate
+  - us_tech
+  - adr
+  - us_context
+  - global
+  F4_full_us:
+  - asset
+  - calendar
+  - own
+  - india_core
+  - nifty50_aggregate
+  - us_tech
+  - adr
+  - us_context
+  - global
+  - sp500_aggregate
+  - sp500_raw
+  F5_macro_nonlinear:
+  - asset
+  - calendar
+  - own
+  - india_core
+  - nifty50_aggregate
+  - us_tech
+  - adr
+  - us_context
+  - global
+  - sp500_aggregate
+  - sp500_raw
+  - macro
+  - nonlinear
+  - scheduled
+  F1_nifty_it_peers:
+  - asset
+  - calendar
+  - own
+  - nifty_it_peers
+  F2_us_services:
+  - asset
+  - calendar
+  - own
+  - nifty_it_peers
+  - us_it_services
+  - us_it_services_aggregate
+  - adr
+  F3_nifty50:
+  - asset
+  - calendar
+  - own
+  - nifty_it_peers
+  - us_it_services
+  - us_it_services_aggregate
+  - adr
+  - india_core
+  - nifty50_aggregate
+  F4_sp500_aggregate:
+  - asset
+  - calendar
+  - own
+  - nifty_it_peers
+  - us_it_services
+  - us_it_services_aggregate
+  - adr
+  - india_core
+  - nifty50_aggregate
+  - sp500_aggregate
+  F5_sp500_constituents:
+  - asset
+  - calendar
+  - own
+  - nifty_it_peers
+  - us_it_services
+  - us_it_services_aggregate
+  - adr
+  - india_core
+  - nifty50_aggregate
+  - sp500_aggregate
+  - sp500_raw
+  F6_ai_events:
+  - asset
+  - calendar
+  - own
+  - nifty_it_peers
+  - us_it_services
+  - us_it_services_aggregate
+  - adr
+  - india_core
+  - nifty50_aggregate
+  - sp500_aggregate
+  - sp500_raw
+  - ai_event
+  - ai_interaction
+  F7_full_context:
+  - asset
+  - calendar
+  - own
+  - nifty_it_peers
+  - us_it_services
+  - us_it_services_aggregate
+  - us_it_payments
+  - us_it_payments_aggregate
+  - us_enterprise_software
+  - us_enterprise_software_aggregate
+  - us_tech
+  - adr
+  - india_core
+  - nifty50_aggregate
+  - us_context
+  - global
+  - sp500_aggregate
+  - sp500_raw
+  - macro
+  - scheduled
+  - ai_event
+  - ai_interaction
+  - nonlinear
+validation:
+  refit_frequency_by_stage:
+    screening: quarter_start
+    confirmation: quarter_start
+    final_test: quarter_start
+  training_scheme: rolling
+  rolling_window_sessions: 1260
+  alternative_training_schemes:
+  - expanding
+  embargo_sessions: 1
+  random_seed: 17
+  annualization_sessions: 252
+  n_jobs: 4
+  numeric_threads_per_worker: 1
+  minimum_training_rows: 5000
+  minimum_training_dates: 500
+compute_budget:
+  target_total_wall_clock_hours: 3.0
+  design_note: The balanced profile retains eight controlled ridge ladder models,
+    multiple shrinkage/PCA/boosting settings, a 250-tree ensemble, and six capped
+    RFF complexity/penalty settings. Quarterly refits and two shared-memory workers
+    retain daily OOS forecasts while targeting a two-to-three-hour laptop run.
+models:
+  baselines:
+  - family: zero
+    parameters: {}
+  - family: asset_mean
+    parameters: {}
+  - family: autoregression
+    parameters:
+      alpha: 0.0
+  families:
+    ridge:
+      alpha:
+      - 0.01
+      - 0.1
+      - 1.0
+    lasso:
+      alpha:
+      - 0.0001
+      - 0.0005
+      preselect_k: 500
+      max_iter: 4000
+      tolerance: 0.0001
+    elastic_net:
+      alpha:
+      - 0.0001
+      - 0.0005
+      l1_ratio:
+      - 0.2
+      - 0.8
+      preselect_k: 500
+      max_iter: 4000
+      tolerance: 0.0001
+    pca_ridge:
+      n_components:
+      - 25
+      - 100
+      alpha:
+      - 0.1
+      - 1.0
+    random_forest:
+      n_estimators:
+      - 300
+      max_depth:
+      - 6
+      min_samples_leaf:
+      - 50
+      max_features:
+      - 0.33
+    extra_trees:
+      n_estimators:
+      - 300
+      max_depth:
+      - 6
+      - null
+      min_samples_leaf:
+      - 50
+      max_features:
+      - 0.33
+    hist_gradient_boosting:
+      max_leaf_nodes:
+      - 15
+      - 31
+      learning_rate:
+      - 0.05
+      max_iter:
+      - 250
+      min_samples_leaf:
+      - 50
+      l2_regularization:
+      - 0.1
+      - 1.0
+    rff_ridge:
+      complexity_ratio:
+      - 0.5
+      - 1.0
+      - 2.0
+      - 5.0
+      - 10.0
+      - 15.0
+      maximum_components: 4096
+      gamma_scale:
+      - 1.0
+      penalty:
+      - 0.1
+      - 1.0
+      - 10.0
+  feature_progression_alpha: 0.1
+  profiles:
+    quick:
+      feature_sets:
+      - F0_own
+      - F1_nifty_it_peers
+      - F2_us_services
+      - F3_nifty50
+      - F4_sp500_aggregate
+      - F5_sp500_constituents
+      - F6_ai_events
+      - F7_full_context
+      families:
+      - zero
+      - asset_mean
+      - autoregression
+      - ridge
+      - elastic_net
+      grid_limit_per_family: 2
+    standard:
+      feature_sets:
+      - F0_own
+      - F1_nifty_it_peers
+      - F2_us_services
+      - F3_nifty50
+      - F4_sp500_aggregate
+      - F5_sp500_constituents
+      - F6_ai_events
+      - F7_full_context
+      families:
+      - zero
+      - asset_mean
+      - autoregression
+      - ridge
+      - lasso
+      - elastic_net
+      - pca_ridge
+      - extra_trees
+      - hist_gradient_boosting
+      - rff_ridge
+      grid_limit_per_family: 2
+    deep:
+      feature_sets:
+      - F0_own
+      - F1_nifty_it_peers
+      - F2_us_services
+      - F3_nifty50
+      - F4_sp500_aggregate
+      - F5_sp500_constituents
+      - F6_ai_events
+      - F7_full_context
+      families:
+      - zero
+      - asset_mean
+      - autoregression
+      - ridge
+      - lasso
+      - elastic_net
+      - pca_ridge
+      - extra_trees
+      - hist_gradient_boosting
+      - rff_ridge
+      grid_limit_per_family: 2
+    bounded:
+      feature_sets:
+      - F0_own
+      - F1_nifty_it_peers
+      - F2_us_services
+      - F3_nifty50
+      - F4_sp500_aggregate
+      - F5_sp500_constituents
+      - F6_ai_events
+      - F7_full_context
+      families:
+      - zero
+      - asset_mean
+      - autoregression
+      - ridge
+      - lasso
+      - elastic_net
+      - pca_ridge
+      - extra_trees
+      - hist_gradient_boosting
+      - rff_ridge
+      grid_limit_per_family: 1
+      complexity_ratios:
+      - 0.5
+      - 2.0
+      - 10.0
+      complexity_penalties:
+      - 1.0
+      complexity_maximum_components: 1024
+      family_parameter_overrides:
+        lasso:
+          preselect_k: 300
+          max_iter: 2000
+          tolerance: 0.0005
+        elastic_net:
+          preselect_k: 300
+          max_iter: 2000
+          tolerance: 0.0005
+        extra_trees:
+          n_estimators:
+          - 150
+          max_depth:
+          - 6
+        hist_gradient_boosting:
+          max_iter:
+          - 120
+          max_leaf_nodes:
+          - 15
+    balanced:
+      feature_sets:
+      - F0_own
+      - F1_nifty_it_peers
+      - F2_us_services
+      - F3_nifty50
+      - F4_sp500_aggregate
+      - F5_sp500_constituents
+      - F6_ai_events
+      - F7_full_context
+      families:
+      - zero
+      - asset_mean
+      - autoregression
+      - ridge
+      - lasso
+      - elastic_net
+      - pca_ridge
+      - extra_trees
+      - hist_gradient_boosting
+      - rff_ridge
+      grid_limit_per_family: 1
+      grid_limit_by_family:
+        lasso: 2
+        elastic_net: 2
+        pca_ridge: 2
+        extra_trees: 1
+        hist_gradient_boosting: 2
+      complexity_ratios:
+      - 0.5
+      - 2.0
+      - 5.0
+      - 10.0
+      complexity_penalties:
+      - 0.1
+      - 1.0
+      - 10.0
+      complexity_maximum_components: 2048
+      family_parameter_overrides:
+        lasso:
+          preselect_k: 450
+          max_iter: 3000
+          tolerance: 0.0002
+        elastic_net:
+          preselect_k: 450
+          max_iter: 3000
+          tolerance: 0.0002
+        pca_ridge:
+          n_components:
+          - 25
+          - 75
+          alpha:
+          - 0.1
+        extra_trees:
+          n_estimators:
+          - 250
+          max_depth:
+          - 8
+          min_samples_leaf:
+          - 40
+          max_features:
+          - 0.5
+        hist_gradient_boosting:
+          max_iter:
+          - 200
+          max_leaf_nodes:
+          - 15
+          - 31
+          l2_regularization:
+          - 0.1
+  model_family_feature_set: F7_full_context
+  complexity_feature_set: F6_ai_events
+selection:
+  screening_top_per_family: 1
+  confirmation_candidates: 13
+  minimum_prediction_coverage: 0.98
+  primary_metric: net_sharpe
+  tie_breakers:
+  - oos_r2_asset_mean
+  - spearman_ic
+  - lower_turnover
+  - lower_complexity
+  final_model_count: 1
+  include_feature_progression_in_confirmation: true
+  include_feature_progression_in_final_diagnostics: true
+strategy:
+  primary:
+    name: signed_forecast
+    top_k: 3
+    forecast_hurdle: 0.0005
+    maximum_weight: 0.3333333333
+    one_way_cost_bps: 5.0
+    slippage_bps: 2.5
+    short_k: 3
+    maximum_gross_exposure: 1.0
+    services_state_column: us_it_services_aggregate__mean
+    services_down_threshold: 0.0
+    event_state_column: ai_event__frontier_release_today
+    event_short_override: true
+    event_short_scope: all_cohort
+  robustness:
+    top_k:
+    - 1
+    - 3
+    - 5
+    round_trip_cost_bps:
+    - 0
+    - 15
+    - 30
+    - 50
+    forecast_hurdle:
+    - 0.0
+    - 0.0005
+    - 0.001
+    include_long_short: true
+  benchmarks:
+  - name: Nifty_IT_total_return_proxy
+    symbol: ITBEES.NS
+    fallback_symbol: ^CNXIT
+  - name: Nifty_50_buy_and_hold
+    symbol: NIFTYBEES.NS
+    fallback_symbol: ^NSEI
+  - name: Equal_weight_current_Nifty_IT_cohort
+    symbol: __COHORT__
+  state_columns:
+  - us_it_services_aggregate__mean
+  - ai_event__frontier_release_today
+outputs:
+  processed_root: /Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source_2026/processed
+  analysis_root: /Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source_2026/analysis
+  runs_root: /Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source_2026/runs
+  freezes_root: /Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source_2026/freezes
+  documentation_root: /Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source_2026/documentation
+tracking:
+  dataset_prefix: ai_services_2026_panel
+  run_prefix: cm_ai_services_2026
+  freeze_prefix: cm_ai_services_freeze

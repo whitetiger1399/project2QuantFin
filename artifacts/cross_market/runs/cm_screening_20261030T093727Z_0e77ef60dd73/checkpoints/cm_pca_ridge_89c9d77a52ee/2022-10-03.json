@@ -1,0 +1,17 @@
+{
+  "block_end": "2022-12-30",
+  "block_start": "2022-10-03",
+  "config_id": "cm_pca_ridge_89c9d77a52ee",
+  "family": "pca_ridge",
+  "feature_set": "F4_full_us",
+  "input_features": 2281,
+  "parameter_to_feature_ratio": 0.044278825076720735,
+  "parameter_to_observation_ratio": 0.008015873015873016,
+  "runtime_seconds": 4.209240749998571,
+  "test_rows": 620,
+  "trainable_parameters_proxy": 101,
+  "training_dates": 1260,
+  "training_end": "2022-09-29",
+  "training_rows": 12600,
+  "training_start": "2017-08-28"
+}

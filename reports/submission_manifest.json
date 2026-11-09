@@ -1,0 +1,14 @@
+{
+  "guidelines": "documents/markdown/Project2.md, Section 7",
+  "required_report_name": "Group_16_Report.pdf",
+  "report_pages": 21,
+  "demo_url": "https://youtu.be/VhtQpD3C_rs",
+  "zip_filename_rule": "No exact ZIP name prescribed; four editions use descriptive Group_16 names.",
+  "files": {
+    "reports/Group_16_Report.pdf": "9716d53ceaeb6d663638d0cf6b25303f700d51dc5ae5a61fff2e1b29ebb487d0",
+    "reports/Group_16_Report.docx": "c790b80dd0c03dbaaa4a30d8397bad972a41b5757f1fb0a8418f85523d98ddf4",
+    "reports/video/Group_16_Video_Deck.pdf": "9da7fe4aacce8ea77055d49b55972526e1a1a0ea1e66d3c1ff08e68c654ae2b0",
+    "reports/video/Group_16_Video_Deck.docx": "16cf0b4ef46be3b1f4a3520fda5c9cedf5c14a33b5def0b510890610391fb3d4",
+    "reports/video/Group_16_Video_Deck.md": "ec75b0270b1f42c672e816c3220aa748f322ad964711e002c2cfd92d7e5f1b3c"
+  }
+}

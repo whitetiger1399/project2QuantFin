@@ -1,0 +1,106 @@
+[
+  {
+    "config_id": "cm_autoregression_bd9f8ea82c3c",
+    "experiment": "baseline",
+    "family": "autoregression",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.0
+    }
+  },
+  {
+    "config_id": "cm_zero_08cccf87365f",
+    "experiment": "baseline",
+    "family": "zero",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_asset_mean_947f6b0b0f9a",
+    "experiment": "baseline",
+    "family": "asset_mean",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_extra_trees_8ef7eb6a91c8",
+    "experiment": "model_family",
+    "family": "extra_trees",
+    "feature_set": "F4_full_us",
+    "parameters": {
+      "max_depth": 6,
+      "max_features": 0.33,
+      "min_samples_leaf": 50,
+      "n_estimators": 300
+    }
+  },
+  {
+    "config_id": "cm_random_forest_2f6036a4bdd9",
+    "experiment": "model_family",
+    "family": "random_forest",
+    "feature_set": "F4_full_us",
+    "parameters": {
+      "max_depth": 6,
+      "max_features": 0.33,
+      "min_samples_leaf": 50,
+      "n_estimators": 300
+    }
+  },
+  {
+    "config_id": "cm_hist_gradient_boosting_4c2698741239",
+    "experiment": "model_family",
+    "family": "hist_gradient_boosting",
+    "feature_set": "F4_full_us",
+    "parameters": {
+      "l2_regularization": 1.0,
+      "learning_rate": 0.05,
+      "max_iter": 250,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 50
+    }
+  },
+  {
+    "config_id": "cm_pca_ridge_682f63000aa7",
+    "experiment": "model_family",
+    "family": "pca_ridge",
+    "feature_set": "F4_full_us",
+    "parameters": {
+      "alpha": 1.0,
+      "n_components": 25
+    }
+  },
+  {
+    "config_id": "cm_lasso_57855ed8bf85",
+    "experiment": "model_family",
+    "family": "lasso",
+    "feature_set": "F4_full_us",
+    "parameters": {
+      "alpha": 0.0005,
+      "max_iter": 4000,
+      "preselect_k": 500,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_ridge_cbe0654eaffe",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F3_global",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_elastic_net_329a4ccca456",
+    "experiment": "model_family",
+    "family": "elastic_net",
+    "feature_set": "F4_full_us",
+    "parameters": {
+      "alpha": 0.0005,
+      "l1_ratio": 0.8,
+      "max_iter": 4000,
+      "preselect_k": 500,
+      "tolerance": 0.0001
+    }
+  }
+]

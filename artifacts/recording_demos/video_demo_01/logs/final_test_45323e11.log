@@ -1,0 +1,77 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/run_cross_market_experiments.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model.yaml", "--dataset-id", "ai_capability_panel_20261109T064115Z_1a13582b12774e0b", "--stage", "final_test", "--profile", "submission_rerun", "--training-scheme", "rolling", "--parallel-workers", "3", "--freeze-id", "cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb"]
+{
+  "action": "run_cross_market_experiments",
+  "run_id": "cm_ai_capability_final_test_20261109T073626Z_ac0e9cf48620",
+  "content_hash": "ac0e9cf48620",
+  "stage": "final_test",
+  "profile": "submission_rerun",
+  "training_scheme": "rolling",
+  "parallel_workers": 3,
+  "effective_estimator_jobs": 1,
+  "refit_frequency": "quarter_start",
+  "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "configuration_count": 12,
+  "expected_checkpoint_count": 48,
+  "freeze_id": "cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb",
+  "confirmation_run_id": "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_final_test_20261109T073626Z_ac0e9cf48620",
+  "status": "starting"
+}
+
+final_test parallel walk-forward:   0%|          | 0/48 [00:00<?, ?refit/s]
+final_test parallel walk-forward:   2%|▏         | 1/48 [00:01<00:57,  1.23s/refit]
+final_test parallel walk-forward:  25%|██▌       | 12/48 [00:02<00:06,  5.61refit/s]
+final_test parallel walk-forward:  40%|███▉      | 19/48 [00:04<00:07,  4.12refit/s]
+final_test parallel walk-forward:  50%|█████     | 24/48 [00:09<00:10,  2.28refit/s]
+final_test parallel walk-forward:  58%|█████▊    | 28/48 [00:14<00:10,  1.82refit/s]
+final_test parallel walk-forward:  67%|██████▋   | 32/48 [00:18<00:09,  1.63refit/s]
+final_test parallel walk-forward:  67%|██████▋   | 32/48 [00:30<00:09,  1.63refit/s]
+final_test parallel walk-forward:  71%|███████   | 34/48 [00:30<00:15,  1.09s/refit]
+final_test parallel walk-forward:  75%|███████▌  | 36/48 [00:39<00:16,  1.37s/refit]
+final_test parallel walk-forward:  75%|███████▌  | 36/48 [00:50<00:16,  1.37s/refit]
+final_test parallel walk-forward:  81%|████████▏ | 39/48 [00:58<00:17,  2.00s/refit]
+final_test parallel walk-forward:  83%|████████▎ | 40/48 [01:04<00:17,  2.14s/refit]
+final_test parallel walk-forward:  83%|████████▎ | 40/48 [01:20<00:17,  2.14s/refit]
+final_test parallel walk-forward:  85%|████████▌ | 41/48 [01:20<00:19,  2.79s/refit]
+final_test parallel walk-forward:  88%|████████▊ | 42/48 [01:29<00:18,  3.08s/refit]
+final_test parallel walk-forward:  88%|████████▊ | 42/48 [01:40<00:18,  3.08s/refit]
+final_test parallel walk-forward:  92%|█████████▏| 44/48 [01:48<00:14,  3.74s/refit]
+final_test parallel walk-forward:  94%|█████████▍| 45/48 [04:39<00:37, 12.38s/refit]
+final_test parallel walk-forward:  96%|█████████▌| 46/48 [04:46<00:24, 12.09s/refit]
+final_test parallel walk-forward:  96%|█████████▌| 46/48 [05:00<00:24, 12.09s/refit]
+final_test parallel walk-forward:  98%|█████████▊| 47/48 [05:02<00:12, 12.27s/refit]
+final_test parallel walk-forward: 100%|██████████| 48/48 [06:38<00:00, 17.31s/refit]
+final_test parallel walk-forward: 100%|██████████| 48/48 [06:38<00:00,  8.31s/refit]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+{
+  "run_id": "cm_ai_capability_final_test_20261109T073626Z_ac0e9cf48620",
+  "content_hash": "ac0e9cf48620",
+  "status": "complete",
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_final_test_20261109T073626Z_ac0e9cf48620"
+}

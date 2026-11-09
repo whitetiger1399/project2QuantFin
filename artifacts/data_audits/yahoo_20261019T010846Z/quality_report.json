@@ -1,0 +1,188 @@
+{
+  "blocking_issues": [],
+  "calendar_comparison_to_traded_asset": {
+    "GLD": {
+      "extra_sessions": 0,
+      "missing_on_traded_asset_sessions": 0,
+      "sample_extra_sessions": [],
+      "sample_missing_sessions": []
+    },
+    "IWM": {
+      "extra_sessions": 0,
+      "missing_on_traded_asset_sessions": 0,
+      "sample_extra_sessions": [],
+      "sample_missing_sessions": []
+    },
+    "QQQ": {
+      "extra_sessions": 0,
+      "missing_on_traded_asset_sessions": 0,
+      "sample_extra_sessions": [],
+      "sample_missing_sessions": []
+    },
+    "SPY": {
+      "extra_sessions": 0,
+      "missing_on_traded_asset_sessions": 0,
+      "sample_extra_sessions": [],
+      "sample_missing_sessions": []
+    },
+    "TLT": {
+      "extra_sessions": 0,
+      "missing_on_traded_asset_sessions": 0,
+      "sample_extra_sessions": [],
+      "sample_missing_sessions": []
+    }
+  },
+  "created_at_utc": "2026-10-19T01:23:33.458897+00:00",
+  "limitations": [
+    "The SPY observed-session index is used as the research calendar; this audit does not prove exchange-calendar completeness.",
+    "Extreme but structurally valid returns are retained for later inspection.",
+    "Zero volume is reported for investigation and is not automatically removed."
+  ],
+  "schema_version": 1,
+  "snapshot_id": "yahoo_20261019T010846Z",
+  "snapshot_path": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/yahoo/yahoo_20261019T010846Z",
+  "source_manifest_sha256": "5b66c2e5b626ae0a2738c40dfe2b7e1b5faac13504b58f1f86ab380e88520ea3",
+  "status": "pass",
+  "symbol_audits": [
+    {
+      "capital_gain_events": 0,
+      "conflicting_duplicate_sessions": [],
+      "dividend_events": 84,
+      "duplicate_rows": 0,
+      "first_session": "2005-01-03",
+      "impossible_ohlc_rows": 0,
+      "last_session": "2025-12-31",
+      "negative_volume_rows": 0,
+      "nonpositive_price_rows": 0,
+      "null_counts": {
+        "adjusted_close": 0,
+        "capital_gain": 0,
+        "close": 0,
+        "dividend": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "split_ratio": 0,
+        "volume": 0
+      },
+      "rows": 5283,
+      "sample_flagged_rows": [],
+      "split_events": 0,
+      "symbol": "SPY",
+      "weekend_rows": 0,
+      "zero_volume_rows": 0
+    },
+    {
+      "capital_gain_events": 0,
+      "conflicting_duplicate_sessions": [],
+      "dividend_events": 84,
+      "duplicate_rows": 0,
+      "first_session": "2005-01-03",
+      "impossible_ohlc_rows": 0,
+      "last_session": "2025-12-31",
+      "negative_volume_rows": 0,
+      "nonpositive_price_rows": 0,
+      "null_counts": {
+        "adjusted_close": 0,
+        "capital_gain": 0,
+        "close": 0,
+        "dividend": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "split_ratio": 0,
+        "volume": 0
+      },
+      "rows": 5283,
+      "sample_flagged_rows": [],
+      "split_events": 0,
+      "symbol": "QQQ",
+      "weekend_rows": 0,
+      "zero_volume_rows": 0
+    },
+    {
+      "capital_gain_events": 0,
+      "conflicting_duplicate_sessions": [],
+      "dividend_events": 84,
+      "duplicate_rows": 0,
+      "first_session": "2005-01-03",
+      "impossible_ohlc_rows": 0,
+      "last_session": "2025-12-31",
+      "negative_volume_rows": 0,
+      "nonpositive_price_rows": 0,
+      "null_counts": {
+        "adjusted_close": 0,
+        "capital_gain": 0,
+        "close": 0,
+        "dividend": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "split_ratio": 0,
+        "volume": 0
+      },
+      "rows": 5283,
+      "sample_flagged_rows": [],
+      "split_events": 1,
+      "symbol": "IWM",
+      "weekend_rows": 0,
+      "zero_volume_rows": 0
+    },
+    {
+      "capital_gain_events": 0,
+      "conflicting_duplicate_sessions": [],
+      "dividend_events": 246,
+      "duplicate_rows": 0,
+      "first_session": "2005-01-03",
+      "impossible_ohlc_rows": 0,
+      "last_session": "2025-12-31",
+      "negative_volume_rows": 0,
+      "nonpositive_price_rows": 0,
+      "null_counts": {
+        "adjusted_close": 0,
+        "capital_gain": 0,
+        "close": 0,
+        "dividend": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "split_ratio": 0,
+        "volume": 0
+      },
+      "rows": 5283,
+      "sample_flagged_rows": [],
+      "split_events": 0,
+      "symbol": "TLT",
+      "weekend_rows": 0,
+      "zero_volume_rows": 0
+    },
+    {
+      "capital_gain_events": 0,
+      "conflicting_duplicate_sessions": [],
+      "dividend_events": 0,
+      "duplicate_rows": 0,
+      "first_session": "2005-01-03",
+      "impossible_ohlc_rows": 0,
+      "last_session": "2025-12-31",
+      "negative_volume_rows": 0,
+      "nonpositive_price_rows": 0,
+      "null_counts": {
+        "adjusted_close": 0,
+        "capital_gain": 0,
+        "close": 0,
+        "dividend": 0,
+        "high": 0,
+        "low": 0,
+        "open": 0,
+        "split_ratio": 0,
+        "volume": 0
+      },
+      "rows": 5283,
+      "sample_flagged_rows": [],
+      "split_events": 0,
+      "symbol": "GLD",
+      "weekend_rows": 0,
+      "zero_volume_rows": 0
+    }
+  ]
+}

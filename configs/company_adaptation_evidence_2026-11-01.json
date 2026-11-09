@@ -1,0 +1,29 @@
+{
+  "reviewed_as_of": "2026-11-01",
+  "classification": "retrospective_discussion_only_not_point_in_time_predictors",
+  "notes": "Quarter-end workforce is a stock, not gross hiring or layoffs. Publications after September 2026 are not inputs available at the September trading cutoff. Missing quarters remain missing. Margin bases differ between companies; no pooled level comparison or causal AI attribution is warranted.",
+  "observations": [
+    {"company": "TCS", "period_end": "2026-03-31", "headcount": 584519, "operating_margin_pct": 25.3, "margin_basis": "headline excluding one-offs", "source_id": "tcs_mar26"},
+    {"company": "TCS", "period_end": "2026-09-30", "headcount": 598056, "operating_margin_pct": 24.0, "margin_basis": "headline operating margin", "source_id": "tcs_sep26"},
+    {"company": "Infosys", "period_end": "2026-03-31", "headcount": 328594, "operating_margin_pct": 20.9, "margin_basis": "quarterly IFRS", "source_id": "infy_mar26"},
+    {"company": "Infosys", "period_end": "2026-06-30", "headcount": 328062, "operating_margin_pct": 21.1, "margin_basis": "quarterly IFRS", "source_id": "infy_sep26"},
+    {"company": "Infosys", "period_end": "2026-09-30", "headcount": 332542, "operating_margin_pct": 21.0, "margin_basis": "quarterly IFRS", "source_id": "infy_sep26"},
+    {"company": "Wipro", "period_end": "2026-03-31", "headcount": 242156, "operating_margin_pct": null, "margin_basis": "not transcribed", "source_id": "wipro_mar26"},
+    {"company": "Wipro", "period_end": "2026-06-30", "headcount": 243044, "operating_margin_pct": 16.0, "margin_basis": "IT services segment", "source_id": "wipro_jun26"},
+    {"company": "Wipro", "period_end": "2026-09-30", "headcount": 236328, "operating_margin_pct": 16.5, "margin_basis": "IT services segment", "source_id": "wipro_sep26"}
+  ],
+  "sources": [
+    {"id": "tcs_mar26", "title": "TCS Q4 FY2026 results, 9 April 2026", "url": "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-financial-results-q4-fy-2026", "interpretation": "Headcount 584,519; quarterly headline margin 25.3% excludes one-offs; reported AI revenue is an annualized run rate, not realized annual revenue."},
+    {"id": "tcs_sep26", "title": "TCS Q2 FY2027 results, 8 October 2026", "url": "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-financial-results-q2-fy-2027", "interpretation": "Headcount 598,056; headline margin 24.0%. Management describes AI integration and workforce upskilling; this does not identify causality."},
+    {"id": "infy_mar26", "title": "Infosys Q4 FY2026 fact sheet", "url": "https://www.infosys.com/investors/reports-filings/quarterly-results/2025-2026/q4/documents/fact-sheet.pdf", "interpretation": "Quarter-ended March 2026 workforce and quarterly operating margin; do not substitute full-year adjusted margin."},
+    {"id": "infy_sep26", "title": "Infosys Q2 FY2027 fact sheet", "url": "https://www.infosys.com/investors/reports-filings/quarterly-results/2026-2027/q2/documents/fact-sheet.pdf", "interpretation": "Reports June and September quarter headcounts and margins, permitting a consistent sequential comparison."},
+    {"id": "wipro_mar26", "title": "Wipro Q4 FY2026 data sheet", "url": "https://www.wipro.com/content/dam/nexus/en/investor/quarterly-results/2025-2026/q4fy26/datasheet-q4fy26.pdf", "interpretation": "March quarter-end total headcount 242,156."},
+    {"id": "wipro_jun26", "title": "Wipro Q1 FY2027 data sheet", "url": "https://www.wipro.com/content/dam/nexus/en/investor/quarterly-results/2026-2027/q1fy27/datasheet-q1fy27.pdf", "interpretation": "June quarter-end total headcount 243,044; IT services margin 16.0%."},
+    {"id": "wipro_sep26", "title": "Wipro Q2 FY2027 SEC results highlights", "url": "https://www.sec.gov/Archives/edgar/data/1123799/000119312526426841/d188224dex995.htm", "interpretation": "September quarter-end total headcount 236,328; IT services margin 16.5%."},
+    {"id": "accn_ai", "title": "Accenture FY2025 annual report", "url": "https://www.accenture.com/content/dam/accenture/final/accenture-com/document-4/Annual-Report-2025.pdf", "interpretation": "Advanced-AI revenue $2.7bn and generative-AI bookings $5.9bn demonstrate commercial adaptation, not AI-caused margin improvement."},
+    {"id": "infy_topaz", "title": "Infosys Topaz launch, 23 May 2023", "url": "https://www.infosys.com/newsroom/press-releases/2023/enterprises-generative-ai.html", "interpretation": "Documented launch of enterprise generative-AI services."},
+    {"id": "klarna", "title": "CX Dive: Klarna recruits human customer-service staff again, May 2025", "url": "https://www.customerexperiencedive.com/news/klarna-reinvests-human-talent-customer-service-AI-chatbot/747586/", "interpretation": "Customer-support quality example; not evidence of wholesale software-development reversal or specific numbers of rehired employees."},
+    {"id": "boe", "title": "Bank of England/FCA AI in financial services survey, 2024", "url": "https://www.bankofengland.co.uk/report/2024/artificial-intelligence-in-uk-financial-services-2024", "interpretation": "Human oversight and governance accompany adoption; UK survey is context rather than direct Indian equity evidence."},
+    {"id": "reuters_2026", "title": "Reuters: Anthropic AI push raises Indian IT revenue concerns, 5 February 2026", "url": "https://www.investing.com/news/stock-market-news/anthropics-ai-push-raises-analyst-concerns-over-it-services-revenues-4486681", "interpretation": "Later disruption fears persisted; counters a monotonic early-fear/later-acceptance narrative."}
+  ]
+}

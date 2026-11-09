@@ -1,0 +1,48 @@
+{
+  "cleaning_rules": [
+    "Coerce configured numeric fields; block missing adjusted close and invalid structural bars.",
+    "Drop only value-identical duplicate sessions; conflicting duplicates block processing.",
+    "Retain genuine extreme returns and zero-volume observations for analysis.",
+    "Align predictor assets to observed SPY sessions without forward/backward filling."
+  ],
+  "created_at_utc": "2026-10-20T05:59:27.965061+00:00",
+  "dataset_id": "market_yahoo_20261020T055638Z",
+  "files": [
+    {
+      "path": "market_long.parquet",
+      "sha256": "afec98e7a90e86d5224d04fb7bb63acfbf3a99ef32405318b6092c75d42c290f"
+    },
+    {
+      "path": "market_panel.parquet",
+      "sha256": "ec2a9004cda045b6ddb5af5779504f4aecab4cc3b34a7f126c2669f1edb24d53"
+    }
+  ],
+  "missing_adjusted_close_on_research_calendar": {
+    "GLD": 0,
+    "IWM": 0,
+    "QQQ": 0,
+    "SPY": 0,
+    "TLT": 0
+  },
+  "packages": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "pyarrow": "19.0.1"
+  },
+  "research_calendar": "observed SPY sessions",
+  "rows": {
+    "long": 26415,
+    "panel": 5283
+  },
+  "schema_version": 1,
+  "source_manifest_sha256": "2d9a6f9da9e553bbb2903da5d12472d421dbfc7afca5cd5b150d24cfc364fcdb",
+  "source_snapshot_id": "yahoo_20261020T055638Z",
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "TLT",
+    "GLD"
+  ],
+  "traded_asset": "SPY"
+}

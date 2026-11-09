@@ -1,0 +1,38 @@
+[
+  {
+    "config_id": "cm_autoregression_bd9f8ea82c3c",
+    "experiment": "baseline",
+    "family": "autoregression",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.0
+    }
+  },
+  {
+    "config_id": "cm_zero_08cccf87365f",
+    "experiment": "baseline",
+    "family": "zero",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_asset_mean_947f6b0b0f9a",
+    "experiment": "baseline",
+    "family": "asset_mean",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_elastic_net_329a4ccca456",
+    "experiment": "model_family",
+    "family": "elastic_net",
+    "feature_set": "F4_full_us",
+    "parameters": {
+      "alpha": 0.0005,
+      "l1_ratio": 0.8,
+      "max_iter": 4000,
+      "preselect_k": 500,
+      "tolerance": 0.0001
+    }
+  }
+]

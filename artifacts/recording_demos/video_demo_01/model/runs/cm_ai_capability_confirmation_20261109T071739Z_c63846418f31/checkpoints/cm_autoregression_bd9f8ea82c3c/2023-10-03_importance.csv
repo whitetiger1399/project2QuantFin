@@ -1,0 +1,17 @@
+feature,importance,measure,block_start,config_id
+asset__ofss_ns,-2565465129.147927,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__wipro_ns,-2565465129.147769,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__hcltech_ns,-2565465129.1477365,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__persistent_ns,-2565465129.1477113,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__mphasis_ns,-2565465129.1476912,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__ltm_ns,-2565465129.1476398,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__tcs_ns,-2565465129.1476035,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__techm_ns,-2565465129.147523,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__infy_ns,-2565465129.1474276,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+asset__coforge_ns,-2565465129.1472616,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_2,-0.0004954014587264692,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_3,0.0003180450032751773,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_21,-0.00028089742534496406,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_5,0.00019705447709981384,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_1,3.8954971926782e-05,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_10,-3.237344843280067e-05,standardized_coefficient,2023-10-03,cm_autoregression_bd9f8ea82c3c

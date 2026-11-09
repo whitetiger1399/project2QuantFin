@@ -1,0 +1,22 @@
+{
+  "autoregression_e7e3dabd11": {
+    "config_id": "autoregression_e7e3dabd11",
+    "family": "autoregression",
+    "parameters": {}
+  },
+  "historical_mean_0ba443a7a9": {
+    "config_id": "historical_mean_0ba443a7a9",
+    "family": "historical_mean",
+    "parameters": {}
+  },
+  "random_forest_6aa9f5d449": {
+    "config_id": "random_forest_6aa9f5d449",
+    "family": "random_forest",
+    "parameters": {
+      "max_depth": 3,
+      "max_features": 0.5,
+      "min_samples_leaf": 50,
+      "n_estimators": 300
+    }
+  }
+}

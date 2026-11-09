@@ -1,0 +1,69 @@
+{
+  "2025": {
+    "source": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+    "selector": "cm_extra_trees_cd9235695e6b",
+    "dates": 249,
+    "cumulative_net": -0.040384226973328,
+    "cumulative_gross": 0.05156881580076278,
+    "arithmetic_cost_sum": 0.09149999999085001,
+    "sharpe": -0.2599552093150189,
+    "volatility": 0.1286447589199942,
+    "r2_mean": -0.0074760250688046,
+    "ic": -0.0437158869003933,
+    "inference": {
+      "alpha_hac_pvalue": 0.8874006974499891,
+      "alpha_hac_t_statistic": -0.1415940114413769,
+      "annualized_alpha": -0.014628796951622265,
+      "block_length_sessions": 20,
+      "daily_alpha": -5.805078155405661e-05,
+      "method": "circular_block_bootstrap",
+      "net_sharpe_95_ci": [
+        -1.8828781832298294,
+        1.5063007265062616
+      ],
+      "nifty50_beta": -0.15954133661312425,
+      "regression_observations": 249,
+      "repetitions": 1000
+    },
+    "method_counts": {
+      "oos_date_block_group_permutation_mse_increase": 4360,
+      "standardized_coefficient": 1664,
+      "impurity_importance": 200
+    },
+    "fixed_holdings_break_even_round_trip_bps": 8.245433855605036
+  },
+  "2026": {
+    "source": "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82",
+    "selector": "cm_extra_trees_cd9235695e6b",
+    "dates": 185,
+    "cumulative_net": 0.15014116382859455,
+    "cumulative_gross": 0.26948505479453533,
+    "arithmetic_cost_sum": 0.09899999999010001,
+    "sharpe": 1.4557179354189231,
+    "volatility": 0.1373830705788431,
+    "r2_mean": 0.0141136403468801,
+    "ic": 0.0818758778083267,
+    "inference": {
+      "alpha_hac_pvalue": 0.30277646686092163,
+      "alpha_hac_t_statistic": 1.0304976243768944,
+      "annualized_alpha": 0.1866020064215193,
+      "block_length_sessions": 20,
+      "daily_alpha": 0.0007404841524663464,
+      "method": "circular_block_bootstrap",
+      "net_sharpe_95_ci": [
+        -1.577016338452928,
+        3.864731165820735
+      ],
+      "nifty50_beta": -0.07790914708152302,
+      "regression_observations": 185,
+      "repetitions": 1000
+    },
+    "method_counts": {
+      "oos_date_block_group_permutation_mse_increase": 240,
+      "impurity_importance": 50,
+      "standardized_coefficient": 16
+    },
+    "fixed_holdings_break_even_round_trip_bps": 36.2149392347993
+  },
+  "combined_net": 0.10369360201717237
+}

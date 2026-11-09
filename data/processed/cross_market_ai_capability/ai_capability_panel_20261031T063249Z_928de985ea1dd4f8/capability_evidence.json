@@ -1,0 +1,8 @@
+{
+  "capability_features": 25,
+  "disclosure_fraction": 0.3076923076923077,
+  "events": 26,
+  "events_with_disclosed_total_parameters": 8,
+  "guardrail": "Parameter count is a sparse scale proxy; undisclosed values are not imputed.",
+  "source_dataset_id": "ai_services_panel_20261031T023944Z_fc3fbc83bdc45226"
+}

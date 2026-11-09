@@ -1,0 +1,36 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/analyze_ai_capability_effects.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model.yaml", "--dataset-id", "ai_capability_panel_20261109T064115Z_1a13582b12774e0b"]
+
+Measuring capability event returns:   0%|          | 0/8 [00:00<?, ?event/s]
+Measuring capability event returns: 100%|██████████| 8/8 [00:00<00:00, 4127.74event/s]
+{
+  "action": "analyze_ai_capability_effects",
+  "analysis_id": "ai_capability_analysis_20261109T064205Z_e47c2b9995f9",
+  "content_hash": "e47c2b9995f9",
+  "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/analysis/ai_capability_analysis_20261109T064205Z_e47c2b9995f9",
+  "status": "complete",
+  "disclosed_parameter_events": 8,
+  "total_frontier_events": 52,
+  "disclosure_fraction": 0.15384615384615385,
+  "direct_nifty_it": {
+    "n": 8.0,
+    "rho": 0.29940656547831473,
+    "pvalue": 0.4712605287015583
+  },
+  "post_us_services": {
+    "n": 8.0,
+    "rho": -0.3952166664313755,
+    "pvalue": 0.33251710793382766
+  },
+  "post_us_nifty_it": {
+    "n": 8.0,
+    "rho": 0.45509797952703834,
+    "pvalue": 0.25719208545877226
+  },
+  "guardrails": [
+    "Parameter count is not a universal capability metric.",
+    "The disclosed subset is small and non-random; correlations are exploratory.",
+    "MoE total and active parameters are not interchangeable.",
+    "Release-date and model-scale trends may be confounded with calendar time and macro conditions."
+  ]
+}

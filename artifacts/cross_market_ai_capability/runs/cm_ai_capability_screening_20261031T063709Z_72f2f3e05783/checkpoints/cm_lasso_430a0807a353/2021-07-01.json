@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-09-30",
+  "block_start": "2021-07-01",
+  "config_id": "cm_lasso_430a0807a353",
+  "family": "lasso",
+  "feature_set": "F7_full_context",
+  "input_features": 2769,
+  "parameter_to_feature_ratio": 0.16287468400144456,
+  "parameter_to_observation_ratio": 0.03699753896636587,
+  "runtime_seconds": 5.985702417000084,
+  "test_rows": 630,
+  "trainable_parameters_proxy": 451,
+  "training_dates": 1219,
+  "training_end": "2021-06-29",
+  "training_rows": 12190,
+  "training_start": "2016-07-21"
+}

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "quarterly_feature_progression.csv": "191d91ac873263b0ead72558b5e8d6bfdd3bf83a411384e547cc55b80452047c"
+  },
+  "interpretation": "Same-date fixed-penalty ridge comparisons. Quarter variation is descriptive; volatility is shared across feature sets, and cannot alone explain within-quarter differences.",
+  "script_sha256": "a2a093e509e5fceea23ddfc17df550bd79d15d69591f941a8eccffd690bd5b95",
+  "sources": {
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/configurations.json": "366c9b1f39c87088027c9b7e96a65de0d635ad9355cbf2b4eb356c39b49a3a1a",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/predictions.parquet": "907611d2ae0054eb5f006a4ee194fea3de7465ad1340943e8dfb9c5e4e3a49b2",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/configurations.json": "e019b8ba57224d7fb4de55e487077823fda6b626f87ae09c41cfa536a6cfe2a3",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/predictions.parquet": "17f1fdae4dc465749f551a82ce28c55c53862b86ab891b9ab2ca7a4c2a2d99e8",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/configurations.json": "4478b3c8aad89ca48036e1a609e90b70a87f1f37295b57d9713989fd1f58f4d0",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/predictions.parquet": "3e6efe9afd27049f89bebca3bddb3016d3c11affa4eefd771533a5b51138e1b5"
+  },
+  "status": "complete"
+}

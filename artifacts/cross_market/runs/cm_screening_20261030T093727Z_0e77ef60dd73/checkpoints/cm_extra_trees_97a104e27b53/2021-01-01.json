@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-03-31",
+  "block_start": "2021-01-01",
+  "config_id": "cm_extra_trees_97a104e27b53",
+  "family": "extra_trees",
+  "feature_set": "F4_full_us",
+  "input_features": 2236,
+  "parameter_to_feature_ratio": 137.38819320214668,
+  "parameter_to_observation_ratio": 28.003646308113037,
+  "runtime_seconds": 90.0271174999998,
+  "test_rows": 610,
+  "trainable_parameters_proxy": 307200,
+  "training_dates": 1097,
+  "training_end": "2020-12-30",
+  "training_rows": 10970,
+  "training_start": "2016-07-21"
+}

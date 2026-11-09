@@ -1,0 +1,11 @@
+{
+  "action": "run_strict_vintage_sensitivity",
+  "analysis_id": "strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8",
+  "completed_at_utc": "2026-11-01T07:30:58.445518+00:00",
+  "content_hash": "d98ad9caf3b8",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8",
+  "parallel_workers": 3,
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "status": "complete",
+  "strict_config_id": "cm_extra_trees_strict_18f79972113b"
+}

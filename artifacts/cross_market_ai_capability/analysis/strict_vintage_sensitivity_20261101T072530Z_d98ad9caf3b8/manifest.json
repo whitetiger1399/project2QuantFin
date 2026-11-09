@@ -1,0 +1,101 @@
+{
+  "action": "run_strict_vintage_sensitivity",
+  "analysis_id": "strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8",
+  "content_hash": "d98ad9caf3b8",
+  "created_at_utc": "2026-11-01T07:30:58.445518+00:00",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8",
+  "environment": {
+    "created_at_utc": "2026-11-01T07:30:58.445531+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "fallback_flagged_features_excluded": 60,
+  "fallback_flagged_features_retained": 0,
+  "files": {
+    "excluded_features.csv": "4b00ab3e2070e52cdc97ddcdbc83a32324c6b22ada560e17957b6d666467503a",
+    "strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-01-01.json": "fff5a4374430e047289cd28b3d16f5c2a8f8eb20afa605bce158193fa18ee16e",
+    "strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-01-01.parquet": "73b6601cbb6a476f05c314814e4ebccc5a4555616e932df7895ca68339bdd30b",
+    "strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-04-01.json": "b8515e45f3ea6309a1c25d2b1432144275e7a19efbaf29ec77a6fbb85093e6fb",
+    "strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-04-01.parquet": "e35643c987958f46b8bb1ebec6eb6f1381219e8a1bf95362d067360c9b71f77c",
+    "strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-07-01.json": "283de99cb392932fc2989598da07d1d45938766d9a1e2e5f2b728a0e197572e2",
+    "strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-07-01.parquet": "b5c6afb0b037b38322d3402d5a26d0c0854c672ec477c3f79415a74abc4d803a",
+    "strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-10-01.json": "31ae4244013c7818bbed421fd6ad65ec72ed0c746d5891716bf38a873402e389",
+    "strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-10-01.parquet": "45403154b69f3e8796bb5b762fb339d2b78a618843829a611d42be9a81f93b84",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01.json": "cbaf5ac8764e0fae8bb19454e0c3c033628ce5ab6b016b29ded5605e2d20eda1",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01.parquet": "313730f39ad23fbc6ea773fa83d15a4612d038e778a875d7cbd97d175446f6e6",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01_importance.csv": "f25ba4c5a26556806f8ac5ab0b64b82ffa550aa0caa3b7901bd1781283ac46ed",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01.json": "e66dad2f6ef4bf15222fb89af0b632c062a69a0c1f4818cc12d3c900a108d9b8",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01.parquet": "235cc0d99a644af72c63b1dcb9da6d80d398f379f14adf57adfa143f8a181635",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01_importance.csv": "26b9f00049a465f4efd0a7b711a471a0f8f7918780139e61e8f26c24f596e7d0",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01.json": "8cba4f16a9043549b4345de80887fe0829f41c3869fdbe0ffdf0c3a5645a5090",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01.parquet": "2194ae0b5ae633800fc4511a5e5e6c436b09019629e357eba42c35aa490c3fb9",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01_importance.csv": "555d0d0ae205a1adc4288fa46bc3d4b096a71906379a82104cc8081cec891e65",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01.json": "48af9516d3a357c5c6091b63d51d748fc5a6116f85eac9efddda9558cf7009b0",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01.parquet": "64e58abd4050ceb9c8dde1357c96f15d5978600bc4585c1d58fd7fcc682ed7d8",
+    "strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01_importance.csv": "e8f41cd2eae3e4a8b6e78374513884fe3fe1a303cc8ed11743665150cf923e3e",
+    "strict_vintage_ledgers.parquet": "844ab2a36da40b19dd2da442bf3af05f5c4d69ea1334c911a1b0013116fe8db4",
+    "strict_vintage_metrics.csv": "288e1c28229f5eb7e6a8fbf81a8b6e617eb9f9045cd175f647b8458d64520913",
+    "strict_vintage_paired_inference.csv": "51b58a33ddf404b882d9edaa24b8e3d8c0cdb2b1fc0cba35ee18444082486d77",
+    "strict_vintage_refit_diagnostics.csv": "ccc598e0ffe75b2469277d2e08334217e41e4bdf540d0d7b645047318fb96d4b",
+    "strict_vintage_sensitivity.pdf": "64b2717e0cd1d3fbe5ed74f2958c8c7f5344db5b251cb59217fdb1666407c377",
+    "strict_vintage_sensitivity.png": "0a5424f33c34875ed3ed7d7882b60200d8e998948edabeba25c05e8f53d51692"
+  },
+  "identity": {
+    "block_length": 10,
+    "draws": 2000,
+    "forward_config_sha256": "16942a3679a9b258c444cc30782590979aee8d1caf247df5ea7096619727055b",
+    "forward_dataset_manifest_sha256": "47a64c6f7eb75c595c2f3f6304436e1aa4b371d64d8ef97eb67d0c1f6df87225",
+    "forward_run_manifest_sha256": "10cc6f44e51afc5f7b8f8b21e4ec68e3a53e23679972fe817a18e2026ef2caca",
+    "freeze_sha256": "dca7f5a286da16f74f3d769b8965972f748784409a3e2e0f4152add7c22d00a6",
+    "registry_sha256": "09654222e468bfb11109835a436b87e5c38f31c7e3e3b353127cd00bd5bce772",
+    "script_sha256": "b15b583ee8c0ca25d60224ffb846870eda81d94c8c8a592a75d098aa048d0ca9",
+    "seed": 17,
+    "selected_configuration": {
+      "config_id": "cm_extra_trees_cd9235695e6b",
+      "experiment": "model_family",
+      "family": "extra_trees",
+      "feature_set": "F7_full_context",
+      "parameters": {
+        "max_depth": 6,
+        "max_features": 0.5,
+        "min_samples_leaf": 40,
+        "n_estimators": 250
+      }
+    },
+    "source_config_sha256": "76a4b813e17c472a4fa999679f48e4142979bedaf128db7fb67442ca0fb87b83",
+    "source_dataset_manifest_sha256": "dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff",
+    "source_run_manifest_sha256": "7e1ef3280abd278f2e69dd97d37700484a802ccf17c81454466a48eb38158b22",
+    "strict_configuration": {
+      "config_id": "cm_extra_trees_strict_18f79972113b",
+      "exclude_current_vintage_fallback": true,
+      "experiment": "strict_vintage_sensitivity",
+      "family": "extra_trees",
+      "feature_set": "F7_full_context",
+      "parameters": {
+        "max_depth": 6,
+        "max_features": 0.5,
+        "min_samples_leaf": 40,
+        "n_estimators": 250
+      },
+      "parent_config_id": "cm_extra_trees_cd9235695e6b"
+    }
+  },
+  "method": "post-selection sensitivity; exact selected depth-6 Extra Trees; identical dates, rolling windows, seed and trading policy; paired circular date-block bootstrap",
+  "parallel_workers": 3,
+  "schema_version": 1,
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "selected_parameters_match_exactly": true,
+  "status": "complete",
+  "strict_config_id": "cm_extra_trees_strict_18f79972113b",
+  "strict_feature_count_before_viability_filter": 3703
+}

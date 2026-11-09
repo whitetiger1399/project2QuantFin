@@ -1,0 +1,21 @@
+{
+  "action": "summarize_information_ladder",
+  "content_hash": "8f7ce83d64dd",
+  "created_at_utc": "2026-10-31T06:58:14.061856+00:00",
+  "daily_decision_rows": 3968,
+  "daily_stock_decision_rows": 39680,
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/information_ladder_screening_20261031T065812Z_8f7ce83d64dd",
+  "files": {
+    "daily_long_short_decisions.csv": "75dc6d4fe5a7a008ec543eeed94266026933bdcf025ba3867c53cd1fa3e8218f",
+    "daily_stock_decisions.csv": "0d425a6b11e4f29f97e46c88c67953bcd8c8f218809df890f0ac2b8d0d0cf393",
+    "information_ladder_performance.png": "c0715d1498434bebcfca359d6512b55a3df9abee545f3efce661b191cb92a2b6",
+    "information_ladder_summary.csv": "740f140e81b0ee787d59e2146a75e2a03a4cc8d06d84f35970b08307bf3fc323",
+    "information_ladder_wealth.png": "957113821f4b08429d750e683f20a09f2777e13b46d6bd87763b76db08a205fe"
+  },
+  "rungs": 8,
+  "schema_version": 1,
+  "source_run_id": "cm_ai_capability_screening_20261031T063709Z_72f2f3e05783",
+  "stage": "screening",
+  "status": "complete",
+  "summary_id": "information_ladder_screening_20261031T065812Z_8f7ce83d64dd"
+}

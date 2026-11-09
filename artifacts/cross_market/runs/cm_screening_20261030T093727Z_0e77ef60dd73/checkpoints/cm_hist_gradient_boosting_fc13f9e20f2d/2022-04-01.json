@@ -1,0 +1,17 @@
+{
+  "block_end": "2022-06-30",
+  "block_start": "2022-04-01",
+  "config_id": "cm_hist_gradient_boosting_fc13f9e20f2d",
+  "family": "hist_gradient_boosting",
+  "feature_set": "F4_full_us",
+  "input_features": 2260,
+  "parameter_to_feature_ratio": 3.4292035398230087,
+  "parameter_to_observation_ratio": 0.6150793650793651,
+  "runtime_seconds": 78.06366795899885,
+  "test_rows": 620,
+  "trainable_parameters_proxy": 7750,
+  "training_dates": 1260,
+  "training_end": "2022-03-30",
+  "training_rows": 12600,
+  "training_start": "2017-02-22"
+}

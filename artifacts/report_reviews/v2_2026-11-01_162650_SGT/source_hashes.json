@@ -1,0 +1,11 @@
+{
+  "reports/Project2_Team16_Report_V2.docx": "4c2336488f19d19b6ef931482ff9af6274a22a79ddb73f8e60ffe0c4e9c73af7",
+  "reports/Project2_Team16_Report_V2.pdf": "8c7ba6e9d15ed02d32938ca6cf94f651808f9657e436c23fdcc87b556e3a5adc",
+  "documents/markdown/Project2.md": "66f0175dcfc155e67c922a38e53ce9f73f589c37d736a8b2eb4b7d5af4972220",
+  "reports/releases/project2_team16_v2_2026-11-01/release_registry.json": "6e0a24f13a5efa33035b86daf483ff31f1fb54aec86839bfc3d8dee5462991a6",
+  "README.md": "379ec974a353d64de633932d5586aee7e797e191dd1d14c39c2f061306aeacab",
+  "scripts/verify_report_release.py": "9780ebbc6b9876ffcf30f1eb2deb8ad9686d37a880006046f4653afa318b1033",
+  "scripts/run_strict_vintage_sensitivity.py": "b15b583ee8c0ca25d60224ffb846870eda81d94c8c8a592a75d098aa048d0ca9",
+  "scripts/analyze_paired_strategy_differences.py": "99350ef5152447870d0fb445809edc7c9014674b82c0bddf76bd0911847f82da",
+  "scripts/audit_report_feature_progression.py": "a2a093e509e5fceea23ddfc17df550bd79d15d69591f941a8eccffd690bd5b95"
+}

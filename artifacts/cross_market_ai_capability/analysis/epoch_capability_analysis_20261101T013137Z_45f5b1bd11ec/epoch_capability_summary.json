@@ -1,0 +1,12 @@
+{
+  "classification": "ex_post_not_tradable",
+  "eci_mapped_events": 22,
+  "frontier_events": 52,
+  "guardrails": [
+    "Current-vintage Epoch scores are never backfilled into historical prediction features.",
+    "Benchmark scores remain benchmark-specific; no uncalibrated arithmetic composite is used.",
+    "Small event samples and calendar-time confounding preclude causal claims.",
+    "The time-controlled HC3 regression is a sensitivity analysis, not identification."
+  ],
+  "primary_benchmark_mapped_events": 22
+}

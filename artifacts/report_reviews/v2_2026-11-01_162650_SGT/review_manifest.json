@@ -1,0 +1,42 @@
+{
+  "review_started_sgt": "2026-11-01T16:26:50+08:00",
+  "review_completed_sgt": "2026-11-01T16:29:40.257909+08:00",
+  "score": 88,
+  "publication_readiness_score": 74,
+  "gap_analysis": "documents/markdown/Gap_Analysis_Report_V2_2026-11-01_162650_SGT.md",
+  "gap_analysis_sha256": "83c8e41015d8e58d963f26b981d61dcf6606cd10db04f4cc1d8552b21b9c69bb",
+  "source_hashes": {
+    "reports/Project2_Team16_Report_V2.docx": "4c2336488f19d19b6ef931482ff9af6274a22a79ddb73f8e60ffe0c4e9c73af7",
+    "reports/Project2_Team16_Report_V2.pdf": "8c7ba6e9d15ed02d32938ca6cf94f651808f9657e436c23fdcc87b556e3a5adc",
+    "documents/markdown/Project2.md": "66f0175dcfc155e67c922a38e53ce9f73f589c37d736a8b2eb4b7d5af4972220",
+    "reports/releases/project2_team16_v2_2026-11-01/release_registry.json": "6e0a24f13a5efa33035b86daf483ff31f1fb54aec86839bfc3d8dee5462991a6",
+    "README.md": "379ec974a353d64de633932d5586aee7e797e191dd1d14c39c2f061306aeacab",
+    "scripts/verify_report_release.py": "9780ebbc6b9876ffcf30f1eb2deb8ad9686d37a880006046f4653afa318b1033",
+    "scripts/run_strict_vintage_sensitivity.py": "b15b583ee8c0ca25d60224ffb846870eda81d94c8c8a592a75d098aa048d0ca9",
+    "scripts/analyze_paired_strategy_differences.py": "99350ef5152447870d0fb445809edc7c9014674b82c0bddf76bd0911847f82da",
+    "scripts/audit_report_feature_progression.py": "a2a093e509e5fceea23ddfc17df550bd79d15d69591f941a8eccffd690bd5b95"
+  },
+  "visual_scope": "All 21 companion PDF pages in contact sheets; detail pages 4,11,14. No independent DOCX render.",
+  "audit_files": {
+    "negative_controls.json": "bd570af833184cc81615ff9c7b5b01166c37ab4f2d2c85a1e1cc5f9e7a52fdbd",
+    "extension.stderr.log": "9081cdeeb23dd2fec85ba3dd4a0bbd009c967de16a8d8b8168203dee49b29e4e",
+    "report_text.txt": "2b6f8a9c416290b587f5995fbf0e70b1c1799286b295158deea5df8e0c67ec93",
+    "report_text_negative_verification.json": "4353b25a29edbc6f0cccb784ba85adedb7f602639857e9917b860aef0ea0c1b9",
+    "unit_tests.log": "11bf7e54897ab7cb6b0634d6124e260a4ac27a59b73b3e4e821adc62b1fe6d32",
+    "report_text_negative_registry.json": "843991424eba6a15e2479a9883ac87ef3950faac5ed4379613e56eb2879ab716",
+    "registry_audit.json": "0d010ff7dc73516dace1ef1564d52897fd382e5cefe1eeb8ccdd473fce4617a4",
+    "release_stdout.json": "2ca0eb4bb198362fc4ff0b74e48c0e9aded800798db5fb7791b58223bb76b452",
+    "strict_reconciliation.json": "e705a140b7970175ce17c7ab01656cbfda04f3875c3c78b16b241add1425a590",
+    "original_release_registry.json": "6e0a24f13a5efa33035b86daf483ff31f1fb54aec86839bfc3d8dee5462991a6",
+    "source_hashes.json": "05abb9d0106882e272c6adbcd7bba29d27424569fd867e47c88579944c7276f5",
+    "pipeline.stderr.log": "0dba6686f30897fd2f3c01bf7487af92b81c23825605896ef7cc3ea8dc9dcbff",
+    "report_text_negative_result.json": "be98df9413ad273678c7a350130a4843a39695706dd2db3999032f041e6e715d",
+    "figure_hash_audit.json": "3b450a10484c97d57f79b749ccb617df13dc71033e52809de6c3eb35a3d55d18",
+    "extension.json": "7dd43fac80632b0e83a34208e73f2e0a788407a332259c30e37769bdb65fe633",
+    "pipeline.json": "ec95674a66e0e15cdd538bb8f09859d2c5c98216d819b0a55872453cb04f0d06",
+    "toc_pages.json": "37448635a11f97713b5dd2798139010a31c5053c695ef333f64e9f393ed9a22d",
+    "release_verification.json": "2ca0eb4bb198362fc4ff0b74e48c0e9aded800798db5fb7791b58223bb76b452",
+    "feature_progression_recheck/quarterly_feature_progression.csv": "191d91ac873263b0ead72558b5e8d6bfdd3bf83a411384e547cc55b80452047c",
+    "feature_progression_recheck/manifest.json": "7e6665a43293fecdc88713a27eaa08905a72f511316cac970f4ff88909d847f1"
+  }
+}

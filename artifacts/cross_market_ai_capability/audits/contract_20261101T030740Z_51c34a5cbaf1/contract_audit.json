@@ -1,0 +1,202 @@
+{
+  "assets": [
+    "COFORGE.NS",
+    "HCLTECH.NS",
+    "INFY.NS",
+    "LTM.NS",
+    "MPHASIS.NS",
+    "OFSS.NS",
+    "PERSISTENT.NS",
+    "TCS.NS",
+    "TECHM.NS",
+    "WIPRO.NS"
+  ],
+  "checks": [
+    {
+      "check": "panel_unique_date_asset",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "target_complete",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "feature_dictionary_unique",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "feature_sets_assigned",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "event_us_close_after_publication",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "nse_after_us_reaction_order",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_complete:cm_ai_capability_screening_20261101T013231Z_038064c84d36",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_dataset_parent:cm_ai_capability_screening_20261101T013231Z_038064c84d36",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_configuration_count:cm_ai_capability_screening_20261101T013231Z_038064c84d36",
+      "detail": {
+        "configurations": 25,
+        "leaderboard": 25
+      },
+      "passed": true
+    },
+    {
+      "check": "ledger_net_reconciles:cm_ai_capability_screening_20261101T013231Z_038064c84d36",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "ledger_turnover_nonnegative:cm_ai_capability_screening_20261101T013231Z_038064c84d36",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_complete:cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_dataset_parent:cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_configuration_count:cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd",
+      "detail": {
+        "configurations": 13,
+        "leaderboard": 13
+      },
+      "passed": true
+    },
+    {
+      "check": "ledger_net_reconciles:cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "ledger_turnover_nonnegative:cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_complete:cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_dataset_parent:cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "run_configuration_count:cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+      "detail": {
+        "configurations": 12,
+        "leaderboard": 12
+      },
+      "passed": true
+    },
+    {
+      "check": "ledger_net_reconciles:cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+      "detail": "",
+      "passed": true
+    },
+    {
+      "check": "ledger_turnover_nonnegative:cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+      "detail": "",
+      "passed": true
+    }
+  ],
+  "config_sha256": "59e5acbeeb116286d7fd34585ad8b2a55e9147e78aee0c19db88eb1617b96607",
+  "created_at_utc": "2026-11-01T03:07:40.602926+00:00",
+  "current_vintage_fallback_feature_count": 60,
+  "dataset_id": "ai_capability_panel_20261101T012801Z_ff277b55597d727a",
+  "dataset_manifest_sha256": "dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff",
+  "decision_dates": 2334,
+  "event_count": 52,
+  "feature_count_by_set": {
+    "F0_own": 65,
+    "F1_india": 195,
+    "F1_nifty_it_peers": 118,
+    "F2_us_services": 346,
+    "F2_us_tech": 569,
+    "F3_global": 1062,
+    "F3_nifty50": 476,
+    "F4_full_us": 3140,
+    "F4_sp500_aggregate": 484,
+    "F5_macro_nonlinear": 3333,
+    "F5_sp500_constituents": 2554,
+    "F6_ai_capability": 2604,
+    "F6_ai_events": 2579,
+    "F7_full_context": 3763
+  },
+  "rows": 23340,
+  "runs": [
+    {
+      "configuration_count": 25,
+      "families": {
+        "asset_mean": 1,
+        "autoregression": 1,
+        "elastic_net": 4,
+        "extra_trees": 2,
+        "hist_gradient_boosting": 2,
+        "lasso": 2,
+        "pca_ridge": 2,
+        "ridge": 10,
+        "zero": 1
+      },
+      "run_id": "cm_ai_capability_screening_20261101T013231Z_038064c84d36",
+      "selected_config_id": "cm_hist_gradient_boosting_62fcc1daf743",
+      "stage": "screening"
+    },
+    {
+      "configuration_count": 13,
+      "families": {
+        "asset_mean": 1,
+        "autoregression": 1,
+        "extra_trees": 1,
+        "hist_gradient_boosting": 1,
+        "ridge": 8,
+        "zero": 1
+      },
+      "run_id": "cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd",
+      "selected_config_id": "cm_extra_trees_cd9235695e6b",
+      "stage": "confirmation"
+    },
+    {
+      "configuration_count": 12,
+      "families": {
+        "asset_mean": 1,
+        "autoregression": 1,
+        "extra_trees": 1,
+        "ridge": 8,
+        "zero": 1
+      },
+      "run_id": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+      "selected_config_id": "cm_extra_trees_cd9235695e6b",
+      "stage": "final_test"
+    }
+  ],
+  "schema_version": 1,
+  "status": "pass"
+}

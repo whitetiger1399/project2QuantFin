@@ -1,0 +1,1012 @@
+{
+  "status": "pass",
+  "checks_passed": 201,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "dataset:manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a/manifest.json"
+    },
+    {
+      "check": "dataset:complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset:hash:capability_event_mapping.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset:hash:capability_evidence.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset:hash:feature_dictionary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset:hash:panel.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset:unique_date_asset",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset:target_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset:final_period_ends_2025",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "dataset:exchange_calendar_event_clock",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "check": "epoch_snapshot:manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/epoch_benchmarks/epoch_benchmarks_20261031T063140Z_694be8985284cf56/manifest.json"
+    },
+    {
+      "check": "epoch_snapshot:complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:adversarial_nli_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:aider_polyglot_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:ale_bench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:algotune_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:apex_agents_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:arc_agi_2_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:arc_agi_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:arc_ai2_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:balrog_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:bbh_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:benchmark_metadata.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:blueprint_bench_2_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:bool_q_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:btf3_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:cad_eval_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:chess_puzzles.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:cl_bench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:cl_bench_life_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:common_sense_qa_2_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:critpt_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:cursorbench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:cybench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:deepresearchbench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:deepswe_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:dtbench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:ebr_bench.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:enigma_eval_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:epoch_capabilities_index/eci_bootstraps.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:epoch_capabilities_index/eci_scores.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:epoch_capabilities_index/edi_scores.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:epoch_capabilities_index/processed_data_for_eci.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:exploitbench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:fictionlivebench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:forecastbench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:frontiercode_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:frontiermath.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:frontiermath_erdos.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:frontiermath_tier_4.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:frontiermath_tier_4_v2.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:frontiermath_tiers_1_3_v2.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:frontierswe_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:furniture_assembly.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:gbaeval_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:gdp_pdf_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:gdpval_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:geobench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:gpqa_diamond.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:gsm8k_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:gso_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:hella_swag_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:hle_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:lambada_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:lech_mazur_writing_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:live_bench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:lmca_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:math_level_5.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:metr_time_horizons_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:mindcube_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:mirrorcode.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:mmlu_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:model_metadata.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:mystery_game_puzzles.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:open_book_qa_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:os_world_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:osworld_2_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:otis_mock_aime_2024_2025.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:piqa_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:posttrainbench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:proofbench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:rli_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:schema_inventory.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:scicode_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:science_qa_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:simplebench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:simpleqa_verified.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:spatialviz_bench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:spireclimb.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:spireclimb_sts1_a20_heart.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:spireclimb_sts2_a10.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:superglue_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:surface_evolver_bench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:swe_bench_verified.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:terminalbench_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:the_agent_company_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:trivia_qa_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:vending_bench_2_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:video_mme_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:vpct_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:webdev_arena_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:weirdml_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:weirdml_v3_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:hash:wino_grande_external.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_snapshot:ex_post_policy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/analysis_20261101T013012Z_d50423d05d5c/manifest.json"
+    },
+    {
+      "check": "eda:complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:analysis_summary.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:dataset_quality_by_asset.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:feature_target_tests.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/01_target_coverage.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/02_target_distributions.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/03_rolling_return_volatility.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/04_feature_target_correlation_extremes.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/05_cross_asset_correlation.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/06_us_india_lead_lag.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/07_regime_distribution.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/08_feature_family_missingness.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:figures/09_trend_shifts_and_events.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:missingness_by_feature_family.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:monthly_seasonality.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:return_statistical_tests.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:trend_shift_candidates.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:us_india_lead_lag.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:hash:weekday_seasonality.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eda:dataset_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "parameter_analysis:manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/ai_capability_analysis_20261101T013123Z_97f653e82ec8/manifest.json"
+    },
+    {
+      "check": "parameter_analysis:complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "parameter_analysis:hash:capability_effect_summary.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "parameter_analysis:hash:disclosed_parameter_event_returns.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "parameter_analysis:hash:parameter_nifty_it_correlation_heatmap.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "parameter_analysis:hash:parameter_return_spearman.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "parameter_analysis:hash:plots/parameter_nifty_it_correlation_heatmap.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "parameter_analysis:hash:plots/parameter_scale_event_scatter.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "parameter_analysis:dataset_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec/manifest.json"
+    },
+    {
+      "check": "epoch_analysis:complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:benchmark_mapping_coverage.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:capability_market_statistical_tests.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:eci_nifty_it_asset_correlations.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:epoch_capability_summary.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:epoch_event_capability_returns.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:mapped_epoch_benchmark_scores_long.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:mapped_primary_benchmark_scores_long.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:plots/01_eci_nifty_it_heatmap.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:plots/02_eci_event_response_scatter.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:hash:plots/03_benchmark_mapping_coverage.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:dataset_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "epoch_analysis:not_tradable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/manifest.json"
+    },
+    {
+      "check": "screening:complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:annual_performance.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:configurations.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:forecast_hac_comparisons.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:selected_model_inference.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:hash:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/manifest.json"
+    },
+    {
+      "check": "confirmation:complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:annual_performance.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:configurations.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:forecast_hac_comparisons.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:selected_model_inference.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:hash:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/manifest.json"
+    },
+    {
+      "check": "final_test:complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:annual_performance.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:configurations.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:forecast_hac_comparisons.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:selected_model_inference.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:hash:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:stage",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "screening:dataset_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:stage",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:dataset_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:stage",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:dataset_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "confirmation:screening_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "freeze:exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/freezes/cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16.json"
+    },
+    {
+      "check": "freeze:confirmation_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "freeze:single_model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:freeze_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:frozen_model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:start_2025",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:end_2025",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final_test:has_predictions",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

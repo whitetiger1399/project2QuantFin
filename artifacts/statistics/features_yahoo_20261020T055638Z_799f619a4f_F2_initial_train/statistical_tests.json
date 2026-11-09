@@ -1,0 +1,130 @@
+{
+  "created_at_utc": "2026-10-20T06:01:03.339692+00:00",
+  "development_split": "initial_train",
+  "feature_dataset_id": "features_yahoo_20261020T055638Z_799f619a4f",
+  "feature_set": "F2",
+  "feature_tests_file": "feature_target_tests.csv",
+  "interpretation": [
+    "Tests are diagnostics and do not establish a tradable causal relationship.",
+    "Feature/target p-values use Benjamini-Hochberg false-discovery-rate correction.",
+    "The variance-ratio z-test uses a homoskedastic approximation and should be treated as descriptive.",
+    "Financial returns are heteroskedastic; HAC and block-bootstrap inference is preferred for strategy comparisons.",
+    "No test result authorizes inspecting or redesigning against the final holdout period."
+  ],
+  "market_dataset_id": "market_yahoo_20261020T055638Z",
+  "schema_version": 1,
+  "tests": [
+    {
+      "null": "mean daily log return equals zero under IID assumptions",
+      "p_value": 0.29205441017514017,
+      "statistic": 1.0538711690072373,
+      "status": "ok",
+      "test": "daily_mean_t_test_iid"
+    },
+    {
+      "hac_standard_error": 0.0002445119873002835,
+      "max_lags": 5,
+      "mean": 0.00029530808189750255,
+      "null": "mean daily log return equals zero with HAC uncertainty",
+      "p_value": 0.2271454388731471,
+      "status": "ok",
+      "t_statistic": 1.207744802854335,
+      "test": "daily_mean_hac"
+    },
+    {
+      "excess_kurtosis": 13.437639372282938,
+      "null": "daily log returns are Gaussian",
+      "p_value": 0.0,
+      "skewness": -0.08764495414540346,
+      "statistic": 16954.87058300182,
+      "status": "ok",
+      "test": "jarque_bera_normality"
+    },
+    {
+      "null": "log price has a unit root",
+      "p_value": 0.9541583523568293,
+      "statistic": -0.050420517018624614,
+      "status": "ok",
+      "test": "adf_log_price"
+    },
+    {
+      "null": "log return has a unit root",
+      "p_value": 6.866059147776046e-18,
+      "statistic": -10.176608156445651,
+      "status": "ok",
+      "test": "adf_log_return"
+    },
+    {
+      "null": "log price is trend stationary",
+      "p_value": 0.01,
+      "statistic": 1.3830762604915823,
+      "status": "ok",
+      "test": "kpss_log_price"
+    },
+    {
+      "lags": [
+        5,
+        10,
+        20
+      ],
+      "null": "no return autocorrelation through each lag",
+      "p_values": [
+        3.65722299071887e-08,
+        3.7362762291740566e-07,
+        5.545340593231031e-12
+      ],
+      "statistics": [
+        43.02206302469292,
+        49.20456717456588,
+        96.38933861127198
+      ],
+      "status": "ok",
+      "test": "ljung_box_returns"
+    },
+    {
+      "lags": [
+        5,
+        10,
+        20
+      ],
+      "null": "no volatility clustering through each lag",
+      "p_values": [
+        3.091455171797334e-208,
+        0.0,
+        0.0
+      ],
+      "statistics": [
+        973.6185256992633,
+        1754.2604156935163,
+        2885.9729093208252
+      ],
+      "status": "ok",
+      "test": "ljung_box_squared_returns"
+    },
+    {
+      "lm_p_value": 7.756480290702103e-137,
+      "lm_statistic": 666.9558249543147,
+      "null": "no ARCH effects through lag 10",
+      "status": "ok",
+      "test": "arch_lm"
+    },
+    {
+      "horizon": 5,
+      "null": "random-walk variance ratio equals one",
+      "p_value_two_sided_approximate": 6.530772807834634e-06,
+      "status": "ok",
+      "test": "variance_ratio_5",
+      "variance_ratio": 0.7924091674112069,
+      "z_statistic_homoskedastic": -4.5084344877682785
+    },
+    {
+      "horizon": 20,
+      "null": "random-walk variance ratio equals one",
+      "p_value_two_sided_approximate": 0.0031358164661765965,
+      "status": "ok",
+      "test": "variance_ratio_20",
+      "variance_ratio": 0.6914428862886216,
+      "z_statistic_homoskedastic": -2.9541007170173352
+    }
+  ]
+}

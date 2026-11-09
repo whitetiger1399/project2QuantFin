@@ -1,0 +1,28 @@
+
+Verifying dataset:   0%|          | 0/4 [00:00<?, ?file/s]
+Verifying dataset: 100%|██████████| 4/4 [00:00<00:00, 83.86file/s]
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted
+
+Verifying epoch_snapshot:   0%|          | 0/93 [00:00<?, ?file/s]
+Verifying epoch_snapshot: 100%|██████████| 93/93 [00:00<00:00, 2845.01file/s]
+
+Verifying eda:   0%|          | 0/18 [00:00<?, ?file/s]
+Verifying eda: 100%|██████████| 18/18 [00:00<00:00, 3130.34file/s]
+
+Verifying parameter_analysis:   0%|          | 0/6 [00:00<?, ?file/s]
+Verifying parameter_analysis: 100%|██████████| 6/6 [00:00<00:00, 2492.41file/s]
+
+Verifying epoch_analysis:   0%|          | 0/10 [00:00<?, ?file/s]
+Verifying epoch_analysis: 100%|██████████| 10/10 [00:00<00:00, 2619.80file/s]
+
+Verifying screening:   0%|          | 0/10 [00:00<?, ?file/s]
+Verifying screening: 100%|██████████| 10/10 [00:00<00:00, 1864.22file/s]
+
+Verifying confirmation:   0%|          | 0/10 [00:00<?, ?file/s]
+Verifying confirmation: 100%|██████████| 10/10 [00:00<00:00, 2236.25file/s]
+
+Verifying final_test:   0%|          | 0/10 [00:00<?, ?file/s]
+Verifying final_test: 100%|██████████| 10/10 [00:00<00:00, 2997.64file/s]

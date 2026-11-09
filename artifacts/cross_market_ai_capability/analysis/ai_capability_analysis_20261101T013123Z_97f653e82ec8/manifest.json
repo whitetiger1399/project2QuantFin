@@ -1,0 +1,44 @@
+{
+  "action": "analyze_ai_capability_effects",
+  "analysis_id": "ai_capability_analysis_20261101T013123Z_97f653e82ec8",
+  "content_hash": "97f653e82ec8",
+  "created_at_utc": "2026-11-01T01:31:24.718443+00:00",
+  "dataset_id": "ai_capability_panel_20261101T012801Z_ff277b55597d727a",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/ai_capability_analysis_20261101T013123Z_97f653e82ec8",
+  "files": {
+    "capability_effect_summary.json": "30603db1bc11c4fc8e7d76fd5911d209baea911c603376986be5140e42bcfea8",
+    "disclosed_parameter_event_returns.csv": "364760212bcc05ae76f0bcda7eae03ecd74cb5ad942f27cb82d87044fb5dd204",
+    "parameter_nifty_it_correlation_heatmap.csv": "3cf1beef7d7407b97e6389de39fa640b8bac7cfe7bff07abff7622608d840f48",
+    "parameter_return_spearman.csv": "93bb058dedf886a3c08671daccba104fe135255cbc8f9b90b75e4cc8f4e09c82",
+    "plots/parameter_nifty_it_correlation_heatmap.png": "61cf2cc727cfc48a4388d3d03d165ee6d643352a0d238c63ae09915922e2e5f7",
+    "plots/parameter_scale_event_scatter.png": "ee564d073381f2ab35cc51bdd4986842b12be6730f17e516d8fc440455bcfe97"
+  },
+  "schema_version": 1,
+  "status": "complete",
+  "summary": {
+    "direct_nifty_it": {
+      "n": 8.0,
+      "pvalue": 0.4712605287015583,
+      "rho": 0.29940656547831473
+    },
+    "disclosed_parameter_events": 8,
+    "disclosure_fraction": 0.15384615384615385,
+    "guardrails": [
+      "Parameter count is not a universal capability metric.",
+      "The disclosed subset is small and non-random; correlations are exploratory.",
+      "MoE total and active parameters are not interchangeable.",
+      "Release-date and model-scale trends may be confounded with calendar time and macro conditions."
+    ],
+    "post_us_nifty_it": {
+      "n": 8.0,
+      "pvalue": 0.25719208545877226,
+      "rho": 0.45509797952703834
+    },
+    "post_us_services": {
+      "n": 8.0,
+      "pvalue": 0.33251710793382766,
+      "rho": -0.3952166664313755
+    },
+    "total_frontier_events": 52
+  }
+}

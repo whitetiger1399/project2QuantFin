@@ -1,0 +1,85 @@
+[
+  {
+    "config_id": "cm_extra_trees_932787f19d19",
+    "experiment": "selected_family_reference",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_bc9af1c70f5f",
+    "exclude_current_vintage_fallback": true,
+    "experiment": "strict_vintage_sensitivity",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_ff2b07de856e",
+    "experiment": "selected_family_information_ablation",
+    "family": "extra_trees",
+    "feature_set": "F0_own",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_cc3daa00b74b",
+    "experiment": "selected_family_information_ablation",
+    "family": "extra_trees",
+    "feature_set": "F2_us_services",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_06fd4f5aebbd",
+    "excluded_feature_families": [
+      "us_it_services",
+      "us_it_services_aggregate"
+    ],
+    "experiment": "selected_family_minus_us_services",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_20e535df7f30",
+    "excluded_feature_families": [
+      "ai_event",
+      "ai_interaction",
+      "ai_capability",
+      "ai_capability_interaction"
+    ],
+    "experiment": "selected_family_minus_ai",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  }
+]

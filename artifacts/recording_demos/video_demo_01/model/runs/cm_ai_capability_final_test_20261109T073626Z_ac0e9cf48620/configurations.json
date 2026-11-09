@@ -1,0 +1,109 @@
+[
+  {
+    "config_id": "cm_autoregression_bd9f8ea82c3c",
+    "experiment": "baseline",
+    "family": "autoregression",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.0
+    }
+  },
+  {
+    "config_id": "cm_zero_08cccf87365f",
+    "experiment": "baseline",
+    "family": "zero",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_asset_mean_947f6b0b0f9a",
+    "experiment": "baseline",
+    "family": "asset_mean",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_ridge_d71700639b0a",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_77d1acdb9975",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F1_nifty_it_peers",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_6baddf8e57da",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F2_us_services",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_590cbfbeb988",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F3_nifty50",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_d3df3c9ffe8f",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F4_sp500_aggregate",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_27708252ed81",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F5_sp500_constituents",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_45dce9671320",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F6_ai_capability",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_7994879be103",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_cd9235695e6b",
+    "experiment": "model_family",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 6,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  }
+]

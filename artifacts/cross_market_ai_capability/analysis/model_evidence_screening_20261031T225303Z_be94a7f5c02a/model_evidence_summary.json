@@ -1,0 +1,86 @@
+{
+  "forecast_inference": {
+    "block_length_sessions": 20,
+    "calibration_slope_95_ci": [
+      -0.18933201994061558,
+      1.8274988429987167
+    ],
+    "directional_accuracy": 0.5169354838709678,
+    "directional_accuracy_95_ci": [
+      0.4911239919354839,
+      0.54375
+    ],
+    "directionally_correct": 2564,
+    "incremental_accuracy_vs_majority_95_ci": [
+      -0.05142641129032256,
+      0.011900201612903174
+    ],
+    "majority_sign": "down",
+    "majority_sign_accuracy": 0.5368951612903226,
+    "method": "circular_date_block_bootstrap",
+    "observations": 4960,
+    "repetitions": 1000,
+    "stock_day_observations": 4960,
+    "unique_dates": 496
+  },
+  "long_exposure_days": 26,
+  "mean_turnover": 0.3830645160907257,
+  "portfolio_performance": [
+    {
+      "annual_return": 0.12258650859440245,
+      "annual_volatility": 0.0988134840574579,
+      "cumulative_return": 0.2555827979852934,
+      "maximum_drawdown": -0.05075995268989897,
+      "observations": 496,
+      "portfolio": "selected_strategy_net",
+      "positive_day_fraction": 0.11895161290322581,
+      "sharpe": 1.219670852712149
+    },
+    {
+      "annual_return": 0.20663232844408053,
+      "annual_volatility": 0.10052897217258988,
+      "cumulative_return": 0.44730556694496504,
+      "maximum_drawdown": -0.040097554647161804,
+      "observations": 496,
+      "portfolio": "selected_strategy_gross",
+      "positive_day_fraction": 0.125,
+      "sharpe": 1.9190400113686459
+    },
+    {
+      "annual_return": 0.10426431487327936,
+      "annual_volatility": 0.21868030315178763,
+      "cumulative_return": 0.21556637370912046,
+      "maximum_drawdown": -0.31738913714093453,
+      "observations": 496,
+      "portfolio": "nifty_it_buy_hold",
+      "positive_day_fraction": 0.5141129032258065,
+      "sharpe": 0.5630044704233556
+    },
+    {
+      "annual_return": 0.15525052614999435,
+      "annual_volatility": 0.15156241789516958,
+      "cumulative_return": 0.32850327735885543,
+      "maximum_drawdown": -0.16107791440871233,
+      "observations": 496,
+      "portfolio": "nifty50_buy_hold",
+      "positive_day_fraction": 0.5383064516129032,
+      "sharpe": 1.028190171493888
+    },
+    {
+      "annual_return": -0.29266683340912025,
+      "annual_volatility": 0.20331067824933338,
+      "cumulative_return": -0.4941498472273914,
+      "maximum_drawdown": -0.5258309745140528,
+      "observations": 496,
+      "portfolio": "fixed_cohort_equal_weight",
+      "positive_day_fraction": 0.4838709677419355,
+      "sharpe": -1.6000539105087415
+    }
+  ],
+  "selected_config_id": "cm_extra_trees_cc3daa00b74b",
+  "selected_family": "extra_trees",
+  "selected_feature_set": "F2_us_services",
+  "short_exposure_days": 75,
+  "stage": "screening",
+  "trade_days": 101
+}

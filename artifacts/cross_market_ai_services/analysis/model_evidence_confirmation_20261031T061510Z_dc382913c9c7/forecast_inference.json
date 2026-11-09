@@ -1,0 +1,10 @@
+{
+  "calibration_intercept": 0.0012247447151451042,
+  "calibration_slope": 1.932299367848332,
+  "calibration_slope_hac_pvalue": 3.2430422410325664e-05,
+  "calibration_slope_hac_t": 4.15569217163642,
+  "directional_accuracy": 0.529735234215886,
+  "directionally_correct": 2601,
+  "observations": 4910,
+  "one_sided_binomial_pvalue_vs_50_percent": 1.6331806446990076e-05
+}

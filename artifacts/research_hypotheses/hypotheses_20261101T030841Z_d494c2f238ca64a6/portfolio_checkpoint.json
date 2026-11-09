@@ -1,0 +1,162 @@
+{
+  "content_hash": "d494c2f238ca64a6",
+  "payload": {
+    "performance": [
+      {
+        "annualized_return": -0.040860706,
+        "basis": "net",
+        "cumulative_return": -0.040384227,
+        "maximum_drawdown": -0.1477083069,
+        "n_dates": 249,
+        "period": "all",
+        "run_id": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+        "sharpe_ci_high": 1.6207006744,
+        "sharpe_ci_low": -1.7895867248,
+        "sharpe_zero_cash": -0.2599552093
+      },
+      {
+        "annualized_return": -0.040860706,
+        "basis": "net",
+        "cumulative_return": -0.040384227,
+        "maximum_drawdown": -0.1477083069,
+        "n_dates": 249,
+        "period": "2025",
+        "run_id": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+        "sharpe_ci_high": null,
+        "sharpe_ci_low": null,
+        "sharpe_zero_cash": -0.2599552093
+      },
+      {
+        "annualized_return": 0.2099095761,
+        "basis": "net",
+        "cumulative_return": 0.1501411638,
+        "maximum_drawdown": -0.0777763862,
+        "n_dates": 185,
+        "period": "all",
+        "run_id": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82",
+        "sharpe_ci_high": 3.9100375627,
+        "sharpe_ci_low": -1.3602382464,
+        "sharpe_zero_cash": 1.4557179354
+      },
+      {
+        "annualized_return": 0.2099095761,
+        "basis": "net",
+        "cumulative_return": 0.1501411638,
+        "maximum_drawdown": -0.0777763862,
+        "n_dates": 185,
+        "period": "2026",
+        "run_id": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82",
+        "sharpe_ci_high": null,
+        "sharpe_ci_low": null,
+        "sharpe_zero_cash": 1.4557179354
+      }
+    ],
+    "tests": [
+      {
+        "ci_high": 0.0007086447037703852,
+        "ci_low": -0.0009740564119634585,
+        "coefficient": -0.00013270585409653666,
+        "covariance": "HAC",
+        "expected_sign": 1,
+        "hypothesis": "H5_positive_net_return",
+        "n_dates": 249,
+        "period": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090:all",
+        "pvalue": 0.757211793346283,
+        "status": "estimated",
+        "term": "const"
+      },
+      {
+        "ci_high": 0.0009134097954077052,
+        "ci_low": -0.0021146927220237876,
+        "coefficient": -0.0006006414633080411,
+        "covariance": "HAC",
+        "expected_sign": 1,
+        "hypothesis": "H5_beats_Nifty50",
+        "n_dates": 249,
+        "period": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090:all",
+        "pvalue": 0.43684015884357097,
+        "status": "estimated",
+        "term": "const"
+      },
+      {
+        "ci_high": 0.0007086447037703852,
+        "ci_low": -0.0009740564119634585,
+        "coefficient": -0.00013270585409653666,
+        "covariance": "HAC",
+        "expected_sign": 1,
+        "hypothesis": "H5_positive_net_return",
+        "n_dates": 249,
+        "period": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090:2025",
+        "pvalue": 0.757211793346283,
+        "status": "estimated",
+        "term": "const"
+      },
+      {
+        "ci_high": 0.0009134097954077052,
+        "ci_low": -0.0021146927220237876,
+        "coefficient": -0.0006006414633080411,
+        "covariance": "HAC",
+        "expected_sign": 1,
+        "hypothesis": "H5_beats_Nifty50",
+        "n_dates": 249,
+        "period": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090:2025",
+        "pvalue": 0.43684015884357097,
+        "status": "estimated",
+        "term": "const"
+      },
+      {
+        "ci_high": 0.002124272050806181,
+        "ci_low": -0.0005370418931510564,
+        "coefficient": 0.0007936150788275622,
+        "covariance": "HAC",
+        "expected_sign": 1,
+        "hypothesis": "H5_positive_net_return",
+        "n_dates": 185,
+        "period": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82:all",
+        "pvalue": 0.24242816605184392,
+        "status": "estimated",
+        "term": "const"
+      },
+      {
+        "ci_high": 0.00310033338485354,
+        "ci_low": -0.00014918311379708677,
+        "coefficient": 0.0014755751355282265,
+        "covariance": "HAC",
+        "expected_sign": 1,
+        "hypothesis": "H5_beats_Nifty50",
+        "n_dates": 185,
+        "period": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82:all",
+        "pvalue": 0.07507551364357651,
+        "status": "estimated",
+        "term": "const"
+      },
+      {
+        "ci_high": 0.002124272050806181,
+        "ci_low": -0.0005370418931510564,
+        "coefficient": 0.0007936150788275622,
+        "covariance": "HAC",
+        "expected_sign": 1,
+        "hypothesis": "H5_positive_net_return",
+        "n_dates": 185,
+        "period": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82:2026",
+        "pvalue": 0.24242816605184392,
+        "status": "estimated",
+        "term": "const"
+      },
+      {
+        "ci_high": 0.00310033338485354,
+        "ci_low": -0.00014918311379708677,
+        "coefficient": 0.0014755751355282265,
+        "covariance": "HAC",
+        "expected_sign": 1,
+        "hypothesis": "H5_beats_Nifty50",
+        "n_dates": 185,
+        "period": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82:2026",
+        "pvalue": 0.07507551364357651,
+        "status": "estimated",
+        "term": "const"
+      }
+    ]
+  },
+  "payload_hash": "d8589acfca4bf22b43a846d413cbd7743fbb0e317c7ab8e028f718510def3bad"
+}

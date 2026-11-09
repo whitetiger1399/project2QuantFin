@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-10-19T06:59:51.334930+00:00",
+  "feature_count": 99,
+  "feature_dataset_id": "features_yahoo_20261019T010846Z_799f619a4f",
+  "feature_set": "F2",
+  "plots": [
+    "plots/01_feature_missingness.png",
+    "plots/02_feature_correlation_heatmap.png",
+    "plots/03_feature_target_correlations.png",
+    "plots/04_feature_distributions.png",
+    "plots/05_feature_temporal_stability.png"
+  ],
+  "rows": 2265,
+  "schema_version": 1,
+  "scope_warning": "EDA is restricted to the declared development split to prevent final-test-guided feature design.",
+  "split": "initial_train",
+  "tables": [
+    "tables/annual_feature_means.csv",
+    "tables/feature_correlations.csv",
+    "tables/feature_missingness.csv",
+    "tables/feature_target_correlations.csv",
+    "tables/top_correlated_feature_pairs.csv"
+  ]
+}

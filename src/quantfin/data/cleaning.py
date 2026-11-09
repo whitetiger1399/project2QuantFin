@@ -15,6 +15,7 @@ from quantfin.io import (
     sha256_file,
     utc_now,
 )
+from quantfin.progress import progress
 
 
 PRICE_COLUMNS = ["open", "high", "low", "close", "adjusted_close"]
@@ -112,7 +113,10 @@ def audit_yahoo_snapshot(
     frame, manifest = _load_and_normalize(snapshot)
     traded = protocol["market_data"]["traded_asset"]
     symbols = [traded, *protocol["market_data"].get("predictor_assets", [])]
-    audits = [_audit_symbol(frame.loc[frame["symbol"].eq(symbol)].copy(), symbol) for symbol in symbols]
+    audits = [
+        _audit_symbol(frame.loc[frame["symbol"].eq(symbol)].copy(), symbol)
+        for symbol in progress(symbols, description="Data audit", total=len(symbols), unit="asset")
+    ]
 
     traded_sessions = set(frame.loc[frame["symbol"].eq(traded), "session"])
     calendar_gaps = {}
@@ -299,7 +303,7 @@ def clean_yahoo_snapshot(
         raise ValueError(f"Snapshot contains unconfigured symbols: {unknown}")
 
     cleaned_parts: list[pd.DataFrame] = []
-    for symbol in symbols:
+    for symbol in progress(symbols, description="Data cleaning", total=len(symbols), unit="asset"):
         part = frame.loc[frame["symbol"].eq(symbol)].copy().sort_values("session")
         if part.empty:
             raise ValueError(f"Configured symbol is absent: {symbol}")

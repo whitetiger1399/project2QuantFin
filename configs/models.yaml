@@ -1,0 +1,42 @@
+research:
+  feature_set: F2
+  refit_frequency: month_start
+  forecast_hurdle: 0.001
+  one_way_cost_bps: 5.0
+  annualization_sessions: 252
+  primary_selection_metric: median_annual_net_sharpe
+  tie_sharpe_tolerance: 0.05
+  random_seed: 17
+  training_window_observations: null
+
+# One canonical predictive model plus two mandatory evaluation baselines.
+profiles:
+  quick:
+    families: [historical_mean, autoregression, random_forest]
+  standard:
+    families: [historical_mean, autoregression, random_forest]
+  deep:
+    families: [historical_mean, autoregression, random_forest]
+
+grids:
+  random_forest:
+    max_depth: [3]
+    min_samples_leaf: [50]
+    n_estimators: [300]
+    max_features: [0.5]
+
+compute:
+  n_jobs: 2
+  numerical_threads_per_worker: 1
+  checkpoint_every_refit: true
+
+selection:
+  top_families: 1
+  require_distinct_families: false
+  minimum_prediction_coverage: 0.98
+
+uncertainty:
+  bootstrap_repetitions: 1000
+  block_length_sessions: 20
+  confidence_level: 0.95
+  random_seed: 29

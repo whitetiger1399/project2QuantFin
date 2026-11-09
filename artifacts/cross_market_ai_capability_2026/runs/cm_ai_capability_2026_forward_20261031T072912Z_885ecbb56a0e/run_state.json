@@ -1,0 +1,20 @@
+{
+  "action": "run_frozen_2026_extension",
+  "completed_at_utc": "2026-10-31T07:30:04.390556+00:00",
+  "content_hash": "885ecbb56a0e",
+  "dataset_id": "ai_capability_2026_panel_20261031T072834Z_950e4bb969ac963e",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261031T072912Z_885ecbb56a0e",
+  "evaluation_end": "2026-09-30",
+  "evaluation_start": "2026-01-01",
+  "hyperparameter_tuning_performed": false,
+  "model_reselection_performed": false,
+  "refit_count_selected_model": 1,
+  "run_id": "cm_ai_capability_2026_forward_20261031T072912Z_885ecbb56a0e",
+  "selected_config_id": "cm_extra_trees_05a83581b70b",
+  "selected_family": "extra_trees",
+  "selected_feature_set": "F7_full_context",
+  "source_confirmation_run_id": "cm_ai_capability_confirmation_20261031T065831Z_c343cf83e423",
+  "source_freeze_id": "cm_ai_capability_freeze_20261031T071336Z_cb837a5393f8",
+  "stage": "forward_extension_2026",
+  "status": "complete"
+}

@@ -18,6 +18,7 @@ from quantfin.io import (
     sha256_file,
     utc_now,
 )
+from quantfin.progress import progress
 
 
 EXPECTED_COLUMNS = [
@@ -99,7 +100,7 @@ def fetch_yahoo_snapshot(protocol: dict[str, Any], raw_root: Path) -> Path:
 
     files: list[dict[str, Any]] = []
     try:
-        for symbol in symbols:
+        for symbol in progress(symbols, description="Yahoo download", total=len(symbols), unit="asset"):
             ticker = yf.Ticker(symbol)
             history = ticker.history(
                 start=market["start"],

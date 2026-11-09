@@ -1,0 +1,15 @@
+{
+  "alpha_hac_pvalue": 0.14039650903948445,
+  "alpha_hac_t_statistic": 1.4743160749266722,
+  "annualized_alpha": 0.10451596959192294,
+  "block_length_sessions": 20,
+  "daily_alpha": 0.0004147459110790593,
+  "method": "circular_block_bootstrap",
+  "net_sharpe_95_ci": [
+    -0.07624613184022701,
+    2.3233925055079934
+  ],
+  "nifty50_beta": 0.19667056213304626,
+  "regression_observations": 491,
+  "repetitions": 1000
+}

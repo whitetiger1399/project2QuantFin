@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "release_id": "project2_team16_v2_2026-11-01",
+  "revision": 4,
+  "status": "verified",
+  "purpose": "Traceable Version 2 report built from the preserved canonical evidence chain.",
+  "ids": {
+    "DATASET_ID": "ai_capability_panel_20261101T012801Z_ff277b55597d727a",
+    "FORWARD_DATASET_ID": "ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8",
+    "EPOCH_SNAPSHOT_ID": "epoch_benchmarks_20261031T063140Z_694be8985284cf56",
+    "SCREENING_RUN_ID": "cm_ai_capability_screening_20261101T013231Z_038064c84d36",
+    "CONFIRMATION_RUN_ID": "cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd",
+    "FREEZE_ID": "cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16",
+    "FINAL_RUN_ID": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+    "FORWARD_RUN_ID": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82",
+    "SELECTED_CONFIG_ID": "cm_extra_trees_cd9235695e6b",
+    "EDA_RUN_ID": "analysis_20261101T013012Z_d50423d05d5c",
+    "FORWARD_EDA_ID": "analysis_20261101T013030Z_3ebb036affd8",
+    "EVENT_ANALYSIS_ID": "ai_services_analysis_20261101T013058Z_e88408b9a16d",
+    "CAPABILITY_ANALYSIS_ID": "ai_capability_analysis_20261101T013123Z_97f653e82ec8",
+    "EPOCH_ANALYSIS_ID": "epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec",
+    "MODEL_EVIDENCE_ID": "model_evidence_final_test_20261101T030544Z_a4d9077ee46e",
+    "FORWARD_MODEL_EVIDENCE_ID": "model_evidence_forward_extension_2026_20261101T030629Z_2f2c1a45c5fc",
+    "LADDER_ANALYSIS_ID": "information_ladder_final_test_20261101T030705Z_4fcf7b07672b",
+    "STRATEGY_ANALYSIS_ID": "ai_strategy_comparison_20261101T030717Z_591c864e3aba",
+    "FORWARD_STRATEGY_ANALYSIS_ID": "ai_strategy_comparison_20261101T030726Z_9660a3a84bc3",
+    "HYPOTHESIS_ANALYSIS_ID": "hypotheses_20261101T030841Z_d494c2f238ca64a6",
+    "PAIRED_STRATEGY_ANALYSIS_ID": "paired_strategy_inference_20261101T062011Z_0215690974b9",
+    "STRICT_VINTAGE_ANALYSIS_ID": "strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8"
+  },
+  "outputs": {
+    "docx": "reports/Project2_Team16_Report_V2.docx",
+    "pdf": "reports/Project2_Team16_Report_V2.pdf",
+    "figure_pack": "reports/publication_figure_pack_v2_2026-11-01",
+    "generated_figures": "reports/figures_ai_capability_v2",
+    "publication_evidence": "reports/releases/project2_team16_v2_2026-11-01/report_publication_evidence.json",
+    "toc_pages": "reports/releases/project2_team16_v2_2026-11-01/toc_pages.json",
+    "verification": "artifacts/report_reviews/v2_2026-11-01_162650_SGT/release_verification.json",
+    "implementation_log": "reports/releases/project2_team16_v2_2026-11-01/implementation_log.md"
+  },
+  "claims": {
+    "selected_family": {
+      "kind": "csv_scalar",
+      "artifact": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/leaderboard.csv",
+      "selector": {
+        "config_id": "cm_extra_trees_cd9235695e6b"
+      },
+      "column": "family",
+      "expected": "extra_trees"
+    },
+    "selected_max_depth": {
+      "kind": "configuration_parameter",
+      "artifact": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/leaderboard.csv",
+      "selector": {
+        "config_id": "cm_extra_trees_cd9235695e6b"
+      },
+      "column": "configuration",
+      "parameter": "max_depth",
+      "expected": 6,
+      "tolerance": 0
+    },
+    "selected_n_estimators": {
+      "kind": "configuration_parameter",
+      "artifact": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/leaderboard.csv",
+      "selector": {
+        "config_id": "cm_extra_trees_cd9235695e6b"
+      },
+      "column": "configuration",
+      "parameter": "n_estimators",
+      "expected": 250,
+      "tolerance": 0
+    },
+    "selected_min_samples_leaf": {
+      "kind": "configuration_parameter",
+      "artifact": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/leaderboard.csv",
+      "selector": {
+        "config_id": "cm_extra_trees_cd9235695e6b"
+      },
+      "column": "configuration",
+      "parameter": "min_samples_leaf",
+      "expected": 40,
+      "tolerance": 0
+    },
+    "selected_max_features": {
+      "kind": "configuration_parameter",
+      "artifact": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/leaderboard.csv",
+      "selector": {
+        "config_id": "cm_extra_trees_cd9235695e6b"
+      },
+      "column": "configuration",
+      "parameter": "max_features",
+      "expected": 0.5,
+      "tolerance": 1e-12
+    },
+    "return_2025_net": {
+      "kind": "csv_scalar",
+      "artifact": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/annual_performance.csv",
+      "selector": {
+        "year": 2025
+      },
+      "column": "strategy_net_return",
+      "units": "decimal cumulative return",
+      "expected": -0.040384227,
+      "tolerance": 5e-10
+    },
+    "return_2026_jan_sep_net": {
+      "kind": "csv_scalar",
+      "artifact": "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/annual_performance.csv",
+      "selector": {
+        "year": 2026
+      },
+      "column": "strategy_net_return",
+      "units": "decimal cumulative return through 30 September",
+      "expected": 0.1501411638,
+      "tolerance": 5e-10
+    },
+    "return_combined_net": {
+      "kind": "compound",
+      "inputs": [
+        "return_2025_net",
+        "return_2026_jan_sep_net"
+      ],
+      "formula": "(1 + r_2025) * (1 + r_2026) - 1",
+      "units": "decimal cumulative return",
+      "expected": 0.103693602,
+      "tolerance": 5e-10
+    },
+    "cost_break_even_2025_round_trip_bps": {
+      "kind": "zero_crossing_linear_interpolation",
+      "artifact": "reports/publication_figure_pack_v2_2026-11-01/10_fixed_holdings_cost_sensitivity.csv",
+      "selector": {
+        "period": "2025"
+      },
+      "x_column": "round_trip_bps",
+      "y_column": "cumulative_return",
+      "units": "round-trip basis points",
+      "expected": 8.245989808,
+      "tolerance": 0.0001
+    },
+    "cost_break_even_2026_round_trip_bps": {
+      "kind": "zero_crossing_linear_interpolation",
+      "artifact": "reports/publication_figure_pack_v2_2026-11-01/10_fixed_holdings_cost_sensitivity.csv",
+      "selector": {
+        "period": "2026 Jan\u2013Sep"
+      },
+      "x_column": "round_trip_bps",
+      "y_column": "cumulative_return",
+      "units": "round-trip basis points",
+      "expected": 36.215488045,
+      "tolerance": 0.0001
+    }
+  },
+  "blocked_author_inputs": [
+    "Truthful individual contribution allocation",
+    "Final video URL and accessibility verification",
+    "Confirmation of required submission filename"
+  ]
+}

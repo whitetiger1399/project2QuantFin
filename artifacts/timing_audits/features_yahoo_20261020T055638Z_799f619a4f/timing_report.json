@@ -1,0 +1,12 @@
+{
+  "blocking_issues": [],
+  "created_at_utc": "2026-10-20T06:00:21.045886+00:00",
+  "feature_dataset_id": "features_yahoo_20261020T055638Z_799f619a4f",
+  "last_signal_with_mature_label": "2025-12-29",
+  "last_two_rows_without_labels_expected": 2,
+  "mature_label_rows": 5281,
+  "rows": 5283,
+  "schema_version": 1,
+  "status": "pass",
+  "training_eligibility_rule": "At a fit cutoff, require label_available_session <= cutoff in addition to the chronological split."
+}

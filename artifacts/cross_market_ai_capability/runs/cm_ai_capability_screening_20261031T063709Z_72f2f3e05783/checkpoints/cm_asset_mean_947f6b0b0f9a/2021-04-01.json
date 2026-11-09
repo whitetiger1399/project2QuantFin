@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-06-30",
+  "block_start": "2021-04-01",
+  "config_id": "cm_asset_mean_947f6b0b0f9a",
+  "family": "asset_mean",
+  "feature_set": "F0_own",
+  "input_features": 65,
+  "parameter_to_feature_ratio": 0.16923076923076924,
+  "parameter_to_observation_ratio": 0.0009499136442141623,
+  "runtime_seconds": 0.18343258400000195,
+  "test_rows": 610,
+  "trainable_parameters_proxy": 11,
+  "training_dates": 1158,
+  "training_end": "2021-03-30",
+  "training_rows": 11580,
+  "training_start": "2016-07-21"
+}

@@ -1,0 +1,637 @@
+[
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/01_architecture.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/01_architecture.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/01_architecture.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/02_india_paths.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/02_india_paths.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/02_india_paths.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/03_india_us_paths.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/03_india_us_paths.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/03_india_us_paths.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/04_peer_correlations.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/04_peer_correlations.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/04_peer_correlations.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/04_peer_correlations.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/05_cross_market_correlations.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/05_cross_market_correlations.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/05_cross_market_correlations.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/05_cross_market_correlations.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/06a_frontier_timeline.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/06a_frontier_timeline.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/06a_frontier_timeline.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/06b_event_responses.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/06b_event_responses.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/06b_event_responses.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/06b_event_responses.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/07_cost_accounting.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/07_transaction_cost_drag.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/07_transaction_cost_drag.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/07_transaction_cost_drag.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/08_benchmark_daily_returns.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/08_combined_benchmarks.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/08_combined_benchmarks.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/08_combined_benchmarks.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/09_monthly_position_counts.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/09_signed_positions.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/09_signed_positions.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/09_signed_positions.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/10_cost_sensitivity.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/10_cost_sensitivity.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/10_cost_sensitivity.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/10_fixed_holdings_cost_sensitivity.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/11_model_family_evidence.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/11_model_family_evidence.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/11_model_family_evidence.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/11b_forecast_calibration.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/11b_forecast_calibration.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/11b_forecast_calibration.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/11c_strict_vintage.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/11c_strict_vintage.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/12_information_ladder.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/12_information_ladder.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/12_information_ladder.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/13_transmission_inference.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/13_transmission_inference.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/13_transmission_inference.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/14_event_coverage.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/14_event_coverage.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/14_event_coverage.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/15_annual_model_record.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/15_confirmation_diagnostic.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/15_confirmation_diagnostic.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/15_confirmation_diagnostic.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/16_monthly_regimes.csv",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/16_regime_distributions.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/16_regime_distributions.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/16_regime_distributions.svg",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/17_group_importance_existing.png",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/figure_catalog.json",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/figure_review.pdf",
+    "passed": true
+  },
+  {
+    "group": "files",
+    "path": "reports/publication_figure_pack_v2_2026-11-01/index.html",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec/epoch_event_capability_returns.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/analysis/model_evidence_final_test_20261101T030544Z_a4d9077ee46e/prediction_calibration_deciles.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/excluded_features.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/manifest.json",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_metrics.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_paired_inference.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_sensitivity.pdf",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_sensitivity.png",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/leaderboard.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/strategy_ledgers.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/feature_importance_by_refit.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/leaderboard.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/manifest.json",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/strategy_ledgers.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/leaderboard.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/strategy_ledgers.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability_2026/analysis/model_evidence_forward_extension_2026_20261101T030629Z_2f2c1a45c5fc/prediction_calibration_deciles.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/feature_importance_by_refit.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/leaderboard.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/manifest.json",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/strategy_ledgers.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/report_reviews/feature_progression_20261101/manifest.json",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/report_reviews/feature_progression_20261101/quarterly_feature_progression.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/research_hypotheses/hypotheses_20261101T030841Z_d494c2f238ca64a6/event_coverage_by_year.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "artifacts/research_hypotheses/hypotheses_20261101T030841Z_d494c2f238ca64a6/hypothesis_tests.csv",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "assets/architecture_icons/anthropic.png",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "assets/architecture_icons/gemini.png",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "assets/architecture_icons/google.png",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "assets/architecture_icons/openai.png",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "assets/architecture_icons/sources.json",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a/panel.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/COFORGE.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/HCLTECH.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/INFY.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/LTM.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/MPHASIS.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/OFSS.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/PERSISTENT.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/TCS.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/TECHM.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/WIPRO.NS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/ACN.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CACI.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CNXC.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CTSH.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/DXC.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/EPAM.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/GLOB.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/IBM.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/JKHY.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/LDOS.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/SAIC.parquet",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "reports/architecture_visual.py",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "reports/build_report_ai_capability.py",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "reports/publication_report_sections.py",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "reports/releases/project2_team16_v2_2026-11-01/release_registry.json",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "reports/report_release.py",
+    "passed": true
+  },
+  {
+    "group": "inputs",
+    "path": "scripts/build_publication_figure_pack.py",
+    "passed": true
+  }
+]

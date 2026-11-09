@@ -1,0 +1,21 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/run_cross_market_analysis.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model.yaml", "--dataset-id", "ai_capability_panel_20261109T064115Z_1a13582b12774e0b"]
+Matplotlib is building the font cache; this may take a moment.
+{
+  "action": "run_cross_market_analysis",
+  "run_id": "analysis_20261109T064129Z_66c8396748e9",
+  "run_hash": "66c8396748e9",
+  "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "output": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/analysis/analysis_20261109T064129Z_66c8396748e9",
+  "status": "starting"
+}
+
+Return diagnostics:   0%|          | 0/10 [00:00<?, ?asset/s]
+Return diagnostics: 100%|██████████| 10/10 [00:00<00:00, 17.30asset/s]
+
+Feature tests:   0%|          | 0/231 [00:00<?, ?feature/s]
+Feature tests: 100%|██████████| 231/231 [00:00<00:00, 290.17feature/s]
+{
+  "run_id": "analysis_20261109T064129Z_66c8396748e9",
+  "status": "complete",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/analysis/analysis_20261109T064129Z_66c8396748e9"
+}

@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-05-31",
+  "block_start": "2021-05-03",
+  "config_id": "cm_zero_08cccf87365f",
+  "family": "zero",
+  "feature_set": "F0_own",
+  "input_features": 65,
+  "parameter_to_feature_ratio": 0.015384615384615385,
+  "parameter_to_observation_ratio": 8.496176720475786e-05,
+  "runtime_seconds": 0.09179208299997299,
+  "test_rows": 200,
+  "trainable_parameters_proxy": 1,
+  "training_dates": 1177,
+  "training_end": "2021-04-29",
+  "training_rows": 11770,
+  "training_start": "2016-07-21"
+}

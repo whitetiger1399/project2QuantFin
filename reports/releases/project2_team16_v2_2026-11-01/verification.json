@@ -1,0 +1,1141 @@
+{
+  "release_id": "project2_team16_v2_2026-11-01",
+  "verified_at_utc": "2026-11-01T08:34:35.384986+00:00",
+  "status": "pass",
+  "checks_passed": 225,
+  "checks_failed": 0,
+  "page_count": 21,
+  "git_head": "9dc39aff5a503a5bd308c243634bac48381e7964",
+  "git_dirty": true,
+  "files": {
+    "docx": "42cf36b3ec00279ae16d2b8bdc3b1bfe418fefdb73b57ce3e0abfb8df5296786",
+    "pdf": "c345d48c590a4556fed46f2d382764576ea410a141f689232defc6b289d3b799"
+  },
+  "checks": [
+    {
+      "check": "dataset_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a/manifest.json"
+    },
+    {
+      "check": "dataset_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "forward_dataset_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/processed/cross_market_ai_capability_2026/ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8/manifest.json"
+    },
+    {
+      "check": "forward_dataset_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "screening_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/manifest.json"
+    },
+    {
+      "check": "screening_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "confirmation_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/manifest.json"
+    },
+    {
+      "check": "confirmation_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "freeze_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/freezes/cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16.json"
+    },
+    {
+      "check": "final_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/manifest.json"
+    },
+    {
+      "check": "final_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "forward_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/manifest.json"
+    },
+    {
+      "check": "forward_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "paired_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/paired_strategy_inference_20261101T062011Z_0215690974b9/manifest.json"
+    },
+    {
+      "check": "paired_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "strict_vintage_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/manifest.json"
+    },
+    {
+      "check": "strict_vintage_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "dataset_identity",
+      "passed": true,
+      "detail": "ai_capability_panel_20261101T012801Z_ff277b55597d727a"
+    },
+    {
+      "check": "forward_dataset_identity",
+      "passed": true,
+      "detail": "ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8"
+    },
+    {
+      "check": "screening_identity",
+      "passed": true,
+      "detail": "cm_ai_capability_screening_20261101T013231Z_038064c84d36"
+    },
+    {
+      "check": "confirmation_identity",
+      "passed": true,
+      "detail": "cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd"
+    },
+    {
+      "check": "freeze_identity",
+      "passed": true,
+      "detail": "cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16"
+    },
+    {
+      "check": "final_identity",
+      "passed": true,
+      "detail": "cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090"
+    },
+    {
+      "check": "forward_identity",
+      "passed": true,
+      "detail": "cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82"
+    },
+    {
+      "check": "paired_identity",
+      "passed": true,
+      "detail": "paired_strategy_inference_20261101T062011Z_0215690974b9"
+    },
+    {
+      "check": "strict_vintage_identity",
+      "passed": true,
+      "detail": "strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8"
+    },
+    {
+      "check": "freeze_selected_config",
+      "passed": true,
+      "detail": "cm_extra_trees_cd9235695e6b"
+    },
+    {
+      "check": "final_selected_config",
+      "passed": true,
+      "detail": "cm_extra_trees_cd9235695e6b"
+    },
+    {
+      "check": "forward_selected_config",
+      "passed": true,
+      "detail": "cm_extra_trees_cd9235695e6b"
+    },
+    {
+      "check": "screening_parent:dataset_id",
+      "passed": true,
+      "detail": "ai_capability_panel_20261101T012801Z_ff277b55597d727a"
+    },
+    {
+      "check": "confirmation_parent:dataset_id",
+      "passed": true,
+      "detail": "ai_capability_panel_20261101T012801Z_ff277b55597d727a"
+    },
+    {
+      "check": "confirmation_parent:screening_run_id",
+      "passed": true,
+      "detail": "cm_ai_capability_screening_20261101T013231Z_038064c84d36"
+    },
+    {
+      "check": "freeze_parent:confirmation_run_id",
+      "passed": true,
+      "detail": "cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd"
+    },
+    {
+      "check": "final_parent:dataset_id",
+      "passed": true,
+      "detail": "ai_capability_panel_20261101T012801Z_ff277b55597d727a"
+    },
+    {
+      "check": "final_parent:confirmation_run_id",
+      "passed": true,
+      "detail": "cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd"
+    },
+    {
+      "check": "final_parent:freeze_id",
+      "passed": true,
+      "detail": "cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16"
+    },
+    {
+      "check": "forward_parent:dataset_id",
+      "passed": true,
+      "detail": "ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8"
+    },
+    {
+      "check": "forward_parent:source_confirmation_run_id",
+      "passed": true,
+      "detail": "cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd"
+    },
+    {
+      "check": "forward_parent:source_freeze_id",
+      "passed": true,
+      "detail": "cm_ai_capability_freeze_20261101T025756Z_b80ca3883e16"
+    },
+    {
+      "check": "screening_parent_hash:dataset_manifest_sha256",
+      "passed": true,
+      "detail": "dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff vs dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff"
+    },
+    {
+      "check": "confirmation_parent_hash:dataset_manifest_sha256",
+      "passed": true,
+      "detail": "dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff vs dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff"
+    },
+    {
+      "check": "final_parent_hash:dataset_manifest_sha256",
+      "passed": true,
+      "detail": "dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff vs dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff"
+    },
+    {
+      "check": "freeze_parent_hash:confirmation_manifest_sha256",
+      "passed": true,
+      "detail": "dabd6cb54ab573b7d474ce4b799477e2e39263e031d8c236b3447b0b07bdb2f5 vs dabd6cb54ab573b7d474ce4b799477e2e39263e031d8c236b3447b0b07bdb2f5"
+    },
+    {
+      "check": "forward_source_hash:dataset_manifest_sha256",
+      "passed": true,
+      "detail": "47a64c6f7eb75c595c2f3f6304436e1aa4b371d64d8ef97eb67d0c1f6df87225 vs 47a64c6f7eb75c595c2f3f6304436e1aa4b371d64d8ef97eb67d0c1f6df87225"
+    },
+    {
+      "check": "forward_source_hash:confirmation_manifest_sha256",
+      "passed": true,
+      "detail": "dabd6cb54ab573b7d474ce4b799477e2e39263e031d8c236b3447b0b07bdb2f5 vs dabd6cb54ab573b7d474ce4b799477e2e39263e031d8c236b3447b0b07bdb2f5"
+    },
+    {
+      "check": "forward_source_hash:freeze_sha256",
+      "passed": true,
+      "detail": "dca7f5a286da16f74f3d769b8965972f748784409a3e2e0f4152add7c22d00a6 vs dca7f5a286da16f74f3d769b8965972f748784409a3e2e0f4152add7c22d00a6"
+    },
+    {
+      "check": "paired_source_hash:artifacts/cross_market_ai_capability/analysis/ai_strategy_comparison_20261101T030717Z_591c864e3aba/strategy_ledgers.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/ai_strategy_comparison_20261101T030717Z_591c864e3aba/strategy_ledgers.parquet"
+    },
+    {
+      "check": "paired_source_hash:artifacts/cross_market_ai_capability_2026/analysis/ai_strategy_comparison_20261101T030726Z_9660a3a84bc3/strategy_ledgers.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/analysis/ai_strategy_comparison_20261101T030726Z_9660a3a84bc3/strategy_ledgers.parquet"
+    },
+    {
+      "check": "paired_output_hash:paired_strategy_inference.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/paired_strategy_inference_20261101T062011Z_0215690974b9/paired_strategy_inference.csv"
+    },
+    {
+      "check": "strict_vintage_exact_selected_parameters",
+      "passed": true,
+      "detail": "True"
+    },
+    {
+      "check": "strict_vintage_excluded_60_flags",
+      "passed": true,
+      "detail": "60"
+    },
+    {
+      "check": "strict_vintage_retained_zero_flags",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "check": "strict_vintage_output_hash:excluded_features.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/excluded_features.csv"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-01-01.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-01-01.json"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-01-01.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-01-01.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-04-01.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-04-01.json"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-04-01.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-04-01.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-07-01.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-07-01.json"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-07-01.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-07-01.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-10-01.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-10-01.json"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-10-01.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_asset_mean_947f6b0b0f9a/2025-10-01.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01.json"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01_importance.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-01-01_importance.csv"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01.json"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01_importance.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-04-01_importance.csv"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01.json"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01_importance.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-07-01_importance.csv"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01.json"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01_importance.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_2025/checkpoints/cm_extra_trees_strict_18f79972113b/2025-10-01_importance.csv"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_vintage_ledgers.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_ledgers.parquet"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_vintage_metrics.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_metrics.csv"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_vintage_paired_inference.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_paired_inference.csv"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_vintage_refit_diagnostics.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_refit_diagnostics.csv"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_vintage_sensitivity.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_sensitivity.pdf"
+    },
+    {
+      "check": "strict_vintage_output_hash:strict_vintage_sensitivity.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_sensitivity.png"
+    },
+    {
+      "check": "figure_pack_manifest_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/manifest.json"
+    },
+    {
+      "check": "figure_pack_complete",
+      "passed": true,
+      "detail": "complete"
+    },
+    {
+      "check": "figure_pack_selected_config",
+      "passed": true,
+      "detail": "cm_extra_trees_cd9235695e6b"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec/epoch_event_capability_returns.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec/epoch_event_capability_returns.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/analysis/model_evidence_final_test_20261101T030544Z_a4d9077ee46e/prediction_calibration_deciles.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/model_evidence_final_test_20261101T030544Z_a4d9077ee46e/prediction_calibration_deciles.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/excluded_features.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/excluded_features.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/manifest.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/manifest.json"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_metrics.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_metrics.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_paired_inference.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_paired_inference.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_sensitivity.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_sensitivity.pdf"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_sensitivity.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/analysis/strict_vintage_sensitivity_20261101T072530Z_d98ad9caf3b8/strict_vintage_sensitivity.png"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/leaderboard.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/leaderboard.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/strategy_ledgers.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_confirmation_20261101T020346Z_327cf6e7c3bd/strategy_ledgers.parquet"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/feature_importance_by_refit.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/leaderboard.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/leaderboard.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/manifest.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/manifest.json"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/strategy_ledgers.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/strategy_ledgers.parquet"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/leaderboard.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/leaderboard.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/strategy_ledgers.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_screening_20261101T013231Z_038064c84d36/strategy_ledgers.parquet"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability_2026/analysis/model_evidence_forward_extension_2026_20261101T030629Z_2f2c1a45c5fc/prediction_calibration_deciles.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/analysis/model_evidence_forward_extension_2026_20261101T030629Z_2f2c1a45c5fc/prediction_calibration_deciles.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/feature_importance_by_refit.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/leaderboard.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/leaderboard.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/manifest.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/manifest.json"
+    },
+    {
+      "check": "figure_input_hash:artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/strategy_ledgers.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/strategy_ledgers.parquet"
+    },
+    {
+      "check": "figure_input_hash:artifacts/report_reviews/feature_progression_20261101/manifest.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/report_reviews/feature_progression_20261101/manifest.json"
+    },
+    {
+      "check": "figure_input_hash:artifacts/report_reviews/feature_progression_20261101/quarterly_feature_progression.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/report_reviews/feature_progression_20261101/quarterly_feature_progression.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/research_hypotheses/hypotheses_20261101T030841Z_d494c2f238ca64a6/event_coverage_by_year.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/research_hypotheses/hypotheses_20261101T030841Z_d494c2f238ca64a6/event_coverage_by_year.csv"
+    },
+    {
+      "check": "figure_input_hash:artifacts/research_hypotheses/hypotheses_20261101T030841Z_d494c2f238ca64a6/hypothesis_tests.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/research_hypotheses/hypotheses_20261101T030841Z_d494c2f238ca64a6/hypothesis_tests.csv"
+    },
+    {
+      "check": "figure_input_hash:assets/architecture_icons/anthropic.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/assets/architecture_icons/anthropic.png"
+    },
+    {
+      "check": "figure_input_hash:assets/architecture_icons/gemini.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/assets/architecture_icons/gemini.png"
+    },
+    {
+      "check": "figure_input_hash:assets/architecture_icons/google.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/assets/architecture_icons/google.png"
+    },
+    {
+      "check": "figure_input_hash:assets/architecture_icons/openai.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/assets/architecture_icons/openai.png"
+    },
+    {
+      "check": "figure_input_hash:assets/architecture_icons/sources.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/assets/architecture_icons/sources.json"
+    },
+    {
+      "check": "figure_input_hash:data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a/panel.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a/panel.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/COFORGE.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/COFORGE.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/HCLTECH.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/HCLTECH.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/INFY.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/INFY.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/LTM.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/LTM.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/MPHASIS.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/MPHASIS.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/OFSS.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/OFSS.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/PERSISTENT.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/PERSISTENT.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/TCS.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/TCS.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/TECHM.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/TECHM.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/WIPRO.NS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_india_core_20261029T124839Z/WIPRO.NS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/ACN.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/ACN.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CACI.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CACI.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CNXC.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CNXC.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CTSH.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/CTSH.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/DXC.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/DXC.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/EPAM.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/EPAM.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/GLOB.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/GLOB.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/IBM.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/IBM.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/JKHY.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/JKHY.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/LDOS.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/LDOS.parquet"
+    },
+    {
+      "check": "figure_input_hash:data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/SAIC.parquet",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/data/raw/cross_market/yahoo/yahoo_us_it_services_20261031T023621Z/SAIC.parquet"
+    },
+    {
+      "check": "figure_input_hash:reports/architecture_visual.py",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/architecture_visual.py"
+    },
+    {
+      "check": "figure_input_hash:reports/build_report_ai_capability.py",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/build_report_ai_capability.py"
+    },
+    {
+      "check": "figure_input_hash:reports/publication_report_sections.py",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_report_sections.py"
+    },
+    {
+      "check": "figure_input_hash:reports/releases/project2_team16_v2_2026-11-01/release_registry.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/releases/project2_team16_v2_2026-11-01/release_registry.json"
+    },
+    {
+      "check": "figure_input_hash:reports/report_release.py",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/report_release.py"
+    },
+    {
+      "check": "figure_input_hash:scripts/build_publication_figure_pack.py",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/build_publication_figure_pack.py"
+    },
+    {
+      "check": "figure_hash:01_architecture.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/01_architecture.pdf"
+    },
+    {
+      "check": "figure_hash:01_architecture.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/01_architecture.png"
+    },
+    {
+      "check": "figure_hash:01_architecture.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/01_architecture.svg"
+    },
+    {
+      "check": "figure_hash:02_india_paths.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/02_india_paths.pdf"
+    },
+    {
+      "check": "figure_hash:02_india_paths.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/02_india_paths.png"
+    },
+    {
+      "check": "figure_hash:02_india_paths.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/02_india_paths.svg"
+    },
+    {
+      "check": "figure_hash:03_india_us_paths.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/03_india_us_paths.pdf"
+    },
+    {
+      "check": "figure_hash:03_india_us_paths.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/03_india_us_paths.png"
+    },
+    {
+      "check": "figure_hash:03_india_us_paths.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/03_india_us_paths.svg"
+    },
+    {
+      "check": "figure_hash:04_peer_correlations.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/04_peer_correlations.csv"
+    },
+    {
+      "check": "figure_hash:04_peer_correlations.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/04_peer_correlations.pdf"
+    },
+    {
+      "check": "figure_hash:04_peer_correlations.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/04_peer_correlations.png"
+    },
+    {
+      "check": "figure_hash:04_peer_correlations.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/04_peer_correlations.svg"
+    },
+    {
+      "check": "figure_hash:05_cross_market_correlations.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/05_cross_market_correlations.csv"
+    },
+    {
+      "check": "figure_hash:05_cross_market_correlations.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/05_cross_market_correlations.pdf"
+    },
+    {
+      "check": "figure_hash:05_cross_market_correlations.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/05_cross_market_correlations.png"
+    },
+    {
+      "check": "figure_hash:05_cross_market_correlations.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/05_cross_market_correlations.svg"
+    },
+    {
+      "check": "figure_hash:06a_frontier_timeline.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/06a_frontier_timeline.pdf"
+    },
+    {
+      "check": "figure_hash:06a_frontier_timeline.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/06a_frontier_timeline.png"
+    },
+    {
+      "check": "figure_hash:06a_frontier_timeline.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/06a_frontier_timeline.svg"
+    },
+    {
+      "check": "figure_hash:06b_event_responses.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/06b_event_responses.csv"
+    },
+    {
+      "check": "figure_hash:06b_event_responses.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/06b_event_responses.pdf"
+    },
+    {
+      "check": "figure_hash:06b_event_responses.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/06b_event_responses.png"
+    },
+    {
+      "check": "figure_hash:06b_event_responses.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/06b_event_responses.svg"
+    },
+    {
+      "check": "figure_hash:07_cost_accounting.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/07_cost_accounting.csv"
+    },
+    {
+      "check": "figure_hash:07_transaction_cost_drag.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/07_transaction_cost_drag.pdf"
+    },
+    {
+      "check": "figure_hash:07_transaction_cost_drag.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/07_transaction_cost_drag.png"
+    },
+    {
+      "check": "figure_hash:07_transaction_cost_drag.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/07_transaction_cost_drag.svg"
+    },
+    {
+      "check": "figure_hash:08_benchmark_daily_returns.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/08_benchmark_daily_returns.csv"
+    },
+    {
+      "check": "figure_hash:08_combined_benchmarks.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/08_combined_benchmarks.pdf"
+    },
+    {
+      "check": "figure_hash:08_combined_benchmarks.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/08_combined_benchmarks.png"
+    },
+    {
+      "check": "figure_hash:08_combined_benchmarks.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/08_combined_benchmarks.svg"
+    },
+    {
+      "check": "figure_hash:09_monthly_position_counts.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/09_monthly_position_counts.csv"
+    },
+    {
+      "check": "figure_hash:09_signed_positions.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/09_signed_positions.pdf"
+    },
+    {
+      "check": "figure_hash:09_signed_positions.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/09_signed_positions.png"
+    },
+    {
+      "check": "figure_hash:09_signed_positions.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/09_signed_positions.svg"
+    },
+    {
+      "check": "figure_hash:10_cost_sensitivity.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/10_cost_sensitivity.pdf"
+    },
+    {
+      "check": "figure_hash:10_cost_sensitivity.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/10_cost_sensitivity.png"
+    },
+    {
+      "check": "figure_hash:10_cost_sensitivity.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/10_cost_sensitivity.svg"
+    },
+    {
+      "check": "figure_hash:10_fixed_holdings_cost_sensitivity.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/10_fixed_holdings_cost_sensitivity.csv"
+    },
+    {
+      "check": "figure_hash:11_model_family_evidence.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/11_model_family_evidence.pdf"
+    },
+    {
+      "check": "figure_hash:11_model_family_evidence.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/11_model_family_evidence.png"
+    },
+    {
+      "check": "figure_hash:11_model_family_evidence.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/11_model_family_evidence.svg"
+    },
+    {
+      "check": "figure_hash:11b_forecast_calibration.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/11b_forecast_calibration.pdf"
+    },
+    {
+      "check": "figure_hash:11b_forecast_calibration.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/11b_forecast_calibration.png"
+    },
+    {
+      "check": "figure_hash:11b_forecast_calibration.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/11b_forecast_calibration.svg"
+    },
+    {
+      "check": "figure_hash:11c_strict_vintage.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/11c_strict_vintage.pdf"
+    },
+    {
+      "check": "figure_hash:11c_strict_vintage.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/11c_strict_vintage.png"
+    },
+    {
+      "check": "figure_hash:12_information_ladder.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/12_information_ladder.pdf"
+    },
+    {
+      "check": "figure_hash:12_information_ladder.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/12_information_ladder.png"
+    },
+    {
+      "check": "figure_hash:12_information_ladder.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/12_information_ladder.svg"
+    },
+    {
+      "check": "figure_hash:13_transmission_inference.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/13_transmission_inference.pdf"
+    },
+    {
+      "check": "figure_hash:13_transmission_inference.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/13_transmission_inference.png"
+    },
+    {
+      "check": "figure_hash:13_transmission_inference.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/13_transmission_inference.svg"
+    },
+    {
+      "check": "figure_hash:14_event_coverage.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/14_event_coverage.pdf"
+    },
+    {
+      "check": "figure_hash:14_event_coverage.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/14_event_coverage.png"
+    },
+    {
+      "check": "figure_hash:14_event_coverage.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/14_event_coverage.svg"
+    },
+    {
+      "check": "figure_hash:15_annual_model_record.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/15_annual_model_record.csv"
+    },
+    {
+      "check": "figure_hash:15_confirmation_diagnostic.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/15_confirmation_diagnostic.pdf"
+    },
+    {
+      "check": "figure_hash:15_confirmation_diagnostic.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/15_confirmation_diagnostic.png"
+    },
+    {
+      "check": "figure_hash:15_confirmation_diagnostic.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/15_confirmation_diagnostic.svg"
+    },
+    {
+      "check": "figure_hash:16_monthly_regimes.csv",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/16_monthly_regimes.csv"
+    },
+    {
+      "check": "figure_hash:16_regime_distributions.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/16_regime_distributions.pdf"
+    },
+    {
+      "check": "figure_hash:16_regime_distributions.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/16_regime_distributions.png"
+    },
+    {
+      "check": "figure_hash:16_regime_distributions.svg",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/16_regime_distributions.svg"
+    },
+    {
+      "check": "figure_hash:17_group_importance_existing.png",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/17_group_importance_existing.png"
+    },
+    {
+      "check": "figure_hash:figure_catalog.json",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/figure_catalog.json"
+    },
+    {
+      "check": "figure_hash:figure_review.pdf",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/figure_review.pdf"
+    },
+    {
+      "check": "figure_hash:index.html",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/publication_figure_pack_v2_2026-11-01/index.html"
+    },
+    {
+      "check": "docx_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/Project2_Team16_Report_V2.docx"
+    },
+    {
+      "check": "pdf_exists",
+      "passed": true,
+      "detail": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/reports/Project2_Team16_Report_V2.pdf"
+    },
+    {
+      "check": "page_count_15_to_25",
+      "passed": true,
+      "detail": "21"
+    },
+    {
+      "check": "toc_has_no_page_zero",
+      "passed": true,
+      "detail": "SIGNED CROSS-MARKET FORECASTING OF NIFTY IT STOCKS | DSA5205\n\n\n\nContents\nAbstract.................................................................................................................................................................................3\n1. Research question and hypotheses...................................................................................................................................3\n2. Markets, data, and information clock................................."
+    },
+    {
+      "check": "docx_submission_cover",
+      "passed": true,
+      "detail": "Course-facing cover without internal revision label"
+    },
+    {
+      "check": "toc_page_map_nonzero",
+      "passed": true,
+      "detail": "18 headings"
+    },
+    {
+      "check": "claim:selected_family",
+      "passed": true,
+      "detail": "actual='extra_trees'; expected='extra_trees'"
+    },
+    {
+      "check": "claim:selected_max_depth",
+      "passed": true,
+      "detail": "actual=6; expected=6"
+    },
+    {
+      "check": "claim:selected_n_estimators",
+      "passed": true,
+      "detail": "actual=250; expected=250"
+    },
+    {
+      "check": "claim:selected_min_samples_leaf",
+      "passed": true,
+      "detail": "actual=40; expected=40"
+    },
+    {
+      "check": "claim:selected_max_features",
+      "passed": true,
+      "detail": "actual=0.5; expected=0.5"
+    },
+    {
+      "check": "claim:return_2025_net",
+      "passed": true,
+      "detail": "actual=-0.040384226973328; expected=-0.040384227"
+    },
+    {
+      "check": "claim:return_2026_jan_sep_net",
+      "passed": true,
+      "detail": "actual=0.15014116382859455; expected=0.1501411638"
+    },
+    {
+      "check": "claim:return_combined_net",
+      "passed": true,
+      "detail": "actual=0.10369360201717304; expected=0.103693602"
+    },
+    {
+      "check": "claim:cost_break_even_2025_round_trip_bps",
+      "passed": true,
+      "detail": "actual=8.24598980796226; expected=8.245989808"
+    },
+    {
+      "check": "claim:cost_break_even_2026_round_trip_bps",
+      "passed": true,
+      "detail": "actual=36.215488044754835; expected=36.215488045"
+    }
+  ]
+}

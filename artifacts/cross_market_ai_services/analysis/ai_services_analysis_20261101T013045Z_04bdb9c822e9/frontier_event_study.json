@@ -1,0 +1,13 @@
+{
+  "analysis_end": "2024-12-31",
+  "analysis_start": "2016-07-21",
+  "event_mean_return": 0.0029484322180618047,
+  "event_minus_non_event": 0.0033101498038796977,
+  "event_sessions": 17,
+  "hac_coefficient": 0.0033101498038797007,
+  "hac_pvalue": 0.19127036573585454,
+  "hac_t_statistic": 1.306830259819154,
+  "non_event_mean_return": -0.000361717585817893,
+  "two_sided_randomization_pvalue": 0.2196,
+  "warning": "Small event counts imply low statistical power; this is hypothesis evidence, not causal identification."
+}

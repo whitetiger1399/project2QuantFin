@@ -1,0 +1,37 @@
+{
+  "action": "run_cross_market_experiments",
+  "checkpoint_count": 48,
+  "completed_at_utc": "2026-10-31T07:19:28.265926+00:00",
+  "configuration_count": 12,
+  "confirmation_run_id": "cm_ai_capability_confirmation_20261031T065831Z_c343cf83e423",
+  "content_hash": "864e226d8bad",
+  "dataset_id": "ai_capability_panel_20261031T063249Z_928de985ea1dd4f8",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261031T071400Z_864e226d8bad",
+  "effective_estimator_jobs": 1,
+  "environment": {
+    "created_at_utc": "2026-10-31T07:14:00.572843+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "expected_checkpoint_count": 48,
+  "freeze_id": "cm_ai_capability_freeze_20261031T071336Z_cb837a5393f8",
+  "parallel_workers": 3,
+  "profile": "balanced",
+  "refit_frequency": "quarter_start",
+  "run_id": "cm_ai_capability_final_test_20261031T071400Z_864e226d8bad",
+  "selected_config_id": "cm_extra_trees_05a83581b70b",
+  "stage": "final_test",
+  "status": "complete",
+  "training_scheme": "rolling",
+  "updated_at_utc": "2026-10-31T07:19:28.283388+00:00"
+}

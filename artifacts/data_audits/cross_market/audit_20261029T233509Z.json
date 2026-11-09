@@ -1,0 +1,570 @@
+{
+  "cleaning_restrictions": [
+    "Use INR=X as a close-to-close FX series only; do not construct intraday OHLC features from Yahoo FX bars.",
+    "Quarantine the NIFTYBEES.NS 2009-07-07 row from any open-to-close calculation because its reported open is zero."
+  ],
+  "created_at_utc": "2026-10-29T23:35:09.396555+00:00",
+  "fred_alfred_snapshots": [
+    {
+      "file_count": 13,
+      "issues": [],
+      "snapshot_id": "fred_alfred_20261029T233010Z",
+      "status": "complete"
+    }
+  ],
+  "issues": [],
+  "latest_yahoo_by_group": {
+    "global_context": {
+      "failures": {},
+      "file_count": 6,
+      "files": [
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-29",
+          "rows": 5841,
+          "symbol": "^FCHI"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-29",
+          "rows": 5767,
+          "symbol": "^FTSE"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-29",
+          "rows": 5800,
+          "symbol": "^GDAXI"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-29",
+          "rows": 5624,
+          "symbol": "^HSI"
+        },
+        {
+          "first_session": "2004-01-05",
+          "last_session": "2026-10-29",
+          "rows": 5584,
+          "symbol": "^N225"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-29",
+          "rows": 5713,
+          "symbol": "^STI"
+        }
+      ],
+      "group": "global_context",
+      "issues": [],
+      "snapshot_id": "yahoo_global_context_20261029T125100Z",
+      "status": "complete",
+      "warnings": []
+    },
+    "india_core": {
+      "failures": {},
+      "file_count": 17,
+      "files": [
+        {
+          "first_session": "2004-08-30",
+          "last_session": "2026-10-29",
+          "rows": 5477,
+          "symbol": "COFORGE.NS"
+        },
+        {
+          "first_session": "2004-01-01",
+          "last_session": "2026-10-29",
+          "rows": 5650,
+          "symbol": "HCLTECH.NS"
+        },
+        {
+          "first_session": "2004-01-01",
+          "last_session": "2026-10-29",
+          "rows": 5649,
+          "symbol": "INFY.NS"
+        },
+        {
+          "first_session": "2004-01-01",
+          "last_session": "2026-10-29",
+          "rows": 5924,
+          "symbol": "INR=X"
+        },
+        {
+          "first_session": "2020-06-30",
+          "last_session": "2026-10-29",
+          "rows": 1570,
+          "symbol": "ITBEES.NS"
+        },
+        {
+          "first_session": "2016-07-21",
+          "last_session": "2026-10-29",
+          "rows": 2538,
+          "symbol": "LTM.NS"
+        },
+        {
+          "first_session": "2004-01-01",
+          "last_session": "2026-10-29",
+          "rows": 5647,
+          "symbol": "MPHASIS.NS"
+        },
+        {
+          "first_session": "2009-01-02",
+          "last_session": "2026-10-29",
+          "rows": 4394,
+          "symbol": "NIFTYBEES.NS"
+        },
+        {
+          "first_session": "2004-01-01",
+          "last_session": "2026-10-29",
+          "rows": 5648,
+          "symbol": "OFSS.NS"
+        },
+        {
+          "first_session": "2010-04-06",
+          "last_session": "2026-10-29",
+          "rows": 4092,
+          "symbol": "PERSISTENT.NS"
+        },
+        {
+          "first_session": "2004-01-01",
+          "last_session": "2026-10-29",
+          "rows": 5648,
+          "symbol": "TCS.NS"
+        },
+        {
+          "first_session": "2006-08-28",
+          "last_session": "2026-10-29",
+          "rows": 4976,
+          "symbol": "TECHM.NS"
+        },
+        {
+          "first_session": "2004-01-01",
+          "last_session": "2026-10-29",
+          "rows": 5649,
+          "symbol": "WIPRO.NS"
+        },
+        {
+          "first_session": "2007-09-17",
+          "last_session": "2026-10-29",
+          "rows": 4706,
+          "symbol": "^CNXIT"
+        },
+        {
+          "first_session": "2008-03-03",
+          "last_session": "2026-10-29",
+          "rows": 4574,
+          "symbol": "^INDIAVIX"
+        },
+        {
+          "first_session": "2007-09-17",
+          "last_session": "2026-10-29",
+          "rows": 4706,
+          "symbol": "^NSEBANK"
+        },
+        {
+          "first_session": "2007-09-17",
+          "last_session": "2026-10-29",
+          "rows": 4690,
+          "symbol": "^NSEI"
+        }
+      ],
+      "group": "india_core",
+      "issues": [],
+      "snapshot_id": "yahoo_india_core_20261029T124839Z",
+      "status": "complete",
+      "warnings": [
+        "fx_ohlc_envelope:INR_X.parquet:241:0.040682:close_to_close_only_no_intraday_features",
+        "isolated_ohlc_anomaly:NIFTYBEES.NS.parquet:1:0.000228:quarantine_affected_rows"
+      ]
+    },
+    "india_extended": {
+      "failures": {
+        "HEXAWARE.NS": {
+          "error": "$HEXAWARE.NS: possibly delisted; no timezone found",
+          "type": "YFTzMissingError"
+        },
+        "LTI.NS": {
+          "error": "$LTI.NS: possibly delisted; no timezone found",
+          "type": "YFTzMissingError"
+        },
+        "MINDTREE.NS": {
+          "error": "$MINDTREE.NS: possibly delisted; no timezone found",
+          "type": "YFTzMissingError"
+        }
+      },
+      "file_count": 9,
+      "files": [
+        {
+          "first_session": "2016-09-23",
+          "last_session": "2026-10-29",
+          "rows": 2495,
+          "symbol": "LTTS.NS"
+        },
+        {
+          "first_session": "2004-01-01",
+          "last_session": "2026-10-29",
+          "rows": 5647,
+          "symbol": "TATAELXSI.NS"
+        },
+        {
+          "first_session": "2011-07-12",
+          "last_session": "2026-10-29",
+          "rows": 3754,
+          "symbol": "^CNXAUTO"
+        },
+        {
+          "first_session": "2011-01-31",
+          "last_session": "2026-10-29",
+          "rows": 3866,
+          "symbol": "^CNXENERGY"
+        },
+        {
+          "first_session": "2011-01-31",
+          "last_session": "2026-10-29",
+          "rows": 3865,
+          "symbol": "^CNXFMCG"
+        },
+        {
+          "first_session": "2010-07-19",
+          "last_session": "2026-10-29",
+          "rows": 4001,
+          "symbol": "^CNXINFRA"
+        },
+        {
+          "first_session": "2011-07-12",
+          "last_session": "2026-10-29",
+          "rows": 3754,
+          "symbol": "^CNXMETAL"
+        },
+        {
+          "first_session": "2011-01-31",
+          "last_session": "2026-10-29",
+          "rows": 3879,
+          "symbol": "^CNXPHARMA"
+        },
+        {
+          "first_session": "2010-07-19",
+          "last_session": "2026-10-29",
+          "rows": 4001,
+          "symbol": "^CNXREALTY"
+        }
+      ],
+      "group": "india_extended",
+      "issues": [],
+      "snapshot_id": "yahoo_india_extended_20261029T124959Z",
+      "status": "complete_with_optional_failures",
+      "warnings": []
+    },
+    "indian_it_adrs": {
+      "failures": {},
+      "file_count": 2,
+      "files": [
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "INFY"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "WIT"
+        }
+      ],
+      "group": "indian_it_adrs",
+      "issues": [],
+      "snapshot_id": "yahoo_indian_it_adrs_20261029T125050Z",
+      "status": "complete",
+      "warnings": []
+    },
+    "us_context": {
+      "failures": {},
+      "file_count": 23,
+      "files": [
+        {
+          "first_session": "2011-11-15",
+          "last_session": "2026-10-28",
+          "rows": 3759,
+          "symbol": "CPER"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "EEM"
+        },
+        {
+          "first_session": "2004-11-18",
+          "last_session": "2026-10-28",
+          "rows": 5520,
+          "symbol": "GLD"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "IWM"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "QQQ"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "SHY"
+        },
+        {
+          "first_session": "2006-04-28",
+          "last_session": "2026-10-28",
+          "rows": 5158,
+          "symbol": "SLV"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "SPY"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "TLT"
+        },
+        {
+          "first_session": "2006-04-10",
+          "last_session": "2026-10-28",
+          "rows": 5171,
+          "symbol": "USO"
+        },
+        {
+          "first_session": "2007-03-01",
+          "last_session": "2026-10-28",
+          "rows": 4948,
+          "symbol": "UUP"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLB"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLE"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLF"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLI"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLK"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLP"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLU"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLV"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "XLY"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "^GSPC"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "^IXIC"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-29",
+          "rows": 5758,
+          "symbol": "^VIX"
+        }
+      ],
+      "group": "us_context",
+      "issues": [],
+      "snapshot_id": "yahoo_us_context_20261029T125033Z",
+      "status": "complete",
+      "warnings": []
+    },
+    "us_limited_tech": {
+      "failures": {},
+      "file_count": 20,
+      "files": [
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "AAPL"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "ADBE"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "AMAT"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "AMD"
+        },
+        {
+          "first_session": "2009-08-06",
+          "last_session": "2026-10-28",
+          "rows": 4334,
+          "symbol": "AVGO"
+        },
+        {
+          "first_session": "2004-06-23",
+          "last_session": "2026-10-28",
+          "rows": 5624,
+          "symbol": "CRM"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "CSCO"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "IBM"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "INTU"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "KLAC"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "LRCX"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "MSFT"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "MU"
+        },
+        {
+          "first_session": "2012-06-29",
+          "last_session": "2026-10-28",
+          "rows": 3603,
+          "symbol": "NOW"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "NVDA"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "ORCL"
+        },
+        {
+          "first_session": "2012-07-20",
+          "last_session": "2026-10-28",
+          "rows": 3589,
+          "symbol": "PANW"
+        },
+        {
+          "first_session": "2020-09-30",
+          "last_session": "2026-10-28",
+          "rows": 1527,
+          "symbol": "PLTR"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "QCOM"
+        },
+        {
+          "first_session": "2004-01-02",
+          "last_session": "2026-10-28",
+          "rows": 5742,
+          "symbol": "TXN"
+        }
+      ],
+      "group": "us_limited_tech",
+      "issues": [],
+      "snapshot_id": "yahoo_us_limited_tech_20261029T125019Z",
+      "status": "complete",
+      "warnings": []
+    }
+  },
+  "manual_official_snapshots": [],
+  "missing_required_groups": [],
+  "schema_version": 1,
+  "status": "pass_with_warnings",
+  "warnings": [
+    "fx_ohlc_envelope:INR_X.parquet:241:0.040682:close_to_close_only_no_intraday_features",
+    "isolated_ohlc_anomaly:NIFTYBEES.NS.parquet:1:0.000228:quarantine_affected_rows"
+  ]
+}

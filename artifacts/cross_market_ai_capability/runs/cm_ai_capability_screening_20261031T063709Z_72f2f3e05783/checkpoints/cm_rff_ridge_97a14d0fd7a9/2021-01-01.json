@@ -1,0 +1,17 @@
+{
+  "block_end": "2021-03-31",
+  "block_start": "2021-01-01",
+  "config_id": "cm_rff_ridge_97a14d0fd7a9",
+  "family": "rff_ridge",
+  "feature_set": "F6_ai_capability",
+  "input_features": 1648,
+  "parameter_to_feature_ratio": 0.5006067961165048,
+  "parameter_to_observation_ratio": 0.07520510483135825,
+  "runtime_seconds": 3.475444499999867,
+  "test_rows": 610,
+  "trainable_parameters_proxy": 825,
+  "training_dates": 1097,
+  "training_end": "2020-12-30",
+  "training_rows": 10970,
+  "training_start": "2016-07-21"
+}

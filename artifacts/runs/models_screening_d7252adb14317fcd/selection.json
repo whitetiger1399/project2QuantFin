@@ -1,0 +1,138 @@
+{
+  "created_at_utc": "2026-10-20T06:56:10.167280+00:00",
+  "schema_version": 1,
+  "selected_configurations": [
+    {
+      "config_id": "random_forest_6aa9f5d449",
+      "family": "random_forest",
+      "parameters": {
+        "max_depth": 3,
+        "max_features": 0.5,
+        "min_samples_leaf": 50,
+        "n_estimators": 300
+      }
+    },
+    {
+      "config_id": "rff_ridge_07171c4e64",
+      "family": "rff_ridge",
+      "parameters": {
+        "gamma_scale": 1.0,
+        "n_components": 16,
+        "penalty": 0.1
+      }
+    },
+    {
+      "config_id": "elastic_net_4150cd34f6",
+      "family": "elastic_net",
+      "parameters": {
+        "alpha": 0.001,
+        "l1_ratio": 0.8
+      }
+    }
+  ],
+  "selected_metrics": [
+    {
+      "annualized_benchmark_return": 0.0772070494525074,
+      "annualized_net_return": 0.0373465586837873,
+      "annualized_net_volatility": 0.0625088566287713,
+      "annualized_turnover": 9.518886679920476,
+      "average_exposure": 0.0546719681908548,
+      "benchmark_sharpe": 0.5653015124471161,
+      "config_id": "random_forest_6aa9f5d449",
+      "directional_accuracy": 0.5238568588469185,
+      "family": "random_forest",
+      "mae": 0.0058426919042152,
+      "max_drawdown": -0.0778796009855344,
+      "mean_fit_seconds": 3.0985947342956375,
+      "mean_train_mse": 0.0001538273120013,
+      "median_annual_net_sharpe": 1.2056586129541182,
+      "median_parameter_to_observation_ratio": 0.4550418638514743,
+      "median_train_observations": 2747.0,
+      "median_trainable_parameters": 1253.0,
+      "mse": 7.392422802933107e-05,
+      "net_cagr": 0.036038444668621,
+      "net_sharpe": 0.5974602751987894,
+      "observations": 1006,
+      "oos_r2_vs_historical_mean": 0.0006316129191786,
+      "parameters": "{'max_depth': 3, 'min_samples_leaf': 50, 'n_estimators': 300, 'max_features': 0.5}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.019,
+      "train_test_mse_gap": -7.990308397199522e-05
+    },
+    {
+      "annualized_benchmark_return": 0.0772070494525074,
+      "annualized_net_return": 0.0089165348612013,
+      "annualized_net_volatility": 0.0115420876036594,
+      "annualized_turnover": 1.502982107355865,
+      "average_exposure": 0.0029821073558648,
+      "benchmark_sharpe": 0.5653015124471161,
+      "config_id": "rff_ridge_07171c4e64",
+      "directional_accuracy": 0.525844930417495,
+      "family": "rff_ridge",
+      "mae": 0.0058416430167563,
+      "max_drawdown": -0.0004999999999999,
+      "mean_fit_seconds": 0.024855360550729,
+      "mean_train_mse": 0.0001598058207425,
+      "median_annual_net_sharpe": 1.1045286277199715,
+      "median_parameter_to_observation_ratio": 0.00618856934838,
+      "median_train_observations": 2747.0,
+      "median_trainable_parameters": 17.0,
+      "mse": 7.413943320718328e-05,
+      "net_cagr": 0.0088898234691359,
+      "net_sharpe": 0.7725235821615442,
+      "observations": 1006,
+      "oos_r2_vs_historical_mean": -0.0022777073025526,
+      "parameters": "{'n_components': 16, 'penalty': 0.1, 'gamma_scale': 1.0}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.003,
+      "train_test_mse_gap": -8.566638753538561e-05
+    },
+    {
+      "annualized_benchmark_return": 0.0772070494525074,
+      "annualized_net_return": 0.0138614513990464,
+      "annualized_net_volatility": 0.0346683717069816,
+      "annualized_turnover": 3.5069582504970183,
+      "average_exposure": 0.0109343936381709,
+      "benchmark_sharpe": 0.5653015124471161,
+      "config_id": "elastic_net_4150cd34f6",
+      "directional_accuracy": 0.5268389662027833,
+      "family": "elastic_net",
+      "mae": 0.0058366887140772,
+      "max_drawdown": -0.0609977898016376,
+      "mean_fit_seconds": 0.0261411752974638,
+      "mean_train_mse": 0.0001593264590337,
+      "median_annual_net_sharpe": 0.8944165377769883,
+      "median_parameter_to_observation_ratio": 0.0364033491081179,
+      "median_train_observations": 2747.0,
+      "median_trainable_parameters": 100.0,
+      "mse": 7.395100184584983e-05,
+      "net_cagr": 0.0133486040450181,
+      "net_sharpe": 0.3998298944122319,
+      "observations": 1006,
+      "oos_r2_vs_historical_mean": 0.0002696624931325,
+      "parameters": "{'alpha': 0.001, 'l1_ratio': 0.8}",
+      "prediction_coverage": 1.0,
+      "total_trading_cost": 0.007,
+      "train_test_mse_gap": -8.537545718790131e-05
+    }
+  ],
+  "selection_rule": {
+    "distinct_families": true,
+    "minimum_prediction_coverage": 0.98,
+    "primary_metric": "median_annual_net_sharpe",
+    "primary_metric_tolerance": 0.05,
+    "tie_breaks_within_tolerance": [
+      "lower turnover",
+      "fewer trainable parameters",
+      "config_id"
+    ]
+  },
+  "source_context": {
+    "feature_dataset_id": "features_yahoo_20261020T055638Z_799f619a4f",
+    "feature_set": "F2",
+    "stage": "screening",
+    "window_observations": null
+  },
+  "source_run_id": "models_screening_d7252adb14317fcd",
+  "source_run_manifest_sha256": "493ee763c1d09a55b88a2fbbd2424c4c23969edda5dd9be4d277b1a7aceedd31"
+}

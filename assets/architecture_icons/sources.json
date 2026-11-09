@@ -1,0 +1,24 @@
+{
+  "source": "Lobe Icons (brand artwork; marks belong to their owners)",
+  "repository": "https://github.com/lobehub/lobe-icons",
+  "retrieved": "2026-11-01",
+  "assets": {
+    "openai": {
+      "url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-png/light/openai.png",
+      "sha256": "8a33312f6bb17c1edddf8f9d7fbac09ce1d1d697d6601f37227afa879e94c52e"
+    },
+    "anthropic": {
+      "url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-png/light/anthropic.png",
+      "sha256": "389105af72687ae02e5dfbbafe24ed99a84a77a6cf6ea339c13993615b64b37e"
+    },
+    "google": {
+      "url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-png/light/google.png",
+      "sha256": "77006e9ef5e66e09287040a00e7b03bd28153c41f47b452de646755ff5c62e9f"
+    },
+    "gemini": {
+      "url": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-png/light/gemini.png",
+      "sha256": "e88ad7929d463e0d459398709a86d943b6797163a706d9875c7357918feb4977"
+    }
+  },
+  "other_icons": "Country flags and process icons drawn as vectors; market index names are typographic labels, not fabricated logos."
+}

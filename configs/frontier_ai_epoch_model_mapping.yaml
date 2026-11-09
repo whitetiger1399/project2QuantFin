@@ -1,0 +1,45 @@
+schema_version: 1
+source: Epoch AI benchmark data snapshot
+policy:
+  purpose: ex_post_descriptive_analysis_only
+  tradable_feature: false
+  reason: >-
+    The downloaded Epoch scores are a current-vintage reconstruction. The model
+    release date is not proof that an independent score was public at the NSE
+    decision cutoff. These values must never be backfilled into historical
+    forecasts.
+  mapping_rule: >-
+    Exact Epoch display-name mapping chosen before examining Nifty IT event
+    returns. Where an announcement covered a family, the flagship model is used
+    and the choice is recorded explicitly.
+mappings:
+  openai_gpt4: {epoch_display_name: GPT-4 (Mar 2023), representative_rule: exact_release_version}
+  anthropic_claude2: {epoch_display_name: Claude 2, representative_rule: exact_release_version}
+  meta_llama2: {epoch_display_name: Llama 2-70B, representative_rule: flagship_largest_released_variant}
+  google_gemini1: {epoch_display_name: Gemini 1.0 Pro, representative_rule: closest_scored_family_variant}
+  google_gemini15: {epoch_display_name: Gemini 1.5 Pro (May 2024), representative_rule: closest_scored_family_variant}
+  anthropic_claude3: {epoch_display_name: Claude 3 Opus, representative_rule: flagship_family_variant}
+  meta_llama3: {epoch_display_name: Llama 3-70B, representative_rule: flagship_largest_released_variant}
+  microsoft_phi3: {epoch_display_name: phi-3-medium 14B, representative_rule: largest_named_release_variant}
+  openai_gpt4o: {epoch_display_name: GPT-4o (May 2024), representative_rule: exact_release_version}
+  anthropic_claude35: {epoch_display_name: Claude 3.5 Sonnet, representative_rule: exact_release_version}
+  meta_llama31: {epoch_display_name: Llama 3.1-405B, representative_rule: flagship_largest_released_variant}
+  openai_o1: {epoch_display_name: o1-preview, representative_rule: exact_announcement_version}
+  meta_llama32: {epoch_display_name: Llama 3.2 90B, representative_rule: flagship_largest_released_variant}
+  anthropic_claude35_refresh: {epoch_display_name: Claude 3.5 Sonnet (October 2024), representative_rule: exact_release_version}
+  google_gemini20: {epoch_display_name: Gemini 2.0 Flash Thinking (Jan 2025), representative_rule: closest_scored_family_variant}
+  xai_grok3: {epoch_display_name: Grok 3, representative_rule: closest_scored_family_variant}
+  anthropic_claude37: {epoch_display_name: Claude 3.7 Sonnet, representative_rule: exact_release_version}
+  openai_gpt45: {epoch_display_name: GPT-4.5, representative_rule: exact_release_version}
+  google_gemini25: {epoch_display_name: Gemini 2.5 Pro (Mar 2025), representative_rule: closest_scored_family_variant}
+  meta_llama4: {epoch_display_name: Llama 4 Maverick, representative_rule: flagship_family_variant}
+  openai_gpt41: {epoch_display_name: GPT-4.1, representative_rule: exact_release_version}
+  anthropic_claude4: {epoch_display_name: Claude Sonnet 4, representative_rule: exact_release_version}
+unmapped_events:
+  - xai_grok1
+  - xai_grok15
+  - xai_grok2
+  - nvidia_llama31_nemotron51b
+note: >-
+  Unmapped events remain missing. No fuzzy matching, interpolation, provider
+  averages, or future-family substitution is permitted.

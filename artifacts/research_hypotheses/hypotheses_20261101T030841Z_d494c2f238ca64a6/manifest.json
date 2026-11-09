@@ -1,0 +1,55 @@
+{
+  "analysis_id": "hypotheses_20261101T030841Z_d494c2f238ca64a6",
+  "classification": "exploratory_after_prior_result_inspection",
+  "completed_at_utc": "2026-11-01T03:08:42.616960+00:00",
+  "content_hash": "d494c2f238ca64a6",
+  "created_at_utc": "2026-11-01T03:08:41.939005+00:00",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/research_hypotheses/hypotheses_20261101T030841Z_d494c2f238ca64a6",
+  "files": {
+    "capability_event_dates.csv": "4d6d02d7d1c1f71f764b5f0e233dfcd466668078a7b644ece389d32291f5df41",
+    "company_headcount_changes.csv": "8b84a234655f809a41f373a420c4bad264e2ecf3afdbc56ea84be6e72b65c643",
+    "daily_analysis_inputs.csv": "d7c180dc7fb4e5d08592aff96e3b647a3e10227a17e21e1ce45d80de02ad06b3",
+    "event_coverage_by_year.csv": "412780837db2253d3aaca875dd4f9899cd32c2481ab964e3babf341cba5f3713",
+    "hypothesis_tests.csv": "f371d661afbdbcbb6016a070bf842ce7318f7acbc93628232e917baeca16327b",
+    "interpretation.md": "cb12f8f79f9055dae349a6591cea9ec97a1adcb04bf0805e094c75117f7c1838",
+    "plots/H1_US_transmission.png": "986fd9814a4f527724c1ffa20d2fbb43d537097d1084bde7f2418bb2addd4901",
+    "plots/H2_negative_AI_release.png": "936359d1bb874df467f9d6d081eb8ac90349b4f395d092e4dad3c20f06e65cde",
+    "plots/H6_headcount.png": "e80b89f04f99b35120bd38919703a10fbf633d0b1a3a9d26a743353766cd83ff",
+    "portfolio_checkpoint.json": "06d5e4b25e44fd75a08e715a66dc7eed8e06b00178098164a053e5ad70138089",
+    "portfolio_periods.csv": "b9091012096df716fa1e8489693ca06311884dd1819acaa451b7b062c2c6502a"
+  },
+  "input_hashes": {
+    "artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec/epoch_event_capability_returns.csv": "08d7af928fb7716c8394b10623ea72a91ec8bde09cdfe3f4ddcc1713457b4e68",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/manifest.json": "7e1ef3280abd278f2e69dd97d37700484a802ccf17c81454466a48eb38158b22",
+    "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090/strategy_ledgers.parquet": "12da0c4e8d100e1a2c2ffea1379d9f95d95860726534ab83bd1e8ae62e8c4f28",
+    "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/manifest.json": "10cc6f44e51afc5f7b8f8b21e4ec68e3a53e23679972fe817a18e2026ef2caca",
+    "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82/strategy_ledgers.parquet": "3e7d56353b2dee39d36d7bff6beee1a9b589744c448ded6ba06b0477789aa3a3",
+    "configs/company_adaptation_evidence_2026-11-01.json": "96bfee5b552a2be74388c20e608af6792a56305fa861b1e6efc14b9ab574aff3",
+    "data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a/manifest.json": "dcdfe7d36b11a2d4d1e44f7b4fbd2f1a7abef475d7a85b149ced5787aa8d59ff",
+    "data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a/panel.parquet": "10f014e1dc12251c681f05ece3f92c0c57d1f2dd9a25f3fdbe07508dcad403a9",
+    "data/processed/cross_market_ai_capability_2026/ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8/manifest.json": "47a64c6f7eb75c595c2f3f6304436e1aa4b371d64d8ef97eb67d0c1f6df87225",
+    "data/processed/cross_market_ai_capability_2026/ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8/panel.parquet": "e09d676fe3faa4ce52ee1e2807175770c18cfa8f6a905947068fc85b9612d33a",
+    "scripts/analyze_research_hypotheses.py": "58ff5db814d92cbae35ee6c587467a763823cc3c0e52e0765511d4657b537f93",
+    "src/quantfin/cross_market/hypotheses.py": "b3b008bbdcf0f3363c00ee7e8937bb410bd9a9620d3bb239b74db88b7a09694d"
+  },
+  "settings": {
+    "block_sessions": 20,
+    "bootstrap_draws": 2000,
+    "break_date": "2025-01-01",
+    "company_evidence": "configs/company_adaptation_evidence_2026-11-01.json",
+    "dataset": [
+      "data/processed/cross_market_ai_capability/ai_capability_panel_20261101T012801Z_ff277b55597d727a",
+      "data/processed/cross_market_ai_capability_2026/ai_capability_2026_panel_20261101T012848Z_7f83e6f3f4f128f8"
+    ],
+    "end": "2026-09-30",
+    "epoch_events": "artifacts/cross_market_ai_capability/analysis/epoch_capability_analysis_20261101T013137Z_45f5b1bd11ec/epoch_event_capability_returns.csv",
+    "minimum_events": 8,
+    "run": [
+      "artifacts/cross_market_ai_capability/runs/cm_ai_capability_final_test_20261101T025817Z_30ebf00d8090",
+      "artifacts/cross_market_ai_capability_2026/runs/cm_ai_capability_2026_forward_20261101T030225Z_6a066bcfcc82"
+    ],
+    "seed": 5205,
+    "start": "2021-01-01"
+  },
+  "status": "complete"
+}

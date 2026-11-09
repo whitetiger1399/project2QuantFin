@@ -1,0 +1,271 @@
+schema_version: 1
+study: cross_market_current_nifty_it_fixed_cohort
+decision_timezone: Asia/Kolkata
+decision_time: "08:55"
+frequency: 1d
+start: "2004-01-01"
+end_exclusive: "2026-10-30"
+
+cohort_definition:
+  design: fixed_current_constituent_cohort
+  as_of: "2026-10-30"
+  source_file: data/external/reference/current_constituents/ind_niftyitlist.csv
+  interpretation: Retrospective predictability study of the companies that are Nifty IT constituents on the cohort date; not a historical replication of Nifty IT membership.
+  symbols: [COFORGE, HCLTECH, INFY, LTM, MPHASIS, OFSS, PERSISTENT, TCS, TECHM, WIPRO]
+
+market_download:
+  interval: 1d
+  auto_adjust: false
+  actions: true
+  repair: true
+  timeout_seconds: 45
+  pause_seconds: 0.25
+  maximum_attempts: 3
+
+market_groups:
+  india_core:
+    required: true
+    description: Nifty IT target stocks, primary indices, benchmarks, India VIX, and USD/INR
+    symbols:
+      - TCS.NS
+      - INFY.NS
+      - HCLTECH.NS
+      - WIPRO.NS
+      - TECHM.NS
+      - LTM.NS
+      - PERSISTENT.NS
+      - COFORGE.NS
+      - MPHASIS.NS
+      - OFSS.NS
+      - ^CNXIT
+      - ^NSEI
+      - ^NSEBANK
+      - ^INDIAVIX
+      - INR=X
+      - NIFTYBEES.NS
+      - ITBEES.NS
+
+  india_extended:
+    required: false
+    description: Historical/former IT names and Indian sector context; individual failures are retained in the manifest
+    symbols:
+      - LTTS.NS
+      - TATAELXSI.NS
+      - LTI.NS
+      - MINDTREE.NS
+      - HEXAWARE.NS
+      - ^CNXAUTO
+      - ^CNXFMCG
+      - ^CNXPHARMA
+      - ^CNXMETAL
+      - ^CNXENERGY
+      - ^CNXREALTY
+      - ^CNXINFRA
+
+  us_limited_tech:
+    required: true
+    description: Predeclared liquid US technology universe for the limited-information comparison
+    symbols:
+      - AAPL
+      - MSFT
+      - NVDA
+      - AVGO
+      - ORCL
+      - CRM
+      - CSCO
+      - IBM
+      - ADBE
+      - AMD
+      - QCOM
+      - TXN
+      - INTU
+      - NOW
+      - PLTR
+      - AMAT
+      - MU
+      - LRCX
+      - KLAC
+      - PANW
+
+  us_it_services:
+    required: true
+    description: Predeclared US IT-services firms used as the primary overnight transmission signal
+    symbols:
+      - ACN
+      - IBM
+      - CTSH
+      - EPAM
+      - GLOB
+      - DXC
+      - JKHY
+      - LDOS
+      - SAIC
+      - CACI
+      - CNXC
+
+  us_it_enabled_payments:
+    required: false
+    description: Payments and processing firms retained as a separately labelled robustness block
+    symbols:
+      - FI
+      - FIS
+      - GPN
+
+  us_enterprise_software:
+    required: false
+    description: Enterprise software comparators; not classified as core IT-services firms
+    symbols:
+      - CRM
+      - SAP
+      - ORCL
+      - NOW
+      - ADBE
+
+  us_context:
+    required: true
+    description: Broad US, sector, volatility, rates, commodity, and emerging-market proxies
+    symbols:
+      - SPY
+      - QQQ
+      - IWM
+      - XLK
+      - XLF
+      - XLV
+      - XLE
+      - XLI
+      - XLY
+      - XLP
+      - XLB
+      - XLU
+      - ^GSPC
+      - ^IXIC
+      - ^VIX
+      - EEM
+      - UUP
+      - GLD
+      - SLV
+      - USO
+      - CPER
+      - TLT
+      - SHY
+
+  indian_it_adrs:
+    required: true
+    description: US-traded Indian technology ADRs available before the following NSE open
+    symbols:
+      - INFY
+      - WIT
+
+  global_context:
+    required: false
+    description: Completed overseas sessions used only when their timestamps precede 08:55 IST
+    symbols:
+      - ^FTSE
+      - ^GDAXI
+      - ^FCHI
+      - ^N225
+      - ^HSI
+      - ^STI
+
+  nifty_it_point_in_time:
+    required: false
+    deprecated_for_fixed_cohort: true
+    description: Retained only for future historical-membership research; not used by the fixed current-constituent cohort
+    membership_file_required: true
+    membership_market: NIFTY_IT
+
+  nifty50_point_in_time:
+    required: false
+    description: Provisional union read from the third-party point-in-time Nifty 50 membership file
+    membership_file_required: true
+    membership_market: NIFTY50_PROVISIONAL
+
+  nifty500_point_in_time:
+    required: false
+    description: Provisional broad-India union read from the third-party point-in-time Nifty 500 membership file
+    membership_file_required: true
+    membership_market: NIFTY500_PROVISIONAL
+
+  sp500_point_in_time:
+    required: false
+    description: Provisional union read from the third-party point-in-time S&P 500 membership file; unavailable delisted tickers remain recorded
+    membership_file_required: true
+    membership_market: SP500
+
+fred_alfred:
+  output_type: 4
+  required_availability_column: realtime_start
+  series:
+    DFF: effective_federal_funds_rate
+    DFEDTARL: federal_funds_target_range_lower_limit
+    DFEDTARU: federal_funds_target_range_upper_limit
+    DGS3MO: treasury_3_month_yield
+    DGS2: treasury_2_year_yield
+    DGS10: treasury_10_year_yield
+    T10Y2Y: treasury_10_year_minus_2_year
+    T10Y3M: treasury_10_year_minus_3_month
+    BAMLH0A0HYM2: ice_bofa_us_high_yield_option_adjusted_spread
+    BAMLC0A0CM: ice_bofa_us_corporate_option_adjusted_spread
+    DTWEXBGS: nominal_broad_us_dollar_index
+    DEXINUS: indian_rupees_per_us_dollar
+    VIXCLS: cboe_vix_close
+    IRSTCI01INM156N: india_monthly_overnight_call_money_rate
+    INTDSRINM193N: india_monthly_discount_rate
+    INDIRLTLT01STM: india_monthly_long_term_government_bond_yield
+    INDCPIALLMINMEI: india_monthly_consumer_price_index
+
+symbol_changes:
+  - stable_security: INE214T01019
+    issuer: LTM Limited (formerly LTIMindtree Limited)
+    old_exchange_symbol: LTIM
+    new_exchange_symbol: LTM
+    effective_from: "2026-02-27"
+    old_yahoo_symbol: LTIM.NS
+    new_yahoo_symbol: LTM.NS
+    source_url: https://nsearchives.nseindia.com/content/circulars/FAOP72935.pdf
+
+manual_sources:
+  nifty_it_membership:
+    filename: nifty_it_membership.csv
+    required_columns: [symbol, yahoo_symbol, valid_from, valid_to, announced_at, source_url]
+    nullable_columns: [announced_at]
+    reason: Historical point-in-time membership is not equivalent to today's constituent list.
+  sp500_membership:
+    filename: sp500_membership.csv
+    required_columns: [symbol, yahoo_symbol, valid_from, valid_to, sector, sub_industry, announced_at, source_url]
+    nullable_columns: [sector, sub_industry, announced_at]
+    reason: Required to avoid survivorship bias in the full-US experiment.
+  nifty50_membership:
+    filename: nifty50_membership.csv
+    required_columns: [symbol, yahoo_symbol, valid_from, valid_to, announced_at, source_url]
+    nullable_columns: [announced_at]
+    reason: Provisional point-in-time Nifty 50 benchmark and Indian broad-market context.
+  nifty500_membership:
+    filename: nifty500_membership.csv
+    required_columns: [symbol, yahoo_symbol, valid_from, valid_to, announced_at, source_url]
+    nullable_columns: [announced_at]
+    reason: Provisional broad-India membership for breadth and compressed context; not Nifty IT membership.
+  rbi_rates:
+    filename: rbi_rates.csv
+    required_columns: [series_id, observation_date, value, unit, published_at, effective_at, source_url]
+    reason: Publication timestamps must be retained for repo, SDF, MSF, bank rate, CRR, SLR, WALR, and MCLR.
+  nse_holidays:
+    filename: nse_holidays.csv
+    required_columns: [holiday_date, market, holiday_name, session_type, announced_at, source_url]
+    reason: Use official dated exchange calendars, including special sessions.
+  nyse_holidays:
+    filename: nyse_holidays.csv
+    required_columns: [holiday_date, market, holiday_name, session_type, announced_at, source_url]
+    reason: Needed to compute age of the latest completed US observation.
+  scheduled_events:
+    filename: scheduled_events.csv
+    required_columns: [event_id, event_type, scheduled_at_utc, actual_release_at_utc, source_url]
+    reason: FOMC, RBI MPC, CPI, payroll, GDP, earnings, and index-rebalance timing.
+  global_events:
+    filename: global_events.csv
+    required_columns: [event_id, event_type, first_public_at_utc, end_at_utc, description, source_url]
+    reason: Retrospective annotations are distinct from causal predictive markers.
+  imd_rainfall:
+    filename: imd_rainfall.csv
+    required_columns: [observation_date, geography, metric, value, unit, published_at, revision_at, source_url]
+    reason: Official rainfall data require publication/revision timestamps before predictive use.

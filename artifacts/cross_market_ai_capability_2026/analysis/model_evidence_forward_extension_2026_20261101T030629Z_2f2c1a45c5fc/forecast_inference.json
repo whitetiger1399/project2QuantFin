@@ -1,0 +1,24 @@
+{
+  "block_length_sessions": 20,
+  "calibration_slope_95_ci": [
+    0.4828992647500107,
+    2.121096691555831
+  ],
+  "directional_accuracy": 0.5637837837837838,
+  "directional_accuracy_95_ci": [
+    0.5291756756756757,
+    0.6010945945945946
+  ],
+  "directionally_correct": 1043,
+  "incremental_accuracy_vs_majority_95_ci": [
+    -0.029189189189189224,
+    0.04759459459459453
+  ],
+  "majority_sign": "down",
+  "majority_sign_accuracy": 0.5508108108108108,
+  "method": "circular_date_block_bootstrap",
+  "observations": 1850,
+  "repetitions": 1000,
+  "stock_day_observations": 1850,
+  "unique_dates": 185
+}

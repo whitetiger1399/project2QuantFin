@@ -1,0 +1,72 @@
+{
+  "forecast_inference": {
+    "calibration_intercept": -0.0011166503604942413,
+    "calibration_slope": 0.3171552222515794,
+    "calibration_slope_hac_pvalue": 6.940960176776973e-05,
+    "calibration_slope_hac_t": 3.978300544473989,
+    "directional_accuracy": 0.535483870967742,
+    "directionally_correct": 2656,
+    "observations": 4960,
+    "one_sided_binomial_pvalue_vs_50_percent": 3.0842627229564985e-07
+  },
+  "long_exposure_days": 283,
+  "mean_turnover": 1.9502688170689517,
+  "portfolio_performance": [
+    {
+      "annual_return": 0.14635261893950857,
+      "annual_volatility": 0.20034904146905105,
+      "cumulative_return": 0.30843856678754333,
+      "maximum_drawdown": -0.22751436862688934,
+      "observations": 496,
+      "portfolio": "selected_strategy_net",
+      "positive_day_fraction": 0.4939516129032258,
+      "sharpe": 0.7817155335506368
+    },
+    {
+      "annual_return": 0.6565454328186653,
+      "annual_volatility": 0.2004154570512542,
+      "cumulative_return": 1.7005229121944616,
+      "maximum_drawdown": -0.1338409589284122,
+      "observations": 496,
+      "portfolio": "selected_strategy_gross",
+      "positive_day_fraction": 0.5645161290322581,
+      "sharpe": 2.620640004528448
+    },
+    {
+      "annual_return": 0.10426431487327936,
+      "annual_volatility": 0.21868030315178763,
+      "cumulative_return": 0.21556637370912046,
+      "maximum_drawdown": -0.31738913714093453,
+      "observations": 496,
+      "portfolio": "nifty_it_buy_hold",
+      "positive_day_fraction": 0.5141129032258065,
+      "sharpe": 0.5630044704233556
+    },
+    {
+      "annual_return": 0.15525052614999435,
+      "annual_volatility": 0.15156241789516958,
+      "cumulative_return": 0.32850327735885543,
+      "maximum_drawdown": -0.16107791440871233,
+      "observations": 496,
+      "portfolio": "nifty50_buy_hold",
+      "positive_day_fraction": 0.5383064516129032,
+      "sharpe": 1.028190171493888
+    },
+    {
+      "annual_return": -0.29266683340912025,
+      "annual_volatility": 0.20331067824933338,
+      "cumulative_return": -0.4941498472273914,
+      "maximum_drawdown": -0.5258309745140528,
+      "observations": 496,
+      "portfolio": "fixed_cohort_equal_weight",
+      "positive_day_fraction": 0.4838709677419355,
+      "sharpe": -1.6000539105087415
+    }
+  ],
+  "selected_config_id": "cm_hist_gradient_boosting_65bf48f1d06c",
+  "selected_family": "hist_gradient_boosting",
+  "selected_feature_set": "F7_full_context",
+  "short_exposure_days": 380,
+  "stage": "screening",
+  "trade_days": 492
+}

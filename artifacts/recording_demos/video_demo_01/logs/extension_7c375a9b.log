@@ -1,0 +1,55 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/run_frozen_2026_extension.py", "--source-config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model.yaml", "--forecast-config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model_2026.yaml", "--dataset-id", "ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6", "--freeze-id", "cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb", "--start", "2026-01-01", "--end", "2026-09-30"]
+{
+  "action": "run_frozen_2026_extension",
+  "run_id": "cm_ai_capability_2026_forward_20261109T074324Z_44d5ba202399",
+  "content_hash": "44d5ba202399",
+  "stage": "forward_extension_2026",
+  "dataset_id": "ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6",
+  "source_freeze_id": "cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb",
+  "source_confirmation_run_id": "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "selected_family": "extra_trees",
+  "selected_feature_set": "F7_full_context",
+  "evaluation_start": "2026-01-01",
+  "evaluation_end": "2026-09-30",
+  "refit_count_selected_model": 1,
+  "model_reselection_performed": false,
+  "hyperparameter_tuning_performed": false,
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model_2026/runs/cm_ai_capability_2026_forward_20261109T074324Z_44d5ba202399",
+  "status": "starting"
+}
+
+Fitting frozen 2026 extension:   0%|          | 0/4 [00:00<?, ?model/s]
+Fitting frozen 2026 extension: 100%|██████████| 4/4 [01:12<00:00, 18.18s/model]
+Fitting frozen 2026 extension: 100%|██████████| 4/4 [01:12<00:00, 18.18s/model]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+{
+  "action": "run_frozen_2026_extension",
+  "run_id": "cm_ai_capability_2026_forward_20261109T074324Z_44d5ba202399",
+  "content_hash": "44d5ba202399",
+  "stage": "forward_extension_2026",
+  "dataset_id": "ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6",
+  "source_freeze_id": "cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb",
+  "source_confirmation_run_id": "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "selected_family": "extra_trees",
+  "selected_feature_set": "F7_full_context",
+  "evaluation_start": "2026-01-01",
+  "evaluation_end": "2026-09-30",
+  "refit_count_selected_model": 1,
+  "model_reselection_performed": false,
+  "hyperparameter_tuning_performed": false,
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model_2026/runs/cm_ai_capability_2026_forward_20261109T074324Z_44d5ba202399",
+  "status": "complete",
+  "training_end": "2025-12-30",
+  "prediction_dates": 185
+}

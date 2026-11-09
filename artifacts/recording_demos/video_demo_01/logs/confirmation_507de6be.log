@@ -1,0 +1,69 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/run_cross_market_experiments.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model.yaml", "--dataset-id", "ai_capability_panel_20261109T064115Z_1a13582b12774e0b", "--stage", "confirmation", "--profile", "submission_rerun", "--training-scheme", "rolling", "--parallel-workers", "3", "--screening-run-id", "cm_ai_capability_screening_20261109T064224Z_9bcdeff9aa56"]
+{
+  "action": "run_cross_market_experiments",
+  "run_id": "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+  "content_hash": "c63846418f31",
+  "stage": "confirmation",
+  "profile": "submission_rerun",
+  "training_scheme": "rolling",
+  "parallel_workers": 3,
+  "effective_estimator_jobs": 1,
+  "refit_frequency": "quarter_start",
+  "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "configuration_count": 13,
+  "expected_checkpoint_count": 104,
+  "screening_run_id": "cm_ai_capability_screening_20261109T064224Z_9bcdeff9aa56",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+  "status": "starting"
+}
+
+confirmation parallel walk-forward:   0%|          | 0/104 [00:00<?, ?refit/s]
+confirmation parallel walk-forward:   1%|          | 1/104 [00:01<01:45,  1.02s/refit]
+confirmation parallel walk-forward:  12%|█▎        | 13/104 [00:02<00:14,  6.23refit/s]
+confirmation parallel walk-forward:  24%|██▍       | 25/104 [00:03<00:10,  7.37refit/s]
+confirmation parallel walk-forward:  33%|███▎      | 34/104 [00:04<00:09,  7.35refit/s]
+confirmation parallel walk-forward:  40%|████      | 42/104 [00:06<00:09,  6.27refit/s]
+confirmation parallel walk-forward:  47%|████▋     | 49/104 [00:08<00:10,  5.26refit/s]
+confirmation parallel walk-forward:  53%|█████▎    | 55/104 [00:11<00:11,  4.25refit/s]
+confirmation parallel walk-forward:  58%|█████▊    | 60/104 [00:14<00:11,  3.69refit/s]
+confirmation parallel walk-forward:  62%|██████▎   | 65/104 [00:20<00:14,  2.61refit/s]
+confirmation parallel walk-forward:  66%|██████▋   | 69/104 [00:26<00:16,  2.08refit/s]
+confirmation parallel walk-forward:  70%|███████   | 73/104 [00:31<00:17,  1.78refit/s]
+confirmation parallel walk-forward:  73%|███████▎  | 76/104 [00:36<00:17,  1.56refit/s]
+confirmation parallel walk-forward:  76%|███████▌  | 79/104 [00:41<00:17,  1.40refit/s]
+confirmation parallel walk-forward:  79%|███████▉  | 82/104 [00:50<00:19,  1.12refit/s]
+confirmation parallel walk-forward:  82%|████████▏ | 85/104 [00:59<00:20,  1.06s/refit]
+confirmation parallel walk-forward:  84%|████████▎ | 87/104 [01:06<00:20,  1.18s/refit]
+confirmation parallel walk-forward:  84%|████████▎ | 87/104 [01:20<00:20,  1.18s/refit]
+confirmation parallel walk-forward:  86%|████████▌ | 89/104 [02:45<01:00,  4.00s/refit]
+confirmation parallel walk-forward:  87%|████████▋ | 90/104 [02:51<00:56,  4.04s/refit]
+confirmation parallel walk-forward:  87%|████████▋ | 90/104 [03:10<00:56,  4.04s/refit]
+confirmation parallel walk-forward:  88%|████████▊ | 92/104 [04:50<01:31,  7.64s/refit]
+confirmation parallel walk-forward:  89%|████████▉ | 93/104 [04:54<01:22,  7.54s/refit]
+confirmation parallel walk-forward:  89%|████████▉ | 93/104 [05:10<01:22,  7.54s/refit]
+confirmation parallel walk-forward:  91%|█████████▏| 95/104 [07:15<01:48, 12.04s/refit]
+confirmation parallel walk-forward:  92%|█████████▏| 96/104 [07:20<01:34, 11.78s/refit]
+confirmation parallel walk-forward:  92%|█████████▏| 96/104 [07:40<01:34, 11.78s/refit]
+confirmation parallel walk-forward:  93%|█████████▎| 97/104 [07:58<01:29, 12.82s/refit]
+confirmation parallel walk-forward:  94%|█████████▍| 98/104 [10:25<01:51, 18.65s/refit]
+confirmation parallel walk-forward:  95%|█████████▌| 99/104 [10:31<01:30, 18.06s/refit]
+confirmation parallel walk-forward:  95%|█████████▌| 99/104 [10:50<01:30, 18.06s/refit]
+confirmation parallel walk-forward:  96%|█████████▌| 100/104 [11:08<01:16, 19.01s/refit]
+confirmation parallel walk-forward:  97%|█████████▋| 101/104 [13:45<01:18, 26.09s/refit]
+confirmation parallel walk-forward:  98%|█████████▊| 102/104 [13:53<00:50, 25.08s/refit]
+confirmation parallel walk-forward:  99%|█████████▉| 103/104 [14:26<00:25, 25.53s/refit]
+confirmation parallel walk-forward: 100%|██████████| 104/104 [16:08<00:00, 30.07s/refit]
+confirmation parallel walk-forward: 100%|██████████| 104/104 [16:08<00:00,  9.31s/refit]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/lib/python3.10/site-packages/pandas/core/nanops.py:1632: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  return spearmanr(a, b)[0]
+{
+  "run_id": "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+  "content_hash": "c63846418f31",
+  "status": "complete",
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_confirmation_20261109T071739Z_c63846418f31"
+}
