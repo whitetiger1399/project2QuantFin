@@ -1,5 +1,7 @@
 # Cross-Market Forecasting and Long/Short Trading of Nifty IT Stocks
 
+[Watch the project demonstration on YouTube](https://youtu.be/VhtQpD3C_rs).
+
 **Team 16 · Data Science in Quantitative Finance DSA5205 · NUS**
 
 Predict daily open-to-close returns for ten fixed Nifty IT constituents using information available at **08:55 IST**. Compare own-stock history, Indian peers, U.S. IT-services stocks, broad-market context, macro data and frontier AI releases. Forecasts determine **long, short or flat** positions; returns account for trading costs.

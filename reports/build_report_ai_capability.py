@@ -33,6 +33,7 @@ FIG = registry_output(ROOT, RELEASE, "generated_figures", "reports/figures_ai_ca
 FIG.mkdir(parents=True, exist_ok=True)
 LOGO = ROOT / "assets/nus_logo_full-vertical.jpg"
 GITHUB = "https://github.com/whitetiger1399/project2QuantFin"
+DEMO_URL = "https://youtu.be/VhtQpD3C_rs"
 
 def evidence_id(name: str, default: str) -> str:
     """Allow a verified rerun to be rendered without editing report source code."""
@@ -568,7 +569,7 @@ def cover(doc, authors):
         row=t.add_row();
         for c in row.cells: margins(c)
         for i,v in enumerate([a["name"],a["student_id"]]): p=row.cells[i].paragraphs[0]; p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run(v)
-    p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run("Repository: "); hyperlink(p,"Project source and reproducibility package",GITHUB)
+    p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run("Repository: "); hyperlink(p,"Project source and reproducibility package",GITHUB); p.add_run("   |   Demo: "); hyperlink(p,"YouTube video",DEMO_URL)
     p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; r=p.add_run("Daily market data: Yahoo Finance · Macro context: FRED/ALFRED · AI benchmarks: Epoch AI"); r.italic=True; r.font.color.rgb=RGBColor.from_string(MUTED)
     p=doc.add_paragraph(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER; p.add_run("November 2026")
 

@@ -1,7 +1,7 @@
 {
   "status": "complete",
-  "created_at_utc": "2026-11-09T16:00:10.212346+00:00",
-  "source_hash": "bab4ee0a1531ebe37050a36c026eeb4726fe3d9e2ddaff3e4defc076daf9f212",
+  "created_at_utc": "2026-11-09T16:21:00.407863+00:00",
+  "source_hash": "bfbda5e7471dfb366fb28045824acb9852ed0882357de2d7ffe0c18118115f57",
   "client_date": "2026-11-02",
   "format_points": [
     960,
@@ -34,7 +34,7 @@
   },
   "inputs": {
     "documents/markdown/Project2.md": "66f0175dcfc155e67c922a38e53ce9f73f589c37d736a8b2eb4b7d5af4972220",
-    "reports/Project2_Team16_Report.docx": "37b3c5c7557a960fe85fb72e2bc2f196792deeb6bac01524db9f456e2e43397d",
+    "reports/Project2_Team16_Report.docx": "c790b80dd0c03dbaaa4a30d8397bad972a41b5757f1fb0a8418f85523d98ddf4",
     "assets/authors.json": "52b4359b25b12d6eee46c2f420eda35897493439d9b2788acd599ad8fa126fa8",
     "documents/video_presentation_content.py": "a0426ac7103866e2de4f845dae69cc41c23007a35d66296197256c0bdb56451f",
     "scripts/build_project2_video_package.py": "81e3ff6de23956a2e50ae3c20df43d04ab1116ef700b470fe238d9eff7f29851",
@@ -55,7 +55,7 @@
     "Project2_Team16_Video_Deck.docx": "ac7884eb45561c21d6c4362f781f62ac6ac8c7c8200af6725e03ecb5e7e03254",
     "video_architecture.png": "3337286949fef894e4dc3d557dbc362f1e50e74229f5503c87ebe4bd7b8880ff",
     "video_architecture.pdf": "34b70f43f6bb652080241316c49930d2931d018311d2f6c3c0ff61d058e6dd41",
-    "README.md": "2d1b9c5b405f4dfbea5a32feec7e11cde873cff8a8600f30b94f38caeb3dd165",
+    "README.md": "4361d9e30df302d79a707c0e01a409125295b33f4d71f0d4964178ade46b2aa0",
     "Project2_Team16_Video_Deck.pdf": "8b33d578e2ab407904cc5fbb1c7639a477e6e8c042d5e408c242233ebec785ca",
     "Project2_Team16_Video_Deck.md": "113a6be47de7bc646beb52d4ee2f277fb7ad9d4e0e7f8604967b79902b4d2ab3",
     "recording_commands.md": "eb391b4f8223310c586f90b78942beed172ca730873424b5f05918430663106b",

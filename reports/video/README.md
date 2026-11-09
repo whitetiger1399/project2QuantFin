@@ -1,5 +1,7 @@
 # Team 16 video deck
 
+[Watch the project demonstration on YouTube](https://youtu.be/VhtQpD3C_rs).
+
 The submitted deck presents the research question, architecture, six hypotheses, data and timing controls, model selection, long/short backtesting, transaction costs and results.
 
 | Format | File |
