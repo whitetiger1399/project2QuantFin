@@ -1,7 +1,7 @@
 {
   "status": "complete",
-  "created_at_utc": "2026-11-02T08:16:43.361699+00:00",
-  "source_hash": "f41d9ae9c7f3c6fc9575ccb7af129bbf5b79129882acc3114ec9748e3d455c55",
+  "created_at_utc": "2026-11-09T16:00:10.212346+00:00",
+  "source_hash": "bab4ee0a1531ebe37050a36c026eeb4726fe3d9e2ddaff3e4defc076daf9f212",
   "client_date": "2026-11-02",
   "format_points": [
     960,
@@ -21,6 +21,7 @@
     "VICTOR LEE CHIA SWEA": 300
   },
   "model_training_performed": false,
+  "distribution": "deck_only",
   "design_preset": "compact_reference_guide",
   "named_overrides": {
     "page": "16:9 sample screen, 13\u2153 \u00d7 7\u00bd in",
@@ -33,20 +34,16 @@
   },
   "inputs": {
     "documents/markdown/Project2.md": "66f0175dcfc155e67c922a38e53ce9f73f589c37d736a8b2eb4b7d5af4972220",
-    "reports/Project2_Team16_Report.docx": "42cf36b3ec00279ae16d2b8bdc3b1bfe418fefdb73b57ce3e0abfb8df5296786",
+    "reports/Project2_Team16_Report.docx": "37b3c5c7557a960fe85fb72e2bc2f196792deeb6bac01524db9f456e2e43397d",
     "assets/authors.json": "52b4359b25b12d6eee46c2f420eda35897493439d9b2788acd599ad8fa126fa8",
-    "assets/old_project/A0355860X_video_deck.pdf": "718e7e8e01fae639923dc8bc7931121432be954dfd4b198e22f0a0a3a8f11701",
-    "assets/old_project/video_deck.md": "9c28f9e0b892c69f68401a92d9952a834f51b62ddec77debde3cf60a6fe63c3b",
-    "assets/old_project/video_script.md": "775d6ccc5b9fe3d11e21697a90704dbdaad854679fd7c2a916fab9b10c2eff7a",
     "documents/video_presentation_content.py": "a0426ac7103866e2de4f845dae69cc41c23007a35d66296197256c0bdb56451f",
-    "scripts/build_project2_video_package.py": "ab83cf563cda3a5bd090b9e43192c8a9b4ccf17a08b1d7b31b393331007c6652",
-    "documents/markdown/VIDEO_SCRIPT_DECK_GAP_ANALYSIS_2026-11-02.md": "81561371bf01cf626e57a837d0b99bdb4a1fe4eee1467bafa2c9fd814a1ade47",
+    "scripts/build_project2_video_package.py": "81e3ff6de23956a2e50ae3c20df43d04ab1116ef700b470fe238d9eff7f29851",
     "src/quantfin/cross_market/experiments.py": "48d5da0ebdef13ebca5d195a53602b6f52c179cdc0eb372fc87ed70064bf8dd7",
     "reports/releases/project2_team16_v2_2026-11-01/release_registry.json": "6e0a24f13a5efa33035b86daf483ff31f1fb54aec86839bfc3d8dee5462991a6",
     "reports/publication_figure_pack_v2_2026-11-01/manifest.json": "6d97fecc1421ba9280b57db14024898586b1069aafd6b5d4126bded59d968d04",
     "reports/publication_figure_pack_v2_2026-11-01/07_cost_accounting.csv": "57a57603fb54d10bbd2deea02813e76007132fcef4b130a7fc83346888062efa",
     "scripts/recording_evidence.py": "8d037699d1e198a188159e34a0fd4a6d7b9c903c92c8881f62c5e6631af76f47",
-    "reports/video/recording_commands.md": "2c5200e1ed6ee5cfd5a6b9afe766235b4ca1491d0236bd09899a4af15ea1284a",
+    "reports/video/recording_commands.md": "eb391b4f8223310c586f90b78942beed172ca730873424b5f05918430663106b",
     "reports/publication_figure_pack_v2_2026-11-01/12_information_ladder.png": "f4392f1c916f3e4ac471f3beb47706b73a6d11445aec49da93c2fa6d6f3c68aa",
     "reports/publication_figure_pack_v2_2026-11-01/11_model_family_evidence.png": "b0ba32c8494fdf1a072dd40ace815ccbf9f0053a68b0731450714cc418925855",
     "reports/publication_figure_pack_v2_2026-11-01/08_combined_benchmarks.png": "4867b4998b85d23d0195138d07c68c1ab0fc37c41f09efe46c33d940eb85e420",
@@ -55,20 +52,15 @@
     "reports/publication_figure_pack_v2_2026-11-01/16_regime_distributions.png": "e0af461b05a74e2a35ed2fca3383a1c6045f5eb88ea8d0eda0a6db55c7434555"
   },
   "outputs": {
-    "Project2_Team16_Video_Script.md": "378f3d11e9a055220e61013d68570c292f59bf2d0c72206da21ddf5d7181c5c0",
-    "Project2_Team16_Video_Script.pdf": "2aa0ee158a3178caf19439ca4f8db26b887f68dae7a15d3ba65cb22ddf19e60c",
     "Project2_Team16_Video_Deck.docx": "ac7884eb45561c21d6c4362f781f62ac6ac8c7c8200af6725e03ecb5e7e03254",
     "video_architecture.png": "3337286949fef894e4dc3d557dbc362f1e50e74229f5503c87ebe4bd7b8880ff",
     "video_architecture.pdf": "34b70f43f6bb652080241316c49930d2931d018311d2f6c3c0ff61d058e6dd41",
-    "Project2_Team16_Video_Script.docx": "4868e5dd9b19d4135102bdbed9be6b48602977164d311d29be2a7ebb7add28fa",
-    "README.md": "521e7850e6dfe5d2dd01b92ec54167d4339b3a24f5a18af558fe2b117b16f958",
+    "README.md": "2d1b9c5b405f4dfbea5a32feec7e11cde873cff8a8600f30b94f38caeb3dd165",
     "Project2_Team16_Video_Deck.pdf": "8b33d578e2ab407904cc5fbb1c7639a477e6e8c042d5e408c242233ebec785ca",
     "Project2_Team16_Video_Deck.md": "113a6be47de7bc646beb52d4ee2f277fb7ad9d4e0e7f8604967b79902b4d2ab3",
-    "recording_commands.md": "2c5200e1ed6ee5cfd5a6b9afe766235b4ca1491d0236bd09899a4af15ea1284a",
-    "verification.json": "0910c266fb9fe438ce7f1880b23f84c2871b1e446cfe2a420fbeb2c025672d1c",
+    "recording_commands.md": "eb391b4f8223310c586f90b78942beed172ca730873424b5f05918430663106b",
     "video_costs.pdf": "6a70785cd79474d785726ace09cd8c2ec3dc25f9dd6d41dff9c4b030d4563b34",
     "video_costs.png": "8d3cf7629ff9fa551ef73d3d5350845b864b7004ffdb826d6081c294bd5cc4f0",
-    "timing.csv": "5b1e9cb5e3590e383abde920275633563ed054b3f2ab90a743b5cbed588e9f4a",
-    "BACKTEST_AND_VIDEO_REQUIREMENTS_REVIEW.md": "a8090ee6d17e2df36dd357382427bb23ee70037df3664cfd7ed5210842698510"
+    "timing.csv": "5b1e9cb5e3590e383abde920275633563ed054b3f2ab90a743b5cbed588e9f4a"
   }
 }

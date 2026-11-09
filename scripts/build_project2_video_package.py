@@ -245,7 +245,7 @@ def script(module,authors):
     d.save(OUT/'Project2_Team16_Video_Script.docx')
 
 
-def markdown(module,authors):
+def markdown(module,authors,deck_only=False):
     deck_lines=['# Cross-Market Forecasting and Signed Trading of Nifty IT Stocks','',
       'Data Science in Quantitative Finance DSA5205 · Project2 Teams 16','',
       'Format: 960 × 540 pt (16:9), matching the supplied old-project PDF. Recording: 20:00 maximum.','',
@@ -281,50 +281,56 @@ def markdown(module,authors):
       'Own-code backtesting is implemented in src/quantfin/cross_market/experiments.py. The assignment’s backtesting libraries are illustrative. See recording_commands.md and recording_evidence.py for concrete steps.','',
       'Use the fixed timing schedule in timing.csv. A word is a match of the Unicode regex recorded in package_manifest.json; headings and directions are excluded. Presenter allocations describe the proposed video roles only.','']
     (OUT/'Project2_Team16_Video_Deck.md').write_text('\n'.join(deck_lines)+'\n')
-    (OUT/'Project2_Team16_Video_Script.md').write_text('\n'.join(script_lines)+'\n')
+    if not deck_only:
+        (OUT/'Project2_Team16_Video_Script.md').write_text('\n'.join(script_lines)+'\n')
 
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--finalize',action='store_true',help='Hash all final formats after rendering PDFs')
-    parser.add_argument('--script-only',action='store_true',help='Update narration documents and Markdown without changing deck artwork or DOCX')
+    modes=parser.add_mutually_exclusive_group()
+    modes.add_argument('--script-only',action='store_true',help='Update narration documents and Markdown without changing deck artwork or DOCX')
+    modes.add_argument('--deck-only',action='store_true',help='Build or finalize the deck without exporting narration files')
     args=parser.parse_args();OUT.mkdir(parents=True,exist_ok=True)
     module,authors=load()
     if not args.finalize:
         if not args.script_only:
             figures();deck(module,authors)
-        script(module,authors);markdown(module,authors)
+        if not args.deck_only:
+            script(module,authors)
+        markdown(module,authors,deck_only=args.deck_only)
         pd.DataFrame([{'slide':s['number'],'title':s['title'],'presenter':authors[s['speaker']]['name'],
            'start':clock(s['start']),'end':clock(s['end']),'seconds':s['seconds'],'spoken_words':s['words'],
            'narration_seconds_at_120_wpm':s['narration_seconds'],'visual_transition_seconds':s['visual_seconds']} for s in module.SCENES]).to_csv(OUT/'timing.csv',index=False)
     paths=[ROOT/'documents/markdown/Project2.md',ROOT/'reports/Project2_Team16_Report.docx',ROOT/'assets/authors.json',
-       ROOT/'assets/old_project/A0355860X_video_deck.pdf',ROOT/'assets/old_project/video_deck.md',ROOT/'assets/old_project/video_script.md',
-       CONTENT,Path(__file__),ROOT/'documents/markdown/VIDEO_SCRIPT_DECK_GAP_ANALYSIS_2026-11-02.md',ROOT/'src/quantfin/cross_market/experiments.py',REGISTRY,PACK/'manifest.json',PACK/'07_cost_accounting.csv',
+       CONTENT,Path(__file__),ROOT/'src/quantfin/cross_market/experiments.py',REGISTRY,PACK/'manifest.json',PACK/'07_cost_accounting.csv',
        ROOT/'scripts/recording_evidence.py',OUT/'recording_commands.md']
     paths += [PACK/s['figure'] for s in module.SCENES if s.get('figure') and not s['figure'].startswith('video_')]
     paths += [PACK/p for p in ['05_cross_market_correlations.png','06b_event_responses.png','16_regime_distributions.png']]
     files=[p for p in OUT.iterdir() if p.is_file() and p.name!='package_manifest.json']
     if args.finalize:
-        for stem in ['Project2_Team16_Video_Deck','Project2_Team16_Video_Script']:
+        stems=['Project2_Team16_Video_Deck'] if args.deck_only else ['Project2_Team16_Video_Deck','Project2_Team16_Video_Script']
+        for stem in stems:
             for ext in ['docx','pdf','md']:assert (OUT/f'{stem}.{ext}').is_file()
-        for stem in ['Project2_Team16_Video_Deck','Project2_Team16_Video_Script']:
+        for stem in stems:
             d=Document(OUT/(stem+'.docx'));s=d.sections[0]
             assert abs(s.page_width/Inches(1)-13-1/3)<.001 and abs(s.page_height/Inches(1)-7.5)<.001
-        script_doc=Document(OUT/'Project2_Team16_Video_Script.docx')
-        script_text='\n'.join(p.text for p in script_doc.paragraphs)
-        script_md=(OUT/'Project2_Team16_Video_Script.md').read_text()
-        deck_doc=Document(OUT/'Project2_Team16_Video_Deck.docx')
-        deck_titles={p.text for p in deck_doc.paragraphs}
-        for scene in module.SCENES:
-            assert script_text.count(slide_cue(scene))==1 and script_md.count(slide_cue(scene))==1,'Missing or duplicate slide cue'
-            expected=scene['title'] if scene['number']==1 else f"{scene['number']:02d}  ·  {scene['title']}"
-            assert expected in deck_titles,'Deck title changed without synchronized script rebuild: '+expected
+        if not args.deck_only:
+            script_doc=Document(OUT/'Project2_Team16_Video_Script.docx')
+            script_text='\n'.join(p.text for p in script_doc.paragraphs)
+            script_md=(OUT/'Project2_Team16_Video_Script.md').read_text()
+            deck_doc=Document(OUT/'Project2_Team16_Video_Deck.docx')
+            deck_titles={p.text for p in deck_doc.paragraphs}
+            for scene in module.SCENES:
+                assert script_text.count(slide_cue(scene))==1 and script_md.count(slide_cue(scene))==1,'Missing or duplicate slide cue'
+                expected=scene['title'] if scene['number']==1 else f"{scene['number']:02d}  ·  {scene['title']}"
+                assert expected in deck_titles,'Deck title changed without synchronized script rebuild: '+expected
     manifest={'status':'complete' if args.finalize else 'awaiting_pdf_render','created_at_utc':datetime.now(timezone.utc).isoformat(),
       'source_hash':hashlib.sha256(''.join(digest(p) for p in paths).encode()).hexdigest(),
       'client_date':'2026-11-02','format_points':[960,540],'timed_slides':16,'seconds':1200,'speaking_rate_wpm':120,
       'spoken_words':sum(s['words'] for s in module.SCENES),'word_count_regex':WORDS.pattern,
       'total_narration_seconds_at_120_wpm':sum(s['narration_seconds'] for s in module.SCENES),
       'final_buffer_seconds':20,'speaker_seconds':{a['name']:300 for a in authors},
-      'model_training_performed':False,'design_preset':'compact_reference_guide',
+      'model_training_performed':False,'distribution':'deck_only' if args.deck_only else 'deck_and_script','design_preset':'compact_reference_guide',
       'named_overrides':{'page':'16:9 sample screen, 13⅓ × 7½ in','margins_in':.45,'font':'Times New Roman','body':'deck 22pt, script 16pt','headers':'10pt','table_indent_dxa':120,'line_spacing':1.08},
       'inputs':{str(p.relative_to(ROOT)):digest(p) for p in dict.fromkeys(paths)},
       'outputs':{p.name:digest(p) for p in files}}

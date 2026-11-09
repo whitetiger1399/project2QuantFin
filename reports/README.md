@@ -1,28 +1,11 @@
-# Report build
+# Submitted report
 
-`build_report_ai_capability.py` is the only active report builder. It reads pinned, immutable AI-capability runs and does not train or modify a model.
+- [Final report — DOCX](Project2_Team16_Report.docx)
+- [Final report — PDF](Project2_Team16_Report.pdf)
+- [Video deck and execution guide](video/README.md)
 
-After the revised pipeline and all verification commands pass, export the
-`REPORT_*` evidence variables listed in the canonical runbook and run:
+The report presents cross-market daily forecasting, long/short/flat positions, transaction costs, hypothesis evidence and the combined 2025–September 2026 evaluation. These are retrospective evaluations. Appendix identifiers link the claims to retained model and analysis evidence.
 
-```bash
-python reports/build_report_ai_capability.py
-python /Users/whitetiger/.codex/plugins/cache/openai-primary-runtime/documents/26.601.10930/skills/documents/render_docx.py \
-  reports/Project2_Team16_Report.docx \
-  --output_dir reports/_render_final \
-  --emit_pdf
-cp reports/_render_final/Project2_Team16_Report.pdf \
-  reports/Project2_Team16_Report.pdf
-```
+The repository [README](../README.md) provides the complete reproduction workflow. Fresh model runs produce their own logs and results without overwriting this report.
 
-The local `_render_final` directory is ignored because it is reproducible QA
-output. Inspect every rendered page at full size before copying the PDF. Confirm
-figure labels, equations, tables, captions, page numbering, contents-page
-references, the alphabetical author list, and the Appendix A evidence IDs.
-
-The final deliverables are:
-
-- `Project2_Team16_Report.docx`
-- `Project2_Team16_Report.pdf`
-
-The report currently presents 2025 as a historical protocol replication and January–September 2026 as a separate retrospective no-reselection extension. Do not relabel either period as a new pristine holdout.
+Report-generation code, figure packs, release metadata and evidence manifests are retained for reproducibility. Rebuilding requires the matching evidence and, for price-based figures, the raw snapshots described in README Path B. The active builder is `build_report_ai_capability.py`; rebuilding is not necessary to inspect or grade the submitted documents.

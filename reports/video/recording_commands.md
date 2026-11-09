@@ -8,7 +8,7 @@ Choose **one complete path**. Stay in your existing shell. Run commands sequenti
 
 ```sh
 git lfs install
-git clone --branch v5-ritik https://github.com/whitetiger1399/project2QuantFin.git
+git clone --branch v6-ritik https://github.com/whitetiger1399/project2QuantFin.git
 cd project2QuantFin
 git lfs pull
 git lfs fsck

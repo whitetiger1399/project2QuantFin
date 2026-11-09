@@ -17,11 +17,13 @@ The cohort reflects membership observed on 30 October 2026. The 2025–September
 
 ## A. Clone and train from preprocessed data — recommended
 
+The shared branch is **[`v6-ritik`](https://github.com/whitetiger1399/project2QuantFin/tree/v6-ritik)**. It contains the pinned historical and January–September 2026 preprocessed datasets, configurations and retained experiment evidence. Clone this branch and restore its Git LFS objects before running Path A. Raw-data downloads and API keys are not required for this path.
+
 ### A1. Clone the data-bearing branch and install
 
 ```sh
 git lfs install
-git clone --branch v5-ritik https://github.com/whitetiger1399/project2QuantFin.git
+git clone --branch v6-ritik https://github.com/whitetiger1399/project2QuantFin.git
 cd project2QuantFin
 git lfs pull
 git lfs fsck
@@ -100,7 +102,7 @@ Each new model run has a UTC timestamp and content hash; sessions also have a un
 
 For detailed metrics, open `leaderboard.csv`, `annual_performance.csv`, `cost_sensitivity.csv`, `predictions.parquet`, `strategy_ledgers.parquet` and `plots/` inside the exact run recorded in `session.json`.
 
-The preparation command fails if required files or LFS objects are absent. The branch must include the bundled paths before it is shared; maintainer commands are at the end of Path B.
+The preparation command verifies the bundled inputs and stops if a required file is missing or an LFS pointer has not been restored. Use `git lfs pull` after cloning; an ordinary code-only ZIP is not equivalent to a complete data checkout.
 
 ---
 
@@ -253,7 +255,7 @@ Optional RBI rates, rainfall and event calendars require timestamped official ex
 
 ### Reports, checks and repository layout
 
-[Report DOCX](reports/Project2_Team16_Report.docx) · [Report PDF](reports/Project2_Team16_Report.pdf) · [Recording commands](reports/video/recording_commands.md) · [Assignment](documents/markdown/Project2.md)
+[Video deck](reports/video/Project2_Team16_Video_Deck.pdf) · [Report DOCX](reports/Project2_Team16_Report.docx) · [Report PDF](reports/Project2_Team16_Report.pdf) · [Recording commands](reports/video/recording_commands.md) · [Assignment](documents/markdown/Project2.md)
 
 Training does not automatically rewrite the report or supplementary hypothesis studies. Report evidence must be rebound and verified explicitly. Source code is in `src/quantfin/`, executable entry points in `scripts/`, and research contracts in `configs/`. Raw inputs stay local; the bundle registry pins existing processed inputs under `artifacts/recording_demos/video_demo_01/`. All prior logs, runs and analysis evidence are retained.
 
@@ -264,18 +266,4 @@ python -m unittest discover -s tests -p test_recording_demo.py -v
 python -m unittest discover -s tests/leakage -v
 ```
 
-### Maintainer: include processed data before sharing this branch
-
-These are publishing commands for the repository owner, not steps required by someone cloning it. Raw downloads remain ignored. Small CSVs formerly in LFS are normalized into ordinary Git; panels, figures and other configured large artifacts retain LFS tracking.
-
-```sh
-git add .gitignore .gitattributes README.md reports/video/recording_commands.md scripts/run_recording_demo.py tests/test_recording_demo.py data/preprocessed_bundle.json documents/markdown/REPOSITORY_CLEANUP_2026-11-09.md
-git add data/processed artifacts/recording_demos/video_demo_01
-git add --renormalize data/external data/processed artifacts reports
-git lfs fsck
-git diff --cached --stat
-git commit -m "Support training from bundled processed data and separate raw rebuild workflow"
-git push origin v5-ritik
-```
-
-The local bundle preparation has been checked; availability in a fresh clone depends on committing and pushing both Git and LFS objects. Keep credentials in environment variables and local `.env` files, which remain ignored.
+The [submission cleanup inventory](SUBMISSION_CLEANUP.md) lists removed internal documents, narration deliverables and unused assets. All Python files and research run evidence are retained.
