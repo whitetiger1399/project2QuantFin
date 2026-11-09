@@ -1,0 +1,7 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/freeze_cross_market_model.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model.yaml", "--confirmation-run-id", "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31"]
+{
+  "freeze_id": "cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb",
+  "content_hash": "e56ab95518cb",
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "path": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/freezes/cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb.json"
+}

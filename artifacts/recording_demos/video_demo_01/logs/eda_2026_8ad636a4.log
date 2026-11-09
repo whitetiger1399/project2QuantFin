@@ -1,0 +1,20 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/run_cross_market_analysis.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model_2026.yaml", "--dataset-id", "ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6"]
+{
+  "action": "run_cross_market_analysis",
+  "run_id": "analysis_20261109T064200Z_b77d778b918a",
+  "run_hash": "b77d778b918a",
+  "dataset_id": "ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6",
+  "output": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model_2026/analysis/analysis_20261109T064200Z_b77d778b918a",
+  "status": "starting"
+}
+
+Return diagnostics:   0%|          | 0/10 [00:00<?, ?asset/s]
+Return diagnostics: 100%|██████████| 10/10 [00:00<00:00, 16.30asset/s]
+
+Feature tests:   0%|          | 0/231 [00:00<?, ?feature/s]
+Feature tests: 100%|██████████| 231/231 [00:00<00:00, 258.97feature/s]
+{
+  "run_id": "analysis_20261109T064200Z_b77d778b918a",
+  "status": "complete",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model_2026/analysis/analysis_20261109T064200Z_b77d778b918a"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "description": "Pinned preprocessed inputs for training without raw downloads. Historical source paths in manifests are provenance only.",
+  "datasets": {
+    "model": {
+      "directory": "artifacts/recording_demos/video_demo_01/model/processed/ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+      "manifest_sha256": "670243592043f546a0aef833e728356e4bae9b50a31e5b7a8ab8be2941710d05",
+      "config": "artifacts/recording_demos/video_demo_01/configs/model.yaml",
+      "config_sha256": "71fa59fd1db8ca22bcf40bceed01c26ed7405f543140f1058d39ac0e5951bf4a"
+    },
+    "model_2026": {
+      "directory": "artifacts/recording_demos/video_demo_01/model_2026/processed/ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6",
+      "manifest_sha256": "79a25e5233377b61e7ac81ec49eaf0c974a77decd6fbba9b5f63cd5e4b0951a1",
+      "config": "artifacts/recording_demos/video_demo_01/configs/model_2026.yaml",
+      "config_sha256": "2acd24b3fc145a7245a10464a254f84c3bd011f8f938b36e3c3ca6ee5c4a647f"
+    }
+  }
+}

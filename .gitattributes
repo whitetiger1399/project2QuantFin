@@ -1,6 +1,6 @@
 # Large research outputs. Git stores pointers; Git LFS stores file contents.
 *.parquet filter=lfs diff=lfs merge=lfs -text
-*.csv filter=lfs diff=lfs merge=lfs -text
+*.csv -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
@@ -8,3 +8,16 @@
 *.docx filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+
+# Model arrays use LFS; small CSVs and JSON manifests use ordinary Git.
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.joblib filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+*.npz filter=lfs diff=lfs merge=lfs -text
+
+# Raw snapshots are excluded by .gitignore, including from LFS.
+data/raw/** -filter -diff -merge -text
+
+# Large decision tables and historical membership exports remain LFS objects.
+**/daily_stock_decisions.csv filter=lfs diff=lfs merge=lfs -text
+data/external/reference/current_constituents/S&P* filter=lfs diff=lfs merge=lfs -text

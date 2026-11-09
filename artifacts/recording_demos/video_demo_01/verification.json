@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "session_id": "demo_20261109T064051Z_633e5cb6e3f4",
+  "checked_at_utc": "2026-11-09T09:51:06.353559+00:00",
+  "checks": [
+    "artifact_hashes",
+    "selection_lineage",
+    "2026_extension",
+    "unique_daily_returns",
+    "finite_returns",
+    "cost_arithmetic"
+  ]
+}

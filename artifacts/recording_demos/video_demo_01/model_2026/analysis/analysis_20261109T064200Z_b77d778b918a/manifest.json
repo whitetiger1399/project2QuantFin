@@ -1,0 +1,59 @@
+{
+  "action": "run_cross_market_analysis",
+  "completed_at_utc": "2026-11-09T06:42:03.994707+00:00",
+  "config_sha256": "2acd24b3fc145a7245a10464a254f84c3bd011f8f938b36e3c3ca6ee5c4a647f",
+  "dataset_id": "ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6",
+  "environment": {
+    "created_at_utc": "2026-11-09T06:42:03.995085+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "files": {
+    "analysis_summary.json": "257ee6a2bfdea7396b5cdf353b94280841fb7271d16d79333c05c81ad7c88875",
+    "dataset_quality_by_asset.csv": "c346efbd63af4c7a2c6a041e9eb8069866e416c584e84e96dc01e9f5ca637321",
+    "feature_target_tests.csv": "29d6d50e2b6fa998172588fd3ba817bce1f1c282f0380b7a9c7e34ef5dff251c",
+    "figures/01_target_coverage.png": "1ef8da06cdd154022217980868506330ef30f489d8f1acbc49c1db2580edb1c8",
+    "figures/02_target_distributions.png": "327916a9d78889ec6d5fc5fdac4e2c992edaeb612e611fd0cf75cc7bb70e3584",
+    "figures/03_rolling_return_volatility.png": "81cb62bd5e3c2af250ae5f811a52d21168fc69d9885f45d75ed5ebf1471b51c1",
+    "figures/04_feature_target_correlation_extremes.png": "9fdfbcc58e5968f457546b9acbcad7418fa6b83ab5b3ceca6cfcfdf95ef75050",
+    "figures/05_cross_asset_correlation.png": "ea360b664f9ffc842770b1957c98ceff83ea48653ea35f62b77246d57e6a07ae",
+    "figures/06_us_india_lead_lag.png": "ea8f480cc10a35af1f532a64c43414e2844165fa94988d50b890e4a48e4fd469",
+    "figures/07_regime_distribution.png": "741edc5b05959bd8cba9d4cf40d06a4a6e50efab717b4f80437873c6e5ffcbde",
+    "figures/08_feature_family_missingness.png": "f2a42872e17e24066ff5899ace66acef45b7e0d23d47ace4cab47e9326aa0e89",
+    "figures/09_trend_shifts_and_events.png": "88345446c75306d48d95ddd19bf28b645b27b137ffbdbcf1ce8bcb8b7e29e283",
+    "missingness_by_feature_family.csv": "9f0546860e9c48d67047598f86ab80660a68ce74c8a3a9b743cadd5f8fe81f62",
+    "monthly_seasonality.csv": "f22d1915bea210aec665b238212c6692229843c02cd85180900a87c03cf888d8",
+    "return_statistical_tests.csv": "953612109bd7423762dc09c1b6d532be8a8c8fe83fdc8854adfb03bb33caa37c",
+    "trend_shift_candidates.csv": "b294a1bd5f161b98e399ffb4c063e0f7f3f0c1187274addd5e7f0f67a4b2a689",
+    "us_india_lead_lag.csv": "da2c0f7ef95d5f84e837cdefbc1685bed39257945c440c6fd038b83c30be7140",
+    "weekday_seasonality.csv": "fff6e62145723977b663bf674ec6c902f320725d29870ae033fa68dfa0f646b4"
+  },
+  "output": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model_2026/analysis/analysis_20261109T064200Z_b77d778b918a",
+  "parent_dataset_manifest_sha256": "79a25e5233377b61e7ac81ec49eaf0c974a77decd6fbba9b5f63cd5e4b0951a1",
+  "run_hash": "b77d778b918a",
+  "run_id": "analysis_20261109T064200Z_b77d778b918a",
+  "schema_version": 1,
+  "status": "complete",
+  "summary": {
+    "assets": 10,
+    "decision_dates": 2519,
+    "feature_tests": 229,
+    "features": 3763,
+    "figures": 9,
+    "interpretation_guardrail": "Event overlays and lead-lag correlations are descriptive and must not be presented as causal evidence.",
+    "retrospective_event_markers": 0,
+    "rows": 25190,
+    "statistical_test_assets": 10,
+    "trend_shift_candidates": 20
+  }
+}

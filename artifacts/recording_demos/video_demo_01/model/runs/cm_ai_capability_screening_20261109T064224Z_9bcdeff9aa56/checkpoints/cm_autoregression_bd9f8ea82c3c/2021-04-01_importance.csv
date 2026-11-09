@@ -1,0 +1,17 @@
+feature,importance,measure,block_start,config_id
+asset__persistent_ns,-1388119856.917429,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__ofss_ns,-1388119856.9172974,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__hcltech_ns,-1388119856.917263,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__wipro_ns,-1388119856.9171777,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__techm_ns,-1388119856.9171584,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__mphasis_ns,-1388119856.9171207,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__tcs_ns,-1388119856.9170995,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__infy_ns,-1388119856.9169967,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__ltm_ns,-1388119856.9167216,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+asset__coforge_ns,-1388119856.916714,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_2,-0.000465501542788567,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_21,-0.0004282353750675507,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_1,-0.0001851486915543125,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_10,0.00017604559887213463,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_3,0.00010472666929879086,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c
+own__ret_lag_5,6.0190755893344735e-05,standardized_coefficient,2021-04-01,cm_autoregression_bd9f8ea82c3c

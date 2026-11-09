@@ -1,124 +1,154 @@
-# Signed Cross-Market Forecasting of Nifty IT Stocks
+# Cross-Market Forecasting and Long/Short Trading of Nifty IT Stocks
 
-This repository contains Team 16's reproducible DSA5205 Project 2 workflow. It predicts each fixed current Nifty IT constituent's same-session open-to-close return from information available at 08:55 IST, then takes a long, short, or flat position and closes it on the same NSE session. Returns are reported after modeled transaction costs.
+**Team 16 · Data Science in Quantitative Finance DSA5205 · NUS**
 
-The active study is defined by `configs/cross_market_ai_capability_research.yaml`; its January–September 2026 extension is defined by `configs/cross_market_ai_capability_2026_extension.yaml`. The target cohort is fixed to the ten companies in `data/external/reference/current_constituents/ind_niftyitlist.csv` as observed on 30 October 2026. This is a current-universe retrospective study, not historical Nifty IT membership reconstruction. The 2025 evaluation is a historical protocol replication and 2026 is a retrospective no-reselection extension, not a pristine holdout.
+Predict daily open-to-close returns for ten fixed Nifty IT constituents using information available at **08:55 IST**. Compare own-stock history, Indian peers, U.S. IT-services stocks, broad-market context, macro data and frontier AI releases. Forecasts determine **long, short or flat** positions; returns account for trading costs.
 
-## Reproducibility modes
+Choose one complete path:
 
-1. **Full Git LFS clone:** inspect the committed data, artifacts, figures, DOCX, and PDF.
-2. **Code-only checkout:** recreate raw vendor snapshots using Sections 3–5, then execute the complete pipeline.
-3. **Existing raw data, fresh models:** begin at Section 6 after confirming a passing raw-data audit.
+| Path | Use it when | Starting data |
+|---|---|---|
+| **A — Clone and train (recommended)** | Using the complete data-bearing branch | Bundled preprocessed panels; no raw downloads or API key needed |
+| **B — Rebuild from raw data** | Using a code-only ZIP, missing processed panels, or deliberately refreshing data | Download raw snapshots, audit, preprocess, then train |
 
-New downloads normally produce new timestamps and hashes. Yahoo or upstream revisions can prevent byte-identical reproduction while still reproducing the method. Do not mix identifiers from older generic cross-market, AI-services, and canonical AI-capability runs.
+Raw downloads under `data/raw/` are excluded from Git and LFS. Preprocessed panels and retained run evidence use LFS; small reference/metric CSVs use ordinary Git. Use Python **3.10–3.12**, Git and Git LFS. A ZIP may contain LFS pointers rather than actual panels; Path A requires `git lfs pull` or a data-complete archive.
 
-## 1. Environment
+The cohort reflects membership observed on 30 October 2026. The 2025–September 2026 evaluation is retrospective because these periods have already been inspected during development.
 
-Python 3.10–3.12 and Git LFS are required.
+## A. Clone and train from preprocessed data — recommended
 
-### macOS or Linux
+### A1. Clone the data-bearing branch and install
 
-```bash
+```sh
 git lfs install
-git clone https://github.com/whitetiger1399/project2QuantFin.git
+git clone --branch v5-ritik https://github.com/whitetiger1399/project2QuantFin.git
 cd project2QuantFin
-git lfs pull
-
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel
-python -m pip install -e .
-
-export PYTHONUNBUFFERED=1
-export MPLCONFIGDIR="$PWD/artifacts/.matplotlib-cache"
-mkdir -p "$MPLCONFIGDIR"
-python -m quantfin --help
-```
-
-### Windows PowerShell
-
-```powershell
-git lfs install
-git clone https://github.com/whitetiger1399/project2QuantFin.git
-Set-Location project2QuantFin
-git lfs pull
-
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip setuptools wheel
-python -m pip install -e .
-
-$env:PYTHONUNBUFFERED = "1"
-$env:MPLCONFIGDIR = "$PWD\artifacts\.matplotlib-cache"
-New-Item -ItemType Directory -Force $env:MPLCONFIGDIR | Out-Null
-python -m quantfin --help
-```
-
-The commands below use POSIX environment syntax. On Windows, use Git Bash after activating `.venv`, or translate `export NAME=value` to `$env:NAME = "value"` and `\` line continuations to PowerShell backticks.
-
-Run the inexpensive checks first:
-
-```bash
-python -m unittest discover -s tests -v
-python -m compileall -q src scripts reports
-```
-
-## 2. Data inventory and code-only recovery
-
-Raw vendor downloads under `data/raw/` are intentionally not committed because they can be large and may have redistribution restrictions. Small source and manual files under `data/external/` are committed through Git LFS. Restore them with:
-
-```bash
 git lfs pull
 git lfs fsck
 ```
 
-| Data block | Source and local file | Acquisition | Role and limitation |
-|---|---|---|---|
-| Current Nifty IT cohort | [NSE Indices Nifty IT page](https://niftyindices.com/indices/equity/sectoral-indices/nifty-it); committed `ind_niftyitlist.csv` | Git LFS | Fixed targets only; not historical membership. |
-| Indian, U.S., ADR, ETF, index, FX and global OHLCV | Yahoo Finance through [`yfinance`](https://ranaroussi.github.io/yfinance/) | `fetch_cross_market_markets.py` | Public adjusted data; retrieval revisions are possible. |
-| Rates, yields, spreads, dollar, VIX and India macro | [FRED/ALFRED](https://fred.stlouisfed.org/docs/api/fred/) | `fetch_point_in_time_context.py` | Initial-release observations where available; fallbacks are marked current-vintage. |
-| Historical S&P 500 membership | Committed source from [fja05680/sp500](https://github.com/fja05680/sp500) | `prepare_provisional_memberships.py` | Public provisional reconstruction, not CRSP/Compustat. |
-| Nifty 50/500 histories | Committed sources from [NiftyHistory](https://niftyhistory.in/) | `prepare_provisional_memberships.py` | Effective dates; announcement timestamps unavailable. |
-| Frontier AI releases | Committed `model_publishing.txt` and curated whitelist | `build_frontier_ai_release_calendar.py` | Official provider announcements determine accepted dates. The declared general-purpose release universe covers 14 March 2023–30 September 2026; specialized media/embedding models and product-only updates are excluded. |
-| Disclosed model scale | Committed `frontier_ai_disclosed_parameters.yaml` | `build_ai_capability_panel.py` | Missing proprietary sizes remain missing; scale is not complete capability. |
-| AI benchmark snapshot | [Epoch AI](https://epoch.ai/benchmarks/use-this-data), committed `benchmark_data.zip` | `ingest_epoch_benchmark_snapshot.py` | Ex-post evidence only; never a backfilled tradable feature. |
-| RBI, holidays, events, rainfall | CSVs in `data/external/manual/cross_market/` | Official exports supplied manually | Optional context; blank templates add no observations. |
+macOS / Linux:
 
-For the optional manual files, use the [RBI data portal](https://data.rbi.org.in/), [NSE holiday calendar](https://www.nseindia.com/resources/exchange-communication-holidays), [NYSE calendar](https://www.nyse.com/markets/hours-calendars), official FOMC/RBI announcement calendars, and [IMD rainfall service](https://mausam.imd.gov.in/imd_latest/contents/index_rainfall_state_new.php). Preserve each row's publication/effective timestamp and source URL. Do not substitute an undated secondary compilation.
-
-If a code-only archive omitted the LFS objects, download the provisional membership sources and place them at these exact paths:
-
-```text
-data/external/reference/current_constituents/S&P 500 Historical Components & Changes (Updated).csv
-data/external/reference/current_constituents/nifty50_2001-01-01_to_2026-12-31.csv
-data/external/reference/current_constituents/nifty500_2001-01-01_to_2026-12-31.csv
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
 ```
 
-Download the Epoch archive to `data/external/reference/epoch_ai/benchmark_data.zip`. The ingestion script requires SHA-256 `28a006632f325e82c61ed28603056784ae185b5b596da6e019edd84fe02ddb43`.
+Windows PowerShell:
 
-The small cohort, event whitelist, disclosed-scale catalog, company-evidence file, and event-timing catalog are included in the repository. Do not silently replace them. Never commit API keys, cookies, or credentials. Review current upstream terms before redistributing source files.
-
-## 3. Prepare membership files
-
-Inspect the conversion first:
-
-```bash
-python scripts/prepare_provisional_memberships.py
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .
 ```
 
-For a code-only checkout where the three generated membership CSVs are absent, execute:
+Skip environment creation if `.venv` exists. No shell switching is needed. `quantfin` is this repository’s own package, installed by `pip install -e .`.
 
-```bash
+### A2. Prepare a fresh session from bundled panels
+
+```sh
+python scripts/run_recording_demo.py prepare --session video_demo_02 --workers 3
+```
+
+This checks `data/preprocessed_bundle.json`, verifies the pinned dataset/configuration hashes, reuses the historical and 2026 panels, and creates new training output roots. Preprocessing and feature creation have already been completed in these panels. Existing EDA is retained with the supplied evidence. No raw data is required by this path.
+
+Use an unused session name. If `video_demo_02` exists, choose `video_demo_03` in **every command** of this path. Workers are saved during prepare; use 1 or 2 on a machine with less memory.
+
+### A3. Train, confirm, evaluate and inspect
+
+Train and compare models on 2021–2022:
+
+```sh
+python scripts/run_recording_demo.py screen --session video_demo_02
+```
+
+Confirm the selection on 2023–2024 and freeze one specification:
+
+```sh
+python scripts/run_recording_demo.py confirm --session video_demo_02
+```
+
+Evaluate 2025 with quarterly refits and January–September 2026 with one pre-2026 fit of the frozen specification:
+
+```sh
+python scripts/run_recording_demo.py evaluate --session video_demo_02
+```
+
+Verify and display gross/net returns, daily positions and plot locations:
+
+```sh
+python scripts/run_recording_demo.py results --session video_demo_02
+```
+
+### A4. Find your results
+
+All new outputs are under `artifacts/recording_demos/video_demo_02/`:
+
+| Location | Contents |
+|---|---|
+| `session.json` | Exact dataset/run/freeze IDs, input mode and configuration hashes |
+| `configs/` | Configuration copies resolved for your checkout and session |
+| `logs/` | Terminal output and progress from each task |
+| `model/runs/` | Screening, confirmation, final 2025 predictions, daily ledgers, metrics and plots |
+| `model/freezes/` | Frozen selected specification |
+| `model_2026/runs/` | January–September 2026 predictions, ledgers, metrics and plots |
+| `results.csv` | Compounded gross/net returns for each segment and their combined period |
+| `verification.json` | Hash, lineage, extension, daily-return and cost-accounting checks |
+
+Each new model run has a UTC timestamp and content hash; sessions also have a unique ID. Existing sessions and completed stages are protected. Bundled input panels are read in place. Historical absolute paths inside their manifests describe the original machine; the bundle registry resolves input locations relative to the current checkout.
+
+For detailed metrics, open `leaderboard.csv`, `annual_performance.csv`, `cost_sensitivity.csv`, `predictions.parquet`, `strategy_ledgers.parquet` and `plots/` inside the exact run recorded in `session.json`.
+
+The preparation command fails if required files or LFS objects are absent. The branch must include the bundled paths before it is shared; maintainer commands are at the end of Path B.
+
+---
+
+## B. Download raw data, preprocess and train — independent alternative
+
+### B1. Install from a code-only checkout or extracted ZIP
+
+Open a terminal in the extracted repository root (the folder containing `pyproject.toml`), then install:
+
+macOS / Linux:
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
+```
+
+Windows PowerShell:
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .
+```
+
+Skip environment creation if `.venv` exists. No shell switching is needed. `quantfin` is this repository’s own package, installed by `pip install -e .`.
+
+### B2. Restore reference inputs
+
+If using a Git checkout, restore any LFS reference objects:
+
+```sh
+git lfs install
+git lfs pull
+git lfs fsck
+```
+
+Only if the generated membership CSVs are absent:
+
+```sh
 python scripts/prepare_provisional_memberships.py --execute
 ```
 
-Skip that execution command when populated outputs already exist: it deliberately refuses to replace them. Use the committed reviewed outputs; pass `--overwrite` only after intentionally reviewing a changed source.
+Existing membership files are protected; do not use `--overwrite` for the demo. For code-only ZIPs, obtain reference files from the source table below before continuing. Optional RBI/rainfall/calendar exports are described there; they are not automatically downloaded by these commands.
 
-## 4. Acquire raw data
+### B3. Download raw Yahoo data
 
-Download Yahoo groups sequentially to reduce throttling:
-
-```bash
+```sh
 python scripts/fetch_cross_market_markets.py --group india_core --execute
 python scripts/fetch_cross_market_markets.py --group us_limited_tech --execute
 python scripts/fetch_cross_market_markets.py --group us_it_services --execute
@@ -127,368 +157,125 @@ python scripts/fetch_cross_market_markets.py --group us_enterprise_software --ex
 python scripts/fetch_cross_market_markets.py --group us_context --execute
 python scripts/fetch_cross_market_markets.py --group indian_it_adrs --execute
 python scripts/fetch_cross_market_markets.py --group global_context --execute
-
-python scripts/fetch_cross_market_markets.py \
-  --group nifty50_point_in_time \
-  --membership-file data/external/manual/cross_market/nifty50_membership.csv \
-  --execute
-
-python scripts/fetch_cross_market_markets.py \
-  --group sp500_point_in_time \
-  --membership-file data/external/manual/cross_market/sp500_membership.csv \
-  --execute
+python scripts/fetch_cross_market_markets.py --group nifty50_point_in_time --membership-file data/external/manual/cross_market/nifty50_membership.csv --execute
+python scripts/fetch_cross_market_markets.py --group sp500_point_in_time --membership-file data/external/manual/cross_market/sp500_membership.csv --execute
 ```
 
-The Nifty 500 universe is optional and is not required by the canonical model:
+Optional Nifty 500 context (not required by this model):
 
-```bash
-python scripts/fetch_cross_market_markets.py \
-  --group nifty500_point_in_time \
-  --membership-file data/external/manual/cross_market/nifty500_membership.csv \
-  --execute
+```sh
+python scripts/fetch_cross_market_markets.py --group nifty500_point_in_time --membership-file data/external/manual/cross_market/nifty500_membership.csv --execute
 ```
 
-Resume an interrupted required download with the exact snapshot ID printed by it:
+### B4. Download raw FRED/ALFRED data
 
-```bash
-python scripts/fetch_cross_market_markets.py --group GROUP_NAME --resume-snapshot EXACT_SNAPSHOT_ID --execute
+Obtain a [FRED API key](https://fredaccount.stlouisfed.org/apikeys). This command prompts privately and passes the key only to the downloader; it works in zsh, Bash and PowerShell:
+
+```sh
+python -c "import getpass,os,subprocess,sys; env=dict(os.environ,FRED_API_KEY=getpass.getpass('FRED API key: ')); subprocess.run([sys.executable,'scripts/fetch_point_in_time_context.py','--config','configs/cross_market_data_2026-10-29.yaml','--start','2004-01-01','--end','2026-10-29','--output-root','data/raw/cross_market/fred_alfred','--execute'],env=env,check=True)"
 ```
 
-Unavailable former Yahoo tickers remain recorded as a coverage limitation; do not delete them from membership history simply to remove failures.
+### B5. Prepare AI snapshots and audit raw data
 
-Create a free FRED key at <https://fredaccount.stlouisfed.org/apikeys>, enter it without saving it in history, and run:
+These ingest the restored reference files; they do not scrape new AI announcements. Epoch benchmark data is supplementary retrospective evidence, not a trading feature.
 
-```bash
-read -s "FRED_API_KEY?FRED API key: "
-export FRED_API_KEY
-echo
-
-python scripts/fetch_point_in_time_context.py \
-  --config configs/cross_market_data_2026-10-29.yaml \
-  --start 2004-01-01 \
-  --end 2026-10-29 \
-  --output-root data/raw/cross_market/fred_alfred \
-  --execute
-
-unset FRED_API_KEY
-```
-
-In PowerShell, set it for the current process with `$env:FRED_API_KEY = Read-Host "FRED API key" -MaskInput`, run the same Python command on one line, and then use `Remove-Item Env:FRED_API_KEY`.
-
-The downloader uses verified TLS and partitions ALFRED real-time dates to stay below API limits. Do not disable certificate verification.
-
-Build the curated AI calendar and ingest the verified Epoch archive:
-
-```bash
-python scripts/build_frontier_ai_release_calendar.py
+```sh
 python scripts/build_frontier_ai_release_calendar.py --execute
 python scripts/ingest_epoch_benchmark_snapshot.py --execute
+python scripts/audit_cross_market_raw.py --required-group india_core --required-group us_limited_tech --required-group us_it_services --required-group us_it_enabled_payments --required-group us_enterprise_software --required-group us_context --required-group indian_it_adrs --required-group global_context --required-group nifty50_point_in_time --required-group sp500_point_in_time
 ```
 
-The first command is a no-write plan. The second materializes an immutable,
-hash-tracked calendar snapshot. Release dates are maintained in
-`configs/frontier_ai_release_whitelist.yaml` with one official-provider URL per
-event. Date-only announcements are conservatively mapped to the first NSE
-08:55 IST decision cutoff strictly after 23:59:59 UTC on the published date;
-this prevents an announcement of unknown intraday time from becoming available
-too early.
+Continue only after the audit passes; review any warnings and quarantine restrictions. These downloads create new snapshots rather than replacing previous model results.
 
-## 5. Audit raw inputs
+### B6. Preprocess, engineer features and generate EDA
 
-```bash
-python scripts/audit_cross_market_raw.py \
-  --required-group india_core \
-  --required-group us_limited_tech \
-  --required-group us_it_services \
-  --required-group us_it_enabled_payments \
-  --required-group us_enterprise_software \
-  --required-group us_context \
-  --required-group indian_it_adrs \
-  --required-group global_context \
-  --required-group nifty50_point_in_time \
-  --required-group sp500_point_in_time
+```sh
+python scripts/run_recording_demo.py build --session video_demo_02 --workers 3
 ```
 
-`fail` is blocking. `pass_with_warnings` is acceptable only after reviewing the listed quarantine rules. Inspect the latest result:
+This cleans and quarantines audited anomalies, aligns market sessions and availability times, creates lag/rolling/peer/cross-market/context features, adds AI-capability inputs, and generates historical and 2026 EDA. It creates new source and model panels under this session. Do not run `prepare` for this path. Choose an unused session name before starting.
 
-```bash
-export RAW_AUDIT=$(find artifacts/data_audits/cross_market -name 'audit_*.json' -type f -print0 | xargs -0 ls -t | head -1)
-python -m json.tool "$RAW_AUDIT"
+### B7. Train, confirm, evaluate and inspect
+
+Train and compare models on 2021–2022:
+
+```sh
+python scripts/run_recording_demo.py screen --session video_demo_02
 ```
 
-## 6. Build historical and 2026 panels
+Confirm the selection on 2023–2024 and freeze one specification:
 
-```bash
-python scripts/build_cross_market_panel.py \
-  --config configs/cross_market_ai_services_research.yaml \
-  --plan-only
-python scripts/build_cross_market_panel.py \
-  --config configs/cross_market_ai_services_research.yaml
-
-export SOURCE_DATASET_ID=$(python -c "from pathlib import Path; r=Path('data/processed/cross_market_ai_services'); p=max((x for x in r.glob('ai_services_panel_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-python scripts/build_ai_capability_panel.py --source-dataset-id "$SOURCE_DATASET_ID" --plan-only
-python scripts/build_ai_capability_panel.py --source-dataset-id "$SOURCE_DATASET_ID"
-
-export DATASET_ID=$(python -c "from pathlib import Path; r=Path('data/processed/cross_market_ai_capability'); p=max((x for x in r.glob('ai_capability_panel_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-python scripts/build_cross_market_panel.py \
-  --config configs/cross_market_ai_services_2026_extension.yaml
-
-export SOURCE_2026_DATASET_ID=$(python -c "from pathlib import Path; r=Path('data/processed/cross_market_ai_services_2026'); p=max((x for x in r.glob('ai_services_2026_panel_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-python scripts/build_ai_capability_panel.py \
-  --config configs/cross_market_ai_capability_2026_extension.yaml \
-  --source-dataset-id "$SOURCE_2026_DATASET_ID"
-
-export DATASET_2026_ID=$(python -c "from pathlib import Path; r=Path('data/processed/cross_market_ai_capability_2026'); p=max((x for x in r.glob('ai_capability_2026_panel_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-echo "DATASET_ID=$DATASET_ID"
-echo "DATASET_2026_ID=$DATASET_2026_ID"
+```sh
+python scripts/run_recording_demo.py confirm --session video_demo_02
 ```
 
-## 7. EDA and capability studies
+Evaluate 2025 with quarterly refits and January–September 2026 with one pre-2026 fit of the frozen specification:
 
-```bash
-python scripts/run_cross_market_analysis.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID"
-export EDA_RUN_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/analysis'); p=max((x for x in r.glob('analysis_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-python scripts/analyze_ai_capability_effects.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID"
-export CAPABILITY_ANALYSIS_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/analysis'); p=max((x for x in r.glob('ai_capability_analysis_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-export EPOCH_SNAPSHOT_ID=$(python -c "from pathlib import Path; r=Path('data/raw/cross_market/epoch_benchmarks'); p=max((x for x in r.glob('epoch_benchmarks_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-python scripts/analyze_epoch_capability_market_effects.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID" \
-  --epoch-snapshot-id "$EPOCH_SNAPSHOT_ID"
-export EPOCH_ANALYSIS_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/analysis'); p=max((x for x in r.glob('epoch_capability_analysis_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
+```sh
+python scripts/run_recording_demo.py evaluate --session video_demo_02
 ```
 
-## 8. Screen, confirm, freeze, and evaluate
+Verify and display gross/net returns, daily positions and plot locations:
 
-The `submission_rerun` profile compares baselines, shrinkage, PCA, Extra Trees, and histogram boosting across the information ladder. It excludes RFF Ridge because the earlier RFF configurations never crossed the trading hurdle and therefore had undefined trading Sharpe. Quarterly refits retain daily out-of-sample predictions. Three workers are the tested laptop default.
-
-```bash
-python scripts/run_cross_market_experiments.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID" \
-  --stage screening \
-  --profile submission_rerun \
-  --training-scheme rolling \
-  --parallel-workers 3
-
-export SCREENING_RUN_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/runs'); p=max((x for x in r.glob('cm_ai_capability_screening_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-python scripts/cross_market_run_status.py --config configs/cross_market_ai_capability_research.yaml --run-id "$SCREENING_RUN_ID"
+```sh
+python scripts/run_recording_demo.py results --session video_demo_02
 ```
 
-Resume an interrupted screening run without changing its inputs or settings:
+Outputs and run-ID tracking follow the same layout described in A4. For this path, new processed panels and EDA also appear under the session’s `source/`, `source_2026/`, `model/` and `model_2026/` folders.
 
-```bash
-python scripts/run_cross_market_experiments.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID" \
-  --stage screening \
-  --profile submission_rerun \
-  --training-scheme rolling \
-  --parallel-workers 3 \
-  --resume-run-id "$SCREENING_RUN_ID"
-```
+### Data sources for a code-only ZIP
 
-Continue sequentially:
+Small CSVs supplied with a complete repository do not need a separate download. If the archive omits reference inputs, restore them as follows:
 
-```bash
-python scripts/run_cross_market_experiments.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID" \
-  --stage confirmation \
-  --profile submission_rerun \
-  --training-scheme rolling \
-  --parallel-workers 3 \
-  --screening-run-id "$SCREENING_RUN_ID"
-export CONFIRMATION_RUN_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/runs'); p=max((x for x in r.glob('cm_ai_capability_confirmation_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
+| Input | Source | Required local path |
+|---|---|---|
+| Current Nifty IT cohort | [NSE Indices](https://niftyindices.com/indices/equity/sectoral-indices/nifty-it) | `data/external/reference/current_constituents/ind_niftyitlist.csv` |
+| Historical S&P 500 membership | [fja05680/sp500](https://github.com/fja05680/sp500) | `data/external/reference/current_constituents/S&P 500 Historical Components & Changes (Updated).csv` |
+| Nifty 50/500 histories | [NiftyHistory](https://niftyhistory.in/) | `data/external/reference/current_constituents/nifty50_2001-01-01_to_2026-12-31.csv` and corresponding `nifty500_...csv` |
+| AI releases and disclosed model sizes | Supplied curated catalogs with source URLs | `model_publishing.txt` in the constituent-reference folder; `configs/frontier_ai_release_whitelist.yaml` and `configs/frontier_ai_disclosed_parameters.yaml` |
+| Epoch benchmark archive | [Epoch AI](https://epoch.ai/benchmarks/use-this-data) | `data/external/reference/epoch_ai/benchmark_data.zip` |
 
-python scripts/freeze_cross_market_model.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --confirmation-run-id "$CONFIRMATION_RUN_ID"
-export FREEZE_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/freezes'); p=max(r.glob('cm_ai_capability_freeze_*.json'), key=lambda x:x.stat().st_mtime_ns); print(p.stem)")
+Epoch ingestion expects SHA-256 `28a006632f325e82c61ed28603056784ae185b5b596da6e019edd84fe02ddb43`; it is supplementary retrospective evidence. Current downloads may differ from that frozen archive. The raw rebuild uses the curated AI catalog rather than scraping new announcements automatically.
 
-python scripts/run_cross_market_experiments.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID" \
-  --stage final_test \
-  --profile submission_rerun \
-  --training-scheme rolling \
-  --parallel-workers 3 \
-  --freeze-id "$FREEZE_ID"
-export FINAL_RUN_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/runs'); p=max((x for x in r.glob('cm_ai_capability_final_test_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
+Optional RBI rates, rainfall and event calendars require timestamped official exports from [RBI](https://data.rbi.org.in/), [IMD](https://mausam.imd.gov.in/imd_latest/contents/index_rainfall_state_new.php), [NSE](https://www.nseindia.com/resources/exchange-communication-holidays) or [NYSE](https://www.nyse.com/markets/hours-calendars). Empty templates contribute no observations. Do not substitute invented values. Changed vendor history, source coverage or optional inputs can change rebuilt results.
 
-python scripts/run_frozen_2026_extension.py \
-  --dataset-id "$DATASET_2026_ID" \
-  --freeze-id "$FREEZE_ID" \
-  --start 2026-01-01 \
-  --end 2026-09-30
-export FORWARD_RUN_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability_2026/runs'); p=max((x for x in r.glob('cm_ai_capability_2026_forward_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-```
+### Troubleshooting for either path
 
-The 2026 command reuses the frozen family, feature set, hyperparameters, preprocessing, and policy and fits once using pre-2026 observations. It does not tune on 2026.
-
-## 9. Diagnostics and verification
-
-```bash
-python scripts/analyze_ai_capability_model_run.py --config configs/cross_market_ai_capability_research.yaml --run-id "$FINAL_RUN_ID"
-export MODEL_EVIDENCE_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/analysis'); p=max((x for x in r.glob('model_evidence_final_test_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-python scripts/summarize_information_ladder.py --config configs/cross_market_ai_capability_research.yaml --run-id "$FINAL_RUN_ID"
-export LADDER_ANALYSIS_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/analysis'); p=max((x for x in r.glob('information_ladder_final_test_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-python scripts/compare_ai_services_strategies.py --config configs/cross_market_ai_capability_research.yaml --run-id "$FINAL_RUN_ID"
-export STRATEGY_ANALYSIS_ID=$(python -c "from pathlib import Path; r=Path('artifacts/cross_market_ai_capability/analysis'); p=max((x for x in r.glob('ai_strategy_comparison_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-
-python scripts/verify_ai_capability_pipeline.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID" \
-  --epoch-snapshot-id "$EPOCH_SNAPSHOT_ID" \
-  --eda-run-id "$EDA_RUN_ID" \
-  --capability-analysis-id "$CAPABILITY_ANALYSIS_ID" \
-  --epoch-analysis-id "$EPOCH_ANALYSIS_ID" \
-  --screening-run-id "$SCREENING_RUN_ID" \
-  --confirmation-run-id "$CONFIRMATION_RUN_ID" \
-  --freeze-id "$FREEZE_ID" \
-  --final-run-id "$FINAL_RUN_ID"
-
-python scripts/audit_ai_capability_contract.py \
-  --config configs/cross_market_ai_capability_research.yaml \
-  --dataset-id "$DATASET_ID" \
-  --run-id "$SCREENING_RUN_ID" \
-  --run-id "$CONFIRMATION_RUN_ID" \
-  --run-id "$FINAL_RUN_ID"
-
-python scripts/verify_frozen_2026_extension.py --run-id "$FORWARD_RUN_ID"
-```
-
-Do not publish results unless all verifiers pass.
-
-## 10. Exploratory hypotheses
-
-This six-hypothesis analysis uses already inspected history. It does not select or change the frozen model.
-
-```bash
-export EPOCH_EVENT_FILE="artifacts/cross_market_ai_capability/analysis/$EPOCH_ANALYSIS_ID/epoch_event_capability_returns.csv"
-python scripts/analyze_research_hypotheses.py \
-  --dataset "data/processed/cross_market_ai_capability/$DATASET_ID" \
-  --dataset "data/processed/cross_market_ai_capability_2026/$DATASET_2026_ID" \
-  --run "artifacts/cross_market_ai_capability/runs/$SCREENING_RUN_ID" \
-  --run "artifacts/cross_market_ai_capability/runs/$CONFIRMATION_RUN_ID" \
-  --epoch-events "$EPOCH_EVENT_FILE" \
-  --execute
-
-export HYPOTHESIS_ANALYSIS_ID=$(python -c "from pathlib import Path; r=Path('artifacts/research_hypotheses'); p=max((x for x in r.glob('hypotheses_*') if (x/'manifest.json').is_file()), key=lambda x:(x/'manifest.json').stat().st_mtime_ns); print(p.name)")
-```
-
-Non-significance is inconclusive, not proof of no effect. Event associations and current-vintage benchmark scores are not causal evidence.
-
-## 11. Figures and report
-
-### Strict-vintage sensitivity used by Version 2
-
-The report's data-vintage diagnostic is a separately tracked post-selection sensitivity. It preserves the frozen depth-6 Extra Trees parameters and trading policy while excluding every feature marked `current_vintage_fallback`. Run it before rebuilding the publication pack:
-
-```bash
-python scripts/run_strict_vintage_sensitivity.py \
-  --release-registry reports/releases/project2_team16_v2_2026-11-01/release_registry.json \
-  --parallel-workers 3
-```
-
-The output manifest records the exact parent model, excluded columns, zero retained fallback flags, per-period metrics, paired circular date-block intervals, source hashes and output hashes. A new run receives a new timestamped analysis ID; bind that ID as `STRICT_VINTAGE_ANALYSIS_ID` in the release registry before rebuilding the figures and report.
-
-### Rebuild the verified Version 2 release
-
-The report release is selected explicitly. Do not rely on the builder defaults, which target the legacy V1 filenames when no registry is supplied. The canonical V2 outputs are `reports/Project2_Team16_Report_V2.docx` and `reports/Project2_Team16_Report_V2.pdf`.
-
-External rendering prerequisites are LibreOffice (DOCX→PDF) and Poppler (`pdfinfo`, `pdftotext`, and `pdftoppm`). The Python environment is created from `pyproject.toml` or `requirements.txt`; the contents resolver no longer depends on an undeclared system PyMuPDF installation.
-
-```bash
-cd /path/to/project2QuantFin
-source .venv/bin/activate                  # Windows PowerShell: .venv\Scripts\Activate.ps1
-
-export REPORT_RELEASE_REGISTRY=reports/releases/project2_team16_v2_2026-11-01/release_registry.json
-# Windows PowerShell:
-# $env:REPORT_RELEASE_REGISTRY = "reports/releases/project2_team16_v2_2026-11-01/release_registry.json"
-
-python scripts/build_publication_figure_pack.py \
-  --output reports/publication_figure_pack_v2_2026-11-01
-python reports/build_report_ai_capability.py
-
-# First render. Use the full soffice path when it is not on PATH.
-mkdir -p reports/_render_v2
-soffice --headless --convert-to pdf --outdir reports/_render_v2 \
-  reports/Project2_Team16_Report_V2.docx
-
-python scripts/resolve_report_toc_pages.py \
-  --docx reports/Project2_Team16_Report_V2.docx \
-  --pdf reports/_render_v2/Project2_Team16_Report_V2.pdf \
-  --output reports/releases/project2_team16_v2_2026-11-01/toc_pages.json
-
-# Rebuild with resolved page numbers, render again, and copy the canonical PDF.
-python reports/build_report_ai_capability.py
-soffice --headless --convert-to pdf --outdir reports/_render_v2 \
-  reports/Project2_Team16_Report_V2.docx
-cp reports/_render_v2/Project2_Team16_Report_V2.pdf \
-  reports/Project2_Team16_Report_V2.pdf
-
-python scripts/verify_report_release.py \
-  --release-registry "$REPORT_RELEASE_REGISTRY"
-```
-
-If layout changes move headings, run the contents resolver and rebuild/render sequence once more until `toc_pages.json` stabilizes. Inspect every rendered page at 100% before submission. The expected release is 15–25 pages, has no zero contents destinations, uses selected configuration `cm_extra_trees_cd9235695e6b`, and must pass the lineage, figure-input, claim and output checks. The Office Viewer extension may be used as an additional manual preview when it exposes a connected Word session, but it does not replace the deterministic build hashes or page-image review.
-
-For a new release, first copy the registry into a new versioned directory and change every output destination. Never rebuild a new experiment over an archived release identity.
-
-The older `REPORT_*` environment variables remain available for development diagnostics, but they are not a publication recipe because they can omit newer evidence addresses. Published releases must use one explicit registry. On macOS, use `/Applications/LibreOffice.app/Contents/MacOS/soffice` if `soffice` is not on `PATH`; on Windows, use the full path to `soffice.exe`.
-
-## Outputs
-
-| Stage | Output root |
+| Problem | Action |
 |---|---|
-| Raw snapshots | `data/raw/cross_market/` |
-| Raw audit | `artifacts/data_audits/cross_market/` |
-| Processed panels | `data/processed/cross_market_ai_services*` and `cross_market_ai_capability*` |
-| EDA and analyses | `artifacts/cross_market_ai_capability/analysis/` |
-| Runs and checkpoints | `artifacts/cross_market_ai_capability/runs/` |
-| Frozen contract | `artifacts/cross_market_ai_capability/freezes/` |
-| 2026 extension | `artifacts/cross_market_ai_capability_2026/runs/` |
-| Hypotheses | `artifacts/research_hypotheses/` |
-| Figures and submission | `reports/` |
+| `No module named quantfin` | Activate the intended environment and run `python -m pip install -e .` from the repository root. |
+| LFS pointer or bundle hash mismatch | Run `git lfs pull` and `git lfs fsck`. Do not edit panels to bypass verification. Use Path B if processed data was omitted. |
+| Session already exists | Choose a new name for a fresh run; preserve the existing session. |
+| Interrupted training | Preserve the folder and logs. The wrapper does not automatically resume; the underlying experiment runner supports exact-ID resumption with unchanged settings. |
+| `.running` exists after a shutdown | Confirm no process still uses the session before addressing a stale lock. |
+| Raw audit fails | Resolve the reported blocking issues. Review quarantine restrictions when warnings are present. |
+| PowerShell activation is blocked | Use `.\.venv\Scripts\python.exe` in place of `python` for install/run commands. |
 
-Every completed dataset, analysis, and run has a manifest and hashes. An interrupted model run can be resumed only with its exact run ID and unchanged inputs, configuration, and code.
+### Reports, checks and repository layout
 
-## Common failures
+[Report DOCX](reports/Project2_Team16_Report.docx) · [Report PDF](reports/Project2_Team16_Report.pdf) · [Recording commands](reports/video/recording_commands.md) · [Assignment](documents/markdown/Project2.md)
 
-- **No raw snapshot:** rerun that fetch command with `--execute`; a failed directory without `manifest.json` is incomplete.
-- **FRED vintage-limit HTTP 400:** use the current script's default five-year chunks.
-- **FRED series absent from ALFRED:** retain the recorded current-vintage fallback and conservative lag.
-- **Yahoo 404 for a former ticker:** keep the failure in the manifest unless an independently verified symbol mapping exists.
-- **OHLC audit warnings:** follow the emitted cleaning restrictions; the panel builder quarantines declared anomalies.
-- **Interrupted model run:** resume its exact `--resume-run-id`; changed inputs require a new run.
-- **Apparently idle model run:** inspect it with `cross_market_run_status.py` from another terminal; never start a second writer for the same run.
-- **Report evidence missing:** restore LFS artifacts or export the matching verified `REPORT_*` identifiers.
-- **Stale contents page:** render once, run `cache_report_contents.py`, export again, and inspect every page.
+Training does not automatically rewrite the report or supplementary hypothesis studies. Report evidence must be rebound and verified explicitly. Source code is in `src/quantfin/`, executable entry points in `scripts/`, and research contracts in `configs/`. Raw inputs stay local; the bundle registry pins existing processed inputs under `artifacts/recording_demos/video_demo_01/`. All prior logs, runs and analysis evidence are retained.
 
-## Repository structure
+Local checks (no downloads or model training):
 
-- `src/quantfin/`: timing, cleaning, features, models, evaluation, and tracking.
-- `scripts/`: acquisition, audit, panel, EDA, modeling, verification, and figures.
-- `configs/`: data contracts, feature ladders, model grids, costs, and evidence catalogs.
-- `data/external/`: committed source/reference files and manual templates.
-- `data/raw/`: local immutable vendor snapshots excluded from Git.
-- `data/processed/`: immutable content-hashed feature panels.
-- `artifacts/`: analyses, checkpoints, runs, freezes, and audits.
-- `documents/markdown/`: assignment, methods, dated reviews, and historical runbooks.
-- `reports/`: publication figures, report builder, DOCX, and PDF.
-- `tests/`: deterministic timing, accounting, and contract tests.
+```sh
+python -m unittest discover -s tests -p test_recording_demo.py -v
+python -m unittest discover -s tests/leakage -v
+```
 
-Before submission, verify the run IDs, alphabetical author roster, AI-use declaration, NUS academic-integrity references, figure readability, and required filenames. The video should explain the information clock, leakage controls, long/short/flat policy, transaction costs, statistically inconclusive results, and limitations.
+### Maintainer: include processed data before sharing this branch
+
+These are publishing commands for the repository owner, not steps required by someone cloning it. Raw downloads remain ignored. Small CSVs formerly in LFS are normalized into ordinary Git; panels, figures and other configured large artifacts retain LFS tracking.
+
+```sh
+git add .gitignore .gitattributes README.md reports/video/recording_commands.md scripts/run_recording_demo.py tests/test_recording_demo.py data/preprocessed_bundle.json documents/markdown/REPOSITORY_CLEANUP_2026-11-09.md
+git add data/processed artifacts/recording_demos/video_demo_01
+git add --renormalize data/external data/processed artifacts reports
+git lfs fsck
+git diff --cached --stat
+git commit -m "Support training from bundled processed data and separate raw rebuild workflow"
+git push origin v5-ritik
+```
+
+The local bundle preparation has been checked; availability in a fresh clone depends on committing and pushing both Git and LFS objects. Keep credentials in environment variables and local `.env` files, which remain ignored.

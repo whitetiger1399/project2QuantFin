@@ -1,0 +1,83 @@
+{
+  "action": "build_ai_capability_panel",
+  "completed_at_utc": "2026-11-09T06:41:18.205436+00:00",
+  "config_sha256": "71fa59fd1db8ca22bcf40bceed01c26ed7405f543140f1058d39ac0e5951bf4a",
+  "content_hash": "1a13582b12774e0b",
+  "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "event_snapshot_id": "frontier_ai_events_20261101T012534Z_3362c67601fb1428",
+  "evidence_summary": {
+    "capability_features": 25,
+    "disclosure_fraction": 0.15384615384615385,
+    "event_clock_policy": "Actual U.S. 16:00 America/New_York sessions and NSE 08:55 Asia/Kolkata cutoffs; DST-aware.",
+    "events": 52,
+    "events_with_disclosed_total_parameters": 8,
+    "guardrail": "Parameter count is a sparse scale proxy; undisclosed values are not imputed.",
+    "source_dataset_id": "ai_services_panel_20261109T064052Z_928359972ec57c68"
+  },
+  "files": {
+    "capability_event_mapping.csv": "1d879b818e912ebfe53cb0874b2e670a816f4cbbec633a07510729c0cc5024aa",
+    "capability_evidence.json": "7109670f5a8c3d876ef099c00b47267a4a77a9e1e0374c47060eb4d4e7ce9a65",
+    "feature_dictionary.csv": "8dfadbe0bfffd929b0c8c77276998ddf2f34dd8a1837c1ece1799a6b052aecf0",
+    "panel.parquet": "10f014e1dc12251c681f05ece3f92c0c57d1f2dd9a25f3fdbe07508dcad403a9"
+  },
+  "output": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/processed/ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "schema_version": 1,
+  "snapshot_manifests": {
+    "fred_alfred": {
+      "manifest_sha256": "021cff6ae6f81e2a1484670b9f3433530675f22221cc963391878f41b2f6ccba",
+      "snapshot_id": "fred_alfred_20261030T023950Z"
+    },
+    "frontier_ai_events": {
+      "manifest_sha256": "49f20abb74cbed79517a666c4f58bade9dfac96f15b6dd4e268c9a8758bd4f10",
+      "snapshot_id": "frontier_ai_events_20261101T012534Z_3362c67601fb1428"
+    },
+    "global_context": {
+      "manifest_sha256": "0311e59a45a218fe460d97aaf0cf4fa705cc2c2aa0c133178c1a448beac818f9",
+      "snapshot_id": "yahoo_global_context_20261029T125100Z"
+    },
+    "india_core": {
+      "manifest_sha256": "721cec3eb2d07bee3d798bb3c5aa6be0078cf60dcb09e153cb39b4e5cb094fd8",
+      "snapshot_id": "yahoo_india_core_20261029T124839Z"
+    },
+    "indian_it_adrs": {
+      "manifest_sha256": "5325c63c2a7e84b89ecc579d72550ad9ed1073919012e0885f0d75c13942a836",
+      "snapshot_id": "yahoo_indian_it_adrs_20261029T125050Z"
+    },
+    "nifty500_point_in_time": {
+      "manifest_sha256": "42905cc955c1768939ed0ae829d89f8165d0a5ab9701977fb9560050e9e7cfa3",
+      "snapshot_id": "yahoo_nifty500_point_in_time_20261030T015703Z"
+    },
+    "nifty50_point_in_time": {
+      "manifest_sha256": "8c24b62360206b85641e709114328a2efe6a9c64ef00a79d7c2282b18e23db37",
+      "snapshot_id": "yahoo_nifty50_point_in_time_20261030T005526Z"
+    },
+    "sp500_point_in_time": {
+      "manifest_sha256": "7a15df70a3225550750b02ebcb546f074d714f0762711cd3892101e01aec03da",
+      "snapshot_id": "yahoo_sp500_point_in_time_20261030T005819Z"
+    },
+    "us_context": {
+      "manifest_sha256": "05ba8516be7b5cb2658cc001df8ec2bbde3b8cbd5679e2f5693cd527a13fc115",
+      "snapshot_id": "yahoo_us_context_20261029T125033Z"
+    },
+    "us_enterprise_software": {
+      "manifest_sha256": "7325a25575367ee153e156f3ac2724e16821d05f0340f063cb95125a97439c61",
+      "snapshot_id": "yahoo_us_enterprise_software_20261031T023634Z"
+    },
+    "us_it_enabled_payments": {
+      "manifest_sha256": "dbabd02affc0ff66f4da4435b6b1c082747780424ccaa65c917b505fc81e8d7c",
+      "snapshot_id": "yahoo_us_it_enabled_payments_20261031T023628Z"
+    },
+    "us_it_services": {
+      "manifest_sha256": "e0a30807c8eada51374713405f931ddc2138596477f9b0ca0ff312ab96980756",
+      "snapshot_id": "yahoo_us_it_services_20261031T023621Z"
+    },
+    "us_limited_tech": {
+      "manifest_sha256": "790b1101ec197a834b7ec857e2525be69b842206a966afae6374ed01a76c069d",
+      "snapshot_id": "yahoo_us_limited_tech_20261029T125019Z"
+    }
+  },
+  "source_dataset_id": "ai_services_panel_20261109T064052Z_928359972ec57c68",
+  "source_dataset_manifest_sha256": "83c270a282e4bcbec1a99462895ebb7283b7304564fa0e6cb72f863a166ecc67",
+  "source_hash": "1a13582b12774e0b",
+  "status": "complete"
+}

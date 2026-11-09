@@ -1,0 +1,3682 @@
+{
+  "assets": [
+    "COFORGE.NS",
+    "HCLTECH.NS",
+    "INFY.NS",
+    "LTM.NS",
+    "MPHASIS.NS",
+    "OFSS.NS",
+    "PERSISTENT.NS",
+    "TCS.NS",
+    "TECHM.NS",
+    "WIPRO.NS"
+  ],
+  "decision_dates": 2334,
+  "feature_count": 3738,
+  "first_decision_date": "2016-07-21",
+  "frontier_ai_events": {
+    "calendar_events": 52,
+    "calendar_snapshot": "frontier_ai_events_20261101T012534Z_3362c67601fb1428",
+    "mapped_events": 26,
+    "mapping_policy": "first NSE 08:55 IST cutoff strictly after public_at_utc",
+    "primary_event_sessions": 24
+  },
+  "last_decision_date": "2025-12-31",
+  "macro_current_vintage_fallbacks": [
+    "BAMLC0A0CM",
+    "BAMLH0A0HYM2",
+    "DEXINUS",
+    "DFEDTARU",
+    "DTWEXBGS",
+    "INDCPIALLMINMEI",
+    "INDIRLTLT01STM",
+    "INTDSRINM193N",
+    "IRSTCI01INM156N",
+    "T10Y2Y",
+    "T10Y3M",
+    "VIXCLS"
+  ],
+  "membership_terminal_carry_forward": true,
+  "nifty50_selected_symbols": [
+    "HCLTECH.NS",
+    "INFY.NS",
+    "TATASTEEL.NS",
+    "HDFCBANK.NS",
+    "HINDALCO.NS",
+    "HINDUNILVR.NS",
+    "SUNPHARMA.NS",
+    "CIPLA.NS",
+    "RELIANCE.NS",
+    "SBIN.NS",
+    "ICICIBANK.NS",
+    "ITC.NS",
+    "M&M.NS",
+    "HEROMOTOCO.NS",
+    "GAIL.NS",
+    "BPCL.NS",
+    "MARUTI.NS",
+    "BHARTIARTL.NS",
+    "ONGC.NS",
+    "WIPRO.NS",
+    "LT.NS",
+    "TCS.NS",
+    "GRASIM.NS",
+    "DRREDDY.NS",
+    "BAJAJ-AUTO.NS",
+    "AMBUJACEM.NS",
+    "ACC.NS",
+    "TATAPOWER.NS",
+    "BHEL.NS",
+    "NTPC.NS",
+    "POWERGRID.NS",
+    "PNB.NS",
+    "AXISBANK.NS",
+    "ZEEL.NS",
+    "KOTAKBANK.NS",
+    "RELINFRA.NS",
+    "COALINDIA.NS",
+    "SAIL.NS",
+    "VEDL.NS",
+    "ASIANPAINT.NS",
+    "ULTRACEMCO.NS",
+    "INDUSINDBK.NS",
+    "DLF.NS",
+    "ABB.NS",
+    "SIEMENS.NS",
+    "TECHM.NS",
+    "LUPIN.NS",
+    "TATACOMM.NS",
+    "JINDALSTEL.NS",
+    "RCOM.NS",
+    "HINDPETRO.NS",
+    "BANKBARODA.NS",
+    "ADANIPORTS.NS",
+    "YESBANK.NS",
+    "IDEA.NS",
+    "SUZLON.NS",
+    "EICHERMOT.NS",
+    "INDUSTOWER.NS",
+    "GLAXO.NS",
+    "MTNL.NS",
+    "DABUR.NS",
+    "IOC.NS",
+    "RPOWER.NS",
+    "BAJFINANCE.NS",
+    "UPL.NS",
+    "UNITECH.NS",
+    "BOSCHLTD.NS",
+    "TITAN.NS",
+    "BAJAJFINSV.NS",
+    "BRITANNIA.NS",
+    "TATACONSUM.NS",
+    "TATACHEM.NS",
+    "SCI.NS",
+    "CHAMBLFERT.NS",
+    "SAMMAANCAP.NS",
+    "NMDC.NS",
+    "JSWSTEEL.NS",
+    "AUROPHARMA.NS",
+    "COLPAL.NS",
+    "JETAIRWAYS.NS",
+    "NESTLEIND.NS",
+    "INDHOTEL.NS",
+    "SHREECEM.NS",
+    "UNITDSPR.NS",
+    "HDFCLIFE.NS",
+    "DIVISLAB.NS",
+    "SBILIFE.NS",
+    "NIITLTD.NS",
+    "ADANIENT.NS",
+    "APOLLOHOSP.NS",
+    "BEL.NS",
+    "BSE.NS",
+    "ETERNAL.NS",
+    "IDFCFIRSTB.NS",
+    "INDIGO.NS",
+    "JIOFIN.NS",
+    "LTM.NS",
+    "MAXHEALTH.NS",
+    "SHRIRAMFIN.NS",
+    "TMPV.NS"
+  ],
+  "quarantined_row_count": 474,
+  "quarantined_rows": [
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2005-05-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2005-10-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2006-09-01",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2006-12-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2007-12-31",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2008-01-01",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2009-02-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2009-02-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2009-03-27",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-08-19",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-09-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-11-05",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-11-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-11-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-11-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-11-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-12-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2010-12-27",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-01-05",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-01-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-01-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-01-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-03-02",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-03-03",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-03-04",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-03-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-03-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-03-15",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-04-04",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-04-12",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-04-13",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-04-19",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-04-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-05-03",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-05-10",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-05-12",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-05-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-05-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-05-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-05-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-06-03",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-06-10",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-06-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-07-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-08-01",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-08-02",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-08-15",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-08-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-08-18",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-08-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-08-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-08-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-09-01",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-09-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-09-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-09-14",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-09-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-09-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-09-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-10-03",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-10-04",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-10-11",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-10-18",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-10-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-10-28",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-11-01",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-11-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-11-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-11-10",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-11-11",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-11-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-11-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-12",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-19",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-28",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2011-12-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-01-02",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-01-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-01-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-01-27",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-01-31",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-02-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-02-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-02-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-03-15",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-04-03",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-04-04",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-04-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-04-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-05-01",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-06-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-06-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-06-15",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-07-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-07-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-08-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-08-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-08-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-08-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-10-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-11-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-11-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2012-12-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-01-14",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-01-18",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-03-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-03-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-04-11",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-04-19",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-04-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-05-01",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-05-27",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-07-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2013-08-05",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2014-03-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2014-08-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2014-11-04",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2015-08-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2015-09-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2015-11-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2015-12-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-01-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-02-04",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-02-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-05-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-06-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-06-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-06-21",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-08-12",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-08-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-09-13",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-09-15",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2016-10-11",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2017-01-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2017-01-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2017-05-31",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2017-08-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2017-10-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-04-16",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-04-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-05-03",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-05-10",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-05-21",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-05-24",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-06-28",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-07-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-08-10",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-08-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-08-31",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-09-04",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-09-19",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-09-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-09-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-09-27",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-10-02",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-10-12",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-10-16",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-10-18",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-10-19",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-11-02",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-11-13",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-11-15",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-11-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-11-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-12-11",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-12-12",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2018-12-13",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-01-04",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-01-11",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-01-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-01-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-02-19",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-02-20",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-02-21",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-03-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-03-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-03-13",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-03-21",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-03-27",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-03-28",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-03-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-04-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-04-16",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-04-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-04-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-08-05",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-12-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2019-12-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2020-02-10",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2021-01-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2021-03-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2021-11-25",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2021-12-27",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-01-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-01-27",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-02-14",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-02-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-03-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-05-31",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-06-03",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-07-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2022-11-21",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-02-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-04-03",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-06-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-07-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-09-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-11-02",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-11-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-11-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-11-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-12-07",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2023-12-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-01-01",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-01-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-01-29",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-02-06",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-02-08",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-03-19",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-08-14",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-08-23",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-10-28",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-11-18",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-11-21",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-12-02",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2024-12-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2025-02-17",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2025-03-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2025-06-16",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2025-10-22",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2025-11-26",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-01-30",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-02-10",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-03-09",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-13",
+      "symbol": "INR=X"
+    },
+    {
+      "group": "india_core",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2009-07-07",
+      "symbol": "NIFTYBEES.NS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AAPL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ABBV"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ABT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ACN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ADP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ADT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AEE"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AEP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AIZ"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AJG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ALB"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AMD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AMGN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AMTM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AMZN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ANET"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AOS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "APA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "APH"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-05",
+      "symbol": "AVB"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AVGO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AWK"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "AXP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "BALL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "BEAM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "BKNG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "BKR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "BMY"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "BNY"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "BRO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CARR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CAT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CB"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CI"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CIEN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CMCSA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CNC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "COHR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "COIN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "COP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "COR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "COST"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CPRT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CSX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CTAS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CTSH"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "CVX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DAL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DASH"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DDOG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DELL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DIS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DLR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DLTR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DOV"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DUK"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DVA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DXC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "DXCM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "EMN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "EOG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "EPAM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ETR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "EXC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FAST"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FCPT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FDXF"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FE"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FITB"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FIX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FLR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FLS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FSLR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "FTI"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GDDY"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GEN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GILD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GIS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GLW"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GNRC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GNW"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "GS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "H"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HCA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HIG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HII"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HON"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HONA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HOOD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HPE"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HPQ"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HRB"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HRL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "HST"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2021-05-05",
+      "symbol": "HUBB"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "IBKR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "IDXX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ILMN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "INCY"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "INTC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "INTU"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "IPGP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ISRG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "IT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "JBL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "JEF"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "JNJ"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KBH"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KDP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KEY"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KEYS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KIM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KMB"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "KVUE"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "LIN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "LITE"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "LNC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "LNT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "LOW"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "LPX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "LRCX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "LYV"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MAA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MAR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MAT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MCD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MCO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MDLZ"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MDT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MEDI"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MI"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MKC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MMM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MNST"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MRSH"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MRVL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MSCI"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MTD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MTG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MTW"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MU"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "MUR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "NCLH"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "NKE"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "NOW"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "NTAP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "NVDA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "NVR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "OGN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ON"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ORCL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "OXY"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PAYX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PCAR"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PEP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PHM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PKG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PLD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "PODD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "Q"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "RDDT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "REGN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "RF"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "RMD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ROK"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ROL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ROP"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ROST"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SANM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SATS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SDS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SHW"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SIG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SMCI"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SNDK"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SOLS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SPG"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SPLS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "STT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "STX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SUN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SWK"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "SYK"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TDC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TDY"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TER"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TGT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TJX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TMO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TSCO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TSLA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TSN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "TXT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2021-05-05",
+      "symbol": "UA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "UA"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "UIS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "URBN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "USB"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "V"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VIAV"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VICI"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VLTO"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VMRK"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VRSN"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VRT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VRTX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VST"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "VTRS"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-05",
+      "symbol": "WBD"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "WDC"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "WM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "WMT"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "WSM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "XEL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "XOM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "XRX"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "XYL"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "YUM"
+    },
+    {
+      "group": "sp500_point_in_time",
+      "reason": "invalid_or_impossible_ohlc",
+      "session": "2026-10-29",
+      "symbol": "ZBH"
+    }
+  ],
+  "rows": 23340,
+  "sp500_selected_symbols": [
+    "AAPL",
+    "MSFT",
+    "BAC",
+    "XOM",
+    "INTC",
+    "JPM",
+    "C",
+    "CSCO",
+    "GE",
+    "WFC",
+    "PFE",
+    "T",
+    "JNJ",
+    "CVX",
+    "QCOM",
+    "IBM",
+    "GS",
+    "PG",
+    "WMT",
+    "ORCL",
+    "VZ",
+    "MRK",
+    "SLB",
+    "HD",
+    "KO",
+    "CMCSA",
+    "MCD",
+    "AMGN",
+    "CAT",
+    "DIS",
+    "COP",
+    "BA",
+    "EBAY",
+    "PEP",
+    "HAL",
+    "MS",
+    "F",
+    "UNH",
+    "FCX",
+    "AIG",
+    "TXN",
+    "MO",
+    "CVS",
+    "OXY",
+    "HPQ",
+    "AMAT",
+    "AXP",
+    "BMY",
+    "TGT",
+    "LOW",
+    "ABT",
+    "SBUX",
+    "MMM",
+    "UNP",
+    "MU",
+    "MDT",
+    "USB",
+    "UPS",
+    "NEM",
+    "LLY",
+    "NVDA",
+    "NKE",
+    "DE",
+    "EOG",
+    "COST",
+    "BIIB",
+    "MET",
+    "HON",
+    "FDX",
+    "APA",
+    "LMT",
+    "DVN",
+    "COF",
+    "ADBE",
+    "CSX",
+    "SPG",
+    "PNC",
+    "EXC",
+    "SCHW",
+    "BBY",
+    "CL",
+    "GLW",
+    "TJX",
+    "PRU",
+    "DUK",
+    "EMR",
+    "BAX",
+    "CMI",
+    "DHR",
+    "SO",
+    "WMB",
+    "NSC",
+    "TMO",
+    "TRV",
+    "CCL",
+    "KMB",
+    "KR",
+    "JCI",
+    "STT",
+    "NEE",
+    "YUM",
+    "GD",
+    "GIS",
+    "BSX",
+    "ALL",
+    "ITW",
+    "NTAP",
+    "MCK",
+    "MSI",
+    "KLAC",
+    "ETN",
+    "D",
+    "ADM",
+    "FITB",
+    "NOC",
+    "NUE",
+    "CI",
+    "ADP",
+    "CB",
+    "AZO",
+    "AFL",
+    "ADI",
+    "HUM",
+    "RF",
+    "MAR",
+    "AEP",
+    "INTU",
+    "IP",
+    "CAH",
+    "HIG",
+    "LUV",
+    "APD",
+    "SHW",
+    "ADSK",
+    "KEY",
+    "PH",
+    "ZBH",
+    "FE",
+    "SYK",
+    "BDX",
+    "SYY",
+    "PPL",
+    "PCAR",
+    "WHR",
+    "PPG",
+    "PEG",
+    "WY",
+    "A",
+    "BEN",
+    "SPGI",
+    "AON",
+    "OMC",
+    "PHM",
+    "WM",
+    "ETR",
+    "TROW",
+    "ED",
+    "PAYX",
+    "VFC",
+    "EIX",
+    "MCO",
+    "PGR",
+    "LNC",
+    "SRE",
+    "CAG",
+    "ECL",
+    "ROK",
+    "SWK",
+    "GWW",
+    "MAS",
+    "PLD",
+    "CLX",
+    "DRI",
+    "HBAN",
+    "NTRS",
+    "HSY",
+    "FISV",
+    "DOV",
+    "VMC",
+    "XRX",
+    "DGX",
+    "XEL",
+    "EMN",
+    "TXT",
+    "CPB",
+    "TAP",
+    "ZION",
+    "AES",
+    "CNP",
+    "PFG",
+    "HAS",
+    "DTE",
+    "CMS",
+    "AEE",
+    "NWL",
+    "WAT",
+    "UNM",
+    "NI",
+    "L",
+    "GPC",
+    "CTAS",
+    "RHI",
+    "EFX",
+    "AVY",
+    "PNW",
+    "MKC",
+    "IFF",
+    "CINF",
+    "SNA",
+    "BF-B",
+    "AIV",
+    "MTB",
+    "KSS",
+    "HRB",
+    "VLO",
+    "GILD",
+    "HOG",
+    "TPR",
+    "M",
+    "LH",
+    "BBT",
+    "NOV",
+    "DXC",
+    "DHI",
+    "STZ",
+    "MAT",
+    "FLR",
+    "TSN",
+    "VNO",
+    "PSA",
+    "DD",
+    "AMP",
+    "LEN",
+    "GT",
+    "AMZN",
+    "PCG",
+    "EL",
+    "VRSN",
+    "GOOGL",
+    "BXP",
+    "KIM",
+    "CME",
+    "WU",
+    "FIS",
+    "CBRE",
+    "CTSH",
+    "RL",
+    "CHRW",
+    "HST",
+    "MDLZ",
+    "AIZ",
+    "AN",
+    "AMD",
+    "AKAM",
+    "R",
+    "MCHP",
+    "ICE",
+    "EXPE",
+    "EXPD",
+    "PBI",
+    "AMT",
+    "PM",
+    "ISRG",
+    "MA",
+    "DVA",
+    "IVZ",
+    "CF",
+    "CRM",
+    "FAST",
+    "THC",
+    "APH",
+    "FLS",
+    "NDAQ",
+    "WEC",
+    "SJM",
+    "WYNN",
+    "XRAY",
+    "JEF",
+    "RSG",
+    "IRM",
+    "MUR",
+    "WELL",
+    "VTR",
+    "HRL",
+    "ES",
+    "ORLY",
+    "FTI",
+    "WDC",
+    "PWR",
+    "ATI",
+    "FMC",
+    "NBR",
+    "TEL",
+    "BKNG",
+    "V",
+    "ROST",
+    "ROP",
+    "NRG",
+    "BRK-B",
+    "JBL",
+    "OKE",
+    "KMX",
+    "RRC",
+    "SLM",
+    "TER",
+    "HP",
+    "NFLX",
+    "FFIV",
+    "VIAV",
+    "GNW",
+    "EQT",
+    "EW",
+    "BLK",
+    "KDP",
+    "TDC",
+    "CNX",
+    "CMG",
+    "MPC",
+    "ACN",
+    "FHN",
+    "MOS",
+    "XYL",
+    "DLTR",
+    "PRGO",
+    "BWA",
+    "CCI",
+    "RIG",
+    "PSX",
+    "KMI",
+    "LRCX",
+    "MNST",
+    "STX",
+    "EP",
+    "GME",
+    "LYB",
+    "PNR",
+    "DG",
+    "GRMN",
+    "APTV",
+    "ABBV",
+    "TRIP",
+    "OI",
+    "PVH",
+    "ITT",
+    "REGN",
+    "GM",
+    "ZTS",
+    "NWSA",
+    "FSLR",
+    "DAL",
+    "VRTX",
+    "AME",
+    "URBN",
+    "ALLE",
+    "MHK",
+    "NYT",
+    "TSCO",
+    "ESS",
+    "GOOG",
+    "ANF",
+    "GHC",
+    "UAA",
+    "AVGO",
+    "MAC",
+    "MLM",
+    "URI",
+    "UHS",
+    "RCL",
+    "KBH",
+    "CIEN",
+    "MBI",
+    "HCA",
+    "SWKS",
+    "HSIC",
+    "AAL",
+    "EQIX",
+    "SLG",
+    "O",
+    "JBHT",
+    "KHC",
+    "AAP",
+    "AMG",
+    "PYPL",
+    "UAL",
+    "TMUS",
+    "NWS",
+    "TT",
+    "VRSK",
+    "HPE",
+    "LDOS",
+    "SYF",
+    "ILMN",
+    "CPWR",
+    "CHD",
+    "EXR",
+    "CFG",
+    "FRT",
+    "ASH",
+    "UIS",
+    "AWK",
+    "MTG",
+    "UDR",
+    "DDS",
+    "CNC",
+    "WEN",
+    "UA",
+    "ULTA",
+    "GPN",
+    "FNMA",
+    "FMCC",
+    "ALK",
+    "DLR",
+    "LKQ",
+    "AJG",
+    "TDG",
+    "CCU",
+    "ALB",
+    "LNT",
+    "FTV",
+    "BC",
+    "CPRI",
+    "MTD",
+    "CHTR",
+    "CLF",
+    "COO",
+    "NAVI",
+    "MAA",
+    "IDXX",
+    "COTY",
+    "INCY",
+    "CBOE",
+    "REG",
+    "SNPS",
+    "ARE",
+    "RJF",
+    "FOSL",
+    "IT",
+    "IR",
+    "ALGN",
+    "HLT",
+    "SANM",
+    "MGM",
+    "PKG",
+    "RMD",
+    "AOS",
+    "IQV",
+    "SBAC",
+    "CDNS",
+    "NCLH",
+    "GENZ",
+    "HII",
+    "PTC",
+    "LPX",
+    "IPGP",
+    "TTWO",
+    "MSCI",
+    "SIG",
+    "KG",
+    "EVRG",
+    "CAR",
+    "BR",
+    "SSP",
+    "CPRT",
+    "ANET",
+    "ROL",
+    "FTNT",
+    "LIN",
+    "KEYS",
+    "JKHY",
+    "AYI",
+    "FANG",
+    "LW",
+    "CE",
+    "TFX",
+    "TEX",
+    "ATO",
+    "WAB",
+    "FOXA",
+    "FOX",
+    "MTW",
+    "DOW",
+    "BHF",
+    "LHX",
+    "CTVA",
+    "AMCR",
+    "NKTR",
+    "MKTX",
+    "GL",
+    "IEX",
+    "CDW",
+    "NVR",
+    "LVS",
+    "BKR",
+    "NOW",
+    "WRB",
+    "TFC",
+    "ODFL",
+    "J",
+    "LYV",
+    "ZBRA",
+    "STE",
+    "DLX",
+    "WOR",
+    "PAYC",
+    "RTX",
+    "CARR",
+    "OTIS",
+    "HWM",
+    "DXCM",
+    "DPZ",
+    "WST",
+    "TYL",
+    "BIO",
+    "TDY",
+    "SII",
+    "CCEP",
+    "LUMN",
+    "ETSY",
+    "POOL",
+    "VNT",
+    "VTRS",
+    "SUN",
+    "TSLA",
+    "FCPT",
+    "ABI",
+    "ABNB",
+    "ACGL",
+    "ACV",
+    "ADCT",
+    "ADT",
+    "AM",
+    "AMTM",
+    "APC",
+    "APO",
+    "APP",
+    "ARES",
+    "ASO",
+    "AT",
+    "AV",
+    "AVB",
+    "AXON",
+    "BALL",
+    "BBBY",
+    "BBWI",
+    "BEAM",
+    "BG",
+    "BLDR",
+    "BNY",
+    "BRO",
+    "BUD",
+    "BX",
+    "CAM",
+    "CASY",
+    "CEG",
+    "COHR",
+    "COIN",
+    "COR",
+    "CPAY",
+    "CPT",
+    "CR",
+    "CRH",
+    "CRL",
+    "CRWD",
+    "CSGP",
+    "CSRA",
+    "CVNA",
+    "CZR",
+    "DASH",
+    "DDOG",
+    "DECK",
+    "DELL",
+    "DOC",
+    "DYN",
+    "EA",
+    "EC",
+    "ECHO",
+    "EG",
+    "ELV",
+    "EMC",
+    "EME",
+    "ENPH",
+    "EPAM",
+    "EQ",
+    "EQR",
+    "ERIE",
+    "EXE",
+    "FB",
+    "FDS",
+    "FDXF",
+    "FERG",
+    "FICO",
+    "FIX",
+    "FLEX",
+    "G",
+    "GDDY",
+    "GDT",
+    "GEHC",
+    "GEN",
+    "GEV",
+    "GNRC",
+    "GP",
+    "H",
+    "HONA",
+    "HOOD",
+    "HUBB",
+    "IBKR",
+    "INFO",
+    "INVH",
+    "JAVA",
+    "KKR",
+    "KVUE",
+    "LB",
+    "LEG",
+    "LIFE",
+    "LII",
+    "LITE",
+    "LU",
+    "LULU",
+    "MEDI",
+    "META",
+    "MI",
+    "MMI",
+    "MOH",
+    "MPWR",
+    "MRNA",
+    "MRSH",
+    "MRVL",
+    "MTCH",
+    "NDSN",
+    "NE",
+    "NFX",
+    "NXPI",
+    "OGN",
+    "ON",
+    "PANW",
+    "PARA",
+    "PCL",
+    "PCS",
+    "PD",
+    "PENN",
+    "PLTR",
+    "PODD",
+    "POM",
+    "PSKY",
+    "PWER",
+    "Q",
+    "QRVO",
+    "RDDT",
+    "RVTY",
+    "S",
+    "SATS",
+    "SBNY",
+    "SDS",
+    "SE",
+    "SEDG",
+    "SGP",
+    "SHLD",
+    "SMCI",
+    "SNDK",
+    "SOLS",
+    "SOLV",
+    "SPLS",
+    "STI",
+    "STLD",
+    "SW",
+    "TE",
+    "TECH",
+    "TEK",
+    "TKO",
+    "TPL",
+    "TRGP",
+    "TRMB",
+    "TTD",
+    "UBER",
+    "UCL",
+    "UPC",
+    "UST",
+    "VEEV",
+    "VICI",
+    "VLTO",
+    "VMRK",
+    "VRT",
+    "VRTS",
+    "VST",
+    "WB",
+    "WBD",
+    "WDAY",
+    "WSM",
+    "WTW",
+    "XYZ"
+  ]
+}

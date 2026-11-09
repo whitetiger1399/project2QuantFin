@@ -1,0 +1,153 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/build_cross_market_panel.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/source.yaml"]
+{
+  "action": "build_cross_market_panel",
+  "dataset_id": "ai_services_panel_20261109T064052Z_928359972ec57c68",
+  "source_hash": "928359972ec57c68",
+  "raw_audit": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/data_audits/cross_market/audit_20261101T012715Z.json",
+  "raw_audit_status": "pass_with_warnings",
+  "snapshots": {
+    "india_core": "yahoo_india_core_20261029T124839Z",
+    "us_limited_tech": "yahoo_us_limited_tech_20261029T125019Z",
+    "us_it_services": "yahoo_us_it_services_20261031T023621Z",
+    "us_it_enabled_payments": "yahoo_us_it_enabled_payments_20261031T023628Z",
+    "us_enterprise_software": "yahoo_us_enterprise_software_20261031T023634Z",
+    "us_context": "yahoo_us_context_20261029T125033Z",
+    "indian_it_adrs": "yahoo_indian_it_adrs_20261029T125050Z",
+    "global_context": "yahoo_global_context_20261029T125100Z",
+    "nifty50_point_in_time": "yahoo_nifty50_point_in_time_20261030T005526Z",
+    "sp500_point_in_time": "yahoo_sp500_point_in_time_20261030T005819Z",
+    "nifty500_point_in_time": "yahoo_nifty500_point_in_time_20261030T015703Z",
+    "fred_alfred": "fred_alfred_20261030T023950Z",
+    "frontier_ai_events": "frontier_ai_events_20261101T012534Z_3362c67601fb1428"
+  },
+  "output": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source/processed/ai_services_panel_20261109T064052Z_928359972ec57c68",
+  "status": "starting"
+}
+
+Loading yahoo_india_core_20261029T124839Z:   0%|          | 0/17 [00:00<?, ?file/s]
+Loading yahoo_india_core_20261029T124839Z: 100%|██████████| 17/17 [00:00<00:00, 87.12file/s]
+
+Loading yahoo_us_limited_tech_20261029T125019Z:   0%|          | 0/20 [00:00<?, ?file/s]
+Loading yahoo_us_limited_tech_20261029T125019Z: 100%|██████████| 20/20 [00:00<00:00, 159.37file/s]
+
+Loading yahoo_us_it_services_20261031T023621Z:   0%|          | 0/11 [00:00<?, ?file/s]
+Loading yahoo_us_it_services_20261031T023621Z: 100%|██████████| 11/11 [00:00<00:00, 134.03file/s]
+
+Loading yahoo_us_it_enabled_payments_20261031T023628Z:   0%|          | 0/2 [00:00<?, ?file/s]
+Loading yahoo_us_it_enabled_payments_20261031T023628Z: 100%|██████████| 2/2 [00:00<00:00, 149.90file/s]
+
+Loading yahoo_us_enterprise_software_20261031T023634Z:   0%|          | 0/5 [00:00<?, ?file/s]
+Loading yahoo_us_enterprise_software_20261031T023634Z: 100%|██████████| 5/5 [00:00<00:00, 155.99file/s]
+
+Loading yahoo_us_context_20261029T125033Z:   0%|          | 0/23 [00:00<?, ?file/s]
+Loading yahoo_us_context_20261029T125033Z: 100%|██████████| 23/23 [00:00<00:00, 158.32file/s]
+
+Loading yahoo_indian_it_adrs_20261029T125050Z:   0%|          | 0/2 [00:00<?, ?file/s]
+Loading yahoo_indian_it_adrs_20261029T125050Z: 100%|██████████| 2/2 [00:00<00:00, 156.80file/s]
+
+Loading yahoo_global_context_20261029T125100Z:   0%|          | 0/6 [00:00<?, ?file/s]
+Loading yahoo_global_context_20261029T125100Z: 100%|██████████| 6/6 [00:00<00:00, 118.52file/s]
+
+Loading yahoo_nifty50_point_in_time_20261030T005526Z:   0%|          | 0/100 [00:00<?, ?file/s]
+Loading yahoo_nifty50_point_in_time_20261030T005526Z: 100%|██████████| 100/100 [00:00<00:00, 174.17file/s]
+
+Loading yahoo_sp500_point_in_time_20261030T005819Z:   0%|          | 0/690 [00:00<?, ?file/s]
+Loading yahoo_sp500_point_in_time_20261030T005819Z:  13%|█▎        | 89/690 [00:01<00:06, 88.68file/s]
+Loading yahoo_sp500_point_in_time_20261030T005819Z:  37%|███▋      | 252/690 [00:02<00:03, 127.71file/s]
+Loading yahoo_sp500_point_in_time_20261030T005819Z:  66%|██████▌   | 454/690 [00:03<00:01, 155.00file/s]
+Loading yahoo_sp500_point_in_time_20261030T005819Z:  95%|█████████▍| 653/690 [00:04<00:00, 167.69file/s]
+Loading yahoo_sp500_point_in_time_20261030T005819Z: 100%|██████████| 690/690 [00:04<00:00, 164.08file/s]
+
+Cleaning india_core:   0%|          | 0/17 [00:00<?, ?asset/s]
+Cleaning india_core: 100%|██████████| 17/17 [00:00<00:00, 278.71asset/s]
+
+Cleaning us_limited_tech:   0%|          | 0/20 [00:00<?, ?asset/s]
+Cleaning us_limited_tech: 100%|██████████| 20/20 [00:00<00:00, 171.77asset/s]
+
+Cleaning us_it_services:   0%|          | 0/11 [00:00<?, ?asset/s]
+Cleaning us_it_services: 100%|██████████| 11/11 [00:00<00:00, 284.14asset/s]
+
+Cleaning us_it_enabled_payments:   0%|          | 0/2 [00:00<?, ?asset/s]
+Cleaning us_it_enabled_payments: 100%|██████████| 2/2 [00:00<00:00, 242.57asset/s]
+
+Cleaning us_enterprise_software:   0%|          | 0/5 [00:00<?, ?asset/s]
+Cleaning us_enterprise_software: 100%|██████████| 5/5 [00:00<00:00, 218.82asset/s]
+
+Cleaning us_context:   0%|          | 0/23 [00:00<?, ?asset/s]
+Cleaning us_context: 100%|██████████| 23/23 [00:00<00:00, 259.92asset/s]
+
+Cleaning indian_it_adrs:   0%|          | 0/2 [00:00<?, ?asset/s]
+Cleaning indian_it_adrs: 100%|██████████| 2/2 [00:00<00:00, 275.55asset/s]
+
+Cleaning global_context:   0%|          | 0/6 [00:00<?, ?asset/s]
+Cleaning global_context: 100%|██████████| 6/6 [00:00<00:00, 255.62asset/s]
+
+Cleaning nifty50_point_in_time:   0%|          | 0/100 [00:00<?, ?asset/s]
+Cleaning nifty50_point_in_time: 100%|██████████| 100/100 [00:00<00:00, 293.60asset/s]
+
+Cleaning sp500_point_in_time:   0%|          | 0/690 [00:00<?, ?asset/s]
+Cleaning sp500_point_in_time:  47%|████▋     | 323/690 [00:01<00:01, 322.36asset/s]
+Cleaning sp500_point_in_time:  94%|█████████▍| 650/690 [00:02<00:00, 324.31asset/s]
+Cleaning sp500_point_in_time: 100%|██████████| 690/690 [00:02<00:00, 322.09asset/s]
+
+Engineering india_core:   0%|          | 0/7 [00:00<?, ?asset/s]
+Engineering india_core: 100%|██████████| 7/7 [00:00<00:00, 54.78asset/s]
+
+Engineering us_tech:   0%|          | 0/20 [00:00<?, ?asset/s]
+Engineering us_tech: 100%|██████████| 20/20 [00:00<00:00, 53.77asset/s]
+
+Engineering us_it_services:   0%|          | 0/11 [00:00<?, ?asset/s]
+Engineering us_it_services: 100%|██████████| 11/11 [00:00<00:00, 59.70asset/s]
+
+Engineering us_it_payments:   0%|          | 0/2 [00:00<?, ?asset/s]
+Engineering us_it_payments: 100%|██████████| 2/2 [00:00<00:00, 51.93asset/s]
+
+Engineering us_enterprise_software:   0%|          | 0/5 [00:00<?, ?asset/s]
+Engineering us_enterprise_software: 100%|██████████| 5/5 [00:00<00:00, 40.41asset/s]
+
+Engineering adr:   0%|          | 0/2 [00:00<?, ?asset/s]
+Engineering adr: 100%|██████████| 2/2 [00:00<00:00, 50.69asset/s]
+
+Engineering us_context:   0%|          | 0/23 [00:00<?, ?asset/s]
+Engineering us_context: 100%|██████████| 23/23 [00:00<00:00, 52.12asset/s]
+
+Engineering global:   0%|          | 0/6 [00:00<?, ?asset/s]
+Engineering global: 100%|██████████| 6/6 [00:00<00:00, 51.94asset/s]
+
+Aligning sp500 universe:   0%|          | 0/690 [00:00<?, ?asset/s]
+Aligning sp500 universe:  34%|███▍      | 238/690 [00:01<00:01, 237.78asset/s]
+Aligning sp500 universe:  72%|███████▏  | 497/690 [00:02<00:00, 248.85asset/s]
+Aligning sp500 universe: 100%|██████████| 690/690 [00:02<00:00, 271.42asset/s]
+
+Aligning nifty50 universe:   0%|          | 0/100 [00:00<?, ?asset/s]
+Aligning nifty50 universe: 100%|██████████| 100/100 [00:00<00:00, 266.77asset/s]
+
+Aligning FRED/ALFRED:   0%|          | 0/17 [00:00<?, ?series/s]
+Aligning FRED/ALFRED: 100%|██████████| 17/17 [00:00<00:00, 87.20series/s]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:494: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  result[f"nonlinear__interaction__{left}__x__{right}"] = base[left] * base[right]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:494: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  result[f"nonlinear__interaction__{left}__x__{right}"] = base[left] * base[right]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:494: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  result[f"nonlinear__interaction__{left}__x__{right}"] = base[left] * base[right]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:494: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  result[f"nonlinear__interaction__{left}__x__{right}"] = base[left] * base[right]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:494: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  result[f"nonlinear__interaction__{left}__x__{right}"] = base[left] * base[right]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:494: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  result[f"nonlinear__interaction__{left}__x__{right}"] = base[left] * base[right]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:494: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  result[f"nonlinear__interaction__{left}__x__{right}"] = base[left] * base[right]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:494: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  result[f"nonlinear__interaction__{left}__x__{right}"] = base[left] * base[right]
+
+Engineering leave-one-out Nifty IT peers:   0%|          | 0/10 [00:00<?, ?asset/s]
+Engineering leave-one-out Nifty IT peers:  90%|█████████ | 9/10 [00:01<00:00,  8.65asset/s]
+Engineering leave-one-out Nifty IT peers: 100%|██████████| 10/10 [00:01<00:00,  8.63asset/s]
+/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/src/quantfin/cross_market/panel.py:631: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  panel["benchmark_cohort_ew_oc_return"] = panel["decision_date"].map(cohort_outcome)
+{
+  "dataset_id": "ai_services_panel_20261109T064052Z_928359972ec57c68",
+  "status": "complete",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source/processed/ai_services_panel_20261109T064052Z_928359972ec57c68"
+}

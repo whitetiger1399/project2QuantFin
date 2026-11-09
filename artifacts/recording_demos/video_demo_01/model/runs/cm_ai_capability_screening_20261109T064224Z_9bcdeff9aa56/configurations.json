@@ -1,0 +1,261 @@
+[
+  {
+    "config_id": "cm_zero_08cccf87365f",
+    "experiment": "baseline",
+    "family": "zero",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_asset_mean_947f6b0b0f9a",
+    "experiment": "baseline",
+    "family": "asset_mean",
+    "feature_set": "F0_own",
+    "parameters": {}
+  },
+  {
+    "config_id": "cm_autoregression_bd9f8ea82c3c",
+    "experiment": "baseline",
+    "family": "autoregression",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.0
+    }
+  },
+  {
+    "config_id": "cm_ridge_d71700639b0a",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F0_own",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_77d1acdb9975",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F1_nifty_it_peers",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_6baddf8e57da",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F2_us_services",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_590cbfbeb988",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F3_nifty50",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_d3df3c9ffe8f",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F4_sp500_aggregate",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_27708252ed81",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F5_sp500_constituents",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_45dce9671320",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F6_ai_capability",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_7994879be103",
+    "experiment": "feature_progression",
+    "family": "ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.1
+    }
+  },
+  {
+    "config_id": "cm_ridge_30310e5659b3",
+    "experiment": "ridge_tuning",
+    "family": "ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.01
+    }
+  },
+  {
+    "config_id": "cm_ridge_85dcda397e65",
+    "experiment": "ridge_tuning",
+    "family": "ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 1.0
+    }
+  },
+  {
+    "config_id": "cm_lasso_9c3f4700ada7",
+    "experiment": "model_family",
+    "family": "lasso",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 5e-05,
+      "max_iter": 5000,
+      "preselect_k": 450,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_lasso_97446bb8856b",
+    "experiment": "model_family",
+    "family": "lasso",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.0001,
+      "max_iter": 5000,
+      "preselect_k": 450,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_elastic_net_e2d4f4c8d6ee",
+    "experiment": "model_family",
+    "family": "elastic_net",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 5e-05,
+      "l1_ratio": 0.1,
+      "max_iter": 5000,
+      "preselect_k": 450,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_elastic_net_be1b51d7eeb0",
+    "experiment": "model_family",
+    "family": "elastic_net",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 5e-05,
+      "l1_ratio": 0.5,
+      "max_iter": 5000,
+      "preselect_k": 450,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_elastic_net_5732fa80c4bb",
+    "experiment": "model_family",
+    "family": "elastic_net",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 5e-05,
+      "l1_ratio": 0.9,
+      "max_iter": 5000,
+      "preselect_k": 450,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_elastic_net_b0c2d9bbd740",
+    "experiment": "model_family",
+    "family": "elastic_net",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.0001,
+      "l1_ratio": 0.1,
+      "max_iter": 5000,
+      "preselect_k": 450,
+      "tolerance": 0.0001
+    }
+  },
+  {
+    "config_id": "cm_pca_ridge_0c1135c0c944",
+    "experiment": "model_family",
+    "family": "pca_ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.1,
+      "n_components": 25
+    }
+  },
+  {
+    "config_id": "cm_pca_ridge_22407199ecb9",
+    "experiment": "model_family",
+    "family": "pca_ridge",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "alpha": 0.1,
+      "n_components": 75
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_cd9235695e6b",
+    "experiment": "model_family",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 6,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  },
+  {
+    "config_id": "cm_extra_trees_05a83581b70b",
+    "experiment": "model_family",
+    "family": "extra_trees",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "max_depth": 8,
+      "max_features": 0.5,
+      "min_samples_leaf": 40,
+      "n_estimators": 250
+    }
+  },
+  {
+    "config_id": "cm_hist_gradient_boosting_4d17b3727a99",
+    "experiment": "model_family",
+    "family": "hist_gradient_boosting",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "l2_regularization": 0.1,
+      "learning_rate": 0.05,
+      "max_iter": 160,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 50
+    }
+  },
+  {
+    "config_id": "cm_hist_gradient_boosting_62fcc1daf743",
+    "experiment": "model_family",
+    "family": "hist_gradient_boosting",
+    "feature_set": "F7_full_context",
+    "parameters": {
+      "l2_regularization": 0.1,
+      "learning_rate": 0.05,
+      "max_iter": 160,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 50
+    }
+  }
+]

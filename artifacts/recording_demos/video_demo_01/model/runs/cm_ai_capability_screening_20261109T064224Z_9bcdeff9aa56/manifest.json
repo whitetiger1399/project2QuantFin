@@ -1,0 +1,49 @@
+{
+  "action": "run_cross_market_experiments",
+  "checkpoint_count": 200,
+  "completed_at_utc": "2026-11-09T07:13:07.666597+00:00",
+  "config_sha256": "71fa59fd1db8ca22bcf40bceed01c26ed7405f543140f1058d39ac0e5951bf4a",
+  "configuration_count": 25,
+  "content_hash": "9bcdeff9aa56",
+  "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "dataset_manifest_sha256": "670243592043f546a0aef833e728356e4bae9b50a31e5b7a8ab8be2941710d05",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_screening_20261109T064224Z_9bcdeff9aa56",
+  "effective_estimator_jobs": 1,
+  "environment": {
+    "created_at_utc": "2026-11-09T07:13:07.667548+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "expected_checkpoint_count": 200,
+  "files": {
+    "annual_performance.csv": "74cd88a23b024fa0b4986f593b2bc378a656f31b170e94071007ddfdaa7f7dac",
+    "configurations.json": "4478b3c8aad89ca48036e1a609e90b70a87f1f37295b57d9713989fd1f58f4d0",
+    "cost_sensitivity.csv": "70e63d8eb035ce33e203a1dea70afc3cbd90a2fef406867e5e02712ce1a1f184",
+    "feature_importance_by_refit.csv": "5441e86a90bec8fcb4eb809e66a52dbd9145a5324925a0fb28f7f79906dc56bc",
+    "forecast_hac_comparisons.csv": "05d7b4f9facdc3fb3037bb18230b031c83e14e73ee2970d1ffa69c98fde89907",
+    "leaderboard.csv": "d42956177ab2df152b711dc9771ec51be31bc2c60c7a2cc06dafbc4a3698d9d1",
+    "predictions.parquet": "1e3a80b77f6df5d2a16f1b6f5eec98440048afeda0450200bb8f41ebd9c377ff",
+    "refit_diagnostics.csv": "4a4bc6c1c834428b6cef578f3a98a901465c1cf209454a380ce18e64a436bd05",
+    "selected_model_inference.json": "4fec1ae0d095bcc1f81bb06fea85a671d9d9f7b5efda3d1aceaecdd63cb76d10",
+    "strategy_ledgers.parquet": "9ec52675c7bc3fd22bb79ee07defc94d8d40e8d48202e2a6ad91eafcf3d5c712"
+  },
+  "parallel_workers": 3,
+  "profile": "submission_rerun",
+  "refit_frequency": "quarter_start",
+  "run_id": "cm_ai_capability_screening_20261109T064224Z_9bcdeff9aa56",
+  "schema_version": 1,
+  "selected_config_id": "cm_hist_gradient_boosting_62fcc1daf743",
+  "stage": "screening",
+  "status": "complete",
+  "training_scheme": "rolling"
+}

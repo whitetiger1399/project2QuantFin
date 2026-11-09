@@ -1,0 +1,291 @@
+{
+  "session_id": "demo_20261109T064051Z_633e5cb6e3f4",
+  "created_at_utc": "2026-11-09T06:40:51.683791+00:00",
+  "workers": 3,
+  "completed_steps": [
+    "build",
+    "screen",
+    "confirm",
+    "evaluate",
+    "results"
+  ],
+  "records": {
+    "source": {
+      "dataset_id": "ai_services_panel_20261109T064052Z_928359972ec57c68",
+      "status": "complete",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source/processed/ai_services_panel_20261109T064052Z_928359972ec57c68"
+    },
+    "dataset": {
+      "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+      "status": "complete",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/processed/ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+      "source_dataset_id": "ai_services_panel_20261109T064052Z_928359972ec57c68",
+      "events": 52,
+      "events_with_disclosed_total_parameters": 8,
+      "disclosure_fraction": 0.15384615384615385,
+      "capability_features": 25,
+      "guardrail": "Parameter count is a sparse scale proxy; undisclosed values are not imputed.",
+      "event_clock_policy": "Actual U.S. 16:00 America/New_York sessions and NSE 08:55 Asia/Kolkata cutoffs; DST-aware."
+    },
+    "eda": {
+      "run_id": "analysis_20261109T064129Z_66c8396748e9",
+      "status": "complete",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/analysis/analysis_20261109T064129Z_66c8396748e9"
+    },
+    "source_2026": {
+      "dataset_id": "ai_services_2026_panel_20261109T064134Z_6735552137cf7c68",
+      "status": "complete",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/source_2026/processed/ai_services_2026_panel_20261109T064134Z_6735552137cf7c68"
+    },
+    "dataset_2026": {
+      "dataset_id": "ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6",
+      "status": "complete",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model_2026/processed/ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6",
+      "source_dataset_id": "ai_services_2026_panel_20261109T064134Z_6735552137cf7c68",
+      "events": 52,
+      "events_with_disclosed_total_parameters": 8,
+      "disclosure_fraction": 0.15384615384615385,
+      "capability_features": 25,
+      "guardrail": "Parameter count is a sparse scale proxy; undisclosed values are not imputed.",
+      "event_clock_policy": "Actual U.S. 16:00 America/New_York sessions and NSE 08:55 Asia/Kolkata cutoffs; DST-aware."
+    },
+    "eda_2026": {
+      "run_id": "analysis_20261109T064200Z_b77d778b918a",
+      "status": "complete",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model_2026/analysis/analysis_20261109T064200Z_b77d778b918a"
+    },
+    "capability_analysis": {
+      "action": "analyze_ai_capability_effects",
+      "analysis_id": "ai_capability_analysis_20261109T064205Z_e47c2b9995f9",
+      "content_hash": "e47c2b9995f9",
+      "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/analysis/ai_capability_analysis_20261109T064205Z_e47c2b9995f9",
+      "status": "complete",
+      "disclosed_parameter_events": 8,
+      "total_frontier_events": 52,
+      "disclosure_fraction": 0.15384615384615385,
+      "direct_nifty_it": {
+        "n": 8.0,
+        "rho": 0.29940656547831473,
+        "pvalue": 0.4712605287015583
+      },
+      "post_us_services": {
+        "n": 8.0,
+        "rho": -0.3952166664313755,
+        "pvalue": 0.33251710793382766
+      },
+      "post_us_nifty_it": {
+        "n": 8.0,
+        "rho": 0.45509797952703834,
+        "pvalue": 0.25719208545877226
+      },
+      "guardrails": [
+        "Parameter count is not a universal capability metric.",
+        "The disclosed subset is small and non-random; correlations are exploratory.",
+        "MoE total and active parameters are not interchangeable.",
+        "Release-date and model-scale trends may be confounded with calendar time and macro conditions."
+      ]
+    },
+    "screening": {
+      "run_id": "cm_ai_capability_screening_20261109T064224Z_9bcdeff9aa56",
+      "content_hash": "9bcdeff9aa56",
+      "status": "complete",
+      "selected_config_id": "cm_hist_gradient_boosting_62fcc1daf743",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_screening_20261109T064224Z_9bcdeff9aa56"
+    },
+    "confirmation": {
+      "run_id": "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+      "content_hash": "c63846418f31",
+      "status": "complete",
+      "selected_config_id": "cm_extra_trees_cd9235695e6b",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_confirmation_20261109T071739Z_c63846418f31"
+    },
+    "freeze": {
+      "freeze_id": "cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb",
+      "content_hash": "e56ab95518cb",
+      "selected_config_id": "cm_extra_trees_cd9235695e6b",
+      "path": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/freezes/cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb.json"
+    },
+    "final_test": {
+      "run_id": "cm_ai_capability_final_test_20261109T073626Z_ac0e9cf48620",
+      "content_hash": "ac0e9cf48620",
+      "status": "complete",
+      "selected_config_id": "cm_extra_trees_cd9235695e6b",
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_final_test_20261109T073626Z_ac0e9cf48620"
+    },
+    "extension": {
+      "action": "run_frozen_2026_extension",
+      "run_id": "cm_ai_capability_2026_forward_20261109T074324Z_44d5ba202399",
+      "content_hash": "44d5ba202399",
+      "stage": "forward_extension_2026",
+      "dataset_id": "ai_capability_2026_panel_20261109T064155Z_280152f6b7bc0fc6",
+      "source_freeze_id": "cm_ai_capability_freeze_20261109T073430Z_e56ab95518cb",
+      "source_confirmation_run_id": "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+      "selected_config_id": "cm_extra_trees_cd9235695e6b",
+      "selected_family": "extra_trees",
+      "selected_feature_set": "F7_full_context",
+      "evaluation_start": "2026-01-01",
+      "evaluation_end": "2026-09-30",
+      "refit_count_selected_model": 1,
+      "model_reselection_performed": false,
+      "hyperparameter_tuning_performed": false,
+      "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model_2026/runs/cm_ai_capability_2026_forward_20261109T074324Z_44d5ba202399",
+      "status": "complete",
+      "training_end": "2025-12-30",
+      "prediction_dates": 185
+    },
+    "extension_verification": {
+      "status": "pass",
+      "checks_passed": 28,
+      "checks_failed": 0,
+      "checks": [
+        {
+          "check": "status_complete",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "stage_forward_extension",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "single_selected_refit",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "no_model_reselection",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "no_hyperparameter_tuning",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "training_ends_before_2026",
+          "passed": true,
+          "detail": "2025-12-30"
+        },
+        {
+          "check": "evaluation_start",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "evaluation_end",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:annual_performance.csv",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:configurations.json",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:cost_sensitivity.csv",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:feature_importance_by_refit.csv",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:forecast_hac_comparisons.csv",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:leaderboard.csv",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:plots/01_validation_leaderboard.png",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:plots/02_cumulative_wealth.png",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:plots/03_drawdown.png",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:plots/05_rolling_information_coefficient.png",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:predictions.parquet",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:refit_diagnostics.csv",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:selected_model_inference.json",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "hash:strategy_ledgers.parquet",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "prediction_start",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "prediction_end",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "selected_model_present",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "prediction_key_unique",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "selected_prediction_complete",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "selected_target_complete",
+          "passed": true,
+          "detail": ""
+        }
+      ]
+    }
+  },
+  "config_hashes": {
+    "source.yaml": "696d08c74520d8faf11ac8e10f128755661ac0a94044f4abaaed3e5beb84ac21",
+    "model.yaml": "71fa59fd1db8ca22bcf40bceed01c26ed7405f543140f1058d39ac0e5951bf4a",
+    "source_2026.yaml": "dc169515e6645bbdab98822defd7446b0d6488369f4c30a272b6c53a3a9b8a9c",
+    "model_2026.yaml": "2acd24b3fc145a7245a10464a254f84c3bd011f8f938b36e3c3ca6ee5c4a647f"
+  }
+}

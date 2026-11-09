@@ -1,0 +1,36 @@
+{
+  "action": "run_cross_market_experiments",
+  "checkpoint_count": 104,
+  "completed_at_utc": "2026-11-09T07:34:29.303261+00:00",
+  "configuration_count": 13,
+  "content_hash": "c63846418f31",
+  "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/runs/cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+  "effective_estimator_jobs": 1,
+  "environment": {
+    "created_at_utc": "2026-11-09T07:17:39.285839+00:00",
+    "packages": {
+      "matplotlib": "3.10.9",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "pyarrow": "19.0.1",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "seaborn": "0.13.2",
+      "statsmodels": "0.15.0"
+    },
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.10.10 (v3.10.10:aad5f6a891, Feb  7 2023, 08:47:40) [Clang 13.0.0 (clang-1300.0.29.30)]"
+  },
+  "expected_checkpoint_count": 104,
+  "parallel_workers": 3,
+  "profile": "submission_rerun",
+  "refit_frequency": "quarter_start",
+  "run_id": "cm_ai_capability_confirmation_20261109T071739Z_c63846418f31",
+  "screening_run_id": "cm_ai_capability_screening_20261109T064224Z_9bcdeff9aa56",
+  "selected_config_id": "cm_extra_trees_cd9235695e6b",
+  "stage": "confirmation",
+  "status": "complete",
+  "training_scheme": "rolling",
+  "updated_at_utc": "2026-11-09T07:34:29.325168+00:00"
+}

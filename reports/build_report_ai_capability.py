@@ -866,20 +866,12 @@ def build():
 
     doc.add_heading("Team contribution statement",level=1)
     doc.add_paragraph("The submitting team comprises PRATYUSH SINHA, RAMYANI PALIT, RITIK SRIVASTAVA, and VICTOR LEE CHIA SWEA.")
+    doc.add_paragraph('PRATYUSH SINHA proposed evaluating long and short positions alongside buy-based strategies. RAMYANI PALIT proposed the feature-engineering approach, model families and inclusion of trading costs in strategy evaluation, enabling comparison of gross and net returns. RITIK SRIVASTAVA proposed the research architecture and hypotheses, including the predictive value of U.S. stock information and the use of frontier AI releases. VICTOR LEE CHIA SWEA proposed incorporating Federal Reserve and related macroeconomic data. All four members contributed to coding, validation, interpretation and report preparation, jointly developing these ideas into a shared research framework.')
 
-    doc.add_heading("AI usage declaration",level=1)
-    doc.add_paragraph("OpenAI coding and language tools were used for implementation ideas, Python drafting and refactoring, runtime diagnosis, research organization, statistical discussion, source lookup, figure preparation and report formatting. Automated checks and source review support the evidence trail but do not replace author review. The authors retain responsibility for verifying the content and quality of the submitted work.")
-    doc.add_heading("Academic integrity",level=1)
-    doc.add_paragraph("The submission is prepared with reference to the NUS Plagiarism Policy, the NUS Code of Student Conduct (Section A: Academic Integrity), Academic Integrity Essentials, and the Policy for Use of AI in Teaching and Learning. AI assistance is declared transparently; external data, code, and research sources are attributed.")
-    for label,url in [
-        ("NUS Plagiarism Policy","https://myportal.nus.edu.sg/studentportal/student-discipline/all/docs/NUS-Plagiarism-Policy.pdf"),
-        ("NUS Code of Student Conduct","https://studentconduct.nus.edu.sg/wp-content/uploads/NUS-Code-of-Student-Conduct.pdf"),
-        ("Academic Integrity Essentials","https://libguides.nus.edu.sg/new2nus/acadintegrity#s-lib-ctab-22144949-1"),
-        ("Policy for Use of AI in Teaching and Learning","http://ctlt.nus.edu.sg/policy-for-use-of-ai-in-teaching-and-learning.pdf")]:
-        p=doc.add_paragraph(); p.paragraph_format.space_after=Pt(1); hyperlink(p,label,url)
-        for run in p.runs: run.font.size=Pt(8.8)
     doc.add_heading("References",level=1)
     references(doc)
+    p = doc.add_paragraph('AI usage declaration: OpenAI tools assisted with coding, analysis, figures and report preparation. All team members reviewed the outputs and remain responsible for the submitted content.')
+    for run in p.runs: run.font.size = Pt(8.8)
     doc.add_heading("Appendix A. Reproducibility and provenance",level=1)
     provenance_rows=[
         ("Processed dataset",DATASET_ID),("Screening run",SCREEN_ID),("Confirmation run",CONFIRM_ID),("Frozen specification",FREEZE_ID),("2025 historical replication",FINAL_ID),("2026 retrospective extension",FORWARD_ID),("Selected configuration",SELECTED),("Strict-vintage sensitivity",STRICT_VINTAGE.name),

@@ -1,0 +1,16 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/build_ai_capability_panel.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model.yaml", "--source-dataset-id", "ai_services_panel_20261109T064052Z_928359972ec57c68"]
+
+Mapping disclosed model scale:   0%|          | 0/26 [00:00<?, ?event/s]
+Mapping disclosed model scale: 100%|██████████| 26/26 [00:00<00:00, 1943.33event/s]
+{
+  "dataset_id": "ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "status": "complete",
+  "directory": "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/model/processed/ai_capability_panel_20261109T064115Z_1a13582b12774e0b",
+  "source_dataset_id": "ai_services_panel_20261109T064052Z_928359972ec57c68",
+  "events": 52,
+  "events_with_disclosed_total_parameters": 8,
+  "disclosure_fraction": 0.15384615384615385,
+  "capability_features": 25,
+  "guardrail": "Parameter count is a sparse scale proxy; undisclosed values are not imputed.",
+  "event_clock_policy": "Actual U.S. 16:00 America/New_York sessions and NSE 08:55 Asia/Kolkata cutoffs; DST-aware."
+}

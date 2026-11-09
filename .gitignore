@@ -7,7 +7,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Raw vendor downloads can have redistribution restrictions and remain local.
+# Raw downloads stay local; preprocessed data and run evidence are shareable.
 data/raw/*
 !data/raw/.gitkeep
 
@@ -15,3 +15,6 @@ data/raw/*
 reports/_rendered/
 reports/_render_*/
 
+
+# Regenerable local caches, not research evidence.
+artifacts/recording_demos/*/matplotlib_cache/

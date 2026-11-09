@@ -1,0 +1,151 @@
+COMMAND: ["/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/.venv/bin/python", "-u", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/scripts/verify_frozen_2026_extension.py", "--config", "/Users/whitetiger/Desktop/WhiteTiger/17_projects/24_Project2_QuantFin/project2QuantFin/artifacts/recording_demos/video_demo_01/configs/model_2026.yaml", "--run-id", "cm_ai_capability_2026_forward_20261109T074324Z_44d5ba202399"]
+
+Verifying 2026 extension:   0%|          | 0/14 [00:00<?, ?file/s]
+Verifying 2026 extension: 100%|██████████| 14/14 [00:00<00:00, 1933.94file/s]
+{
+  "status": "pass",
+  "checks_passed": 28,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "status_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "stage_forward_extension",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "single_selected_refit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no_model_reselection",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no_hyperparameter_tuning",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "training_ends_before_2026",
+      "passed": true,
+      "detail": "2025-12-30"
+    },
+    {
+      "check": "evaluation_start",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "evaluation_end",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:annual_performance.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:configurations.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:cost_sensitivity.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:feature_importance_by_refit.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:forecast_hac_comparisons.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:leaderboard.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:plots/01_validation_leaderboard.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:plots/02_cumulative_wealth.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:plots/03_drawdown.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:plots/05_rolling_information_coefficient.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:predictions.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:refit_diagnostics.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:selected_model_inference.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hash:strategy_ledgers.parquet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "prediction_start",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "prediction_end",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "selected_model_present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "prediction_key_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "selected_prediction_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "selected_target_complete",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}
