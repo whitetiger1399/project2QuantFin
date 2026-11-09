@@ -1,7 +1,7 @@
 {
   "status": "complete",
-  "created_at_utc": "2026-11-09T16:21:00.407863+00:00",
-  "source_hash": "bfbda5e7471dfb366fb28045824acb9852ed0882357de2d7ffe0c18118115f57",
+  "created_at_utc": "2026-11-09T16:39:51.020961+00:00",
+  "source_hash": "e85bd114548f8a6e1e3b751e470a7863f6f787ba003fcbc9b7bbf025461122f1",
   "client_date": "2026-11-02",
   "format_points": [
     960,
@@ -34,10 +34,10 @@
   },
   "inputs": {
     "documents/markdown/Project2.md": "66f0175dcfc155e67c922a38e53ce9f73f589c37d736a8b2eb4b7d5af4972220",
-    "reports/Project2_Team16_Report.docx": "c790b80dd0c03dbaaa4a30d8397bad972a41b5757f1fb0a8418f85523d98ddf4",
+    "reports/Group_16_Report.docx": "c790b80dd0c03dbaaa4a30d8397bad972a41b5757f1fb0a8418f85523d98ddf4",
     "assets/authors.json": "52b4359b25b12d6eee46c2f420eda35897493439d9b2788acd599ad8fa126fa8",
-    "documents/video_presentation_content.py": "a0426ac7103866e2de4f845dae69cc41c23007a35d66296197256c0bdb56451f",
-    "scripts/build_project2_video_package.py": "81e3ff6de23956a2e50ae3c20df43d04ab1116ef700b470fe238d9eff7f29851",
+    "documents/video_presentation_content.py": "512264f494d92d023c2622cf0a1fae298296c71f1575d0eb00868f2bf1d43e9f",
+    "scripts/build_project2_video_package.py": "9984ea36311079691afdcb43d4e5f99dd244bde93a874316786183252eaa3b9f",
     "src/quantfin/cross_market/experiments.py": "48d5da0ebdef13ebca5d195a53602b6f52c179cdc0eb372fc87ed70064bf8dd7",
     "reports/releases/project2_team16_v2_2026-11-01/release_registry.json": "6e0a24f13a5efa33035b86daf483ff31f1fb54aec86839bfc3d8dee5462991a6",
     "reports/publication_figure_pack_v2_2026-11-01/manifest.json": "6d97fecc1421ba9280b57db14024898586b1069aafd6b5d4126bded59d968d04",
@@ -52,12 +52,12 @@
     "reports/publication_figure_pack_v2_2026-11-01/16_regime_distributions.png": "e0af461b05a74e2a35ed2fca3383a1c6045f5eb88ea8d0eda0a6db55c7434555"
   },
   "outputs": {
-    "Project2_Team16_Video_Deck.docx": "ac7884eb45561c21d6c4362f781f62ac6ac8c7c8200af6725e03ecb5e7e03254",
+    "Group_16_Video_Deck.docx": "16cf0b4ef46be3b1f4a3520fda5c9cedf5c14a33b5def0b510890610391fb3d4",
     "video_architecture.png": "3337286949fef894e4dc3d557dbc362f1e50e74229f5503c87ebe4bd7b8880ff",
     "video_architecture.pdf": "34b70f43f6bb652080241316c49930d2931d018311d2f6c3c0ff61d058e6dd41",
-    "README.md": "4361d9e30df302d79a707c0e01a409125295b33f4d71f0d4964178ade46b2aa0",
-    "Project2_Team16_Video_Deck.pdf": "8b33d578e2ab407904cc5fbb1c7639a477e6e8c042d5e408c242233ebec785ca",
-    "Project2_Team16_Video_Deck.md": "113a6be47de7bc646beb52d4ee2f277fb7ad9d4e0e7f8604967b79902b4d2ab3",
+    "README.md": "d3fde81829472d0ed036d51bc2c6b087ff370faae949e53f70d1df711ca1bd8e",
+    "Group_16_Video_Deck.md": "ec75b0270b1f42c672e816c3220aa748f322ad964711e002c2cfd92d7e5f1b3c",
+    "Group_16_Video_Deck.pdf": "9da7fe4aacce8ea77055d49b55972526e1a1a0ea1e66d3c1ff08e68c654ae2b0",
     "recording_commands.md": "eb391b4f8223310c586f90b78942beed172ca730873424b5f05918430663106b",
     "video_costs.pdf": "6a70785cd79474d785726ace09cd8c2ec3dc25f9dd6d41dff9c4b030d4563b34",
     "video_costs.png": "8d3cf7629ff9fa551ef73d3d5350845b864b7004ffdb826d6081c294bd5cc4f0",

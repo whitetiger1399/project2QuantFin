@@ -6,9 +6,9 @@ The submitted deck presents the research question, architecture, six hypotheses,
 
 | Format | File |
 |---|---|
-| PDF | [Video deck](Project2_Team16_Video_Deck.pdf) |
-| Editable Word | [Video deck](Project2_Team16_Video_Deck.docx) |
-| Markdown | [Video deck](Project2_Team16_Video_Deck.md) |
+| PDF | [Video deck](Group_16_Video_Deck.pdf) |
+| Editable Word | [Video deck](Group_16_Video_Deck.docx) |
+| Markdown | [Video deck](Group_16_Video_Deck.md) |
 
 The deck uses a widescreen 16:9 layout. Slides 1–16 form the timed presentation; supporting figures and references follow. `timing.csv` records the planned 20-minute sequence.
 

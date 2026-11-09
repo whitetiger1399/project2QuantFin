@@ -12,7 +12,7 @@ from publication_report_sections import make_contents
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--docx',type=Path,default=ROOT/'reports/Project2_Team16_Report.docx')
+    parser.add_argument('--docx',type=Path,default=ROOT/'reports/Group_16_Report.docx')
     parser.add_argument('--pdf',type=Path,required=True)
     args=parser.parse_args()
     doc=Document(args.docx)

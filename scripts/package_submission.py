@@ -15,6 +15,7 @@ from tqdm import tqdm
 
 ROOT = Path(__file__).resolve().parents[1]
 MODES = ('full_data', 'preprocessed_data', 'code_only_with_logs', 'code_only_no_logs')
+NAMES = {'full_data': 'Group_16_Code_Full_Data.zip', 'preprocessed_data': 'Group_16_Code_Preprocessed_Data.zip', 'code_only_with_logs': 'Group_16_Code_With_Logs.zip', 'code_only_no_logs': 'Group_16_Code_Only.zip'}
 CACHE_PARTS = {'.git', '.venv', '__pycache__', '.pytest_cache', '.ruff_cache', '.cache', 'matplotlib_cache', '.matplotlib-cache'}
 STORED = {'.png', '.jpg', '.jpeg', '.pdf', '.docx', '.zip', '.mp4', '.npz'}
 
@@ -91,12 +92,14 @@ def package_readme(mode):
     return ('# Submission archive: ' + mode + '\n\n' + description + '\n\n'
             'Extract the ZIP and open a terminal inside `project2QuantFin/`. Virtual environments, Git history, credentials and caches are excluded.\n\n'
             + instructions + '\nUse an unused session name. ' + evidence_note + '\n'
+            'Submission report filename: `Group_16_Report.pdf` (Project2.md Section 7). ZIP edition names are descriptive; the assignment prescribes no exact ZIP filename.\n\n'
             '`PACKAGE_MANIFEST.json` lists included files with SHA-256 hashes, original run identities, exclusions and the source commit. The full-data archive supports the raw rebuild route as well.\n')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir', type=Path, default=ROOT.parent)
+    parser.add_argument('--replace-existing-dir', type=Path, help='Explicitly replace previous editions from this folder, one at a time after validating their input files.')
     args = parser.parse_args()
     output = args.output_dir.resolve()
     if output == ROOT or output.is_relative_to(ROOT):
@@ -130,7 +133,30 @@ def main():
     for mode in MODES:
         selected = [r for r in records if included(mode, r['class'], r['path'])]
         omitted = [dict(path=r['path'], reason='excluded input category: ' + r['class']) for r in records if not included(mode, r['class'], r['path'])]
-        destination = output / f'Project2_Team16_{mode}_{stamp}.zip'
+        destination = output / NAMES[mode]
+        if args.replace_existing_dir:
+            previous_root = args.replace_existing_dir.resolve()
+            candidates = sorted(previous_root.glob(f'Project2_Team16_{mode}_*.zip'))
+            canonical_previous = previous_root / NAMES[mode]
+            if canonical_previous.exists():
+                candidates.append(canonical_previous)
+            if len(candidates) != 1:
+                raise RuntimeError(f'Expected one previous {mode} archive in {previous_root}; found {len(candidates)}. Nothing removed for this edition.')
+            previous = candidates[0]
+            if destination.exists() and previous != destination:
+                raise FileExistsError(destination)
+            with zipfile.ZipFile(previous) as old:
+                old_manifest = json.loads(old.read('project2QuantFin/PACKAGE_MANIFEST.json'))
+                if old_manifest['archive_kind'] != mode:
+                    raise RuntimeError('Previous archive has unexpected edition: ' + str(previous))
+                for item in old_manifest['files']:
+                    relative = item['path'].replace('Project2_Team16_Report.docx', 'Group_16_Report.docx').replace('Project2_Team16_Report.pdf', 'Group_16_Report.pdf')
+                    if not (ROOT / relative).is_file():
+                        raise RuntimeError('Previous archive contains a file absent from the repository; preserve it before replacement: ' + relative)
+            print('Replacing prior edition after checking source files: ' + str(previous), flush=True)
+            previous.unlink()
+        elif destination.exists():
+            raise FileExistsError('Archive already exists; use --replace-existing-dir explicitly: ' + str(destination))
         manifest = {'schema_version': 1, 'archive_kind': mode, 'created_at_sgt': datetime.now(ZoneInfo('Asia/Singapore')).isoformat(),
                     'source_commit': commit, 'source_is_working_tree': True,
                     'description': 'Input datasets and run evidence are included according to this edition; see PACKAGE_README.md.',

@@ -17,6 +17,20 @@ Raw downloads under `data/raw/` are excluded from Git and LFS. Preprocessed pane
 
 The cohort reflects membership observed on 30 October 2026. The 2025–September 2026 evaluation is retrospective because these periods have already been inspected during development.
 
+## Submission filenames (Project2.md, Section 7)
+
+| Deliverable | Filename / submission method |
+|---|---|
+| Required report PDF | `Group_16_Report.pdf` |
+| Editable report companion | `Group_16_Report.docx` |
+| Video | [YouTube demo](https://youtu.be/VhtQpD3C_rs), supplied as a link in Canvas; MP4 is also permitted |
+| Code with preprocessed data | `Group_16_Code_Preprocessed_Data.zip` — recommended for a clean training run |
+| Code with raw and preprocessed data | `Group_16_Code_Full_Data.zip` — alternative complete local archive |
+| Code with logs/results, without input data | `Group_16_Code_With_Logs.zip` |
+| Code only, without data or logs | `Group_16_Code_Only.zip` — follow the raw rebuild instructions |
+
+Only the report PDF filename is prescribed exactly by the assignment. The ZIP names above are consistent labels for the four editions, not additional course requirements. Submit one chosen code package or the GitHub link; the four editions are alternatives. The assignment also requires README commands, `requirements.txt`, runnable fetch/build/train/evaluate scripts, and reproducible settings. It prohibits secrets and large proprietary datasets; keep the full-data archive as a local alternative unless redistribution and submission are appropriate. The report must be 15–25 pages, and the video 15–25 minutes.
+
 ## A. Clone and train from preprocessed data — recommended
 
 The shared branch is **[`v6-ritik`](https://github.com/whitetiger1399/project2QuantFin/tree/v6-ritik)**. It contains the pinned historical and January–September 2026 preprocessed datasets, configurations and retained experiment evidence. Clone this branch and restore its Git LFS objects before running Path A. Raw-data downloads and API keys are not required for this path.
@@ -257,7 +271,7 @@ Optional RBI rates, rainfall and event calendars require timestamped official ex
 
 ### Reports, checks and repository layout
 
-[Video deck](reports/video/Project2_Team16_Video_Deck.pdf) · [Report DOCX](reports/Project2_Team16_Report.docx) · [Report PDF](reports/Project2_Team16_Report.pdf) · [Recording commands](reports/video/recording_commands.md) · [Assignment](documents/markdown/Project2.md)
+[Video deck](reports/video/Group_16_Video_Deck.pdf) · [Report DOCX](reports/Group_16_Report.docx) · [Report PDF](reports/Group_16_Report.pdf) · [Recording commands](reports/video/recording_commands.md) · [Assignment](documents/markdown/Project2.md)
 
 Training does not automatically rewrite the report or supplementary hypothesis studies. Report evidence must be rebound and verified explicitly. Source code is in `src/quantfin/`, executable entry points in `scripts/`, and research contracts in `configs/`. Raw inputs stay local; the bundle registry pins existing processed inputs under `artifacts/recording_demos/video_demo_01/`. All prior logs, runs and analysis evidence are retained.
 

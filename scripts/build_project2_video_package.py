@@ -192,7 +192,7 @@ def deck(module,authors):
     d.add_page_break();para(d,'Reference appendix · not part of the timed recording',27,True,NAVY)
     table(d,['Source','What to verify and where'],[(label,detail+'\n'+path) for label,path,detail in module.REFERENCES],[2.7,9.7],15)
     para(d,'Full source links, event records and run identifiers: report References and Appendices A/E. Commands and source hashes: recording_commands.md and package_manifest.json.',14,color=MUTED)
-    d.save(OUT/'Project2_Team16_Video_Deck.docx')
+    d.save(OUT/'Group_16_Video_Deck.docx')
 
 
 def slide_cue(s):
@@ -280,7 +280,7 @@ def markdown(module,authors,deck_only=False):
       'The assignment explicitly requires data build → fit → validation → evaluation with costs. Record real launches and completion, accelerate waiting with an on-screen label, and use the saved report results only as the named historical evidence. A plan-only call is not a model fit.','',
       'Own-code backtesting is implemented in src/quantfin/cross_market/experiments.py. The assignment’s backtesting libraries are illustrative. See recording_commands.md and recording_evidence.py for concrete steps.','',
       'Use the fixed timing schedule in timing.csv. A word is a match of the Unicode regex recorded in package_manifest.json; headings and directions are excluded. Presenter allocations describe the proposed video roles only.','']
-    (OUT/'Project2_Team16_Video_Deck.md').write_text('\n'.join(deck_lines)+'\n')
+    (OUT/'Group_16_Video_Deck.md').write_text('\n'.join(deck_lines)+'\n')
     if not deck_only:
         (OUT/'Project2_Team16_Video_Script.md').write_text('\n'.join(script_lines)+'\n')
 
@@ -301,14 +301,14 @@ def main():
         pd.DataFrame([{'slide':s['number'],'title':s['title'],'presenter':authors[s['speaker']]['name'],
            'start':clock(s['start']),'end':clock(s['end']),'seconds':s['seconds'],'spoken_words':s['words'],
            'narration_seconds_at_120_wpm':s['narration_seconds'],'visual_transition_seconds':s['visual_seconds']} for s in module.SCENES]).to_csv(OUT/'timing.csv',index=False)
-    paths=[ROOT/'documents/markdown/Project2.md',ROOT/'reports/Project2_Team16_Report.docx',ROOT/'assets/authors.json',
+    paths=[ROOT/'documents/markdown/Project2.md',ROOT/'reports/Group_16_Report.docx',ROOT/'assets/authors.json',
        CONTENT,Path(__file__),ROOT/'src/quantfin/cross_market/experiments.py',REGISTRY,PACK/'manifest.json',PACK/'07_cost_accounting.csv',
        ROOT/'scripts/recording_evidence.py',OUT/'recording_commands.md']
     paths += [PACK/s['figure'] for s in module.SCENES if s.get('figure') and not s['figure'].startswith('video_')]
     paths += [PACK/p for p in ['05_cross_market_correlations.png','06b_event_responses.png','16_regime_distributions.png']]
     files=[p for p in OUT.iterdir() if p.is_file() and p.name!='package_manifest.json']
     if args.finalize:
-        stems=['Project2_Team16_Video_Deck'] if args.deck_only else ['Project2_Team16_Video_Deck','Project2_Team16_Video_Script']
+        stems=['Group_16_Video_Deck'] if args.deck_only else ['Group_16_Video_Deck','Project2_Team16_Video_Script']
         for stem in stems:
             for ext in ['docx','pdf','md']:assert (OUT/f'{stem}.{ext}').is_file()
         for stem in stems:
@@ -318,7 +318,7 @@ def main():
             script_doc=Document(OUT/'Project2_Team16_Video_Script.docx')
             script_text='\n'.join(p.text for p in script_doc.paragraphs)
             script_md=(OUT/'Project2_Team16_Video_Script.md').read_text()
-            deck_doc=Document(OUT/'Project2_Team16_Video_Deck.docx')
+            deck_doc=Document(OUT/'Group_16_Video_Deck.docx')
             deck_titles={p.text for p in deck_doc.paragraphs}
             for scene in module.SCENES:
                 assert script_text.count(slide_cue(scene))==1 and script_md.count(slide_cue(scene))==1,'Missing or duplicate slide cue'

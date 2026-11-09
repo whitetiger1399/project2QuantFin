@@ -258,7 +258,7 @@ Small retrospective monthly groups; these labels are not trading signals.
 ## Reference appendix — outside timed recording
 
 - Assignment: Sections 4–7: timing, models, evaluation, video and submission. documents/markdown/Project2.md
-- Report: Presentation source; Appendix A/E maps exact evidence records. reports/Project2_Team16_Report.docx
+- Report: Presentation source; Appendix A/E maps exact evidence records. reports/Group_16_Report.docx
 - Chinco et al. (2019): Sparse signals in the cross-section of returns. https://doi.org/10.1111/jofi.12733
 - Kelly et al. (2024): The virtue of complexity in return prediction. https://doi.org/10.1111/jofi.13298
 - Market and macro data: Yahoo Finance, FRED/ALFRED; public membership reconstructions. README.md

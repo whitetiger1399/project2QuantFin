@@ -28,7 +28,7 @@ from report_components import (  # noqa: E402
 )
 
 REGISTRY_PATH, RELEASE = load_registry(ROOT)
-OUT = registry_output(ROOT, RELEASE, "docx", "reports/Project2_Team16_Report.docx")
+OUT = registry_output(ROOT, RELEASE, "docx", "reports/Group_16_Report.docx")
 FIG = registry_output(ROOT, RELEASE, "generated_figures", "reports/figures_ai_capability")
 FIG.mkdir(parents=True, exist_ok=True)
 LOGO = ROOT / "assets/nus_logo_full-vertical.jpg"

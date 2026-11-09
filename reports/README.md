@@ -1,7 +1,7 @@
 # Submitted report
 
-- [Final report — DOCX](Project2_Team16_Report.docx)
-- [Final report — PDF](Project2_Team16_Report.pdf)
+- [Final report — DOCX](Group_16_Report.docx)
+- [Final report — PDF](Group_16_Report.pdf)
 - [Video deck and execution guide](video/README.md)
 
 The report presents cross-market daily forecasting, long/short/flat positions, transaction costs, hypothesis evidence and the combined 2025–September 2026 evaluation. These are retrospective evaluations. Appendix identifiers link the claims to retained model and analysis evidence.

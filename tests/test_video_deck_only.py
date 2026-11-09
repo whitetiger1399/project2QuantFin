@@ -16,7 +16,7 @@ class DeckOnlyTests(unittest.TestCase):
         module, authors = builder.load()
         with tempfile.TemporaryDirectory() as tmp, patch.object(builder, 'OUT', Path(tmp)):
             builder.markdown(module, authors, deck_only=True)
-            self.assertTrue((Path(tmp) / 'Project2_Team16_Video_Deck.md').is_file())
+            self.assertTrue((Path(tmp) / 'Group_16_Video_Deck.md').is_file())
             self.assertFalse((Path(tmp) / 'Project2_Team16_Video_Script.md').exists())
 
     def test_deck_only_dispatch_never_exports_script(self):
